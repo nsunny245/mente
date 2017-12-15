@@ -1,0 +1,691 @@
+.signup-mentorship-css {
+  header.intro > div {
+    background-color: #FDBD37;
+  }
+  header.intro > h3 {
+    color: #FFB81C;
+  }
+
+  header.intro {
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  .hr-bound {
+    margin: 2em 1.5em;
+  }
+  .hr-bound > hr {
+    border-color: #7F7F7F;
+  }
+
+  .profile {
+    margin: 0;
+    margin-bottom: 2em;
+    color: #00263A;
+    width: auto;
+    display: inline-block;
+  }
+    .profile>* {
+      display: inline-block;
+    }
+    .profile>img {
+      width: 5em;
+      height: 5em;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      margin: 0;
+      background-color: #E2E2E2;
+    }
+    .profile>h3 {
+      font-size: 2em;
+      margin: 0;
+      margin-left: 1em;
+    }
+    /*.profile>h4 {
+      font-family: 'Avenir-Black';
+      font-size: 1.35em;
+      margin: 0;
+    }
+    .profile>button {
+      margin: 1.5em auto 0 0;
+      border-radius: 0.8em;
+      padding: 0.6em 1.8em;
+    }
+      .profile>button>span {
+        font-size: 1.2em;
+      }*/
+
+  .label,
+  .sub-label,
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  .checkbox > span:last-child {
+    font-size: 1.1em;
+  }
+
+  .profile,
+  form {
+    vertical-align: top;
+    text-align: left;
+  }
+    label:not(.checkbox),
+    .label:not(:first-child) {
+      display: block;
+    }
+    .section > .label:first-child,
+    .section > legend:first-child + .label,
+    .section > fieldset:first-child > .label:first-child,
+    .section > legend:first-child + fieldset > .label:first-child {
+      margin-top: 0 !important;
+    }
+    label.visible.checkbox {
+      margin: 0.8em 1.5em 0 1.5em;
+      font-size: 1em;
+    }
+      label.visible.checkbox>* {
+      }
+    label.visible.checkbox>span:first-of-type {
+      width: 1.4em;
+      height: 1.4em;
+      padding: 0.25em;
+    }
+        label.visible.checkbox input[type=radio] + span {
+          padding: 0.35em !important;
+        }
+      label.checkbox input[type="radio"]:checked:not(:disabled) + span>div {
+        background-color: #EF4F5B;
+      }
+      label.checkbox input[type="checkbox"]:checked:not(:disabled) + span>div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+      }
+    label.visible.checkbox>span:last-of-type {
+      padding: 0.05em 0 0 1.25em;
+    }
+      label.visible.checkbox>span:last-of-type>span>span {
+        display: inline-block;
+      }
+    label.visible.checkbox + div>label.other {
+      margin-top: 0;
+    }
+
+    label.visible.checkbox.inline {
+      display: inline-block;
+    }
+
+
+  .section-nav {
+    list-style: none;
+    text-align: left;
+    vertical-align: top;
+    padding: 0;
+    margin: 3em 2em 5em 2em;
+  }
+    .section-nav>li>a {
+      cursor: pointer;
+    }
+        .section-nav>li>a:hover {
+          text-decoration: none;
+        }
+        .section-nav>li:nth-child(n+2) {
+          margin-top: 1.5em;
+        }
+        .section-nav>li>a>* {
+          display: inline-block;
+        }
+      .section-nav img {
+        vertical-align: top;
+        height: 1.75em;
+        width: auto;
+      }
+      .section-nav div {
+        padding-left: 1em;
+      }
+        .section-nav h1 {
+          margin: 0;
+          padding-bottom: 0.35em;
+          line-height: 0.8em;
+          font-size: 1.25em;
+        }
+          .section-nav h1>span {
+            color: #00C7B1;
+            vertical-align: top;
+          }
+        .section-nav a>div>span {
+          color: #004F71;
+          text-decoration: underline;
+        }
+
+  .mentorship {
+    margin-top: 0;
+    margin-right: 1em;
+    margin-bottom: 3em;
+    margin-left: 1em;
+  }
+    .mentorship label {
+      position: static;
+      opacity: 1;
+    }
+    .mentorship>div {
+      width: 100%;
+      margin: 3em 0 0 0;
+    }
+    .mentorship>div>button.standard-button {
+      padding: 0.5em 2em;
+      float: right;
+      border-radius: 0.8em;
+      background-color: #EF4F5B;
+    }
+        .mentorship>div>button.standard-button:hover,
+        .mentorship>div>button.standard-button:focus {
+          background-color: #F16568;
+        }
+  .section {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: 0.25em solid #00C7B1;
+    color: #004F71;
+  }
+  .section > label:first-of-type,
+  .section > p.label:first-of-type {
+    //margin-top: 0 !important;
+  }
+      .section:nth-of-type(n+2) {
+        margin-top: 4em;
+      }
+    .anchor {
+      display: block;
+      position: relative;
+      top: -9.5em;
+      visibility: hidden;
+    }
+    legend {
+      color: #00C7B1;
+      text-align: center;
+      padding: 0 1.3em;
+      height: 0;
+      line-height: 0.25em;
+      border: none;
+      width: auto;
+    }
+      legend>span {
+        font-size: 1em;
+        background-color: #fff;
+      }
+      .section:nth-of-type(2) legend>span {
+        font-size: 0.8em;
+      }
+      .section:nth-of-type(3) legend>span {
+        font-size: 1.05em;
+      }
+      .section:nth-of-type(4) legend>span {
+        font-size: 0.95em;
+      }
+    .section h3:nth-of-type(n) {
+      margin: 0;
+      padding: 0;
+      line-height: 1.4em;
+      font-size: 1.2em;
+    }
+      .section h3>span {
+        margin: 0;
+        padding: 0;
+        font-size: 1.4em;
+      }
+        .section h3>span>span {
+          display: inline-block;
+          /*line-height: 1em;*/
+        }
+    .sub-legend {
+      margin-top: 0.4em;
+    }
+    abbr[title="required"] {
+      border-bottom: none;
+    }
+
+    .section>button.standard-button {
+      margin: 3em auto 0 0;
+      padding: 0.6em 1em;
+      border-radius: 0.8em;
+      background-color: #004F71;
+    }
+      .seciton>button.standard-button:hover,
+      .seciton>button.standard-button:focus {
+        background-color: #437F9C;
+      }
+    .section p.quote {
+      margin-top: 1em;
+      color: #7F7F7F;
+    }
+    .section p>span {
+      display: inline-block;
+    }
+
+    .section label {
+      font-weight: normal;
+    }
+        input:nth-of-type(n) {
+          margin-top: 0;
+        }
+        .section label:nth-of-type(n+2):not(.checkbox),
+        .label:not(:first-child) {
+          margin-top: 1.75em;
+          margin-bottom: 0.35em;
+        }
+      .section input[type=radio] + span + span,
+      .section input[type=checkbox] + span + span {
+        color: #7F7F7F;
+      }
+      .sub-label,
+      .sub-legend {
+        display: block;
+        margin-top: 0.5em;
+        font-size: 1em;
+      }
+
+        .other .sub-label,
+        .sub-legend {
+          margin-top: 0;
+        }
+    .section input,
+    .section textarea {
+      font-size: 1.1em;
+      //height: 100%;
+    }
+       .section input {
+          //padding: 1.5em 1.2em;
+        }
+        .section textarea {
+          height: 14em;
+          padding-top: 0.8em;
+          padding-bottom: 0.8em;
+          padding-left: 1.2em;
+          &:not(.form-container-field-invalid) {
+            padding-right: 1.2em;
+          }
+        }
+
+  .error-label {
+    width: 100%;
+    height: 100%;
+    background: url(/Assets/Images/Signup/br_error.png)  no-repeat left center;
+  }
+
+  .post-label {
+    margin-top: 1em;
+  }
+
+  .submission-label {
+    margin-top: 3em;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 30em;
+  }
+  button.standard-button[type="submit"] {
+    margin-top: 1.5em;
+  }
+
+  .other-field {
+    margin-top: 0.5em;
+    label {
+      margin-bottom: 0.25em;
+    }
+  }
+  .checkbox + .other-field {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+
+
+  .preference>ul {
+    padding: 0;
+    list-style: none;
+  }
+    .preference>ul>li:first-child {
+      display: none;
+    }
+    .preference>ul>li>div:first-child {
+      width: 100%;
+    }
+      .preference>ul>li:nth-child(n+2) p {
+        margin: 0;
+      }
+    .preference>ul>li {
+      position: relative;
+    }
+    .preference>ul>li>div:nth-of-type(n+2) {
+      width: 100%;
+      height: 7em;
+      display: inline-block;
+      position: relative;
+    }
+      .preference>ul>li:first-child p {
+        width: 30%;
+        display: inline-block;
+        margin: 0;
+      }
+      .preference>ul .prefContainer {
+        margin: 0;
+        padding: 0;
+        width: 33.3%;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+      }
+      .prefContainer label {
+        display: inline-block;
+        margin-left: 0 !important;
+      }
+      .prefContainer label input {
+        /*position: absolute;*/
+        top: 100%;
+      }
+      .prefContainer label > span:first-of-type {
+        display: inline-block;
+        float: none !important;
+      }
+      .prefContainer label > span:last-of-type {
+        width: 100%;
+      }
+          .preference>ul .prefContainer:nth-child(2) {
+            left: 33.3%;
+          }
+          .preference>ul .prefContainer:nth-child(3) {
+            left: 66.6%;
+          }
+        .preference>ul .prefContainer {
+          display: block;
+          margin: 0 auto;
+          float: none;
+        }
+            .preference>ul label.visible.checkbox>span:nth-of-type(2),
+            .preference>ul>li:first-child p {
+              padding: 0;
+              margin-top: 0.5em;
+              /*width: 100%;*/
+              line-height: 1.1em;
+            }
+    .preference>ul hr {
+      margin: 0 0 1.5em 0;
+      border-color: #7F7F7F;
+    }
+        .preference>ul>li:last-child hr {
+          margin: 0;
+        }
+    .preference>ul p {
+      color: #7F7F7F;
+    }
+  .preference>label.visible.checkbox {
+    margin: 2em 0 0 0;
+    display: inline-block;
+  }
+
+  .mentorship > label.visible.checkbox {
+    margin-top: 3em;
+  }
+  .mentorship > label.visible.checkbox:nth-of-type(n+2) {
+    margin-top: 1.5em;
+  }
+
+  button[type="submit"] {
+    margin-top: 2em;
+  }
+
+  #references {
+    h3 {
+      font-size: 1em;
+      margin-top: 2.5em;
+      text-align: center;
+    }
+    h3 + label {
+      margin-top: 1em;
+    }
+  }
+
+  @media screen and (min-width: 30em) {
+    label.visible.checkbox input[type=radio] + span {
+      padding: 0.3em !important;
+    }
+    .hr-bound {
+      margin-top: 3em;
+    }
+    .profile>button {
+      font-size: 0.8em !important;
+    }
+    .profile>h4 {
+      font-size: 1.2em;
+    }
+    .section-nav {
+      margin-bottom: 3.5em;
+    }
+    .mentorship {
+      margin-top: 0;
+      margin-right: 1.75em;
+      margin-bottom: 3em;
+      margin-left: 1.75em;
+    }
+    .section {
+      font-size: 1em;
+      padding-top: 2.5em;
+      padding-bottom: 2em;
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+      border-width: 0.2em;
+    }
+      legend {
+        line-height: 0.1em;
+      }
+      .section:nth-of-type(n) legend>span {
+        font-size: 1.15em;
+      }
+      .section h3>span {
+        font-size: 1.5em;
+      }
+      .sub-legend {
+        margin-top: 1em;
+      }
+      .section>label:not(.checkbox):not(.other),
+      .section p:first-child,
+      .section :not(p) + p:not(.sub-legend):not(.post-label),
+      .label {
+        margin: 2em auto 1em auto;
+      }
+      .section>:nth-child(3),
+      .section>fieldset:nth-child(3)>:first-child {
+        //margin-top:0 !important;
+      }
+          .section p + p {
+            margin: -0.5em auto 1.5em auto;
+          }
+          //you had .section input here again, DRY
+      // .section input {
+      //   padding: 1.35em 1em;
+      // }
+      .section>button.standard-button {
+        font-size: 1em;
+      }
+    .section:last-of-type>p:first-of-type {
+      margin: 1em auto 0 auto;
+    }
+    .preference>ul label.visible.checkbox>span:nth-of-type(2) {
+      font-size: 0.9em;
+    }
+  }
+  @media screen and (min-width: 45em) {
+    .hr-bound {
+      margin: 4em 4em;
+    }
+    .profile, .section-nav {
+      display: inline-block;
+      /*width: 18em;*/
+      /*margin: 0;*/
+      padding: 0;
+      margin-bottom: 2em;
+    }
+      .profile {
+        /*padding: 0 0 0 4em;*/
+      }
+      .section-nav {
+        /*font-size: 1.1em;*/
+        margin-bottom: 3.5em;
+      }
+    .mentorship {
+      font-size: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0;
+      margin-bottom: 3em;
+      width: 100%;
+      max-width: 38em;
+    }
+      .section {
+        //font-size: 1.1em;
+        padding-top: 3.25em;
+        padding-bottom: 2em;
+        padding-left: 2em;
+        padding-right: 2em;
+        border-width: 0.2em;
+        width: 100%;
+      }
+          .section,
+          .mentorship>div {
+            margin-left: auto;
+            margin-right: auto;
+          }
+            .mentorship>div {
+              max-width: 46em;
+            }
+        legend {
+          margin: 0;
+        }
+        .section:nth-of-type(n) legend>span {
+          font-size: 1.15em;
+        }
+        .section h3>span {
+          //font-size: 1.35em;
+        }
+        /*.sub-legend {
+          margin-top: 1em;
+        }*/
+        .section label:not(.checkbox):not(.other),
+        .section p:first-child,
+        .section :not(p) + p:not(.sub-legend):not(.post-label),
+        .label:not(:first-child) {
+          margin: 2em auto 0.5em auto;
+        }
+            .section p + p {
+              margin: 0 auto 1em auto;
+            }
+        .section label.checkbox {
+          margin: 0.3em 1.5em 0 1.5em;
+          margin-top: 1.25em;
+          margin-bottom: 1.25em;
+        }
+          label.visible.checkbox>span:first-of-type {
+            width: 1.2em;
+            height: 1.2em;
+            padding: 0.22em;
+          }
+          label.visible.checkbox>span:last-of-type {
+            padding: 0 0 0 0.8em;
+          }
+    .mentorship>div>button.standard-button {
+      /*font-size: 1.6em !important;*/
+      padding: 0.5em 1.2em;
+    }
+
+    .preference>ul,
+    .preference>label.visible.checkbox {
+      font-size: 0.8em;
+    }
+    .preference>ul>li:first-child {
+      display: block;
+    }
+    .preference>ul>li:first-child>div {
+      display: inline-block;
+
+      text-align: center;
+      height: auto;
+      position: relative;
+    }
+        .preference>ul>li>div:first-of-type {
+          width: 35%;
+        }
+        .preference>ul>li>div:nth-of-type(n+2) {
+          width: 60%;
+          height: auto;
+        }
+            .preference>ul>li:nth-child(1)>div:nth-of-type(n+2) {
+              position: relative;
+              left: 5%;
+            }
+            .preference>ul>li:nth-child(n+2)>div:nth-of-type(n+2) {
+              position: absolute;
+              left: 40%;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+      .preference>ul hr {
+        margin: 0;
+      }
+      .preference>ul>li:nth-child(n+2) p {
+        padding: 1.5em 0;
+      }
+          .preference>ul>li:nth-child(1) p {
+            padding-bottom: 1.25em;
+          }
+      .preference>ul label.visible.checkbox {
+        margin: 0;
+      }
+      .preference>ul label>span:nth-of-type(2) {
+        position: absolute;
+        opacity: 0;
+      }
+        .preference>ul>li:nth-child(n+2)>div:first-of-type {
+          text-align: left;
+        }
+
+  }
+  @media screen and (min-width: 48em) {
+    .profile {
+      margin-bottom: 3.5em;
+    }
+    .section {
+      max-width: 42em;
+    }
+    .section label:not(.checkbox):not(.other),
+    .section p:first-child,
+    .section :not(p) + p:not(.sub-legend):not(.post-label),
+    .label:not(:first-child) {
+      margin: 2.5em auto 0.5em auto;
+    }
+        .section p + p {
+          margin: 0 auto 0.5em auto;
+        }
+    .section:last-of-type>p:first-of-type {
+      margin: 1em auto 1em auto;
+    }
+    .mentorship {
+      //font-size: 1.2em;
+      width: 40em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0;
+      margin-bottom: 3em;
+    }
+  }
+  @media screen and (min-width: 60em) {
+    .mentorship {
+      font-size: 1em;
+    }
+  }
+}

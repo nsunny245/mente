@@ -1,0 +1,102 @@
+$brand-blue: #00263A;
+$brand-blue-hover: #2C435E;
+
+$brand-cyan: #00C7B1;
+$brand-cyan-hover: #A9DBD3;
+
+$brand-yellow: #FFB81C;
+$brand-yellow-hover: #FFD17D;
+
+$brand-navyblue: #004F71;
+$brand-navyblue-hover: #004F71;
+
+$brand-lightnavy: #006383;
+$brand-lightnavy-text: #005777;
+
+$brand-salmon: #EF4F5B;
+$brand-salmon-hover: #f16568;
+$brand-hotpink: #E4003F;
+$brand-red: #E40046;
+$brand-red-hover: #F16568;
+
+$brand-darkgrey: #232323;
+$brand-grey: #999;
+$brand-medgrey: #7f7f7f;
+$brand-lightishgrey: #ccc;
+$brand-lightgrey: #f2f2f2;
+
+$upvote-color: #e4a924;
+$downvote-color: #5bb1e3;
+
+$error-color-main: $brand-salmon;
+
+
+@mixin buttonMadeAnchor() {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin explicit-margin($top, $right, $bottom, $left) {
+  margin-top: $top !important;
+  margin-right: $right !important;
+  margin-bottom: $bottom !important;
+  margin-left: $left !important;
+}
+
+@mixin magic-padding-bottom($value) {
+  &:after {
+    content: '';
+    display: block;
+    margin-top: $value;
+    height: .001em;
+  }
+}
+
+@mixin magic-padding($values) {
+  $length: length($values);
+  $top: nth($values, 1);
+  $right: $top;
+  $bottom: $top;
+  $left: $top;
+
+  @if $length == 2 {
+    $right: nth($values, 2);
+    $left: $right;
+  }
+
+  @else if $length == 3 {
+    $right: nth($values, 2);
+    $bottom: nth($values, 3);
+    $left: $right;
+  }
+
+  @else if $length >= 4 {
+    $right: nth($values, 2);
+    $bottom: nth($values, 3);
+    $left: nth($values, 4);
+  }
+
+  padding: $top $right 0 $left;
+
+  @include magic-padding-bottom($bottom);
+}
+
+
+//ANIMATIONS
+
+.animate-show-hide.ng-hide {
+  position: absolute;
+  opacity: 0;
+}
+
+.animate-show-hide.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+//ANGULAR
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

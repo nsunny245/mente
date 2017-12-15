@@ -1,0 +1,106 @@
+<!-- library -->
+<div class="library-css">
+  <header class="library block">
+    <h1><span class="amsi-text cap">Resource Library</span></h1>
+    <p>We searched the Internet to bring you the best information and resources about post-secondary education and disability.
+      Search our library to find reports, tools, publications, web links, and resource lists.</p>
+    <p>The resources are organized into 4 main categories with sub categories: 1) disclosure and communication, 2) accommodations, 3) social media and disability, and 4) navigating experiences of post-secondary education.</p>
+
+    <p>Select a category and click on a topic to begin browsing the library.</p>
+  </header>
+
+  <nav class="education-menu">
+    <h2><span class="amsi-text cap">Main Categories</span></h2>
+    <ul class="sort-links">
+      <li>
+        <button class="standard-button" ng-click="addFilter('disclosure', 0)" ng-class="openTabs[0].class" name="disclosure" value="disclosure"><span>Disclosure and communication</span></button>
+      </li>
+      <li>
+        <button class="standard-button" ng-click="addFilter('accom', 1)" ng-class="openTabs[1].class" name="accom" value="accom"><span>Accommodations</span></button>
+      </li>
+      <li>
+        <button class="standard-button" ng-click="addFilter('social', 2)" ng-class="openTabs[2].class" name="social" value="social"><span>Social media and disability</span></button>
+      </li>
+      <li>
+        <button class="standard-button" ng-click="addFilter('naving', 3)" ng-class="openTabs[3].class" name="naving" value="naving"><span>Navigating Experiences of PSE</span></button>
+      </li>
+    </ul>
+
+    <h2 ng-if="tags.length > 0"><span class="amsi-text cap">Sub-Categories</span></h2>
+    <ul ng-if="tags.length > 0">
+      <li ng-repeat="tag in tags | inArray:filters:'category'">
+        <button class="standard-button" ng-click="toggleSubButton.item = $index; selectItem(tag.content)" ng-class="{'menu-on': toggleSubButton.item == $index}"><span>{{tag.term}}</span></button>
+        <ul ng-if="tag.subcat.length > 0">
+          <li ng-repeat="sub in tag.subcat">
+            <button class="standard-button" ng-click="selectItem([sub])"><span>{{sub.subname}}</span></button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="education-content">
+    <div>
+      <p class="education-content-prompt" ng-show="filters.length == 0 && toggleSubButton.item == null">Select a Category to Begin</p>
+      <p class="education-content-prompt" ng-show="filters.length > 0 && toggleSubButton.item == null">Select a Sub-Category</p>
+      <p class="education-content-prompt" ng-show="filters.length > 0 && toggleSubButton.item != null && isEmpty(selectedCat)">Sorry, There are No Resources of this Kind Yet</p>
+      <ul ng-show="filters.length > 0 && toggleSubButton.item != null && !isEmpty(selectedCat)">
+        <li class="education-index" ng-repeat="(key, value) in selectedCat track by $index">
+          <!-- <hr ng-if="$index > 0"> -->
+          <button class="education-item"
+          data-toggle="collapse"
+          data-target="#lx-i{{$index}}"
+          aria-expanded="false"
+          aria-controls="lx-i{{$index}}"
+          ng-click="itemShown = !itemShown">
+            <div>
+              <h3>{{value.title}} <span ng-show="!itemShown"> - Click to Open</span><span ng-show="itemShown">- Click to Close</span></h3>
+              <p ng-if="value.description != ''">{{value.description}}</p>
+            </div>
+          </button>
+
+          <article class="collapse" id="lx-i{{$index}}">
+            <div>
+              <hr>
+              <p ng-if="value.content != ''">{{value.content}}</p>
+              <ul class="weblinks" ng-if="value.weblinks.length > 0">
+                <li ng-repeat="link in value.weblinks">
+                  <h4><a ng-href="{{link.address|linkFilter}}">{{link.title}}</a></h4>
+                  <p>{{link.description}}</p>
+                </li>
+              </ul>
+              <ul class="pdfs" ng-if="value.pdfs.length > 0">
+                <li ng-repeat="pdf in value.pdfs">
+                  <h4><a ng-href="pdf.source">{{pdf.title}}</a></h4>
+                  <p>{{pdf.description}}</p>
+                </li>
+              </ul>
+              <ul class="images" ng-if="value.video.length > 0">
+                <li ng-repeat="video in value.video">
+                  <h4>{{video.title}}</h4>
+                  <video controls 
+                  poster="" onclick="this.paused?this.play():this.pause();">
+                      <source ng-src="video.source" type="video/mp4"> Your browser does not support the video tag.
+                  </video>
+                  <p>{{video.description}}</p>
+                </li>
+              </ul>
+              <ul class="video" ng-if="value.images.length > 0">
+                <li ng-repeat="image in value.images">
+                  <h4>{{image.title}}</h4>
+                  <img ng-src="image.source">
+                  <p>{{image.description}}</p>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="block">
+    <h1><span class="amsi-text cap">Disclaimer on information:</span></h1>
+    <p>While we make every effort to provide accurate and complete information, it is not always possible, and certain information (for example, names, telephone numbers, and links) may change prior to updating. For more on information use, refer to our Privacy Policy.</p>
+  </footer>
+</div>

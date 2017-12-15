@@ -1,0 +1,223 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.library-css {
+  header.block:nth-child(n) {
+      @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, false, true);
+      h2 {
+          font-size: 1.25em;
+      }
+      h1, p {
+        text-align: center;
+      }
+  }
+
+  .block {
+    direction: inherit !important;
+  }
+
+  footer.block:nth-of-type(1) {
+    @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, false, true);
+  }
+
+  nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: hidden;
+      text-align: center;
+  }
+
+  .education-menu {
+      h2 {
+          color: $brand-salmon;
+          text-align: center;
+      }
+      & > ul {
+          // background-color: $brand-lightgrey; // padding-top: 1em;
+          padding-bottom: 1em;
+          padding-left: 1em;
+          padding-right: 1em;
+          margin-left: -1em;
+      }
+      & > ul:nth-child(n+2) {
+          margin-top: -1em;
+      }
+      li {
+          display: inline-block;
+          margin-left: 1em;
+          margin-top: 1em;
+      }
+  }
+
+  button.standard-button {
+    font-family: "Avenir-Medium";
+    background-color: #7f7f7f;
+    &:focus,
+    &:hover {
+      background-color: #b2b2b2;
+    }
+    &.menu-on {
+      background-color: $brand-salmon;
+      &:focus,
+      &:hover {
+        background-color: $brand-salmon-hover;
+      }
+    }
+  }
+
+  $base-content-height: 7em;
+  .education-content {
+      background-color: $brand-lightgrey;
+      & > div,
+      & > section {
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 2.5em;
+        padding-bottom: 2.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        max-width: 60em;
+        min-height: $base-content-height;
+        position: relative;
+      }
+
+      ul {
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 0;
+
+          article>&:nth-of-type(n+2) {
+              margin-top: 0.5em;
+          }
+          article>&>* {
+              margin: 0;
+          }
+      }
+
+
+      li {
+          width: 100%;
+          text-align: left !important;
+          margin: 0;
+          overflow: hidden;
+      }
+      .education-index {
+        border-radius: 0.35em;
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+        background-color: #fff;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+      button {
+          width: 100%;
+          // padding-top: 0.5em;
+          // padding-bottom: 0.5em;
+      }
+      .education-item {
+        padding: 0;
+        text-align: center;
+        & > div {
+          display: inline-block;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+          max-width: 35em;
+        }
+      }
+      h3 {
+          //font-family: "Avenir-Black";
+          margin-top: 0;
+          margin-bottom: 0;
+          &.content-on {
+              color: $brand-salmon;
+          }
+          span {
+              font-family: "Avenir-Medium";
+              color: $brand-grey;
+          }
+      }
+      button p {
+          margin-top: 0.5em;
+          margin-bottom: 0;
+      }
+      article {
+          & > div {
+              padding-top: 1em;
+              padding-bottom: 1em;
+          }
+          max-width: 30em;
+          margin-left: auto;
+          margin-right: auto;
+          hr {
+            margin: 0;
+            margin-bottom: 1em;
+          }
+          li {
+            margin-top: 0.5em;
+          }
+          h4 {
+            margin: 0;
+          }
+          p {
+            margin: 0;
+          }
+          a {
+            text-decoration: underline;
+          }
+          img,
+          video,
+          .auto-resize-iframe {
+            width: 100%;
+            margin-bottom: 1em;
+          }
+      }
+      @include min-screen(30em) {
+        .education-index {
+          padding-left: 1.5em;
+          padding-right: 1.5em;
+        }
+      }
+      @include min-screen(45em) {
+        img,
+        video,
+        .auto-resize-iframe {
+          margin-left: auto;
+          margin-right: auto;
+          //width: 80%;
+        }
+      }
+      @include min-screen(48em) {
+        .education-index {
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+      }
+      @include min-screen(60em) {
+        & > ul {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+  }
+
+  .education-content-prompt {
+      text-align: center;
+      width: 100%;
+      font-size: 1.5em;
+      font-family: "Avenir-Medium";
+      color: #b2b2b2;
+      position: absolute;
+      left: 50%;
+      margin: auto;
+      transform: translateX(-50%);
+  }
+
+  .education-content {
+    background-color: $brand-lightgrey;
+  }
+}

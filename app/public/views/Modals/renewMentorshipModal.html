@@ -1,0 +1,40 @@
+<div ng-controller="renewMentorshipModalCTR">
+	<script type="text/ng-template" id="renewMentorshipModal.html">
+		<div class="modal-body end-state-modal">
+			<h1>
+				<span class="amsi-text">Renew your Mentorship</span>
+				<button title="close" class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+			</h1>
+
+			<div class="clearfix modal-padding">
+				<form>
+					<p class="modal-info">[intro] [email process?]</p>
+					<p class="modal-info">If your mentor chooses to accept your request, the curriculum will start again. Your mentor will have one week to respond from when the request is sent. If they do not respond in this time, you will need to Close the Relationship and request a new mentor if you would like to begin the program again.</p>
+					<p class="modal-info">Please review the <a href="#/mentorship-program-agreement" target="_blank">program agreement</a> in case any changes have been made, and to remind yourself of the expectations of the program.</p>
+
+					<p class="modal-prompt">Do you wish to Continue?</p>
+
+					<button type="button" class="standard-button modal-submit modal-cancel" ng-click="CloseModal()">
+						<span class="amsi-text cap">Cancel</span>
+					</button>
+					<button type="button" class="standard-button modal-submit" ng-click="confirmOpen = !confirmOpen" ng-show="!confirmOpen" ng-disabled="false">
+						<span class="amsi-text cap" ng-show="true">Renew Mentorship</span>
+						<span class="amsi-text cap" ng-show="false">Request Sent</span>
+					</button>
+
+					<div class="save-settings" ng-show="confirmOpen">
+						<label for="close-pass">Are you sure? Enter your password to confirm:</label>
+						<input id="close-pass" type="password" ng-model="pass">
+						<pre ng-show="pswError" class="angrytext" >Incorrect password, please try again</pre>
+					</div>
+					<button type="submit" class="standard-button modal-submit" ng-show="confirmOpen" ng-click="RenewMentorship(pass)">
+						<span class="amsi-text cap">Confirm</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</script>
+	<button button type="button" class="standard-button delete" ng-click="open()">
+	    <span class="amsi-text cap">Renew Mentorship</span>
+	</button>
+</div>

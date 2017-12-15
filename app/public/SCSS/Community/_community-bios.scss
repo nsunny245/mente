@@ -1,0 +1,116 @@
+@import '../Partials/helpers';
+@import '../Partials/hubBlocks';
+@import "../Partials/profileCards";
+
+@mixin communityCardPage() {
+  body {
+    background-color: $brand-lightgrey;
+  }
+
+  header.block:nth-of-type(1) {
+    //white background (parameter 0) replaced on scss specific to each page
+    @include hubBlocks(#fff, #fff, $brand-blue, $brand-blue-hover, false, true);
+    //padding-top: 0;
+    h1 {
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+  }
+  .block:nth-of-type(n) {
+    direction: inherit !important;
+  }
+
+  .profile-card-nav,
+  .profile-card-main-container {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .profile-card-main-container {
+    display: none;
+    margin-bottom: 3em;
+    text-align: center;
+  }
+
+  .profile-card-nav {
+    margin-top: 2.5em;
+    margin-bottom: 3em;
+  }
+  .profile-card-preview-container {
+    margin: 0;
+    padding: 0;
+    // text-align: center;
+  }
+  .profile-card-preview {
+    @include profileCard(true, #fff);
+  }
+  .profile-card-main {
+    @include profileCard(false, #fff);
+    margin-top: 2.5em;
+  }
+  .profile-card-quote {
+    font-family: "Avenir-Black";
+    text-align: center;
+    span {
+      font-style: italic;
+    }
+  }
+  .profile-card-main-content .profile-card-action {
+    text-align: center;
+  }
+
+  @include max-screen(30em) {
+    .profile-card-preview {
+      @include profileCard(true, #fff);
+    }
+  }
+  @include min-screen(30em) {
+    .profile-card-nav,
+    .profile-card-main-container {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+    }
+    .profile-card-main-content {
+      max-width: 40em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .profile-card-main .profile-card-action {
+      display: none;
+    }
+    .profile-card-preview .profile-card-main-content {
+      display: none;
+    }
+    .profile-card-main-container {
+      display: block;
+    }
+    .profile-card-preview-container {
+    }
+  }
+  @include screen(30em, 45em) {
+    .profile-card-preview {
+    }
+  }
+  @include min-screen(45em) {
+    .profile-card-nav,
+    .profile-card-main-container {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+    .profile-card-preview {
+    }
+  }
+  @include min-screen(60em) {
+    .profile-card-nav,
+    .profile-card-main-container {
+      width: 55em;
+      padding: 0;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

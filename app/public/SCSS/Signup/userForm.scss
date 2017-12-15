@@ -1,0 +1,62 @@
+.signup-user-css {
+  font-size: 0.9em;
+
+  header.intro > div {
+    background-color: #006383;
+  }
+  header.intro > h3 {
+    color: #005777;
+  }
+  form {
+    text-align: left;
+  }
+  label:not(.checkbox) {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    /*margin-left: 1.1em;*/
+  }
+  label:not(.checkbox) > span {
+    color: #999;
+  }
+  .form-container-field:nth-of-type(n+2) {
+    margin-top: 0;
+  }
+  .form-container-field {
+    margin-bottom: 2em;
+  }
+  .form-container-field:last-child {
+    margin-bottom: 0;
+  }
+  .checkbox + .form-container-field,
+  p.label + .form-container-field {
+    .form-container-field-msg {
+       font-family: 'Avenir-Black';
+       font-size: 1.1em;
+    }
+  }
+  label.checkbox {
+    margin-top: 2.5em;
+  }
+  label.checkbox > * {
+    vertical-align: middle;
+  }
+  label.checkbox > span:first-of-type {
+    width: 1.5em;
+    height: 1.5em;
+    padding: 0.25em !important;
+  }
+  label.checkbox input:checked + span > div {
+    background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    background-size: cover;
+  }
+  label.checkbox > span:last-of-type {
+    text-align: left;
+    padding-left: 1em !important;
+    padding-top: 0.09em !important;
+    padding-bottom: 0.09em !important;
+    font-size: 1.1em;
+  }
+  form h4 {
+    font-size: 1.25em;
+  }
+}

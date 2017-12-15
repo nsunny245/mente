@@ -1,0 +1,110 @@
+// {
+// 	"domaines": 
+// 		[
+// 			"georgebrown.ca",
+// 			"algonquincollege.com",
+// 			"cambriancollege.ca",
+// 			"canadorecollege.ca",
+// 			"centennialcollege.ca",
+// 			"collegeboreal.ca"
+// 		],
+// 	"lastUpdate": "2016-08-11T16:29:05+01:00",
+// 	"by": "Leonard Quintal"
+// }
+
+
+// $scope.tags = [
+//         {
+//             title: "Disclosure and communication",
+//             heading: "The resources in this section focus on communicating about and disclosing disability. The topics addressed include talking about disability and student’s rights related to disclosing a disability.",
+
+//             term: 'Disability identity and representation',
+//             id: 'id',
+//             category: 'disclosure',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Talking about disability',
+//             id: 'id2',
+//             category: 'disclosure',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Disclosing in the learning environment',
+//             id: 'id3',
+//             category: 'disclosure',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Disclosing in the workplace',
+//             id: 'id4',
+//             category: 'disclosure',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         },
+//         //accom
+//         {
+//             title: "Accommodations",
+//             heading: "This section provides helpful resources about accommodations in general and in the post-secondary environment. While most of the resources are directed at students, we also offer resources for faculty and staff.",
+//             term: 'Disability accommodations in post-secondary education',
+//             id: 'id',
+//             category: 'accom',
+//             link: "google.com",
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Disability accommodations in the workplace',
+//             id: 'id2',
+//             category: 'accom',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         },
+//         //social
+//         {
+//             title: "Social media and disability",
+//             heading: "This section provides tips no how to navigate some of the more common social media platforms and describes how to access the accessible platforms of Facebook and Twitter. These resources also address the common uses of social media and explore how students with disabilities may use it to network with others while attending college or university.",
+
+//             term: 'Accessibility of social media',
+//             id: 'id',
+//             category: 'social',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Social media and disability',
+//             id: 'id2',
+//             category: 'social',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Cyber disclosure and social media',
+//             id: 'id3',
+//             category: 'social',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Online presence and personal branding',
+//             id: 'id4',
+//             category: 'social',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         }, {
+//             term: 'Web content accessibilitye',
+//             id: 'id5',
+//             category: 'social',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }],
+//         },
+//         //trans
+//         {
+//             title: "Navigating Experiences of PSE",
+//             heading: "The resources in this section are about other aspects of student experience not addressed in the other areas of our library such as student life, socializing, and transition planning.",
+
+//             term: 'Transitioning to post-secondary education',
+//             id: 'id',
+//             category: 'naving',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }]
+//         }, {
+//             term: 'Student success',
+//             id: 'id2',
+//             category: 'naving',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }]
+//         }, {
+//             term: 'Lifestyle and relationships',
+//             id: 'id3',
+//             category: 'naving',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }]
+//         }, {
+//             term: 'Transitioning to working',
+//             id: 'id4',
+//             category: 'naving',
+//             subcat: [{ sub1: $scope.subcats[0] }, { sub2: $scope.subcats[1] }]
+//         }];

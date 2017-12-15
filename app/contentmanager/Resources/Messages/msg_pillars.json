@@ -1,0 +1,41 @@
+{	
+	"main":	{
+			"title":"Welcome to our 3 Pillars",
+			"content":"this is the main content"
+	},
+	"altMain":{
+		"title":"this is the altmain content",
+		"content":"this is the alt main content"
+	},
+    "daily":[
+    	"Welcome to the first daily message", 
+    	"second daily message", 
+    	"third daily message"
+    ],
+    "announcements": [
+    	"first announcement", 
+    	"second announcement", 
+    	"third announcement"
+    ],
+    "info" : [
+    	"first info bubble", 
+    	"second info bubble", 
+    	"third info bubble"
+    ],
+    "learning": [
+    	"first learning bubble", 
+    	"second learning bubble", 
+    	"third learning bubble"
+    ],
+    "contact": [
+    	{
+    		"name": "Leonard",
+    		"title": "Programmer",
+    		"email": "leo@email.com",
+    		"phone": "999-666-8888",
+    		"office": "first computer on the left.",
+    		"alt": ""
+    	}
+    ],
+    "log" : "for internal use only"
+}

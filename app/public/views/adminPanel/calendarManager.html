@@ -1,0 +1,15 @@
+<div class="profile-settings-css">
+		<br>
+		<button ng-click="showCal = ! showCal">Add a calendar event</button>
+		<div ng-show="showCal">
+			<form class="" name="calendarForm" ng-submit="saveCalChanges(tempCalEvent)">
+				<p>Enter title of new event</p>
+				<input type="text" class="form-control" ng-model="tempCalEvent.title" placeholder="Title" required>
+				<p>Enter date of new event</p>
+				<input type="text" class="form-control" ng-model="tempCalEvent.start" placeholder="2016-08-02" required>
+				<button class="btn">Save</button>
+			</form>
+			<div id="calendar"></div>
+		</div>
+	</div>
+	</div>

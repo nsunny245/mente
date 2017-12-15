@@ -1,0 +1,155 @@
+{
+    "name": "mentor intro",
+    "steps": 5,
+    "slides": [
+        {
+            "_id": 0,
+            "title": "Introduction",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development. It is also a responsibility because it requires a commitment and investment of time. It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas. Mentoring relationships bring together people with different backgrounds, positions, and experiences who share a common interest and a desire to learn from and about each other.",
+                "Many who have been involved in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time. Therefore, mentoring requires training, thoughtful preparation, and planning.",
+                " This exciting module is a starting point to developing an effective mentoring relationship",
+                "The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 1,
+            "title": "Objectives",
+            "subtitle": "intro",
+            "paragraphs": [
+                "More specifically, after completing this module the learner will be able to: ",
+                "1. Explain the concept of mentoring including it's characteristics",
+                "2. Explain the value of mentoring",
+                "3. Identify the outcomes of an effective mentorship experience",
+                "4. Differentiate between mentoring and coaching",
+                "5. Define the concept of mentor and mentee",
+                "6. Discuss the roles and responsibilities of the mentor and the mentee",
+                "7. Describe the skill sets required of an effective mentor and mentee",
+                "8. Cite examples of issues that contribute to unsuccessful and challenging mentorship relationships",
+                "In this section of the module, we follow the journey of Jennifer, a new mentor, as she forms a relationship with her mentee, Priya."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 2,
+            "title": "Introducing Jennifer",
+            "subtitle": "intro",
+            "paragraphs": [
+                "'My name is Jennifer, and I'm a small business owner. I also teach part-time in a continuing education business program. What most people don't know about me is that I have a learning disability. When I attended University, I hid this from everyone and never sought any accommodations. Back then, having a disability wasn't as accepted as it is today. I felt ashamed and wished I had someone who I could lean on for support. My experience in university is one of the main reasons I now volunteer as a mentor in the e-mentoring program for women seeking careers in business. I believe it's important for students to have someone outside their academic programs with whom they can speak about the profession. I see myself as a support for an individual but not in the same way as a counsellor or a parent. I try to identify situations and events which can help my mentee develop knowledge and have valuable experiences. I'm particularly interested in mentoring students with a disability because I know what it's like to be a student with a disability.'"
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 3,
+            "title": "Mentoring",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Jennifer's situation as a student is still a reality for many students with a disability attending college or university. As Jennifer has highlighted, one way of dealing with these struggles and finding help to address them is through mentoring",
+                "Mentoring is a purposeful, caring, and voluntary relationship in which reflection and dialogue guide progress and action toward a conscious goal",
+                "Mentoring promotes personal growth. A mentoring relationship can be used to increase personal or professional confidence, as well as, provide support during difficult or discouraging situations",
+                "Mentoring can also be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another and to a new work environment."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 4,
+            "title": "Key Attributes of Mentoring",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Three main characteristics of mentoring are consistently highlighted in the organizational behavior literature: Reciprocity: mentoring requires a mutual relationship, involving a social exchange versus, a one way relationship. Developmental benefits: both the mentee and mentor benefit from the learning partnership. Regular and consistent interaction: the mentor and the mentee relationship is longer term, regular and consistent compared to other relationships, such as coaching or advising."
+            ],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 5,
+            "title": "Benefits of Mentoring",
+            "subtitle": "intro",
+            "paragraphs": [
+                "There are several benefits to being in a mentoring relationship. A mentoring relationship can be affirming, increase an individual's confidence and self-esteem, lower their stress levels, and encourage them to reach their goals. It can also lead to personal and professional satisfaction",
+                "Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 6,
+            "title": "The Mentoring Relationship",
+            "subtitle": "intro",
+            "paragraphs": [
+                "A mentoring relationship typically involves two individuals, a mentor and a mentee",
+                "A mentor is a person who helps to guide an individual's growth and development. A mentor is not a professional counsellor, parent, or social worker, but someone who is confident and provides support and guidance",
+                "A mentor has more career experience and provides a listening ear, academic or career advice, guidance, and feedback. Mentors share knowledge and the perspective of their years of experience, nurturing the growth of the mentee as a future leader",
+                "A mentee is a more junior individual who has a strong desire to learn, and develop, and grow academically and professionally",
+                "For example, Priya meets the criteria to be a mentee. She is a student and has a strong need to do well academically and grow to become a business professional."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 7,
+            "title": "Mentoring Versus Coaching",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Mentoring has been referred to as the 'transfer of wisdom' - with the mentee learning from an individual who has traveled the road before them. People tend to use the term mentoring and coaching to mean the same thing. While the terms have things in common, mentoring and coaching are not the same. Here are some key differences a mentor like Jennifer should be aware of: Coaching is concerned with helping an individual to improve, develop, and learn new knowledge and skills, usually in an environment that challenges the individual. The coaching relationship focuses on facilitating and developing specific personal qualities of an individual (the coachee), such as speaking more effectively. In the mentoring relationship, the mentor uses their knowledge, wisdom, and experience to create an environment that supports a mentee to grow and develop in more than one aspect. Coaching is more instructional; the coach capitalizes on different skills and experiences to offer a new or diverse perspective. On the other hand, mentoring focuses on relationship building and involves providing a safe environment for the mentee to explore issues that affect their professional or personal success. The mentor provides advice on career-related or personal topics, activities that help the mentee develop, and opportunities for success."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 8,
+            "title": "Differences Between a Mentor and a Coach",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Because mentoring and coaching are not the same, a mentor and a coach differ in a number of ways. These differences can be described in terms of the different aspects of a relationship"
+            ],
+            "bulletpoints":[
+                "Scope. A mentor is focused on all aspects of a mentee's personal development, while a coach is usually focused on task-related aspects that are clearly defined and have a specific scope.", "Role. A mentor takes the role of the facilitator with no agenda or a semi-structured one. The mentor is a committed to the development of the mentee through building emotional connections that respect boundaries. The coach takes the role of facilitator with a specific agenda, committed to the task or goal.", " Focus. Mentors are primarily focused on the transfer of key skills, whereas coaches are more concerned with empowering and motivating the individual to become proficient in specific skills.", "Basis of Support. A mentor usually helps the mentee to develop self-responsibility and is concerned with helping the mentee take charge of their own growth. On the other hand, coaches tend to foster self-insight and focus on helping individuals grow through introspection and feedback from others.", "Advice. Mentors provide advice to broaden perspective and understanding, and often share information to which the mentee is seldom privy. Coaches offer advice to facilitate further development, and share confidential and personal feedback."
+            ],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        }
+    ],
+    "type": "na",
+    "providedBy": "PSDnet"
+}

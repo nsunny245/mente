@@ -1,0 +1,41 @@
+<div class="jumbotron text-center">
+        <h1>{{messages.main.title}}</h1>
+
+
+        <p>{{ messages.main.content }}</p>
+
+        <h2>{{ messages.altMain.title }}</h2>
+        <p>{{ messages.altMain.content }}</p>
+
+    	<h5>DAILY MESSAGES</h5>
+		<div ng-repeat="daily in messages.daily track by $index">
+			<h3>{{ daily }}</h3>
+		</div>
+
+		<h5>ANNOUNCEMENTS</h5>
+		<div ng-repeat="announcement in messages.announcements track by $index">
+			<p>{{ announcement }}</p>
+		</div>
+
+
+		<h5>INFO</h5>
+ 		<div ng-repeat="info in messages.info track by $index">
+ 			<ul>{{info}}</ul>
+ 		</div>
+
+ 		<h5>LEARNING</h5>
+ 		<div ng-repeat="learn in messages.learning track by $index">
+ 			<ul>{{learn}}</ul>
+ 		</div>
+
+ 		<h5>CONTACT</h5>
+ 		<div ng-repeat="contact in messages.contact track by $index">
+ 			<p>{{contact.name}}</p>
+ 			<ul>{{contact.title}}</ul>
+ 			<ul>{{contact.email}}</ul>
+ 			<ul>{{contact.phone}}</ul>
+ 			<ul>{{contact.office}}</ul>
+ 			<ul>{{contact.alt}}</ul>
+ 		</div>
+
+    </div>

@@ -1,0 +1,214 @@
+<div class="forum-post">
+
+	<!-- POST META -->
+	<div class="post-heading post-meta">
+		<div>
+			<!-- <div class="post-index"><h1><span class="amsi-text">{{$parent.$index}}</span></h1></div> -->
+			<!-- POST VOTES CONSOLE -->
+			<div class="post-votes">
+				<button
+					ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : CastVote(post.data._id, post.meta, true)">
+					<img ng-src="{{post.meta.currentVote > 0 && '/Assets/Images/Community/arrow-up-on.svg' || '/Assets/Images/Community/arrow-up-off.svg'}}">
+				</button>
+				<h3
+					ng-class="{'votedUp': post.meta.currentVote > 0, 'votedDown': post.meta.currentVote < 0}">{{ post.data.upVotes - post.data.downVotes - post.meta.lastVote + post.meta.currentVote }}</h3>
+				<button
+					ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : CastVote(post.data._id, post.meta, false)">
+					<img ng-src="{{post.meta.currentVote < 0 && '/Assets/Images/Community/arrow-down-on.svg' || '/Assets/Images/Community/arrow-down-off.svg'}}">
+				</button>
+			</div>
+			<!-- POST PUBLISH DETAILS -->
+			<button type="button" title="show post" class="post-publish"
+				data-toggle="collapse"
+				data-target="#s{{$parent.$index}}-p{{$index}}-post"
+				aria-expanded="false"
+				aria-controls="s{{$parent.$index}}-p{{$index}}-post"
+				ng-click="togglePost($parent.$index, $index)"
+				ng-class="{'post-publish-closed': ! subPagesMeta[$parent.$index].postsOpen[$index]}">
+				<h3 title="post author" class="post-subject">{{ post.data.subject }}</h3>
+				<h3 title="post author" class="post-author">{{ post.data.username }}</h3>
+				<h3 title="post date" class="post-date"> on {{ post.data.date | date : 'medium'}}</h3>
+			</button>
+			<!-- DELETE POST -->
+			<button class="post-delete"
+				ng-if="post.data.myPost"
+				ng-click="! loggedIn() ? console.log('please log in') : userProfile.status == 'unverified' ? profileRedirect('unverified') : deleteForumPost($parent.$parent.$index, $index, post.data._id)">
+				<img src="/Assets/Images/Login/x_grey.svg">
+			</button>
+		</div>
+	</div>
+
+	<!-- POST MAIN -->
+	<div class="post-main collapse" id="s{{$parent.$index}}-p{{$index}}-post">
+
+		<!-- POST CONTENT -->
+		<div class="post-body">
+			<div class="post-tags" ng-if="post.data.tags.length > 0">
+				<p>Tags: </p>
+				<ul>
+					<li ng-repeat="tag in post.data.tags track by $index">{{$index > 0 ? ', ' : ''}}{{tag}}</li>
+				</ul>
+			</div>
+			<p>{{ post.data.message }}</p>
+		</div>
+
+		<!-- POST ACTIONS -->
+		<div class="post-actions">
+			<div class="post-actions-console">
+				<!-- ACTIVATE REPLY -->
+				<button type="button" class="standard-button"
+					data-toggle="collapse"
+					data-target=".s{{$parent.$index}}-p{{$index}}-reply"
+					aria-expanded="false"
+					aria-controls="s{{$parent.$index}}-p{{$index}}-reply"
+					ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : toggleReply($parent.$index, $index); userForms.subForms[$parent.$index][$index].showReply ? userForms.subForms[$parent.$index][$index].submittingReport = false : ''; userProfile && userProfile.status != 'unverified' && userForms.subForms[$parent.$index][$index].showReply ? switchActionOrder($parent.$index, $index, false) : ''; userProfile && userProfile.status != 'unverified' ? showReport = false : ''; resetNewPostReply($parent.$index, $index)">
+					<span ng-show="! userForms.subForms[$parent.$index][$index].showReply">Write Reply</span>
+					<span ng-show="userForms.subForms[$parent.$index][$index].showReply">Cancel Reply</span>
+				</button>
+				<!-- ACTIVATE POST REPORT -->
+				<button type="button" class="standard-button"
+					data-toggle="collapse"
+					data-target=".s{{$parent.$index}}-p{{$index}}-report"
+					aria-expanded="false"
+					aria-controls="s{{$parent.$index}}-p{{$index}}-report"
+					ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : toggleReport($parent.$index, $index); userForms.subForms[$parent.$index][$index].showReport ? userForms.subForms[$parent.$index][$index].submittingReply = false : ''; userProfile && userProfile.status != 'unverified' && userForms.subForms[$parent.$index][$index].showReport ? switchActionOrder($parent.$index, $index, true) : ''; userProfile && userProfile.status != 'unverified' ? userForms.subForms[$parent.$index][$index].showReply = false : ''; resetNewPostReport($parent.$index, $index); reportReason = ''"
+					ng-disabled="userForms.subForms[$parent.$index][$index].submittingReport || post.meta.isReported">
+					<span ng-show="! userForms.subForms[$parent.$index][$index].showReport && ! userForms.subForms[$parent.$index][$index].submittingReport && !post.meta.isReported">Report Post</span>
+					<span ng-show="userForms.subForms[$parent.$index][$index].showReport && ! userForms.subForms[$parent.$index][$index].submittingReport && !post.meta.isReported">Cancel Report</span>
+					<span ng-show="userForms.subForms[$parent.$index][$index].submittingReport && !post.meta.isReported">Submitting</span>
+					<span ng-show="post.meta.isReported">Post Reported</span>
+				</button>
+				<!-- ACCESS PERMALINK -->
+				<a href="#/community/forums/{{post.data._id}}" target="_blank" class="standard-button">Permalink</a>
+				<button type="button" class="standard-button"
+					ng-if="post.meta.shouldNotify"
+					ng-click="toggleNotifications(post)">
+					<span ng-show="post.meta.subbed">Unsubscribe</span>
+					<span ng-show="! post.meta.subbed">Subscribe</span>
+				</button>
+			</div>
+			<!-- POST REPLY CONSOLE -->
+			<div class="post-actions-forms post-actions-reply collapse" id="s{{$parent.$index}}-p{{$index}}-reply"
+				ng-class="{ 's{{$parent.$index}}-p{{$index}}-reply' : userProfile, 's{{$parent.$index}}-p{{$index}}-report' : userProfile && userForms.subForms[$parent.$index][$index].showReply }">
+				<form name="s{{$parent.$index}}-p{{$index}}-reply">
+					<label class="hidden" for="s{{$parent.$index}}-p{{$index}}-reply">Write your reply:</label>
+					<textarea id="s{{$parent.$index}}-p{{$index}}-reply" maxlength="1000" placeholder="Reply..."
+						ng-model="userForms.subForms[$parent.$index][$index].newReply"
+						ng-required="true"
+						ng-disabled="userForms.subForms[$parent.$index][$index].submittingReply"
+						required></textarea>
+					<button type="submit" class="standard-button"
+						ng-click="replyToPost(post.data._id, userForms.subForms[$parent.$index][$index].newReply, $parent.$index, $index)"
+						ng-disabled="! (userForms.subForms[$parent.$index][$index].newReply.length > 0) || userForms.subForms[$parent.$index][$index].submittingReply">
+						<span ng-show="! userForms.subForms[$parent.$index][$index].submittingReply" class="amsi-text cap">Submit</span>
+						<span ng-show="userForms.subForms[$parent.$index][$index].submittingReply" class="amsi-text cap">Submitting</span>
+					</button>
+				</form>
+			</div>
+			<!-- POST REPORT CONSOLE -->
+			<div class="post-actions-forms post-actions-report collapse" id="s{{$parent.$index}}-p{{$index}}-report"
+			ng-class="{ 's{{$parent.$index}}-p{{$index}}-report' : userProfile, 's{{$parent.$index}}-p{{$index}}-reply' : userProfile && userForms.subForms[$parent.$index][$index].showReport }">
+				<form name="s{{$parent.$index}}-p{{$index}}-report">
+					<label class='hidden' for="s{{$parent.$index}}-p{{$index}}-report">Please select a reason for reporting this post:</label>
+					<select class="down-chevron" id="s{{$parent.$index}}-p{{$index}}-report"
+						ng-model="reportReason"
+						ng-options="reason for reason in reportReasons"
+						ng-disabled="post.meta.isReported || userForms.subForms[$parent.$index][$index].submittingReport"
+						required>
+						<option style="display:none" value="" disabled>Select Reason</option>
+					</select>
+					<button type="submit" class="standard-button"
+						ng-click="ReportPost(post.data._id, reportReason, $parent.$index, $index)"
+						ng-disabled="reportReason == '' || post.meta.isReported || userForms.subForms[$parent.$index][$index].submittingReport">
+						<span ng-show="! userForms.subForms[$parent.$index][$index].submittingReport" class="amsi-text cap">Submit</span>
+						<span ng-show="userForms.subForms[$parent.$index][$index].submittingReport" class="amsi-text cap">Submitting...</span>
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- POST REPLIES -->
+		<ol class="post-replies" ng-show="post.data.replies.length > 0">
+
+			<li ng-repeat="reply in post.data.replies track by $index">
+				<!-- REPLY META -->
+				<div class="post-meta">
+					<div>
+						<!-- REPLY VOTES CONSOLE -->
+						<div class="post-votes">
+							<button
+								ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : CastVote(reply._id, post.meta.replies[$index], true)">
+								<img ng-src="{{post.meta.replies[$index].currentVote > 0 && '/Assets/Images/Community/arrow-up-on.svg' || '/Assets/Images/Community/arrow-up-off.svg'}}">
+							</button>
+							<h3
+								ng-class="{'votedUp': post.meta.replies[$index].currentVote > 0, 'votedDown': post.meta.replies[$index].currentVote < 0}">{{ reply.upVotes - reply.downVotes - post.meta.replies[$index].lastVote + post.meta.replies[$index].currentVote }}</h3>
+							<button
+								ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : CastVote(reply._id, post.meta.replies[$index], false)">
+								<img ng-src="{{post.meta.replies[$index].currentVote < 0 && '/Assets/Images/Community/arrow-down-on.svg' || '/Assets/Images/Community/arrow-down-off.svg'}}">
+							</button>
+						</div>
+						<!-- REPLY PUBLISH DETAILS -->
+						<div class="post-publish">
+							<h3 class="post-author" title="reply author">{{reply.username}}</h3>
+							<h3 class="post-date" title="reply date"> on {{reply.date ? (reply.date | date : 'medium') : 'some date' }}</h3>
+						</div>
+						<!-- DELETE REPLY -->
+						<button class="post-delete"
+							ng-if="reply.myReply"
+							ng-click="! loggedIn() ? console.log('please log in') : userProfile.status == 'unverified' ? profileRedirect('unverified') : deleteForumPost($parent.$parent.$parent.$index, null, post.data._id, reply._id)">
+							<img src="/Assets/Images/Login/x_grey.svg">
+						</button>
+					</div>
+
+				</div>
+
+				<!-- REPLY CONTENT -->
+				<div class="post-body">
+					<p>{{reply.message}}</p>
+				</div>
+
+				<!-- REPLY ACTIONS -->
+				<div class="post-actions">
+					<div class="post-actions-console">
+						<!-- ACTIVATE REPLY REPORT -->
+						<button class="standard-button"
+							data-toggle="collapse"
+							data-target=".s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report"
+							aria-expanded="false"
+							aria-controls="s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report"
+							ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : toggleReport($parent.$parent.$index, $parent.$index, $index); resetNewPostReport($parent.$parent.$index, $parent.$index, $index); replyReportReason = ''"
+							ng-disabled="userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport || post.meta.replies[$index].isReported">
+							<span ng-show="! userForms.subForms[$parent.$parent.$index][$parent.$index][$index].showReport && ! userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport && !post.meta.replies[$index].isReported">Report Post</span>
+							<span ng-show="userForms.subForms[$parent.$parent.$index][$parent.$index][$index].showReport && ! userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport && !post.meta.replies[$index].isReported">Cancel Report</span>
+							<span ng-show="userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport && !post.meta.replies[$index].isReported">Submitting</span>
+							<span ng-show="post.meta.replies[$index].isReported">Post Reported</span>
+						</button>
+					</div>
+					<!-- REPLY REPORT CONSOLE -->
+					<div class="post-actions-forms post-actions-report collapse"
+						id="s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report"
+						ng-class="{ 's{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report' : userProfile }">
+						<form name="s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report">
+							<label class="hidden"
+								for="s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report">Please select a reason for reporting this reply:</label>
+							<select class="down-chevron"
+								id="s{{$parent.$parent.$index}}-p{{$parent.$index}}-r{{$index}}-report"
+								ng-model="replyReportReason"
+								ng-options="reason for reason in reportReasons"
+								ng-disabled="post.meta.replies[$index].isReported || userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport">
+								<option style="display:none" value="" disabled>Select Reason</option>
+							</select>
+							<button type="submit" class="standard-button"
+								ng-click="ReportPost(reply._id, replyReportReason, $parent.$parent.$index, $parent.$index, $index)"
+								ng-disabled="replyReportReason == '' || post.meta.replies[$index].isReported || userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport">
+								<span ng-show="! userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport" class="amsi-text cap">Submit</span>
+								<span ng-show="userForms.subForms[$parent.$parent.$index][$parent.$index][$index].submittingReport" class="amsi-text cap">Submitting...</span>
+							</button>
+						</form>
+					</div>
+				</div>
+			</li>
+		</ol>
+
+	</div>
+</div>

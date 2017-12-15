@@ -1,0 +1,180 @@
+@font-face{
+	font-family: avenirblack;
+	src: url(fonts/AvenirProBlack.ttf);
+}
+@font-face{
+	font-family: amsinarrow;
+	src: url(fonts/AmsiProNarrowUltra.ttf);
+}
+@font-face{
+	font-family: avenirmedium;
+	src: url(fonts/AvenirProMedium.ttf);
+}
+img{
+	height: 100px;
+	/*width: 100px;*/
+}
+p{
+	color: black;
+	font-family: avenirmedium;
+}
+h1{
+	padding-top: 10%;
+	font-size: 300%;
+	text-decoration: underline;
+	color: black;
+	font-family: amsinarrow;
+	font-weight: normal;
+	justify-content: center;
+}
+h2{
+	font-size: 150%;
+	text-decoration: underline;
+	color: black;
+	font-family: avenirblack;
+}
+h3{
+	font-size: 125%;
+	font-weight: bold;
+	color: black;
+	font-family: avenirblack;
+}
+h4{
+/* TODO: Define H4 */
+	color: black;
+	font-family: avenirblack;
+}
+ol{
+	font-family: avenirmedium;
+}
+table{
+	margin: auto;
+	text-align: center;
+}
+li{
+	color: black;
+	font-family: avenirmedium;
+	font-size: 90%;
+}
+td{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+table img{
+	height: 310px;
+	width: 310px;
+}
+body{
+	background:#000;
+}
+#main{
+	padding:20px;
+}
+#center{
+	position:relative;
+    width: 800px;
+    min-height: 95vh;
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+
+#questiontable{
+	background-color: lightgray;
+	font-family: avenirmedium;
+	text-align: left;
+	border-width: 2px;	
+	border-color: gray;
+	border-style: solid;
+	border-radius: 5px;
+	margin: 10px;
+}
+#questiontable tr{
+
+}
+#questiontableletter{
+	font-size: 200%;
+	text-align: center;
+	text-anchor: center;
+	color: black;
+	font-family: avenirmedium;
+}
+#answerbox{
+	background-color: lightgray;
+	margin: 20px;
+	padding: 10px;
+	border-width: 2px;
+	border-color: gray;
+	border-style: solid;
+	border-radius: 5px;
+	font-family: avenirmedium;
+}
+#modalp{
+	background-color: silver;
+}
+#backgroundimage
+{
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0.3;
+   z-index: 0;
+   border: none;
+   pointer-events: none;
+}
+#footer{
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  height: 140px;
+  background-color: black;
+  text-align: center;
+  width: 800px;
+}
+#footer p{
+	color: white;
+	font-size: 100%;
+	float: right;
+}
+#footer #slidenumber{
+	color: white;
+	float: left;
+	font-size: 300%;
+	font-weight: bold;
+	/*position: absolute;
+	left: 5%;
+	top: 10%;*/
+}
+#footer img{
+	float: right;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100%;
+}
+#previousslide{
+	position: absolute;
+	left: 25%;
+}
+#colorwheel{
+	position: absolute;
+	left: 45%;
+}
+#fontsize{
+	position: absolute;
+	left: 60%;
+}
+#nextslide{
+	position: absolute;
+	left: 80%;
+}
+#spacer{
+	height:140px;
+}

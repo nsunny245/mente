@@ -1,0 +1,967 @@
+<link rel="stylesheet" type="text/css" href="/CSS/Signup/mentorshipForm-status.css">
+
+<div class="signup-mentorship-css">
+	<form-header></form-header>
+
+	<form class="clearfix mentorship"
+		name="mentorshipForm"
+		ng-init="inputMeta = {}"
+		novalidate>
+
+		<!--SECTION 1-->
+
+		<fieldset id="contact" class="section"
+			name="contact"
+ 			ng-form="section1">
+			<legend><span class="amsi-text cap">Contact Information</span></legend>
+			<!-- <p class="sub-legend">(Required information is marked by an asterisk *)</p> -->
+
+			<label for="firstName" class="label">
+				First Name
+				<span class="form-container-field-msg" 
+					ng-if="checking && (! inputMeta.first.beenBlurred || ! inputMeta.first.beenChanged)
+						   && inputMeta.first.errorStates.invalid
+						   && ! (inputMeta.first.errorStates.long)">Please enter your first name</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.first.beenBlurred || ! inputMeta.first.beenChanged)
+						   && inputMeta.first.errorStates.invalid
+						   && inputMeta.first.errorStates.long">Entry is too long (max. {{firstCharLim.max}})</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.first.beenBlurred || ! inputMeta.first.beenChanged)
+						   && inputMeta.first.errorStates.invalid">
+				</i>
+				<input id="firstName"
+					name="firstName" type="text" placeholder="first name"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.first.beenBlurred || ! inputMeta.first.beenChanged)
+								&& inputMeta.first.errorStates.invalid }"
+					ng-model="profile.firstName"
+					ng-maxlength="firstCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.first ? '' : inputMeta.first = {};
+  		 					 inputMeta.first.errorStates ? '' : inputMeta.first.errorStates = {};
+
+							 inputMeta.first.errorStates.invalid = true;
+							 inputMeta.first.errorStates.long = false"
+
+ 					ng-focus="inputMeta.first.lastVal = contact.firstName.$viewValue;
+
+							  inputMeta.first.errorStates.invalid = (contact.firstName.$invalid);
+							  inputMeta.first.errorStates.long = (inputMeta.first.len > firstCharLim.max)"
+
+ 					ng-blur="inputMeta.first.beenBlurred = true;
+ 							 (inputMeta.first.lastVal != contact.firstName.$viewValue) ? inputMeta.first.beenChanged = true : '';
+ 							 inputMeta.first.len = contact.firstName.$viewValue.length;
+
+							 inputMeta.first.errorStates.invalid = (contact.firstName.$invalid);
+							 inputMeta.first.errorStates.long = (inputMeta.first.len > firstCharLim.max)"
+					required/>
+			</div>
+
+			<label for="middleName" class="label">
+				Middle Name
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.middle.beenBlurred || ! inputMeta.middle.beenChanged)
+						   && inputMeta.middle.errorStates.long">
+					Entry is too long (max. {{firstCharLim.max}})
+				</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.middle.beenBlurred || ! inputMeta.middle.beenChanged)
+						   && inputMeta.middle.errorStates.long">
+				</i>
+				<input id="middleName"
+					name="middleName" type="text" placeholder="middle name"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.middle.beenBlurred || ! inputMeta.middle.beenChanged)
+								&& inputMeta.middle.errorStates.long }"
+					ng-model="profile.middleName"
+					ng-maxlength="firstCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.middle ? '' : inputMeta.middle = {};
+  		 					 inputMeta.middle.errorStates ? '' : inputMeta.middle.errorStates = {};
+							 inputMeta.middle.errorStates.long = false"
+
+ 					ng-focus="inputMeta.middle.lastVal = contact.middleName.$viewValue;
+							  inputMeta.middle.errorStates.long = (inputMeta.middle.len > firstCharLim.max)"
+
+ 					ng-blur="inputMeta.middle.beenBlurred = true;
+ 							 (inputMeta.middle.lastVal != contact.middleName.$viewValue) ? inputMeta.middle.beenChanged = true : '';
+ 							 inputMeta.middle.len = contact.middleName.$viewValue.length;
+							 inputMeta.middle.errorStates.long = (inputMeta.middle.len > firstCharLim.max)"/>
+			</div>
+
+			<label for="lastName" class="label">
+				Last Name
+				<span class="form-container-field-msg" 
+					ng-if="checking && (! inputMeta.last.beenBlurred || ! inputMeta.last.beenChanged)
+						   && inputMeta.last.errorStates.invalid
+						   && ! (inputMeta.last.errorStates.long)">Please enter your last name</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.last.beenBlurred || ! inputMeta.last.beenChanged)
+						   && inputMeta.last.errorStates.invalid
+						   && inputMeta.last.errorStates.long">Entry is too long (max. {{lastCharLim.max}})</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.last.beenBlurred || ! inputMeta.last.beenChanged)
+						   && inputMeta.last.errorStates.invalid">
+				</i>
+				<input id="lastName"
+					name="lastName" type="text" placeholder="last name"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.last.beenBlurred || ! inputMeta.last.beenChanged)
+								&& inputMeta.last.errorStates.invalid  }"
+					ng-model="profile.lastName"
+					ng-maxlength="lastCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.last ? '' : inputMeta.last = {};
+  		 					 inputMeta.last.errorStates ? '' : inputMeta.last.errorStates = {};
+
+							 inputMeta.last.errorStates.invalid = true;
+							 inputMeta.last.errorStates.long = false"
+
+ 					ng-focus="inputMeta.last.lastVal = contact.lastName.$viewValue;
+
+							  inputMeta.last.errorStates.invalid = (contact.lastName.$invalid);
+							  inputMeta.last.errorStates.long = (inputMeta.last.len > lastCharLim.max)"
+
+ 					ng-blur="inputMeta.last.beenBlurred = true;
+ 							 (inputMeta.last.lastVal != contact.lastName.$viewValue) ? inputMeta.last.beenChanged = true : '';
+ 							 inputMeta.last.len = contact.lastName.$viewValue.length;
+
+							 inputMeta.last.errorStates.invalid = (contact.lastName.$invalid);
+							 inputMeta.last.errorStates.long = (inputMeta.last.len > lastCharLim.max)"
+					required/>
+			</div>
+
+			<label for="schoolName" class="label">
+				What post-secondary educational institution do you attend?
+				<span class="form-container-field-msg" 
+					ng-if="checking && (! inputMeta.schoolName.beenBlurred || ! inputMeta.schoolName.beenChanged)
+						   && inputMeta.schoolName.errorStates.invalid
+						   && ! (inputMeta.schoolName.errorStates.long)">Please enter your post-secondary institution's name</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.schoolName.beenBlurred || ! inputMeta.schoolName.beenChanged)
+						   && inputMeta.schoolName.errorStates.invalid
+						   && inputMeta.schoolName.errorStates.long">Entry is too long (max. {{schoolCharLim.max}})</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.schoolName.beenBlurred || ! inputMeta.schoolName.beenChanged)
+						   && inputMeta.schoolName.errorStates.invalid">
+				</i>
+				<input id="schoolName"
+					name="schoolName" type="text" placeholder="school name"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.schoolName.beenBlurred || ! inputMeta.schoolName.beenChanged)
+								&& inputMeta.schoolName.errorStates.invalid  }"
+					ng-model="profile.schoolName"
+					ng-maxlength="schoolCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.schoolName ? '' : inputMeta.schoolName = {};
+  		 					 inputMeta.schoolName.errorStates ? '' : inputMeta.schoolName.errorStates = {};
+
+							 inputMeta.schoolName.errorStates.invalid = true;
+							 inputMeta.schoolName.errorStates.long = false"
+
+ 					ng-focus="inputMeta.schoolName.lastVal = contact.schoolName.$viewValue;
+
+							  inputMeta.schoolName.errorStates.invalid = (contact.schoolName.$invalid);
+							  inputMeta.schoolName.errorStates.long = (inputMeta.schoolName.len > schoolCharLim.max)"
+
+ 					ng-blur="inputMeta.schoolName.beenBlurred = true;
+ 							 (inputMeta.schoolName.lastVal != contact.schoolName.$viewValue) ? inputMeta.schoolName.beenChanged = true : '';
+ 							 inputMeta.schoolName.len = contact.schoolName.$viewValue.length;
+
+							 inputMeta.schoolName.errorStates.invalid = (contact.schoolName.$invalid);
+							 inputMeta.schoolName.errorStates.long = (inputMeta.schoolName.len > schoolCharLim.max)"
+					required/>
+			</div>
+
+			<label for="schoolEmail" class="label">
+				Post-secondary institution email address:
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.schoolEmail.beenBlurred || ! inputMeta.schoolEmail.beenChanged)
+						   && inputMeta.schoolEmail.errorStates.invalid">Please enter your post-secondary institution email address</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.schoolEmail.beenBlurred || ! inputMeta.schoolEmail.beenChanged)
+						   && inputMeta.schoolEmail.errorStates.invalid">
+				</i>
+				<input id="schoolEmail"
+					name="schoolEmail" type="email" placeholder="school email"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.schoolEmail.beenBlurred || ! inputMeta.schoolEmail.beenChanged)
+								&& inputMeta.schoolEmail.errorStates.invalid }"
+					ng-model="profile.schoolEmail"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.schoolEmail ? '' : inputMeta.schoolEmail = {};
+  		 					 inputMeta.schoolEmail.errorStates ? '' : inputMeta.schoolEmail.errorStates = {};
+							 inputMeta.schoolEmail.errorStates.invalid = true;"
+
+ 					ng-focus="inputMeta.schoolEmail.lastVal = contact.schoolEmail.$viewValue;
+							  inputMeta.schoolEmail.errorStates.invalid = (contact.schoolEmail.$invalid);"
+
+ 					ng-blur="inputMeta.schoolEmail.beenBlurred = true;
+ 							 (inputMeta.schoolEmail.lastVal != contact.schoolEmail.$viewValue) ? inputMeta.schoolEmail.beenChanged = true : '';
+							 inputMeta.schoolEmail.errorStates.invalid = (contact.schoolEmail.$invalid);"
+					required/>
+			</div>
+			<p class="post-label">A verification notice will be sent to this email account. You must verify your post-secondary institution email address to complete the application process.</p>
+		</fieldset>
+
+		<!--SECTION 2-->
+
+		<fieldset id="background" class="section"
+			name="background"
+ 			ng-form="section2">
+			<legend><span class="amsi-text cap">Background Information</span></legend>
+
+			<!-- GENDER -->
+			<fieldset class="sub-fieldset"
+				ng-init="inputMeta ? '' : inputMeta = {};
+						 inputMeta.gender = {};
+						 inputMeta.genderSpec = {};">
+				<p class="label">
+					What is your gender identity (check all that apply)?
+				</p>
+				<div class="form-container-field"
+					ng-if="checking && (! someGendersSelected && ! inputMeta.gender.beenChanged
+									    || inputMeta.genderSpec.errorStates.invalid && (! inputMeta.genderSpec.beenBlurred || ! inputMeta.genderSpec.beenChanged))">
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+					<p class="form-container-field-msg"
+						ng-if="! someGendersSelected">
+						Please select your gender identity(s)
+					</p>
+					<p class="form-container-field-msg"
+						ng-if="formData.genderSelected.OtherGender && inputMeta.genderSpec.errorStates.invalid">
+						If you have chosen "Prefer to self-describe", please do so in the area provided below
+					</p>
+				</div>
+
+				<!-- repeated set -->
+				<label class="visible checkbox"
+					ng-repeat="gender in genders track by $index"
+					ng-if="$index !== genders.length - 2 && $index !== genders.length - 1"
+					ng-class="{'form-container-field-invalid':
+								checking && ! someGendersSelected && ! inputMeta.gender.beenChanged }">
+		      		<input
+		      			name="gender" type="checkbox"
+		      			ng-model="formData.genderSelected[gender.name]"
+		      			ng-change="inputMeta.gender.beenChanged = true;
+		      					   checkboxChangedGender();"
+						ng-required="!someGendersSelected"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>{{gender.read}}</span></span>
+				</label>
+				<!-- specified option -->
+				<label class="visible checkbox"
+					ng-class="{'form-container-field-invalid':
+								checking && ! someGendersSelected && ! inputMeta.gender.beenChanged }">
+		      		<input
+		      			name="gender" type="checkbox"
+		      			ng-model="formData.genderSelected[genders[genders.length-2].name]"
+		      			ng-change="inputMeta.gender.beenChanged = true;
+		      					   inputMeta.genderSpec.beenBlurred = true; inputMeta.genderSpec.beenChanged = true;
+		      					   checkboxChangedGender();"
+						ng-required="!someGendersSelected"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>{{genders[genders.length-2].read}}</span></span>
+				</label>
+				<div class="other-field" ng-show="formData.genderSelected.OtherGender">
+					<label for="otherGenderSpec" class="other">
+						<span class="sub-label">Please specify:</span>
+						<span class="form-container-field-msg"
+							ng-if="checking && (! inputMeta.genderSpec.beenBlurred || ! inputMeta.genderSpec.beenChanged)
+								   && inputMeta.genderSpec.errorStates.invalid">
+							Please provide your alternative response
+						</span>
+					</label>
+					<div class="form-container-field">
+						<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+							ng-if="checking && (! inputMeta.genderSpec.beenBlurred || ! inputMeta.genderSpec.beenChanged)
+								   && inputMeta.genderSpec.errorStates.invalid">
+						</i>
+						<input id="otherGenderSpec"
+							name="otherGender" type="text" placeholder="different identity" maxlength="20"
+							ng-class="{'form-container-field-invalid':
+										checking && (! inputMeta.genderSpec.beenBlurred || ! inputMeta.genderSpec.beenChanged)
+										&& inputMeta.genderSpec.errorStates.invalid }"
+							ng-model="otherGenderString"
+		 					ng-init="inputMeta.genderSpec.errorStates ? '' : inputMeta.genderSpec.errorStates = {};
+									 inputMeta.genderSpec.errorStates.invalid = true;"
+
+		 					ng-focus="inputMeta.genderSpec.lastVal = background.otherGender.$viewValue;
+									  inputMeta.genderSpec.errorStates.invalid = (formData.genderSelected.OtherGender && background.otherGender.$invalid);"
+
+		 					ng-blur="inputMeta.genderSpec.beenBlurred = true;
+		 							 (inputMeta.genderSpec.lastVal != background.otherGender.$viewValue) ? inputMeta.genderSpec.beenChanged = true : '';
+		 							 inputMeta.genderSpec.len = background.otherGender.$viewValue.length;
+									 inputMeta.genderSpec.errorStates.invalid = (formData.genderSelected.OtherGender && background.otherGender.$invalid);"
+							ng-required="formData.genderSelected.OtherGender"/>
+					</div>
+				</div>
+				<!-- opt-out separated 'arbitrarily' from repeated set -->
+				<label class="visible checkbox"
+					ng-class="{'form-container-field-invalid':
+								checking && ! someGendersSelected && ! inputMeta.gender.beenChanged }">
+		      		<input
+		      			name="gender" type="checkbox"
+		      			ng-model="formData.genderSelected[genders[genders.length-1].name]"
+		      			ng-change="inputMeta.gender.beenChanged = true;
+		      					   checkboxChangedGender();"
+						ng-required="!someGendersSelected"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>{{genders[genders.length-1].read}}</span></span>
+				</label>
+			</fieldset>
+
+			<!-- AGE -->
+			<label for="age" class="label">
+				Age (Years): Note: Applicants must be {{ageLim.min}} years or older to participate as a mentor in the e-mentorship program
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.age.beenBlurred || ! inputMeta.age.beenChanged)
+						   && inputMeta.age.errorStates.invalid
+						   && ! (inputMeta.age.errorStates.low)">Please enter your age in years</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.age.beenBlurred || ! inputMeta.age.beenChanged)
+						   && inputMeta.age.errorStates.invalid
+						   && inputMeta.age.errorStates.low">Age does not meet program requirements</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.age.beenBlurred || ! inputMeta.age.beenChanged)
+						   && inputMeta.age.errorStates.invalid">
+				</i>
+				<input id="age"
+					name="age" type="number" placeholder="age" ng-min="ageLim.min"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.age.beenBlurred || ! inputMeta.age.beenChanged)
+								&& inputMeta.age.errorStates.invalid }"
+					ng-model="profile.age"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.age ? '' : inputMeta.age = {};
+
+  		 					 inputMeta.age.errorStates ? '' : inputMeta.age.errorStates = {};
+							 inputMeta.age.errorStates.invalid = true;
+							 inputMeta.age.errorStates.low = false;
+							 "
+ 					ng-focus="inputMeta.age.lastVal = background.age.$viewValue;
+							  inputMeta.age.errorStates.invalid = (background.age.$invalid);
+							  inputMeta.age.errorStates.low = inputMeta.age.lastVal < ageLim.min;
+							  "
+ 					ng-blur="inputMeta.age.beenBlurred = true;
+ 							 (inputMeta.age.lastVal != background.age.$viewValue) ? inputMeta.age.beenChanged = true : '';
+							 inputMeta.age.lastVal = background.age.$viewValue;
+							 inputMeta.age.errorStates.invalid = (background.age.$invalid);
+							 inputMeta.age.errorStates.low = inputMeta.age.lastVal < ageLim.min;
+							 "
+					required/>
+			</div>
+
+			<!-- STUDY AREA -->
+			<fieldset class="sub-fieldset">
+				<label for="study" class="label">
+					Area of academic study:
+					<span class="form-container-field-msg"
+						ng-if="checking && (! inputMeta.study.beenChanged)
+							   && inputMeta.study.errorStates.invalid">
+						Please select your area of academic study
+					</span>
+				</label>
+				<div class="form-container-field">
+					<select id="study" class="selector down-chevron"
+						name="study"
+						ng-options="i as i for i in study"
+						ng-class="{'form-container-field-invalid':
+									checking && (! inputMeta.study.beenChanged)
+									&& inputMeta.study.errorStates.invalid }"
+						ng-model="profile.study"
+	 					ng-init="inputMeta ? '' : inputMeta = {};
+	 							 inputMeta.study ? '' : inputMeta.study = {};
+	  		 					 inputMeta.study.errorStates ? '' : inputMeta.study.errorStates = {};
+								 inputMeta.study.errorStates.invalid = true;
+								 "
+	 					ng-focus="inputMeta.study.lastVal = profile.study;
+								  inputMeta.study.errorStates.invalid = (background.study.$invalid);
+								  "
+	 					ng-change="inputMeta.study.beenBlurred = true;
+	 							  (inputMeta.study.lastVal != profile.study) ? inputMeta.study.beenChanged = true : '';
+	 							  (inputMeta.study.lastVal != profile.study) ? inputMeta.studySpec.beenChanged = true : '';
+								  inputMeta.study.errorStates.invalid = (background.study.$invalid);
+								  "
+					 	required>
+						<option style="display:none" value="" disabled>-- Select Area of Study --</option>
+					</select>
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+						ng-if="checking && (! inputMeta.study.beenChanged)
+							   && inputMeta.study.errorStates.invalid">
+					</i>
+				</div>
+				<div class="other-field"
+					ng-show="profile.study == 'Other Area of Study'">
+					<!-- OTHER STUDY AREA -->
+					<label for="otherStudy" class="other">
+						<span class="sub-label">Please specify:</span>
+						<span class="form-container-field-msg"
+							ng-if="checking && (! inputMeta.studySpec.beenBlurred || ! inputMeta.studySpec.beenChanged)
+								   && (! inputMeta.study.beenChanged)
+								   && inputMeta.studySpec.errorStates.invalid">
+							Please provide your alternative response
+						</span>
+					</label>
+					<div class="form-container-field">
+						<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+							ng-if="checking && (! inputMeta.studySpec.beenBlurred || ! inputMeta.studySpec.beenChanged)
+								   && (! inputMeta.study.beenChanged)
+								   && inputMeta.studySpec.errorStates.invalid">
+						</i>
+						<input id="otherStudy"
+							name="otherStudy" type="text" placeholder="other area"
+							ng-class="{'form-container-field-invalid':
+										checking && (! inputMeta.studySpec.beenBlurred || ! inputMeta.studySpec.beenChanged)
+										&& (! inputMeta.study.beenChanged)
+										&& inputMeta.studySpec.errorStates.invalid }"
+							ng-model="profile.otherStudy"
+		 					ng-init="inputMeta ? '' : inputMeta = {};
+		 							 inputMeta.studySpec ? '' : inputMeta.studySpec = {};
+		  		 					 inputMeta.studySpec.errorStates ? '' : inputMeta.studySpec.errorStates = {};
+									 inputMeta.studySpec.errorStates.invalid = true;
+									 "
+		 					ng-focus="inputMeta.studySpec.lastVal = background.otherStudy.$viewValue;
+									  inputMeta.studySpec.errorStates.invalid = (profile.study == 'Other Area of Study' && background.otherStudy.$invalid);
+									  "
+		 					ng-blur="inputMeta.studySpec.beenBlurred = true;
+		 							 (inputMeta.studySpec.lastVal != background.otherStudy.$viewValue) ? inputMeta.studySpec.beenChanged = true : '';
+		 							 inputMeta.studySpec.len = background.otherStudy.$viewValue.length;
+									 inputMeta.studySpec.errorStates.invalid = (profile.study == 'Other Area of Study' && background.otherStudy.$invalid);
+									 "
+							ng-required="profile.study == 'Other Area of Study'"/>
+					</div>
+				</div>
+			</fieldset>
+
+			<!-- FIELD -->
+			<fieldset class="sub-fieldset">
+				<label for="field" class="label">
+					What field/sector of employment are you interested in working or volunteering in in the future?
+					<span class="form-container-field-msg"
+						ng-if="checking && (! inputMeta.field.beenChanged)
+							   && inputMeta.field.errorStates.invalid">
+						Please select your field of interest
+					</span>
+				</label>
+				<div class="form-container-field">
+					<select id="field" class="selector down-chevron"
+						name="field"
+						ng-options="i.dbEntry as i.display for i in field"
+						ng-class="{'form-container-field-invalid':
+									checking && (! inputMeta.field.beenChanged)
+									&& inputMeta.field.errorStates.invalid }"
+						ng-model="profile.currentField"
+	 					ng-init="inputMeta ? '' : inputMeta = {};
+	 							 inputMeta.field ? '' : inputMeta.field = {};
+	  		 					 inputMeta.field.errorStates ? '' : inputMeta.field.errorStates = {};
+								 inputMeta.field.errorStates.invalid = true;
+								 "
+	 					ng-focus="inputMeta.field.lastVal = profile.currentField;
+								  inputMeta.field.errorStates.invalid = (background.field.$invalid);
+								  "
+	 					ng-change="inputMeta.field.beenBlurred = true;
+	 							  (inputMeta.field.lastVal != profile.currentField) ? inputMeta.field.beenChanged = true : '';
+	 							  (inputMeta.field.lastVal != profile.currentField) ? inputMeta.fieldSpec.beenChanged = true : '';
+								  inputMeta.field.errorStates.invalid = (background.field.$invalid);
+								  "
+					 	required>
+						<option style="display:none" value="" disabled>-- Select Field --</option>
+					</select>
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+						ng-if="checking && (! inputMeta.field.beenChanged)
+							   && inputMeta.field.errorStates.invalid">
+					</i>
+				</div>
+				<div class="other-field"
+					ng-show="profile.currentField == 'OtherField'">
+					<!-- OTHER HIGHEST EDUCATION -->
+					<label for="otherField" class="other">
+						<span class="sub-label">Please specify:</span>
+						<span class="form-container-field-msg"
+							ng-if="checking && (! inputMeta.fieldSpec.beenBlurred || ! inputMeta.fieldSpec.beenChanged)
+								   && (! inputMeta.field.beenChanged)
+								   && inputMeta.fieldSpec.errorStates.invalid">
+							Please provide your alternative response
+						</span>
+					</label>
+					<div class="form-container-field">
+						<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+							ng-if="checking && (! inputMeta.fieldSpec.beenBlurred || ! inputMeta.fieldSpec.beenChanged)
+								   && (! inputMeta.field.beenChanged)
+								   && inputMeta.fieldSpec.errorStates.invalid">
+						</i>
+						<input id="otherField"
+							name="otherField" type="text" placeholder="other field"
+							ng-class="{'form-container-field-invalid':
+										checking && (! inputMeta.fieldSpec.beenBlurred || ! inputMeta.fieldSpec.beenChanged)
+										&& (! inputMeta.field.beenChanged)
+										&& inputMeta.fieldSpec.errorStates.invalid }"
+							ng-model="profile.otherField"
+		 					ng-init="inputMeta ? '' : inputMeta = {};
+		 							 inputMeta.fieldSpec ? '' : inputMeta.fieldSpec = {};
+		  		 					 inputMeta.fieldSpec.errorStates ? '' : inputMeta.fieldSpec.errorStates = {};
+									 inputMeta.fieldSpec.errorStates.invalid = true;
+									 "
+		 					ng-focus="inputMeta.fieldSpec.lastVal = background.otherField.$viewValue;
+									  inputMeta.fieldSpec.errorStates.invalid = (profile.currentField == 'OtherField' && background.otherField.$invalid);
+									  "
+		 					ng-blur="inputMeta.fieldSpec.beenBlurred = true;
+		 							 (inputMeta.fieldSpec.lastVal != background.otherField.$viewValue) ? inputMeta.fieldSpec.beenChanged = true : '';
+		 							 inputMeta.fieldSpec.len = background.otherField.$viewValue.length;
+									 inputMeta.fieldSpec.errorStates.invalid = (profile.currentField == 'OtherField' && background.otherField.$invalid);
+									 "
+							ng-required="profile.currentField == 'OtherField'"/>
+					</div>
+				</div>
+			</fieldset>
+		</fieldset>
+
+		<!--SECTION 3-->
+
+		<fieldset id="interest" class="section"
+			name="interest"
+			ng-form="section3">
+			<legend><span class="amsi-text cap">Mentoring Interest</span></legend>
+
+			<!-- WHY -->
+			<label for="why" class="label">
+				Why have you decided to apply to the mentorship program?
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.why.beenBlurred || ! inputMeta.why.beenChanged)
+						   && inputMeta.why.errorStates.invalid">
+					Please describe your interest in the program
+				</span>
+			</label>
+			<div class="form-container-field">
+				<textarea id="why"
+					name="why" placeholder="response" maxlength="1000"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.why.beenBlurred || ! inputMeta.why.beenChanged)
+								&& inputMeta.why.errorStates.invalid }"
+					ng-model="profile.why"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.why ? '' : inputMeta.why = {};
+  		 					 inputMeta.why.errorStates ? '' : inputMeta.why.errorStates = {};
+							 inputMeta.why.errorStates.invalid = true;"
+
+ 					ng-focus="inputMeta.why.lastVal = interest.why.$viewValue;
+							  inputMeta.why.errorStates.invalid = (interest.why.$invalid);"
+
+ 					ng-blur="inputMeta.why.beenBlurred = true;
+ 							 (inputMeta.why.lastVal != interest.why.$viewValue) ? inputMeta.why.beenChanged = true : '';
+							 inputMeta.why.errorStates.invalid = (interest.why.$invalid);"
+					required>
+				</textarea>
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.why.beenBlurred || ! inputMeta.why.beenChanged)
+						   && inputMeta.why.errorStates.invalid">
+				</i>
+			</div>
+
+			<!-- PAST MENTORSHIP -->
+			<fieldset class="sub-fieldset"
+				ng-init="inputMeta ? '' : inputMeta = {};
+						 inputMeta.inMentorship = {};
+						 inputMeta.mentDetails = {};">
+				<p class="label">
+					Have you been, or are your currently, part of a mentorship relationship (informally or in a program) as a mentor or mentee?
+				</p>
+				<div class="form-container-field"
+					ng-if="checking && (! profile.isCurrentlyInMentorship && profile.isCurrentlyInMentorship !== false)">
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+					<p class="form-container-field-msg">Please select an option</p>
+				</div>
+
+				<label for="inMentorshipTrue" class="visible checkbox inline"
+					ng-class="{'form-container-field-invalid':
+								checking && ! inputMeta.inMentorship.beenChanged }">
+					<input id="inMentorshipTrue"
+						name="isCurrentlyInMentorship" type="radio"
+						ng-model="profile.isCurrentlyInMentorship"
+						ng-value="true"
+		      			ng-change="inputMeta.inMentorship.beenChanged = true;"
+						required>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>Yes</span></span>
+				</label>
+				<label for="inMentorshipFalse" class="visible checkbox inline"
+					ng-class="{'form-container-field-invalid':
+								checking && ! inputMeta.inMentorship.beenChanged }">
+					<input id="inMentorshipFalse"
+						name="isCurrentlyInMentorship" type="radio"
+						ng-model="profile.isCurrentlyInMentorship"
+						ng-value="false"
+		      			ng-change="inputMeta.inMentorship.beenChanged = true;"
+						required>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>No</span></span>
+				</label>
+				<div ng-show="profile.isCurrentlyInMentorship">
+					<label for="mentorshipDetails" class="other">
+						<span class="sub-label">If yes, please describe your experiences(s):</span>
+						<span class="form-container-field-msg"
+							ng-if="checking && ! inputMeta.inMentorship.beenChanged
+								   && (! inputMeta.mentDetails.beenBlurred || ! inputMeta.mentDetails.beenChanged)
+								   && inputMeta.mentDetails.errorStates.invalid">
+							Please describe
+						</span>
+					</label>
+					<div class="form-container-field">
+						<textarea id="mentorshipDetails"
+							name="currentlyInMentorshipDetails" placeholder="response" maxlength="1000"
+							ng-class="{'form-container-field-invalid':
+										checking && (! inputMeta.mentDetails.beenBlurred || ! inputMeta.mentDetails.beenChanged)
+										&& inputMeta.mentDetails.errorStates.invalid
+										&& ! (inputMeta.inMentorship.beenChanged) }"
+							ng-model="profile.currentlyInMentorshipDetails"
+		 					ng-init="inputMeta.mentDetails.errorStates ? '' : inputMeta.mentDetails.errorStates = {};
+									 inputMeta.mentDetails.errorStates.invalid = true;"
+
+		 					ng-focus="inputMeta.mentDetails.lastVal = interest.currentlyInMentorshipDetails.$viewValue;
+									  inputMeta.mentDetails.errorStates.invalid = (profile.isCurrentlyInMentorship && interest.currentlyInMentorshipDetails.$invalid);"
+
+		 					ng-blur="inputMeta.mentDetails.beenBlurred = true;
+		 							 (inputMeta.mentDetails.lastVal != interest.currentlyInMentorshipDetails.$viewValue) ? inputMeta.mentDetails.beenChanged = true : '';
+		 							 inputMeta.mentDetails.len = interest.currentlyInMentorshipDetails.$viewValue.length;
+									 inputMeta.mentDetails.errorStates.invalid = (profile.isCurrentlyInMentorship && interest.currentlyInMentorshipDetails.$invalid);"
+							ng-required="profile.isCurrentlyInMentorship">
+						</textarea>
+						<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+							ng-if="checking && (! inputMeta.mentDetails.beenBlurred || ! inputMeta.mentDetails.beenChanged)
+								   && inputMeta.mentDetails.errorStates.invalid
+								   && ! (inputMeta.inMentorship.beenChanged)">
+						</i>
+					</div>
+				</div>
+			</fieldset>
+
+			<!-- CHALLENGE -->
+			<label for="challenge" class="label">
+				What is the biggest challenge you face that a mentor might be able to help you overcome? (Your response will be shared with the mentor you are matched with.)
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.challenge.beenBlurred || ! inputMeta.challenge.beenChanged)
+						   && inputMeta.challenge.errorStates.invalid">
+					Please enter a response
+				</span>
+			</label>
+			<div class="form-container-field">
+				<textarea id="challenge"
+					name="challenge" placeholder="response" maxlength="1000"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.challenge.beenBlurred || ! inputMeta.challenge.beenChanged)
+								&& inputMeta.challenge.errorStates.invalid }"
+					ng-model="profile.biggestChallenge"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.challenge ? '' : inputMeta.challenge = {};
+  		 					 inputMeta.challenge.errorStates ? '' : inputMeta.challenge.errorStates = {};
+							 inputMeta.challenge.errorStates.invalid = true;"
+
+ 					ng-focus="inputMeta.challenge.lastVal = interest.challenge.$viewValue;
+							  inputMeta.challenge.errorStates.invalid = (interest.challenge.$invalid);"
+
+ 					ng-blur="inputMeta.challenge.beenBlurred = true;
+ 							 (inputMeta.challenge.lastVal != interest.challenge.$viewValue) ? inputMeta.challenge.beenChanged = true : '';
+							 inputMeta.challenge.errorStates.invalid = (interest.challenge.$invalid);"
+					required>
+				</textarea>
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && interest.challenge.$invalid">
+				</i>
+			</div>
+
+			<!-- COMMIT -->
+			<fieldset class="sub-fieldset"
+				ng-init="inputMeta ? '' : inputMeta = {}; inputMeta.commit = {};">
+				<p class="label">
+					Are you willing and able to commit to communicating through online chat with your mentor on a regular basis (i.e., biweekly for 16 weeks)?
+				</p>
+				<div class="form-container-field"
+					ng-if="checking && ! profile.isCommit && ! inputMeta.commit.beenChanged">
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+					<p class="form-container-field-msg">You must be willing and able to make this commitment</p>
+				</div>
+
+				<label for="willCommTrue" class="visible checkbox inline"
+					ng-class="{'form-container-field-invalid': checking && ! profile.isCommit && ! inputMeta.commit.beenChanged }">
+					<input id="willCommTrue"
+						name="willCommit" type="radio"
+						ng-model="profile.isCommit"
+						ng-value="true"
+	 					ng-change="inputMeta.commit.beenChanged = true"
+						required>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>Yes</span></span>
+				</label>
+				<label for="willCommFalse" class="visible checkbox inline"
+					ng-class="{'form-container-field-invalid': checking && ! profile.isCommit && ! inputMeta.commit.beenChanged }">
+					<input id="willCommFalse"
+						name="willCommit" type="radio"
+						ng-model="profile.isCommit"
+						ng-value="false"
+	 					ng-change="inputMeta.commit.beenChanged = true"
+						required>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>No</span></span>
+				</label>
+			</fieldset>
+
+			<!-- SHARE -->
+			<fieldset class="sub-fieldset">
+				<label for="share" class="label">
+					Tell us something about yourself that we can share with mentors that you might be matched with.
+					<span class="form-container-field-msg"
+						ng-if="checking && (! inputMeta.share.beenBlurred || ! inputMeta.share.beenChanged)
+							   && inputMeta.share.errorStates.invalid">
+						Please enter a response
+					</span>
+				</label>
+				<div class="form-container-field">
+					<textarea id="share"
+						name="share" maxlength="1000" placeholder="For example: I’m studying languages and am in my first year. I speak English, Spanish and French. I am interested to completing a diploma program in ASL after completing by bachelor’s degree. I would like a career as an interpreter."
+
+						ng-class="{'form-container-field-invalid':
+									checking && (! inputMeta.share.beenBlurred || ! inputMeta.share.beenChanged)
+									&& inputMeta.share.errorStates.invalid }"
+						ng-model="profile.share"
+	 					ng-init="inputMeta ? '' : inputMeta = {};
+	 							 inputMeta.share ? '' : inputMeta.share = {};
+	  		 					 inputMeta.share.errorStates ? '' : inputMeta.share.errorStates = {};
+								 inputMeta.share.errorStates.invalid = true;"
+
+	 					ng-focus="inputMeta.share.lastVal = interest.share.$viewValue;
+								  inputMeta.share.errorStates.invalid = (interest.share.$invalid);"
+
+	 					ng-blur="inputMeta.share.beenBlurred = true;
+	 							 (inputMeta.share.lastVal != interest.share.$viewValue) ? inputMeta.share.beenChanged = true : '';
+								 inputMeta.share.errorStates.invalid = (interest.share.$invalid);"
+						required>
+					</textarea>
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+						ng-if="checking && (! inputMeta.share.beenBlurred || ! inputMeta.share.beenChanged)
+							   && inputMeta.share.errorStates.invalid">
+					</i>
+				</div>
+			</fieldset>
+		</fieldset>
+
+		<!--SECTION 4-->
+
+		<fieldset id="matching" class="section"
+			name="matching"
+			ng-form="section4">
+			<legend><span class="amsi-text cap">Matching Information</span></legend>
+			<h3><span class="amsi-text"> <span>(Voluntary Section)</span></span></h3>
+
+			<p class="quote">To better facilitate an effective match between mentors and mentees, we invite you to provide us as much of the following information about yourself as you feel comfortable. This information will be used for matching purposes only and will not be shared with mentee matches.</p>
+
+			<!-- DISABILITIES -->
+			<fieldset>
+				<p class="label">Do you have any particular kind of disability(s)?:</p>
+				<!--<div class="TODO : /error-label" ng-show="matching.disability.$invalid" style = "color:red">Please select your experience</div>-->
+				<label ng-repeat="disability in disabilities" class="visible checkbox" ng-if="disability.name !== disabilities[disabilities.length-2].name && disability.name !== disabilities[disabilities.length-1].name">
+	        		<input type="checkbox" ng-model="formData.disabilitySelected[disability.name]" ng-change="checkboxChangedDis()"ng-required="!someDisabilitiesSelected" name="disability"  ng-hide="$last"/>
+					<span ng-hide="$last"><div></div></span>
+					<span ng-hide="$last"><span>{{spaceBeforeCapital(disability.name)}}</span></span>
+				</label>
+				<div class="other-field" ng-show="formData.disabilitySelected.OtherDisability">
+					<label for="otherDisabilitySpec" class="other"><span class="sub-label">Please specify:</span></label>
+					<input id="otherDisabilitySpec" type="text" ng-model="otherDisabilityString" name="otherDisability" placeholder="other disability"
+					/>
+				</div>
+				<label class="visible checkbox">
+	        		<input type="checkbox" ng-model="formData.disabilitySelected[disabilities[disabilities.length-2].name]" ng-change="checkboxChangedDis()"ng-required="!someDisabilitiesSelected" name="disability" />
+					<span aria-hidden="true"><div></div></span>
+					<span><span>{{spaceBeforeCapital(disabilities[disabilities.length-2].name)}}</span></span>
+				</label>
+			</fieldset>
+
+			<fieldset class="preference">
+				<p class="label">Who do you feel you would be most comfortable having as a mentor? (Check all that apply)</p>
+				<ul>
+					<li>
+						<div></div>
+						<div>
+							<p>very<br>important</p>
+							<p>somewhat<br>important</p>
+							<p>not<br>important</p>
+						</div>
+					</li>
+					<li>
+						<hr>
+						<div>
+							<p class="label">A mentor with the same gender identity</p>
+						</div>
+						<div>
+							<div class="prefContainer">
+								<label for="gender2" class="visible checkbox">
+		              <input id="gender2" type="radio" name="genderPref" ng-disabled="noPref" ng-model="profile.preferences[0]" ng-value="'high'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>very<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="gender1" class="visible checkbox">
+		              <input id="gender1" type="radio" name="genderPref" ng-disabled="noPref" ng-model="profile.preferences[0]" ng-value="'low'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>somewhat<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="gender0" class="visible checkbox">
+		              <input id="gender0" type="radio" name="genderPref" ng-disabled="noPref" ng-model="profile.preferences[0]" ng-value="'none'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>not<br>important</span></span>
+		            </label>
+							</div>
+						</div>
+					</li>
+					<li>
+						<hr>
+						<div>
+							<p class="label">A mentor with the same educational background and/or career field as mine/my interests</p>
+						</div>
+						<div>
+							<div class="prefContainer">
+								<label for="field2" class="visible checkbox">
+		              <input id="field2" type="radio" name="fieldPref" ng-disabled="noPref" ng-model="profile.preferences[1]" ng-value="'high'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>very<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="field1" class="visible checkbox">
+		              <input id="field1" type="radio" name="fieldPref" ng-disabled="noPref" ng-model="profile.preferences[1]" ng-value="'low'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>somewhat<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="field0" class="visible checkbox">
+		              <input id="field0" type="radio" name="fieldPref" ng-disabled="noPref" ng-model="profile.preferences[1]" ng-value="'none'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>not<br>important</span></span>
+		            </label>
+							</div>
+						</div>
+					</li>
+					<li>
+						<hr>
+						<div>
+							<p class="label">A mentor with the same disability type(s)</p>
+						</div>
+						<div>
+							<div class="prefContainer">
+								<label for="disability2" class="visible checkbox">
+		              <input id="disability2" type="radio" name="disabilityPref" ng-disabled="noPref" ng-model="profile.preferences[2]" ng-value="'high'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>very<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="disability1" class="visible checkbox">
+		              <input id="disability1" type="radio" name="disabilityPref" ng-disabled="noPref" ng-model="profile.preferences[2]" ng-value="'low'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>somewhat<br>important</span></span>
+		            </label>
+							</div>
+							<div class="prefContainer">
+								<label for="disability0" class="visible checkbox">
+		              <input id="disability0" type="radio" name="disabilityPref" ng-disabled="noPref" ng-model="profile.preferences[2]" ng-value="'none'">
+		              <span aria-hidden="true"><div></div></span>
+		              <span><span>not<br>important</span></span>
+		            </label>
+							</div>
+						</div>
+					</li>
+					<li>
+						<hr>
+					</li>
+				</ul>
+				<label for="noPref" class="visible checkbox">
+			        <input id="noPref" type="checkbox" ng-model="noPref" ng-change="noPreferences(noPref)">
+			        <span aria-hidden="true"><div></div></span>
+			        <span><span>No Preference</span></span>
+			    </label>
+			</fieldset>
+		</fieldset>
+
+		<!-- SECTION 5 -->
+
+		<fieldset id="declarations" class="section"
+			name="declarations"
+			ng-form="section5"
+			ng-init="inputMeta ? '' : inputMeta = {};
+					 inputMeta.allDec = {};">
+			<legend><span class="amsi-text cap">Declaration</span></legend>
+
+			<p class="label">Thank you for applying to the CommunAbility Mentorship program. Before submitting your application, please confirm the following declarations by ticking the box beside each statement:</p>
+			<div class="form-container-field"
+				ng-if="checking && declarationValues.length < declarationChoices.length && ! inputMeta.allDec.beenChanged">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+				<p class="form-container-field-msg">You must confirm all declarations listed below</p>
+			</div>
+
+			<label class="visible checkbox"
+				ng-class="{'form-container-field-invalid': checking && ! declarationChoices[0].checked && ! inputMeta.dec0.beenChanged }">
+	      		<input type="checkbox"
+					ng-click="updateDeclarationValue(declarationChoices[0])"
+					ng-model="declarationChoices[0].checked"
+					ng-init="inputMeta ? '' : inputMeta = {};
+							 inputMeta.dec0 = {};"
+ 					ng-change="inputMeta.dec0.beenChanged = true;
+ 							   declarationValues.length >= declarationChoices.length ? inputMeta.allDec.beenChanged = true : '';"/>
+				<span aria-hidden="true"><div></div></span>
+				<span><span>I acknowledge that I have reviewed and agree to the Terms of Use of communability.ca, its <a href="#/privacy-policy" target="_blank">Privacy Policy</a> and the <a href="#/mentorship-program-agreement" target="_blank">Mentorship Program User Agreement</a>.</span></span>
+			</label>
+			<label class="visible checkbox"
+				ng-repeat="choice in declarationChoices track by $index"
+				ng-if="!$first"
+				ng-class="{'form-container-field-invalid': checking && ! declarationChoices[$index].checked && ! inputMeta['dec'+($index + 1)].beenChanged }">
+	      		<input type="checkbox"
+	      			ng-click="updateDeclarationValue(choice)"
+	      			ng-model="choice.checked"
+					ng-init="inputMeta ? '' : inputMeta = {};
+							 inputMeta['dec'+($index + 1)] = {};"
+ 					ng-change="inputMeta['dec'+($index + 1)].beenChanged = true;
+ 							   declarationValues.length >= declarationChoices.length ? inputMeta.allDec.beenChanged = true : '';"/>
+				<span aria-hidden="true"><div></div></span>
+				<span><span>{{choice.label}}</span></span>
+			</label>
+		</fieldset>
+
+
+		<!--error notifiers-->
+		<div class="form-container-field self-standing"
+			ng-if="checking && (contact.$invalid || background.$invalid || interest.$invalid || declarationValues.length < declarationChoices.length)">
+			<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+
+			<p class="form-container-field-msg" ng-if="contact.$invalid">There is missing or invalid information in <a href="" ng-click="gotoAnchor('contact')">Contact Information</a> (Section 1)</p>
+			<p class="form-container-field-msg" ng-if="background.$invalid">There is missing or invalid information in <a href="" ng-click="gotoAnchor('background')">Background Information</a> (Section 2)</p>
+			<p class="form-container-field-msg" ng-if="interest.$invalid">There is missing or invalid information in <a href="" ng-click="gotoAnchor('interest')">Mentoring Interest</a> (Section 3)</p>
+			<p class="form-container-field-msg" ng-if="declarationValues.length < declarationChoices.length">There is missing or invalid information in <a href="" ng-click="gotoAnchor('declarations')">Declarations</a> (Section 5)</p>
+		</div>
+
+
+		<p class="submission-label">By summiting this application, you attest that the information you have provided on this form is complete, true, and accurate.</p>
+
+		<button type="submit" class="standard-button"
+			ng-click="mentorshipForm.$invalid || mentorshipForm.$pristine || declarationValues.length < declarationChoices.length ? checking=true : SubmitMenteeApp(true);
+					  mentorshipForm.$invalid || mentorshipForm.$pristine || declarationValues.length < declarationChoices.length ? resetAllInteractedStates(inputMeta): ''">
+			<span class="amsi-text cap">Submit</span>
+		</button>
+
+	</form>
+</div>

@@ -1,0 +1,147 @@
+		<head>
+    <style type="text/css">
+        table, th, td {
+         border: 1px solid black;
+         border-spacing: 1px;
+         padding: 2%;
+         background-color: #b7b4a5;
+     }
+     p{
+        font-family: "Avenir-Black";
+        text-align: center;
+        margin: auto; 
+    }
+    select {
+        display: block;
+        margin: 0 auto;
+    }
+    input{
+        width: 100%;
+        display: block;
+    }
+    label.visible.checkbox>span:first-of-type {
+        float: none;
+        display: inline-block;
+    }
+    input[type=checkbox] + span {
+        background-color: #fff;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0.25em;
+    }
+    label {
+        display: inline-block;
+        text-align: center;
+    }
+    input[type=checkbox]:checked + span > div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+    input[type=checkbox] + span + span {
+        position: absolute;
+    }
+    .inline{
+        display: inline-block;
+    }
+</style>
+</head>
+		<br><br><br><br><br><br><br><br>
+		<button class="standard-button inline" ng-click="LoadModulesFromJSONFolder()">Load Modules <br> From Folder</button>
+		<br><br>
+		<label>Select Page</label>
+		<div class="col-xs-6">
+			<select class="form-control" ng-change="SelectPage(pageSelected.name)" ng-options="option.name for option in pages" ng-model="pageSelected">
+		</select>
+		</div>
+		<div ng-show="hasSelectedAPage">
+
+			<form name="msgPage" class="form-horizontal" role="form">
+				<button ng-click="SaveChanges()">Save Changes</button>
+				<br>
+				<label>Main</label>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Title</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].main.title" value="{{ messagePile[CurrentlyEditing].main.title}}">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Content</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].main.content" value="{{ messagePile[CurrentlyEditing].main.content}}">
+					</div>
+				</div>
+
+				<label>Alternate Main</label>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Title</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].altMain.title" value="{{ messagePile[CurrentlyEditing].altMain.title}}">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2">Content</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].altMain.content" value="{{ messagePile[CurrentlyEditing].altMain.content}}">
+					</div>
+				</div>
+
+				<label>Daily Messages</label>
+				<div class="form-group">
+					<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].daily" ng-list="&#10;"
+						ng-trim="false"></textarea>
+					<pre>{{ messagePile[CurrentlyEditing].daily | json }}</pre>
+				</div>
+
+				<label>Info Messages</label>
+				<div class="form-group">
+					<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].info" ng-list="&#10;"
+						ng-trim="false"></textarea>
+					<pre>{{ messagePile[CurrentlyEditing].info | json }}</pre>
+				</div>
+
+				<label>Learning Messages</label>
+				<div class="form-group">
+					<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].learning" ng-list="&#10;"
+						ng-trim="false"></textarea>
+					<pre>{{ messagePile[CurrentlyEditing].learning | json }}</pre>
+				</div>
+
+				<label>Contacts</label>
+				<div class="form-group">
+					<table>
+						<tr>
+							<td></td>
+							<td>Name</td>
+							<td>Title</td>
+							<td>Email</td>
+							<td>Phone</td>
+							<td>Office</td>
+							<td>Alt</td>
+						</tr>
+						<tr ng-repeat="contact in messagePile[CurrentlyEditing].contact track by $index">
+							<td>{{ $index + 1 }}</td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].name" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].name }}"></td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].title" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].title }}"></td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].email" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].email }}"></td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].phone" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].phone }}"></td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].office" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].office }}"></td>
+							<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].alt" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].alt }}"></td>
+						</tr>
+					</table>
+				</div>
+
+			</form>
+
+
+		</div>
+
+		<button ng-click="resetVerify = ! resetVerify">Reset ALL Messages</button>
+		<br>
+		<p ng-show="resetVerify">This will reset ALL messages from ALL pages to their default values stored in json files.</p>
+		<p ng-show="resetVerify">THIS CANNOT BE UNDONE.</p>
+		<button ng-show="resetVerify" ng-click="UpdateMessages()">RESET TO DEFAULT</button>
+
+		<h4>{{ updateMessageResult }}</h4>
+	</div>

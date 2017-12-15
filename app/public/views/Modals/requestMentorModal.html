@@ -1,0 +1,37 @@
+<div ng-controller="requestMentorModalCTR">
+	<script type="text/ng-template" id="requestMentorModal.html">
+		<div class="modal-body end-state-modal">
+			<h1>
+				<span class="amsi-text">Request a new Mentor</span>
+				<button title="close" class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+			</h1>
+
+			<div class="clearfix modal-padding">
+				<form>
+					<p class="modal-info">If you would like to begin the mentorship program again, you can request a new mentor.</p>
+					<p class="modal-info">You will not need to complete your training again, however you will still have access to the relevant resources should you need them.</p>
+					<p class="modal-info">Please review the <a href="#/mentorship-program-agreement" target="_blank">program agreement</a> in case any changes have been made, and to remind yourself of the expectations of the program.</p>
+					<p class="modal-info">[reminder of wait periods]</p>
+
+					<p class="modal-prompt">Do you wish to Continue?</p>
+
+					<button type="button" class="standard-button modal-submit modal-cancel" ng-click="CloseModal()">
+						<span class="amsi-text cap">Cancel</span>
+					</button>
+					<button type="button" class="standard-button modal-submit" ng-click="confirmOpen = !confirmOpen" ng-show="!confirmOpen" ng-disabled="false">
+						<span class="amsi-text cap" ng-show="true">Request Mentor</span>
+						<span class="amsi-text cap" ng-show="false">Request Sent</span>
+					</button>
+
+					<button type="submit" class="standard-button modal-submit" ng-show="confirmOpen" ng-click="RequestMentor()">
+						<span class="amsi-text cap">Confirm</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</script>
+	<button type="button" class="standard-button" ng-click="open()" ng-disabled="false">
+		<span class="amsi-text cap" ng-show="true">Request Mentor</span>
+		<span class="amsi-text cap" ng-show="false">Mentor Requested</span>
+	</button>
+</div>

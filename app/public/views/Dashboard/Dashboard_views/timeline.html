@@ -1,0 +1,148 @@
+<div class="profile-timeline-css">
+	<timeline side="right">
+		<timeline-event ng-repeat="event in timelineEvents | orderBy: 'event.id' : true" side="{{event.sideDisplayed}}">
+
+			<timeline-badge ng-class="'{{event.marker}} {{event.markerType}} {{event.status}} {{event.marker === 'standard' && event.status === 'inprogress' ?  'current-activity' : ''}}'">
+				<div ng-if="event.marker != 'standard'">
+					<img ng-if="event.status == 'completed'" class="check completed" src="/Assets/Images/Profile/timeline/markers/check.svg">
+					<img class="board">
+
+					<div class="board-content">
+						<img ng-if="event.markerType == 'secondary'" class="ribbon" ng-src="{{event.status === 'completed' ? '/Assets/Images/Profile/timeline/markers/ribbon-gold.svg' : '/Assets/Images/Profile/timeline/markers/ribbon-grey.svg'}}">
+						<h1><span class="amsi-text cap">{{event.title}}</span></h1>
+					</div>
+				</div>
+				<div ng-if="event.marker === 'standard'">
+					<div ng-if="event.status != 'completed'" class="check" ng-class="'{{event.status}}'"></div>
+					<img ng-if="event.status == 'completed'" class="check completed" src="/Assets/Images/Profile/timeline/markers/check.svg">
+					<div ng-if="event.status == 'inprogress'" class="current">
+						<img>
+						<h1><span class="amsi-text cap">Current Activity</span></h1>
+					</div>
+				</div>
+
+			</timeline-badge>
+
+			<timeline-panel ng-if="event.marker == 'standard'" class="{{event.panelStyle}}">
+				<timeline-heading>
+					<button class="expand">
+						<img src="/Assets/Images/Profile/timeline/plus.svg">
+						<h4><span class="amsi-text cap">{{event.phase}}</span></h4>
+						<h4><span class="amsi-text cap">{{event.eventStatus === 'initial' ? event.title : event.eventStatus === 'following' ? event.altTitle : event.finalTitle}}</span></h4>
+						<img ng-if="false">
+					</button>
+				</timeline-heading>
+				<div class="event-body collapse" id="event{{event.id}}">
+					<p class="date" ng-if="">Appointment booked for: {{event.start | date : 'MMM d, y h:mm a'}}}}</p>
+					<p>{{event.eventStatus === 'initial' ? event.content : event.eventStatus === 'following' ? event.altContent : event.finalContent}}</p>
+					<!-- <p>{{event.date | date : 'fullDate'}}</p> -->
+					<div class="icons" ng-if="event.title !== 'Checklist'">
+						<h2 class="duration" ng-if="event.duration > 0"><span class="amsi-text cap">{{event.duration}}<br>mins</span></h2>
+						<div class="activity" ng-repeat="activity in event.activity track by $index" ng-if="activity.type !== 'book' || event.status === 'inprogress'" data-type="{{activity.type}}" ng-class="{ 'booking-modal' : activity.type === 'book' }">
+							<div class="vert" aria-hidden="true" ng-if="activity.type !== 'verify-email' && activity.type !== 'declarations' && activity.type !== 'find-mentor' && ((event.activity[0].type === 'book' && event.status === 'inprogress') ? ($index % 3 !== 2) : ($index % 3 !== 0))"></div>
+							<a aria-label="Chat" ng-if="activity.type === 'chat'" ng-disabled="event.status !== 'inprogress' || event.eventStatus !== 'following'" ng-href="#/profile/chat">
+								<div class="activity-icon-frame"><img class="activity-icon" src="..\Assets\Images\Profile\header\Chat.svg" alt="Chat"></div>
+							</a>
+
+							<button aria-label="Links" ng-if="activity.type === 'link'" ng-disabled="event.status === 'upcoming'" data-toggle="collapse" data-target=".links-{{event.id}}">
+								<div class="activity-icon-frame"><img class="activity-icon" src="..\Assets\Images\Profile\header\Activity.svg" alt="Links"></div>
+							</button>
+
+							<button aria-label="Documents" ng-if="activity.type === 'doclink'" ng-disabled="event.status === 'upcoming'" data-toggle="collapse" data-target=".docs-{{event.id}}">
+								<div class="activity-icon-frame"><img class="activity-icon" src="..\Assets\Images\Profile\Doc.svg" alt="Documents"></div>
+							</button>
+
+							<div ng-if="activity.type == 'book'">
+								<a ng-if="event.eventStatus === 'following'" ng-href="#/profile/calendar">
+									<img src="/Assets/Images/Profile/header/Calendar.svg">
+									<h3>Cancel<br>Appointment</h3>
+								</a>
+								<booking-modal ng-attr-data-event="{{event}}" ng-show="event.eventStatus === 'initial'" ng-if="event.status !== 'upcoming'"></booking-modal>
+							</div>
+							<!--if you are a menteeSeeking, then btn is greyed out, when you are a full mentee, it does not exist-->
+							<!--find mentor-->
+							<a ng-if="activity.type === 'find-mentor' && event.status !== 'completed'" href="#/profile/mentorship" class="standard-button" ng-disabled="event.status === 'upcoming' || event.status === 'completed' || userProfile.status === 'menteeSeeking'">
+								<span ng-if="userProfile.status !== 'menteeSeeking' && !sendingRequest" class="amsi-text cap">Find my Mentor</span>
+								<span ng-if="userProfile.status !== 'menteeSeeking' && sendingRequest" class="amsi-text cap">Sending Request...</span>
+								<span ng-if="userProfile.status === 'menteeSeeking'" class="amsi-text cap">Request Sent</span>
+							</a>
+							<a ng-if="activity.type === 'declarations' && event.status !== 'completed' && (userProfile.status === 'menteeInTraining' && ! userProfile.mentee[0].declarationsMade || userProfile.status === 'mentorInTraining' && ! userProfile.mentor[0].declarationsMade)" href="#/profile/mentorship" class="standard-button" ng-disabled="event.status === 'upcoming' || event.status === 'completed' || userProfile.status !== 'menteeInTraining'">
+								<span class="amsi-text cap">Declarations</span>
+							</a>
+							<button ng-if="activity.type === 'verify-email' && event.status !== 'completed'" ng-click="sendSchoolConfEmail(); emailSending = true" class="standard-button" ng-disabled="event.status === 'upcoming' || event.status === 'completed' || emailSending || verificationEmailSent"> <!-- TODO update status to training only after this is completed, not immediately -->
+								<span ng-if="!emailSending && !verificationEmailSent" class="amsi-text cap">Resend Email</span>
+								<span ng-if="emailSending && !verificationEmailSent" class="amsi-text cap">Sending email...</span>
+								<span ng-if="verificationEmailSent" class="amsi-text cap">Email Sent</span>
+							</button>
+						</div>
+					</div>
+					<!--special case for checklist-->
+
+					<div ng-if="event.title =='Checklist'">
+						<form id="todo-list">
+							<span class="todo-wrap">
+						<input type="checkbox" ng-checked="true"/>
+						<label class="todo">
+						<i class="fa fa-check"></i>
+						Complete Sign-Up
+						</label>
+					</span>
+							<span class="todo-wrap">
+							<div ng-repeat="module in userProfile.modules track by $index">
+								<input type="checkbox" ng-checked="module.completed"/>
+								<label class="todo">
+						<i class="fa fa-check"></i>
+						{{module.name}}
+						</label>
+						<!-- add progression -->
+						<!--<span class="delete-item" title="remove">
+						<i>{{module.completedSlide}}/5</i>-->
+						</div>
+
+						<div ng-if="modulesAllComplete && userProfile.status == 'mentorPending'">
+						<input type="checkbox" id="2"/>
+						<label class="todo">
+						<i class="fa fa-check"></i>
+							Manually get verified
+						</label>
+							<span class="delete-item" title="remove">
+						<i class="fa fa-times-circle"></i>
+						</div>
+					</span>
+						</form>
+					</div>
+
+					<div class="activity-ex links-container collapse" ng-class="{ 'links-{{event.id}}' : event.status !== 'upcoming' }">
+						<div>
+							<p>Links:</p>
+							<ul>
+								<li ng-repeat="activity in event.activity" ng-if="activity.type == 'link'"><a target="_blank" ng-href="{{ event.status === 'inprogress' || event.status === 'completed' ?  activity.link : '' }}">
+								{{event.status === 'inprogress' || event.status === 'completed'  ?  activity.name : 'Please complete the previous modules.'}}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="activity-ex docs-container collapse" ng-class="{ 'docs-{{event.id}}' : event.status !== 'upcoming' }">
+						<div>
+							<p>Documents:</p>
+							<ul>
+								<li ng-repeat="activity in event.activity" ng-if="activity.type == 'doclink'"><a target="_blank" ng-href="documents{{activity.doclink}}">{{activity.name}}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<hr class="dashboard">
+			</timeline-panel>
+
+		</timeline-event>
+	</timeline>
+
+	<div class="event-details" ng-init="OnPageLoad()">
+		<button class="expand"><img src="/Assets/Images/Profile/timeline/minus.svg"></button>
+		<div>
+			<h1><span class="amsi-text cap"></span></h1>
+			<h1><span class="amsi-text cap"></span></h1>
+			<p></p>
+		</div>
+		<hr class="dashboard">
+	</div>
+</div>

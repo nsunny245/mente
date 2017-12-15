@@ -1,0 +1,40 @@
+{	
+	"name": "mentorship module",
+    "steps" : 5,
+    "slides":[
+        {
+            "_id" : 0,
+            "title": "Introduction",
+            "subtitle" : "intro",
+            "paragraphs": [ 
+                            "Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development.  It is also a responsibility because it requires a commitment and investment of time.  It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas.  Mentoring relationships bring together people with different backgrounds, positions and experiences who share a common interest and a desire to learn from and about each other.", 
+                            "Many who have been involves in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time. Therefore, mentoring requires training, thoughtful preparation, and planning.", 
+                            "This exciting module is a starting point to developing an effective mentoring relationship.", 
+                            "The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."
+                        ],
+            "subparagraphs" :[],
+            "tooltips":[],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id" : 1,
+            "title": "More Introduction",
+            "subtitle" : "intro",
+            "paragraphs":   [ 
+                            "Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development.  It is also a responsibility because it requires a commitment and investment of time.  It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas.  Mentoring relationships bring together people with different backgrounds, positions and experiences who share a common interest and a desire to learn from and about each other.", 
+                            "Many who have been involves in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time. Therefore, mentoring requires training, thoughtful preparation, and planning.", 
+                            "This exciting module is a starting point to developing an effective mentoring relationship.", 
+                            "The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."
+                        ],
+            "subparagraphs" :[],
+            "tooltips":[],
+            "links": [],
+            "stories": [],
+            "extra": []
+        }
+    ],
+    "type": "na",
+    "providedBy": "PSDnet"
+}

@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="/CSS/Signup/selectForm-status.css">
+
+<div class="signup-select-css">
+  <header class="intro" id="intro">
+    <div></div>
+    <img src="/Assets/Images/Signup/congrats.svg">
+    <h1><span class="amsi-text">Congratulations!</span></h1>
+    <h2><span class="amsi-text">You are now a member of CommunAbility</span></h2>
+    <p ng-if="userProfile.status !== 'verified'">Please verify and claim your account to take full advantage of all the site's features - we've sent you a confirmation email with the instructions. If you didn't get the message, click <button class="send-conf-btn" ng-click="sendConfEmail()">here</button> and we'll send another.</p>
+    <p ng-show="!firstClick">{{unverifiedMessage}}</p>
+    <p>In addition to your access to our forums and resources, you can also join our e-mentorship program.</p>
+    <h3><span class="amsi-text">Make a selection below:</span></h3>
+  </header>
+
+  <!-- <mentee-mentor-modal></mentee-mentor-modal> -->
+  <!-- <div class="card-container-con" -->
+  <div class="card-container">
+    <div class="type-card">
+      <img src="/Assets/Images/Signup/jersey.svg">
+      <h1><span class="amsi-text">Get a<br>Mentor</span></h1>
+      <p>Having a mentor provides opportunities for personal growth and development that support you to reach your goals.</p>
+      <!--<a href="/documents/example.pdf" download="filename">+ more info</a>-->
+      <!--<a ng-click="CheckVerified('mentee')" class="standard-button"><span class="amsi-text cap">Sign Up</span></a>-->
+      <a href="#/signup/mentee-info" class="standard-button" name="signup-mentee"><span class="amsi-text cap">Join!</span></a>
+    </div>
+    <div class="type-card">
+      <img src="/Assets/Images/Signup/whistle.svg">
+      <h1><span class="amsi-text">Become a<br>Mentor</span></h1>
+      <p>Mentoring a university or college student with a disability provides opportunities to make a difference, and to learn more about yourself and grow.</p>
+      <!--<a href="/documents/example.pdf" download="filename">+ more info</a>-->
+      <a href="#/signup/mentor-info" class="standard-button" name="signup-mentor"><span class="amsi-text cap">Join!</span></a>
+    </div>
+  </div>
+
+
+  <div>
+    <h2><span class="amsi-text">No Thanks.<br>Take me to:</span></h2>
+    <a class="alt-path" href="#/community">
+      <span class="amsi-text cap">Community</span
+      ><img src="/Assets/Images/Home/section-icons/Community.svg">
+    </a
+    ><a class="alt-path" href="#/education">
+      <span class="amsi-text cap">Education</span
+      ><img src="/Assets/Images/Home/section-icons/Education.svg">
+    </a
+    ><a class="alt-path" href="#/profile">
+      <span class="amsi-text cap">My Hub</span
+      ><img src="/Assets/Images/Profile/header/Profile.svg">
+    </a>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<fieldset>
+	<p class="label"><abbr title="required">*</abbr> What is your current gender identity?
+		<span>(Check all that apply)</span></p>
+	<label for="female" class="visible checkbox">
+		<input id="female" type="checkbox" name="gender" ng-model="genderCheckedFemale" ng-change="GenderSelect(genderChecked[0], 'female')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Female</span></span>
+	</label
+	><label for="male" class="visible checkbox">
+		<input id="male" type="checkbox" name="gender" ng-model="genderCheckedMale" ng-change="GenderSelect(genderChecked[1], 'male')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Male</span></span>
+	</label
+	><label for="transFemale" class="visible checkbox">
+		<input id="transFemale" type="checkbox" name="gender" ng-model="genderCheckedTFemale" ng-change="GenderSelect(genderChecked[2], 'transFemale')" ng-required="profile.gender.length==0" >
+		<span><div></div></span
+		><span><span>Trans. female</span></span>
+	</label
+	><label for="transMale" class="visible checkbox">
+		<input id="transMale" type="checkbox" name="gender" ng-model="genderCheckedTMale" ng-change="GenderSelect(genderChecked[3], 'transMale')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Trans. male</span></span>
+	</label
+	><label for="non-binary" class="visible checkbox">
+		<input id="non-binary" type="checkbox" name="gender" ng-model="genderCheckedNonBinary" ng-change="GenderSelect(genderChecked[4], 'nonBinary')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Non-binary / <span>Third Gender</span></span></span>
+	</label
+	><label for="gender-fluid" class="visible checkbox">
+		<input id="gender-fluid" type="checkbox" name="gender" ng-model="genderCheckedNonbinary" ng-change="GenderSelect(genderChecked[5], 'genderFluid')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Gender Fluid</span></span>
+	</label
+	><label for="queer" class="visible checkbox">
+		<input id="queer" type="checkbox" name="gender" ng-model="genderCheckedQueer" ng-change="GenderSelect(genderChecked[6], 'queer')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Genderqueer</span></span>
+	</label
+	><label for="otherGender" class="visible checkbox">
+		<input id="otherGender" type="checkbox" name="gender" ng-model="genderCheckedOther" ng-change="GenderSelect(genderCheckedOther, 'other')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Prefer to self-describe</span></span>
+	</label
+	><div ng-show="genderCheckedOther">
+		<label for="otherGenderSpec" class="other"><span class="sub-label">Please specify:</span></label>
+		<input id="otherGenderSpec" type="text" ng-model="profile.otherGender" name="otherGender" ng-required="genderCheckedOther"
+		 placeholder="different identity" />
+	</div
+	><label for="undisclosedGender" class="visible checkbox">
+		<input id="undisclosedGender" type="checkbox" name="gender" ng-model="genderCheckedUndisclosed" ng-change="GenderSelect(genderChecked[7], 'undisclosed')" ng-required="profile.gender.length==0">
+		<span><div></div></span
+		><span><span>Prefer not to say</span></span>
+	</label>
+</fieldset>

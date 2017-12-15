@@ -1,0 +1,36 @@
+
+.selector {
+  width: 100%;
+  height: 2.4em;
+  background-color: $brand-blue;
+  color: #fff;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+    &::-ms-expand { /* for IE 11 */
+      display: none;
+    }
+    &:focus {
+      border-color: $brand-blue-hover;
+      background-color: $brand-blue
+    }
+}
+
+.down-chevron {
+    padding-right: 7% !important;
+    -webkit-appearance: none;
+    background-image: url(/Assets/Images/chevron-down-light.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.65em) 50%;
+    background-size: auto 30%;
+}
+.selector-light {
+  background-image: url(/Assets/Images/chevron-down-dark.svg);
+}
+
+.disabled-option {
+  background-color: $brand-lightishgrey;
+  color: white;
+}

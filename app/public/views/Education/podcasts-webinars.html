@@ -1,0 +1,89 @@
+<!-- podcasts -->
+<div class="library-css podcast-css">
+  <header class="podcasts block">
+    <h1><span class="amsi-text cap">Podcasts and Webinars</span></h1>
+    <p>[descriptive copy for this section]</p>
+  </header>
+
+  <div ng-if="liveFeed.length > 0" class="education-content">
+    <section class="webinar-live education-content-view">
+      <div>
+        <h2><span class="amsi-text">CommunAbility is Broadcasting <span class="red-text live-indicator-span"><span aria-hidden="true" class="live-bullet">&#8226;</span> Live</span> Now!</h2>
+        <h1><span class="amsi-text">{{liveFeed[0].snippet.title}}</span></h1>
+        <youtube code="liveFeed[0].id.videoId"></youtube>
+        <p>If you would like to participate in the live chat, you can click <a href="{{generateUrl(liveFeed[0].id.videoId)}}">here</a> to be taken directly to the livestream broadcast. You must have a YouTube account and be signed in.</p>
+        <p>{{liveFeed[0].snippet.description}}</p>
+      </div>
+    </section>
+  </div>
+
+  <nav class="education-menu" ng-if="channelPlaylists.length > 2">
+    <ul class="sort-links">
+      <li>
+        <button class="standard-button" ng-click="selectPlaylist(true)" ng-class="{'menu-on' : allPlaylists}"><span>Show All</span></button>
+      </li>
+      <li>
+        <button class="standard-button" ng-click="selectPlaylist(false)" ng-class="{'menu-on' : noPlaylists}"><span>Hide All</span></button>
+      </li>
+    </ul>
+    <ul>
+      <li ng-repeat="playlist in channelPlaylists">
+        <button class="standard-button" ng-click="selectPlaylist($index)" ng-class="{'menu-on' : allPlaylists || !noPlaylists && channelPlaylists[$index].active}"><span>{{playlist.snippet.title}}</span></button>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="education-content">
+    <section ng-if="channelPlaylists.length > 2" class="education-content-view education-content-view-unified">
+      <ul ng-if="media.length > 0">
+        <li class="education-index" ng-repeat="item in media track by $index">
+          <button class="education-item"
+            data-toggle="collapse"
+            data-target="#lx-i{{$index}}"
+            aria-expanded="false"
+            aria-controls="lx-i{{$index}}"
+            ng-click="itemShown = !itemShown">
+            <div>
+              <h3>{{item.snippet.title}} <span ng-show="!itemShown">- Click to Open</span><span ng-show="itemShown">- Click to Close</span></h3>
+              <p>{{item.snippet.publishedAt | date : 'medium'}}</p>
+            </div>
+          </button>
+          <article class="collapse" id="lx-i{{$index}}">
+            <div>
+              <hr>
+              <youtube code="item.snippet.resourceId.videoId"></youtube>
+              <p>{{item.snippet.description}}</p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section ng-if="channelPlaylists.length <= 2" ng-repeat="playlist in channelPlaylists track by $index" class="education-content-view education-content-view-split">
+      <h2><span class="amsi-text cap">{{playlist.snippet.title}}</span></h2>
+      <ul>
+        <li class="education-index" ng-repeat="item in playlist.videos track by $index">
+          <div>
+            <button class="education-item"
+              data-toggle="collapse"
+              data-target="#l{{$parent.$index}}-i{{$index}}"
+              aria-expanded="false"
+              aria-controls="l{{$parent.$index}}-i{{$index}}"
+              ng-click="itemShown = !itemShown">
+              <div>
+                <h3>{{item.snippet.title}} <span ng-show="!itemShown">- Click to Open</span><span ng-show="itemShown">- Click to Close</span></h3>
+                <p>{{item.snippet.publishedAt | date : 'medium'}}</p>
+              </div>
+            </button>
+            <article class="collapse" id="l{{$parent.$index}}-i{{$index}}">
+              <div>
+                <youtube code="item.snippet.resourceId.videoId"></youtube>
+                <p>{{item.snippet.description}}</p>
+              </div>
+            </article>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>

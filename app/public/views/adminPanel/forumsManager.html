@@ -1,0 +1,59 @@
+<head>
+    <style type="text/css">
+        table, th, td {
+         border: 1px solid black;
+         border-spacing: 1px;
+         padding: 2%;
+         background-color: #b7b4a5;
+     }
+     p{
+        font-family: "Avenir-Black";
+        text-align: center;
+        margin: auto; 
+    }
+    select {
+        display: block;
+        margin: 0 auto;
+    }
+    input{
+        width: 100%;
+        display: block;
+    }
+    label.visible.checkbox>span:first-of-type {
+        float: none;
+        display: inline-block;
+    }
+    input[type=checkbox] + span {
+        background-color: #fff;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0.25em;
+    }
+    label {
+        display: inline-block;
+        text-align: center;
+    }
+    input[type=checkbox]:checked + span > div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+    input[type=checkbox] + span + span {
+        position: absolute;
+    }
+    .inline{
+        display: inline-block;
+    }
+</style>
+</head>
+<br><br><br><br><br><br><br><br><br>
+<button class="standard-button inline" ng-click="InitForums()">Initialize Forums</button>
+<button class="standard-button inline" ng-click="GetFlagged()">Get flagged Posts</button>
+
+<br><br>
+<div ng-repeat="post in flaggedPosts">    
+    <post></post>
+    <div ng-repeat="report in post.reports">
+        <p>{{report.reason}}</p>
+    </div>
+    
+    <button class="standard-button inline" ng-click="DeletePost(post._id)">Delete</button>
+</div>

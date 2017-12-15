@@ -1,0 +1,32 @@
+@import 'Partials/helpers';
+@import "Community/community-bios";
+
+.learning-css {
+  @include communityCardPage();
+
+  header.block:nth-of-type(1) {
+    background-color: $brand-yellow;
+    color: $brand-blue;
+  }
+
+  @include max-screen(30em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 0, 1);
+    }
+  }
+  @include min-screen(30em) {
+    .profile-card-preview-container {
+      @include profileCardSetContainer();
+    }
+  }
+  @include screen(30em, 45em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 0, 1);
+    }
+  }
+  @include min-screen(45em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 4%, 2);
+    }
+  }
+}

@@ -1,0 +1,242 @@
+<div class="profile-settings-css">
+  <!--<div ng-if="!chatAuthorized">
+    <form>
+      <input type="password" placeholder="re enter your password for security" ng-model="pass" />
+      <button type="submit" ng-click="ChatAuth(pass)">Authorize</button>
+    </form>
+  </div>
+
+  <div ng-if="chatAuthorized">-->
+  <form class="holder novalidate">
+
+    <div class="standalone-button image-button" ng-if="userProfile.status !== 'verified' ">
+      <img id="uploadedImage" ngf-src="f" ngf-background="f" ngf-resize="{width: 150, height: 150, quality: 0.9}"
+        ngf-no-object-url="true or false" ng-src="{{userProfile.picture}}" src="/Assets/Images/profile-icon.svg">
+      <fieldset class="section img-change">
+        <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+          <span class="progress" ng-show="f.progress >= 0">
+              <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
+          </span>
+        </div>
+
+        <button class="standard-button" type="file" ngf-select="UploadImage($file, $invalidFiles)" accept="image/png, image/jpeg, image/gif, image/" ngf-max-height="2000"
+          ngf-max-size="5MB"><span class="amsi-text cap">Change Profile Picture</span></button>
+    </div>
+    <!--{{errorMsg}}-->
+
+    <!-- Generic settings here -->
+    <div>
+    </div>
+
+
+    <!--Settings for mentor-->
+    <div ng-if="userProfile.status === 'mentor' || userProfile.status === 'mentorFull' || userProfile.status === 'mentorInTraining'">
+      <hr>
+      <div class="section">
+        <label for="mentorshare">I agree to have my account displayed: {{userProfile.mentor[0].shareProfileOptIn}}</label>
+        <input id="mentorshare" type="checkbox" ng-model="profile.shareProfileOptIn">
+        <label for="mentoraccepting">Currently accepting mentees: {{userProfile.status !== 'mentorFull'}}</label>
+        <input id="mentoraccepting" type="checkbox" ng-model="profile.acceptingMentee">
+      </div>
+      <hr>
+
+      <fieldset class="section">
+        <label for="mentorfirstname">First name: {{userProfile.mentor[0].firstName}}</label>
+        <input id="mentorfirstname" type="text" ng-model="profile.firstName">
+        <label for="mentormiddlename">Middle name: {{userProfile.mentor[0].middleName}}</label>
+        <input id="mentormiddlename" type="text" ng-model="profile.middleName">
+        <label for="mentorlastname">Last name: {{userProfile.mentor[0].lastName}}</label>
+        <input id="mentorlastname" type="text" ng-model="profile.lastName">
+        <label for="mentorphone">Phone: {{userProfile.mentor[0].phone}}</label>
+        <input id="mentorphone" type="phone" ng-model="profile.phone">
+        <label for="mentoremail">Work email: {{userProfile.mentor[0].workEmail}}</label>
+        <input id="mentor" type="email" ng-model="profile.workEmail">
+        <label for="prefEmail" class="visible checkbox">
+    			<input id="prefEmail" type="checkbox" name="prefEmail" ng-model="profile.prefEmail" ng-change="" ng-checked="userProfile.mentor[0].prefEmail"/>
+    			<span><div></div></span
+    			><span><span>Use this email for communications</span></span>
+    		</label>
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <label for="mentorage">Age: {{userProfile.mentor[0].age}}</label>
+        <input id="mentorage" type="number" ng-model="profile.age">
+        <p class="label" ng-class="gender">What is your current gender identity? <span>(Check all that apply)</span></p>
+        <label ng-repeat="gender in genders" class="visible checkbox">
+            <input type="checkbox" ng-model="formData.genderSelected[gender.name]" ng-change="checkboxChangedGender()">
+      			<span aria-hidden="true"><div></div></span>
+      			<span><span>{{spaceBeforeCapital(gender.name)}}</span></span>
+      		</label>
+        <div ng-show="formData.genderSelected.OtherGender">
+          <label for="otherGenderSpec" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherGenderSpec" type="text" maxlength="20" ng-model="otherGenderString" name="otherGender" placeholder="different identity">
+        </div>
+        <label for="mentoreducation">Highest Education: {{userProfile.mentor[0].highestEducation}}</label>
+
+        <select id="mentoreducation" class="down-chevron" <select id="highestEducation" class="down-chevron" ng-model="profile.highestEducation"
+          name="highestEducation" ng-options="i as i for i in highestEducation">
+  					<option value="">-- Select Area --</option>
+  				</select>
+        <div ng-show="profile.highestEducation === 'Other Education'">
+          <label for="highestEdOther" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="highestEdOther" ng-required="profile.highestEducation === 'Other Education'" type="text" ng-model="profile.otherEducation"
+            name="otherEducation" placeholder="other education" />
+        </div>
+
+        <label for="mentorstudy">Study: {{userProfile.mentor[0].study}}</label>
+        <select id="study" class="down-chevron" ng-model="profile.study" name="study" ng-options="
+  		i as i for i in study">
+  		<option value="">-- Select Area --</option>
+  		</select>
+        <div ng-show="profile.study === 'Other Area'">
+          <label for="otherStudy" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherStudy" ng-required="profile.study === 'Other Area'" type="text" ng-model="profile.otherStudy" name="otherStudy"
+            placeholder="other area" />
+
+        </div>
+
+        <label for="mentorfield">Current field: {{userProfile.mentor[0].currentField}}</label>
+
+        <select id="field" class="down-chevron" ng-model="profile.currentField" name="field" ng-options="i.dbEntry as i.display for i in field"
+          required>
+  			<option value="">-- Select Area --</option>
+  			</select>
+        <div ng-show="profile.currentField === 'OtherField'">
+          <label for="otherField" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherField" ng-required="profile.currentField === 'OtherField'" type="text" ng-model="profile.OtherField" name="otherField"
+            placeholder="other experience" />
+        </div>
+
+        <label for="mentorexperience">Number of years in this field: {{userProfile.mentor[0].numberOfYearsInField}}</label>
+        <input id="mentorexperience" type="text" ng-model="profile.numberOfYearsInField">
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <p>Do you have any particular kind of disability(s)?</p>
+        <label ng-repeat="disability in disabilities" class="visible checkbox">
+            <input type="checkbox" ng-model="formData.disabilitySelected[disability.name]" ng-change="checkboxChangedDis()">
+      			<span aria-hidden="true"><div></div></span>
+      			<span><span>{{spaceBeforeCapital(disability.name)}}</span></span>
+      		</label>
+        <div ng-show="formData.disabilitySelected.OtherDisability">
+          <label for="otherDisabilitySpec" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherDisabilitySpec" type="text" ng-model="otherDisabilityString" name="otherDisability" placeholder="other disability">
+        </div>
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <label for="share">What do you want to share:</label>
+        <textarea id="share" ng-model="profile.share">{{userProfile.mentor[0].share}}</textarea>
+        <label for="why">Why choose to mentor:</label>
+        <textarea id="why" ng-model="profile.why">{{userProfile.mentor[0].why}}</textarea>
+        <label for="mentorgain">What do you want to gain from this experience:</label>
+        <textarea id="mentorgain" ng-model="profile.gain">{{userProfile.mentor[0].gain}}</textarea>
+        <label for="menteegain">What does your mentee gain:</label>
+        <textarea id="menteegain" ng-model="profile.gainMentee">{{userProfile.mentor[0].gainMentee}}</textarea>
+      </fieldset>
+    </div>
+
+    <!--settings for mentee-->
+    <div ng-if="userProfile.status === 'mentee' || userProfile.status === 'menteeInTraining'">
+      <hr>
+      <fieldset class="section">
+        <label for="menteefirstname">First name: {{userProfile.mentee[0].firstName}}</label>
+        <input id="menteefirstname" type="text" ng-model="profile.firstName">
+        <label for="menteemiddlename">Middle name: {{userProfile.mentee[0].middleName}}</label>
+        <input id="menteemiddlename" type="text" ng-model="profile.middleName">
+        <label for="menteelastname">Last name: {{userProfile.mentee[0].lastName}}</label>
+        <input id="menteelastname" type="text" ng-model="profile.lastName">
+        <label for="menteeemail">School email: {{userProfile.mentee[0].schoolEmail}}</label>
+        <input id="menteeemail" type="text" ng-model="profile.schoolEmail">
+        <label for="menteePrefEmail" class="visible checkbox">
+    			<input id="menteePrefEmail" type="checkbox" name="menteePrefEmail" ng-model="profile.prefEmail" ng-change=""  ng-checked="userProfile.mentee[0].prefEmail"/>
+    			<span><div></div></span
+    			><span><span>Use this email for communications</span></span>
+    		</label>
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <label for="menteeage">Age: {{userProfile.mentee[0].age}}</label>
+        <input id="menteeage" type="number" ng-model="profile.age">
+
+        <p class="label" ng-class="gender">What is your current gender identity? <span>(Check all that apply)</span></p>
+        <label ng-repeat="gender in genders" class="visible checkbox">
+            <input type="checkbox" ng-model="formData.genderSelected[gender.name]" ng-change="checkboxChangedGender()">
+      			<span aria-hidden="true"><div></div></span>
+      			<span><span>{{spaceBeforeCapital(gender.name)}}</span></span>
+      		</label>
+        <div ng-show="formData.genderSelected.OtherGender">
+          <label for="otherGenderSpec" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherGenderSpec" type="text" maxlength="20" ng-model="otherGenderString" name="otherGender" placeholder="different identity">
+        </div>
+
+        <pre>{{userProfile.mentee[0].study}}</pre>
+        <label for="menteestudy">Study: {{userProfile.mentee[0].study}}</label>
+        <select id="study" class="down-chevron" ng-model="profile.study" name="study" ng-options="
+  		i as i for i in study">
+  		<option value="" ng-model="profile.study">{{userProfile.mentee[0].study}}</option>
+  		</select>
+
+        <div ng-show="profile.study === 'Other Area'">
+          <label for="otherStudy" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherStudy" ng-required="profile.study === 'Other Area'" type="text" ng-model="profile.otherStudy" name="otherStudy"
+            placeholder="other area" />
+        </div>
+
+        <label for="menteefield">Current field: {{userProfile.mentee[0].currentField}}</label>
+
+        <select id="field" class="down-chevron" ng-model="profile.currentField" name="field" ng-options="i.dbEntry as i.display for i in field">
+  			<option value="">-- Select Area --</option>
+  			</select>
+        <div ng-show="profile.currentField === 'OtherField'">
+          <label for="otherField" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherField" ng-required="profile.currentField === 'OtherField'" type="text" ng-model="profile.otherFieldSelect"
+            name="otherField" placeholder="other experience" />
+        </div>
+
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <p>Do you have any particular kind of disability(s)?</p>
+        <label ng-repeat="disability in disabilities" class="visible checkbox">
+            <input type="checkbox" ng-model="formData.disabilitySelected[disability.name]" ng-change="checkboxChangedDis()">
+      			<span aria-hidden="true"><div></div></span>
+      			<span><span>{{spaceBeforeCapital(disability.name)}}</span></span>
+      		</label>
+        <div ng-show="formData.disabilitySelected.OtherDisability">
+          <label for="otherDisabilitySpec" class="other"><span class="sub-label">Please specify:</span></label>
+          <input id="otherDisabilitySpec" type="text" ng-model="otherDisabilityString" name="otherDisability" placeholder="other disability">
+        </div>
+      </fieldset>
+      <hr>
+
+      <fieldset class="section">
+        <label for="menteeshare">What do you want to share:</label>
+        <textarea id="menteeshare" ng-model="profile.share">{{userProfile.mentee[0].share}}</textarea>
+        <label for="menteewhy">Why choose this program:</label>
+        <textarea id="menteewhy" ng-model="profile.why">{{userProfile.mentee[0].why}}</textarea>
+        <label for="menteechal">What is the biggest challenge you face:</label>
+        <textarea id="menteechal" ng-model="profile.biggestChallenge">{{userProfile.mentee[0].biggestChallenge}}</textarea>
+      </fieldset>
+    </div>
+
+    <hr>
+    <div class="save-settings">
+      <label for="menteepass">Enter password to save changes:</label>
+      <input id="menteepass" type="password" ng-model="confirmChanges">
+      <button ng-click="SaveProfileChanges(confirmChanges)" class="standard-button"><span class="amsi-text cap">Save changes</span></button>
+      <pre ng-show="pswError">Incorrect password please try again</pre>
+    </div>
+
+    <hr>
+    <fieldset class="section profile-change standalone-button">
+      <profile-delete-modal></profile-delete-modal>
+    </fieldset>
+
+  </form>
+</div>

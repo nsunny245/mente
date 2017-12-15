@@ -1,0 +1,70 @@
+<div class="learning-css">
+  <header class="block">
+  	<h1><span class="amsi-text cap">Learning Modules</span></h1>
+  	<p>Our series of learning modules offer a convenient way to learn about topics related to disability and post-secondary education.</p>
+  	<p>Each module is designed for ease of use and is adaptable. Learners can increase or decrease the text side and change the
+  	colour. Learners with an account on CommunAbility.ca can stop and then later return to the place where they left off. Our
+  	modules are also screen-reader friendly.</p>
+  	<p>The list of topics covered is growing so check back often.</p>
+  </header>
+
+
+  <main class="profile-card-main-container" id="profile-card-main" ng-show="selected >= 0">
+    <div class="profile-card-main">
+      <div class="profile-card-color-bar" style="background-color: {{colorHighlights[selected%colorHighlights.length]}}"></div>
+
+      <div class="profile-card-main-content">
+        <!-- module goes here -->
+
+        <h1 class="profile-card-name"><span class="amsi-text cap">modules[selected].title</span></h1>
+        <p ng-if="typeof(modules[selected].desc) != 'undefined' && modules[selected].desc != ''">modules[selected].desc</p>
+      </div>
+
+      <div class="profile-card-color-bar" style="background-color: {{colorHighlights[selected%colorHighlights.length]}}"></div>
+    </div>
+  </main>
+
+
+  <nav class="profile-card-nav">
+    <ul class="profile-card-preview-container">
+
+
+      <li class="profile-card-preview">
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[0]}}"></div>
+
+        <div class="profile-card-preview-content">
+          <div class="profile-card-img">
+            <img src="/Assets/Images/About/beacon.svg">
+          </div>
+          <div class="profile-card-preview-inner">
+            <h1 class="profile-card-name"><span class="amsi-text cap">Mentorship Module</span></h1>
+            <p class="profile-card-title">This module focuses on mentorship and mentoring relationships. By following the story of Priya, a student, and Jennifer, a business professional, users will learn about how to engage successfully in a mentoring relationship from the perspectives of a mentee and mentor. Once completed, learners will receive a Certificate of Completion.</p>
+          </div>
+          <a ui-sref="standalone-module" target="_blank" class="profile-card-action">Open Module</a>
+        </div>
+
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[0]}}"></div>
+      </li>
+
+
+      <li ng-repeat="mod in modules track by $index">
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[($index + 1)%colorHighlights.length]}}"></div>
+
+        <div class="profile-card-preview-content">
+          <div class="profile-card-img">
+            <img ng-src="mod.img">
+          </div>
+          <div class="profile-card-preview-inner">
+            <h1 class="profile-card-name"><span class="amsi-text cap">{{mod.title}}</span></h1>
+            <p class="profile-card-title">{{mod.desc}}</p>
+          </div>
+          <button ng-click="loadModule($index)" class="profile-card-action">Open Module</button>
+        </div>
+
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[($index + 1)%colorHighlights.length]}}"></div>
+      </li>
+
+
+    </ul>
+  </nav>
+</div>

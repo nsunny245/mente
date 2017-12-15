@@ -1,0 +1,28 @@
+{
+  "name": "angular-ui-router-title",
+  "version": "0.1.0",
+  "homepage": "https://github.com/nonplus/angular-ui-router-title",
+  "authors": [
+    "Stepan Riha <github@nonplus.net>"
+  ],
+  "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
+  "main": "angular-ui-router-title.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "efb86098828d08461efe43701318ba415004154c"
+  },
+  "_source": "https://github.com/nonplus/angular-ui-router-title.git",
+  "_target": "^0.1.0",
+  "_originalSource": "angular-ui-router-title",
+  "_direct": true
+}

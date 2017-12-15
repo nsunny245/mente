@@ -1,0 +1,22 @@
+<div ng-repeat="module in userProfile.modules track by $index">
+	<h1 ng-click="LoadModule(module.name, $index)">{{module.name}}</h1>
+</div>
+<div>
+	<h1>
+		{{ currentModule.name}}
+	</h1>
+	<h2>{{currentModule.slides[currentSlide].title}}</h2>
+	<div ng-repeat="para in currentModule.slides[currentSlide].paragraphs">
+		<p>{{para}}</p>
+		<ol>
+		</ol>
+	</div>
+	<div ng-show="currentModule">
+		<h1 ng-click="NextSlide(1)">
+			Next
+		</h1>
+		<h1 ng-click="NextSlide(-1)">
+			Previous
+		</h1>
+	</div>
+</div>

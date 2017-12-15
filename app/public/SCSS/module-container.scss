@@ -1,0 +1,62 @@
+@import "Partials/helpers";
+@import "Partials/media";
+
+
+body {
+  background-color: $brand-lightgrey;
+}
+
+.module-container-super {
+  background-color: #fff;
+  width: 100%;
+  max-width: 60em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1.5em;
+  padding-bottom: 2em;
+
+  @include min-screen(45em) {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 2em;
+    margin-bottom: 3em;
+  }
+  @include min-screen(60em) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 4em;
+  }
+}
+
+.module-container-nav {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+
+  ul {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.module-title {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.module-container-nav-item {
+  float: left;
+  &:nth-of-type(2) {
+    margin-left: 1em;
+  }
+  &:nth-of-type(3) {
+    float: right;
+  }
+}
+
+.module-container {
+  width: 100%;
+}

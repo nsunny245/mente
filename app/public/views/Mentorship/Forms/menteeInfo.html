@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="/CSS/Signup/infoForm-status.css">
+
+<div class="signup-info-css">
+	<header class="intro">
+		<div aria-hidden="true"></div>
+		<img src="/Assets/Images/Signup/jersey.svg">
+		<h1><span class="amsi-text">Get a Mentor</span></h1>
+		<h2><span class="amsi-text">What to expect after you join</span></h2>
+		<p>We want to ensure that your mentorship experience is a successful one. Before you sign up, here are a few things you can expect.</p>
+	</header>
+	<ul>
+		<li>
+			<h2><span class="amsi-text">1</span></h2>
+			<h3><span class="amsi-text">16 Week Commitment</span></h3>
+			<p>Joining the CommunAbility e-Mentorship Program requires a 16 week commitment. Mentor-mentee pairs meet online through a live chat application every other week for a minimum of 20-30 minutes. Watch this quick video to find out more about the program cycle.</p>
+			<hr>
+		</li>
+		<li>
+			<h2><span class="amsi-text">2</span></h2>
+			<h3><span class="amsi-text">Eligibility Criteria</span></h3>
+			<p>Our e-mentorship program is for and about people with disabilities. To participate, a mentee must be 18 years or older and attending a recognized college or university program in Ontario.</p>
+			<hr>
+		</li>
+		<li>
+			<h2><span class="amsi-text">3</span></h2>
+			<h3><span class="amsi-text">Screening and Training</span></h3>
+			<p>As part of the application process, we carefully screen potential mentees to ensure they are the right fit for our e-mentorship program. Mentees must complete online training tailored to mentors.</p>
+			<hr>
+		</li>
+		<li>
+			<h2><span class="amsi-text">4</span></h2>
+			<h3><span class="amsi-text">Evaluation Research</span></h3>
+			<p>As a mentee, you will be invited to participate in research about your mentorship experience in the program; you may choose to not participate in the study.</p>
+			<hr ng-show="userProfile.status === 'verified'">
+		</li>
+	</ul>
+
+	<div class="verification-prompt" ng-show="userProfile.status !== 'verified'">
+		<!--show if you have not confirmed email-->
+		<h3><span class="amsi-text">Your account is still unverified</span></h3>
+		<p>Please check your inbox for the verification email and confirm your account.</p>
+		<p ng-show="firstClick">Never got the message? Click <button class="send-conf-btn" ng-click="sendConfEmail()">here</button> and we'll send another.</p>
+		<p ng-show="!firstClick">{{unverifiedMessage}}</p>
+	</div>
+
+
+	<a href="#/signup/mentorship " class="standard-button "><span class="amsi-text cap ">Cancel</span></a
+	><a href="#/signup/mentee-form" class="standard-button" ng-disabled="userProfile.status !=='verified'" name="continue"><span class="amsi-text cap">Continue</span></a>
+</div>

@@ -1,0 +1,32 @@
+<div ng-controller="profileDeleteModalCTR">
+	<script type="text/ng-template" id="profileDeleteModal.html">
+		<div class="modal-body">
+			<h1>
+				<span class="amsi-text">Are you sure you want to delete your profile?</span>
+				<button title="close" class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+			</h1>
+
+			<div class="clearfix modal-padding">
+				<form>
+					<h1>By clicking the button below, your account and all associated data will be deleted. This cannot be undone.</h1>
+
+					<div class="save-settings">
+						<label for="menteepass">Enter password to delete profile</label>
+						<input id="menteepass" type="password" ng-model="pass">
+						<pre ng-show="pswError" class="angrytext" >Incorrect password please try again</pre>
+					</div>
+
+					<button type="submit" class="standard-button modal-submit" ng-click="deleteProfile(pass)">
+						<span class="amsi-text cap">Delete Profile</span>
+					</button>
+				</form>
+				<button type="button" class="standard-button modal-submit" ng-click="CloseModal()">
+					<span class="amsi-text cap">Cancel</span>
+				</button>
+			</div>
+		</div>
+	</script>
+	<button button type="button" class="standard-button delete" ng-click="open()">
+	    <span class="amsi-text cap">Delete Profile</span>
+	</button>
+</div>

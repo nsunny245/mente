@@ -1,0 +1,50 @@
+  <div ng-controller="searchModalCTR">
+    <script type="text/ng-template" id="searchModal.html">
+              <div class="modal-header">
+                  <input id="mainSearchBar" class="form-control" placeholder="search..." ng-model="search" ng-change="SearchSite()" auto-focus/>
+              </div>
+              <div class="modal-body">
+              section for type of results shown, maybe show top 3 results per section
+                <h5>Forum posts:</h5>
+                  <ul>
+                    <li ng-repeat="result in searchResults">
+                      <a href="{{result.link}}">
+                      <span class="{{result.icon}}" style="color:{{result.color}}"></span>
+                      {{result.title}} </a>
+                    </li>
+                  </ul>
+              section for type of results shown, maybe show top 3 results per section
+                  <h5>Site results:</h5>
+                  <ul>
+                    <li ng-repeat="result in searchResults">
+                      <a href="{{result.link}}">
+                      <span class="{{result.icon}}" style="color:{{result.color}}"></span>
+                      {{result.title}} </a>
+                    </li>
+                  </ul>
+              section for type of results shown, maybe show top 3 results per section
+                  <h5>Media:</h5>
+                  <ul>
+                    <li ng-repeat="result in searchResults">
+                      <a href="{{result.link}}">
+                      <span class="{{result.icon}}" style="color:{{result.color}}"></span>
+                      {{result.title}} </a>
+                    </li>
+                  </ul>
+              </div>
+              <div class="modal-footer">
+              <h6>If you cannot find the information need visit our <a href="#/education" ng-click="CloseModal()">education</a> section.</h6>
+              <h5><a ng-click="showPostCreation = ! showPostCreation">Ask</a> a new question on our community forum.</h5>
+                <div ng-show="showPostCreation">
+                  <input type="text" class="form-control" placeholder="Subject" />
+                  <textarea class="form-control" placeholder="Question"></textarea>
+                  <button class="btn btn-warning" type="button" ng-click="CreateNewPost()">Create new post</button>
+                </div>
+              </div>
+            </script>
+    <button>
+      <ng-click="open()">
+      <i class="fa fa-search" ng-click="open()"></i>
+    </button>
+    <!--<input class="search-bar" type="text" ng-click="open()" /> -->
+  </div>

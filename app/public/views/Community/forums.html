@@ -1,0 +1,59 @@
+<!-- forum.html -->
+<div class="forum-css">
+	<community class="forum-view" data-forum-index="0">
+
+		<header class="block">
+			<div>
+				<h1><span class="amsi-text cap">CommunAbility Forums</span></h1>
+
+				<p>Welcome to the CommunAbility.ca Community Forums!</p>
+				<p>This is a supportive and community-building place where we come to connect, ask questions, share our thoughts about topics
+					related to disability and postsecondary education, or help fellow users by sharing our knowledge and experiences.</p>
+				<p>To ensure that our community remains the positive and supportive space it is intended to be, we require that all users
+					adhere to the <a href="" ng-click="openRules(); gotoAnchor('forum-rules-container')">community rules and guidelines</a>.</p>
+
+				<!--<search-modal></search-modal>
+				<div class="forum-search">
+					<form ng-disabled>
+						<label class="hidden" for="search-entry">Search the Forums:</label
+						><input id="search-entry" placeholder="Search..."></input
+						><button type="submit" title="search forums" class="standard-button">
+							<img src="/Assets/Images/Community/magnifying_glass_icon.svg">
+							<span class="amsi-text cap">Search</span>
+						</button>
+					</form
+
+					>
+					-->
+			</div>
+		</header>
+
+		<ul class="forum-section-array">
+			<li ng-repeat="parent in superCategories track by $index">
+				<section class="forum-section">
+					<a href="" ng-click="goToSubForums($index)" class="subforum-entry-btn">
+						<h1><span class="amsi-text">{{parent}}</span></h1>
+					</a>
+				</section>
+			</li>
+		</ul>
+
+		<!-- <section class="search-results" ng-show="false">
+			<h1><span class="amsi-text">Search Results:</span></h1> -->
+		<!-- <div ng-repeat="">
+				<post></post>
+			</div>
+			<button ng-click="">Load More</button> -->
+		<!-- </section> -->
+
+		<footer class="forum-section forum-rules" id="forum-rules-container">
+			<button type="button" data-toggle="collapse" data-target="#forum-rules" aria-expanded="false" aria-controls="forum-rules" class="subforum-entry-btn">
+				<h1><span class="amsi-text">CommunAbility Forums:<br>Rules and Guidelines</span></h1>
+			</button>
+			<div class="collapse sub-collapse forum-rules-content variegated" id="forum-rules">
+				<forum-rules></forum-rules>
+			</div>
+		</footer>
+
+	</community>
+</div>

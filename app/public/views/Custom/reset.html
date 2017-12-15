@@ -1,0 +1,19 @@
+<div class="clearfix">
+	<form>
+        	<label>Email</label>
+        	<input type="text" class="form-control" name="email" ng-model="email" placeholder="Email" required>
+        	<label>Temporary Password</label>
+        	<input type="password" class="form-control" name="tempPass" ng-model="tempPass" placeholder="Temp" required>
+                <label>New Password</label>
+                <input type="password" class="form-control" name="newPass" ng-model="newPass" placeholder="New" required>
+                <label>Confirm New</label>
+                <input type="password" class="form-control" name="confirmPass" ng-model="confirmPass" placeholder="Confirm" required>
+        	
+        	<button type="submit" class="standard-button" ng-click="updatePassword()"><span class="amsi-text cap">Change Password</span></button>
+	</form>
+
+	<hr>
+	<p>Didn't request this email?</p>
+        
+	<a href="/" class="standard-button"><span class="amsi-text cap">Notify admin</span></a>
+</div>

@@ -1,0 +1,229 @@
+<div class="profile-chat-css">
+	<div class="authorize" ng-if="!chatAuthorized">
+		<form>
+			<label>Please enter your password:</label>
+			<input type="password" placeholder="password" ng-model="pass" />
+			<button type="submit" ng-click="ChatAuth(pass)" class="standard-button"><span class="amsi-text cap">Authorize</span></button>
+		</form>
+	</div>
+
+	<div class="chat-container" ng-if="chatAuthorized">
+		<div class="channels">
+			<div class="chat-channel-header"
+				ng-show="masterGroupShown">
+				<h4>Mentorship Chats</h4>
+				<h1><span class="amsi-text cap">Channel Sets</span></h1>
+			</div>
+			<div class="chat-channel-header"
+				ng-show="pastGroupsShown">
+				<h4>Past Mentorship Chats</h4>
+				<h1><span class="amsi-text cap">Channel Sets</span></h1>
+			</div>
+			<div class="chat-channel-header"
+				ng-repeat="partner in assignees.current track by $index"
+				ng-show="currentShown[$index]">
+				<img ng-src="{{partner.picture}}" src="/Assets/Images/User.png">
+				<h4>{{partner.name}}</h4>
+				<h1><span class="amsi-text cap">Channels</span></h1>
+			</div>
+			<div class="chat-channel-header"
+				ng-repeat="partner in assignees.past track by $index"
+				ng-show="pastShown[$index]">
+				<img ng-src="{{partner.picture}}" src="/Assets/Images/User.png">
+				<h4>{{partner.name}}</h4>
+				<h1><span class="amsi-text cap">Channels</span></h1>
+			</div>
+
+			<!-- current master group -->
+			<div class="channel-group"
+				ng-if="chats.current.length > 1"
+				ng-init="masterGroupShown = true"
+				ng-show="masterGroupShown">
+
+				<!-- enter current group -->
+				<button
+					ng-repeat="partner in chats.current track by $index"
+					ng-click="hideChannelGroups(currentShown);
+							  currentShown[$index] = true;
+							  masterGroupShown = false;
+							  tabChat(0, false, partner);
+							  chatIsCurrent = true;">
+					<h1><span class="amsi-text cap">{{partner.name}}</span></h1>
+				</button>
+
+				<!-- enter past master group -->
+				<hr ng-if="chats.past.length > 0">
+				<button
+					ng-if="chats.past.length > 0"
+					ng-click="masterGroupShown = false;
+							  pastGroupsShown = true;">
+					<h1><span class="amsi-text cap">Past Mentorship Chats</span></h1>
+				</button>
+			</div>
+			<!-- current individual group -->
+			<div class="channel-group"
+				ng-repeat="partner in chats.current track by $index"
+				ng-init="chats.current.length == 1 ? currentShown[0] = true : '';
+						 chats.current.length == 1 ? tabChat(0, false, partner) : '';"
+				ng-show="currentShown[$index]">
+
+				<!-- return to all master group, if more than one current -->
+				<button
+					ng-if="chats.current.length > 1"
+					ng-click="hideChannelGroups(currentShown);
+							  masterGroupShown = true;">
+					<h1><span class="amsi-text cap">Back to All Chats</span></h1>
+				</button>
+				<hr ng-if="chats.current.length > 1">
+
+				<!-- toggle channel -->
+				<button class="chat-tab"
+					ng-repeat="chat in partner | orderBy:'order'"
+					ng-class="{'active': chat.name == 'General'}"
+					ng-click="tabChat(chat.order)"
+					ng-disabled="chat.scheduledFor > currentDate || ! chat.scheduledFor">
+
+					<h1 ng-if="chat.phase === 0"><span class="amsi-text cap">Main Chat</span></h1>
+					<h1 ng-if="chat.phase !== 0"><span class="amsi-text cap">Phase {{chat.phase}}</span></h1>
+					<h4>{{ chat.name }}</h4>
+					<h4 ng-if="chat.name === 'General'">&nbsp;</h4>
+					<h4 ng-if="chat.name != 'General'">{{ chat.scheduledFor === null ? 'Upcoming' : chat.scheduledFor | date:'MMMM d, h:mm a'}}</h4>
+					<img ng-if="!chat.scheduledFor ||(chat.scheduledFor > currentDate  && !(chat.scheduledFor + 86400000) < currentDate)" src="/Assets/Images/Profile/Chat/chat-locked.svg">
+					<img ng-if="chat.scheduledFor && (chat.scheduledFor + 86400000) < currentDate && chat.name != 'General'" src="/Assets/Images/Profile/Chat/chat-done.svg">
+				</button>
+
+				<!-- enter past master group (from current individual group, if only one current) -->
+				<hr ng-if="chats.past.length > 0 && chats.current.length == 1">
+				<button
+					ng-if="chats.past.length > 0 && chats.current.length <= 1"
+					ng-click="hideChannelGroups(currentShown); masterGroupShown = false;
+							  pastGroupsShown = true;">
+					<h1><span class="amsi-text cap">Past Mentorship Chats</span></h1>
+				</button>
+			</div>
+
+			<!-- past master group -->
+			<div class="channel-group"
+				ng-repeat="partner in chats.current track by $index"
+				ng-if="chats.past.length > 0"
+				ng-init="chats.current.length <= 0 ? pastGroupsShown = true : '';"
+				ng-show="pastGroupsShown">
+
+				<!-- return to all master group -->
+				<button
+					ng-if="chats.current.length > 0"
+					ng-click="pastGroupsShown = false;
+							  chats.current.length > 1 ? masterGroupShown = true : currentShown[0] = true;
+							  chats.current.length > 1 ? '' : tabChat(0, false, partner);">
+					<h1><span class="amsi-text cap">Back to All Past Chats</span></h1>
+				</button>
+				<hr ng-if="chats.current.length > 0">
+
+				<!-- enter past group -->
+				<button
+					ng-repeat="partner in chats.current track by $index"
+					ng-click="hideChannelGroups(pastShown);
+							  pastShown[$index] = true;
+							  pastGroupsShown = false;
+							  tabChat(0, false, partner);
+							  chatIsCurrent = false;">
+					<h1><span class="amsi-text cap">{{partner.name}}</span></h1>
+				</button>
+			</div>
+			<!-- past (individual) channel groups -->
+			<div class="channel-group"
+				ng-repeat="partner in chats.past track by $index"
+				ng-show="pastShown[$index]">
+
+				<!-- return to past master group -->
+				<button
+					ng-click="hideChannelGroups(pastShown); 
+							  pastGroupsShown = true;">
+					<h1><span class="amsi-text cap">Back to All Past Chats</span></h1>
+				</button>
+				<hr>
+
+				<!-- toggle channel -->
+				<button class="chat-tab"
+					ng-repeat="chat in partner | orderBy:'order'"
+					ng-class="{'active': chat.name == 'General'}"
+					ng-click="tabChat(chat.order)"
+					ng-disabled="chat.scheduledFor > currentDate || !chat.scheduledFor">
+
+					<h1 ng-if="chat.phase === 0"><span class="amsi-text cap">Main Chat</span></h1>
+					<h1 ng-if="chat.phase !== 0"><span class="amsi-text cap">Phase {{chat.phase}}</span></h1>
+					<h4>{{ chat.name }}</h4>
+					<h4 ng-if="chat.name === 'General'">&nbsp;</h4>
+					<h4 ng-if="chat.name != 'General'">{{ chat.scheduledFor === null ? 'Upcoming' : chat.scheduledFor | date:'MMMM d, h:mm a'}}</h4>
+					<img ng-if="!chat.scheduledFor ||(chat.scheduledFor > currentDate  && !(chat.scheduledFor + 86400000) < currentDate)" src="/Assets/Images/Profile/Chat/chat-locked.svg">
+					<img ng-if="chat.scheduledFor && (chat.scheduledFor + 86400000) < currentDate && chat.name != 'General'" src="/Assets/Images/Profile/Chat/chat-done.svg">
+				</button>
+			</div>
+		</div
+
+		><div class="chat-main">
+			<div class="chat-instance" ng-repeat="chat in activeChats | orderBy:'order'" ng-show="visibleChats[chat.order]">
+
+				<div class="chat-main-header">
+					<div class="details-button">
+						<button ng-click="returnToChannels()"><h4>Channels</h4></button
+						><button data-toggle="collapse" data-target=".details-target"><h4>Hide Details</h4></button>
+					</div>
+					<div class="details-target collapse-container in">
+						<div>
+							<div class="chat-details">
+								<h4>Chat Details:</h4>
+								<h1><span class="amsi-text cap">Phase {{chat.phase + 1}}</span></h1>
+								<h1><span class="amsi-text cap">{{chat.name}}</span></h1>
+								<p>{{chat.description}}</p>
+
+							</div>
+							<div class="chat-header-bottom">
+								<div class="activity">
+									<div><!-- ng-repeat here, for non-chat activities -->
+										<img src="/Assets/Images/Profile/header/chat.svg">
+										<div class="v-bar" ng-if="chat.name != 'General'"></div>
+									</div>
+									<h4><span class="amsi-text cap" ng-if="chat.duration != null">{{chat.duration}} Mins</span></h4>
+
+								</div>
+							</div>
+						</div>
+						<!-- <hr> -->
+					</div>
+				</div>
+
+				<div class="chat-history" scroll-down="chat.messages">
+					<div class="chat-msg" ng-repeat="msg in chat.messages track by $index" >
+
+						<!--<div class="date-heading" ng-if="(msg.date.getDate()) !== (chat.messages[$index-1].date.getDate())">
+							<hr>
+							<span>{{ msg.date | date 'MMMM d' }}</span>
+						</div>-->
+
+						<div class="chat-msg-outer ng-class: MatchSender(msg.sender) ? 'alert-success text-left' : 'alert-info text-right';" ng-click="MarkAsRead(msg.id, chat.order, msg.sender, msg.status)" ng-show="msg.status != 'marker'">
+							<!-- <img class="chat-sender-img" ng-src="" src="/Assets/Images/User.png"> -->
+							<div class="chat-msg-container">
+								<span class="chat-msg-new" ng-show="msg.status == 'new' && !MatchSender(msg.sender)">New</span>
+								<h5 class="chat-msg-sender">{{ msg.sender }}</h5>
+								<h6 class="chat-msg-date">{{ msg.date | date : 'shortTime'}}</h6>
+								<p class="chat-msg-content nobreakout">{{ msg.content }}</p>
+							</div>
+						</div>
+						<div ng-show="msg.status == 'marker'" class="date-heading">
+							<span>{{msg.date | date: 'MMMM d'}}</span>
+							<hr>
+						</div>
+
+					</div>
+				</div>
+
+				<form class="chat-input">
+				    <textarea ng-if="chatIsCurrent" ng-model="newChatPost" ng-change="ChatTyping(chat.order, newChatPost, 0)" ng-enter="PostChat(chat.order, newChatPost)" placeholder="Type message...">{{newChatPost}}</textarea>
+				    <textarea ng-if="! chatIsCurrent" ng-model="newChatPost" ng-change="ChatTyping(chat.order, newChatPost, 0)" ng-enter="PostChat(chat.order, newChatPost)" placeholder="This chat has been archived" disabled>{{newChatPost}}</textarea>
+						<!-- <button ng-click="PostChat(chat.order, newChatPost)">Send</button> -->
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

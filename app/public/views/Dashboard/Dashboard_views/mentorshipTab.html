@@ -1,0 +1,390 @@
+
+<div class="profile-mentorship-css">
+
+
+	<!-- MENTOR, PROGRAM COMPLETED -->
+	<section class="block completion-message" ng-if="userProfile.status === 'mentor' && userProfile.mentor[0].completionMessage">
+		<h1><span class="amsi-text cap">Congratulations!</span></h1>
+		<p>You've completed the mentorship program!</p>
+		<p>We hope you had an engaging and productive time over the last 16 weeks.</p>
+
+		<button ng-click="enterPostCompletion()" class="standard-button">
+			<span class="amsi-text cap">Continue</span>
+		</button>
+	</section>
+
+
+	<!-- MENTEE, PROGRAM COMPLETED -->
+	<section class="block completion-message" ng-if="userProfile.status === 'menteeInTraining' && userProfile.mentee[0].completionMessage">
+		<h1><span class="amsi-text cap">Congratulations!</span></h1>
+		<p>You've completed the mentorship program!</p>
+		<p>We hope you had an engaging and productive time over the last 16 weeks.</p>
+
+		<button ng-click="enterPostCompletion()" class="standard-button">
+			<span class="amsi-text cap">Continue</span>
+		</button>
+	</section>
+
+
+	<!-- MENTOR, POST-MATCH -->
+	<section class="block profile-card-nav mentorship-partner" ng-if="userProfile.status == 'mentor' && ! userProfile.mentor[0].completionMessage">
+		<div class="meta-content">
+			<h1 class="mentorship-heading" ng-if="listOfMentees.length > 0"><span class="amsi-text cap">My Mentee<span ng-if="listOfMentees > 1">s</span></span></h1>
+			<h1 class="mentorship-heading" ng-if="listOfMentees.length == 0"><span class="amsi-text">You currently have no active mentorship relationships</span></h1>
+		</div>
+
+		<ul class="profile-card-preview-container" ng-if="listOfMentees.length > 0">
+			<li class="profile-card-preview" ng-repeat="mentee in listOfMentees track by $index">
+
+				<div class="profile-card-color-bar"></div>
+
+				<div class="profile-card-preview-content">
+					<div class="profile-card-img">
+						<img ng-src="{{mentee.picture}}" src="/Assets/Images/profile-icon.svg">
+					</div>
+					<div class="profile-card-preview-inner">
+						<h1 class="profile-card-name"><span class="amsi-text cap">{{mentee.firstName}} {{mentee.lastName}}</span></h1>
+						<p class="profile-card-title">{{mentee.school}}</p>
+						<p class="profile-card-title">{{mentee.study}}</p>
+						<p class="profile-card-title">{{mentee.share}}</p>
+						<!-- <button class="standard-button" ng-if="true" ng-click="ViewMenteeTimeline($index)" ng-disabled=""><span class="amsi-text cap">View Timeline</span></button> -->
+					    <!-- <close-relationship-modal ng-if="false"></close-relationship-modal> -->
+					</div>
+				</div>
+
+				<div class="profile-card-color-bar"></div>
+
+			</li>
+		</ul>
+
+		<p>Here you can set your availability to accept new mentorship relationships. Turning this on will allow you to receive emails regarding new opportunities to mentor individuals in the program. You are allowed to take on a maximum of two mentees.</p>
+		<p>Turning this off will prevent you from receiving any notifications of individuals looking for a mentor.</p>
+		<form class="mentorship-action availability-console">
+			<fieldset>
+				<input id="availability-on" class="hidden" type="radio" name="mentorAvailability"
+					ng-model="acceptingMentees"
+					ng-value="true"
+					ng-change="toggleMentorAvailability(true)">
+				<label for="availability-on" class="availability-btn">
+					<span class="hidden">On</span>
+					<div class="standard-button" aria-hidden="true">
+						<span class="amsi-text cap">On</span>
+					</div>
+				</label>
+
+				<input id="availability-off" class="hidden" type="radio" name="mentorAvailability"
+					ng-model="acceptingMentees"
+					ng-value="false"
+					ng-change="toggleMentorAvailability(false)">
+				<label for="availability-off" class="availability-btn">
+					<span class="hidden">Off</span>
+					<div class="standard-button" aria-hidden="true">
+						<span class="amsi-text cap">Off</span>
+					</div>
+				</label>
+			</fieldset>
+		</form>
+
+		<!-- REVIEW POTENTIAL MENTEES (MENTOR) -->
+		<!-- <ul class="profile-card-preview-container" ng-if="! (listOfMentees.length > 0) && ">
+			<li class="profile-card-preview" ng-repeat="mentee in listOfMentees track by $index">
+
+				<div class="profile-card-color-bar"></div>
+
+				<div class="profile-card-preview-content">
+					<div class="profile-card-img">
+						<img ng-src="{{mentee.picture}}" src="/Assets/Images/profile-icon.svg">
+					</div>
+					<div class="profile-card-preview-inner">
+						<h1 class="profile-card-name"><span class="amsi-text cap">{{mentee.firstName}} {{mentee.lastName}}</span></h1>
+						<p class="profile-card-title">{{mentee.school}}</p>
+						<p class="profile-card-title">{{mentee.study}}</p>
+						<p class="profile-card-title">{{mentee.share}}</p>
+						<button class="standard-button" ng-if="true" ng-click="ViewMenteeTimeline($index)" ng-disabled=""><span class="amsi-text cap">View Timeline</span></button>
+					    <close-relationship-modal ng-if="false"></close-relationship-modal>
+					</div>
+				</div>
+
+				<div class="profile-card-color-bar"></div>
+
+			</li>
+		</ul> -->
+	</section>
+
+
+	<!-- MENTEE, POST-MATCH -->
+	<section class="block profile-card-nav mentorship-partner" ng-if="userProfile.status == 'mentee'> 
+		<div class="meta-content">
+			<h1 class="mentorship-heading"><span class="amsi-text cap">My Mentor</span></h1>
+		</div>
+
+		<ul class="profile-card-preview-container">
+			<li class="profile-card-preview">
+
+				<div class="profile-card-color-bar"></div>
+
+				<div class="profile-card-preview-content">
+					<div class="profile-card-img">
+						<img ng-src="{{myMentor.picture}}" src="/Assets/Images/profile-icon.svg">
+					</div>
+					<div class="profile-card-preview-inner">
+						<h1 class="profile-card-name"><span class="amsi-text cap">{{myMentor.firstName}} {{myMentor.lastName}}</span></h1>
+						<p class="profile-card-title">{{myMentor.school}}</p>
+						<p class="profile-card-title">{{myMentor.highestEducation}}</p>
+						<p class="profile-card-title">{{myMentor.field}}</p>
+						<p class="profile-card-title">{{myMentor.shared}}</p>
+					    <!-- <renew-mentorship-modal ng-if="userProfile.mentee[0].timeline[userProfile.mentee[0].timeline.length - 2].status === 'completed'"></renew-mentorship-modal> -->
+					    <!-- <close-relationship-modal ng-if="userProfile.mentee[0].timeline[userProfile.mentee[0].timeline.length - 2].status === 'completed'"></close-relationship-modal> -->
+					</div>
+				</div>
+
+				<div class="profile-card-color-bar"></div>
+
+			</li>
+		</ul>
+	</section>
+
+
+	<!-- MENTEE MATCHES STAGE (MENTEE) -->
+	<section class="block profile-card-nav potential-matches" ng-if="userProfile.status == 'menteeSeeking' && mentorMatches.length > 0">
+
+		<div class="meta-content">
+			<h1><span class="amsi-text cap">Here are your<br>Matches</span></h1>
+			<p>[generic content *could* go here about matches, but maybe not necessary]</p>
+		</div>
+
+		<ul class="mentors profile-card-preview-container">
+			<li class="profile-card-preview" ng-repeat="mentor in mentorMatches" ng-init="LoadMatchFunctionalities()">
+				<button>
+					<div class="profile-card-color-bar"></div>
+
+					<div class="profile-card-preview-content">
+						<div class="profile-card-img">
+							<img ng-src="{{mentor.picture}}" src="/Assets/Images/Profile/header/User.png">
+						</div>
+						<div class="profile-card-preview-inner">
+							<h1><span class="amsi-text cap">{{mentor.name}}</span></h1>
+							<p>{{mentor.field}}</p>
+							<p class="profile-card-action">+ more info</p>
+						</div>
+					</div>
+
+					<div class="profile-card-color-bar"></div>
+					<div class="profile-card-color-bar-indicator"></div>
+				</button>
+			</li>
+		</ul>
+
+		<div class="sections">
+			<ul class="section-nav">
+				<li>
+					<button>
+						<h1><span class="amsi-text cap">About</span></h1>
+						<div class="indicator"></div>
+					</button>
+				</li
+				><li>
+					<button>
+						<h1><span class="amsi-text cap">Details</span></h1>
+						<div class="indicator"></div>
+					</button>
+				</li
+				><!-- <li>
+					<button disabled>
+						<h1><span class="amsi-text cap">Other</span></h1>
+						<div class="indicator"></div>
+					</button>
+				</li
+				> --><li aria-hidden="true" class="noselect">
+						<div class="indicator"></div>
+				</li>
+			</ul>
+			<ul class="content">
+				<li ng-repeat="mentor in mentorMatches track by $index" style="display: none;">
+					<section class="about-mentor">
+						<h1><span class="amsi-text">About {{mentor.name}}</span></h1>
+						<p>{{mentor.share}}</p>
+					</section>
+					<section class="details-mentor">
+						<h1><span class="amsi-text">{{mentor.name}}'s Details</span></h1>
+						<hr>
+						<h2>Area of Academic Study</h2
+						><h3>{{mentor.study}}</h3> 
+						<hr>
+						<h2>Highest Education</h2
+						><h3>{{mentor.highestEducation}}</h3>
+						<hr>
+						<h2>Current Field of Employment</h2
+						><h3>{{mentor.field}}</h3>
+						<hr>
+					</section>
+					<button class="confirm" ng-click="confirm = !confirm" ng-show="!confirm">
+						<span class="amsi-text cap">Ask {{mentor.name}} to be my Mentor</span>
+					</button>
+					<button class="confirm" ng-click="SelectMentor(mentorMatches[$index].email)" ng-show="confirm" ng-blur="confirm = false" ng-mouseleave="confirm = false">
+						<span class="amsi-text cap">Are you sure?</span>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+
+	<!-- REQUEST MENTOR STAGE, REQUEST SENT (MENTEE) -->
+	<section class="block meta-content" ng-if="userProfile.status == 'menteeSeeking' && ! (mentorMatches.length > 0)">
+		<h1><span class="amsi-text cap">Your request has been sent!</span></h1>
+		<p>After about two to three days of sending your request, you can expect to find as many as three possible mentors for you to choose from. You'll be notified here and by email when the matches arrive, and will have about a couple days to choose.</p>
+		<p>If you're not sure if the matches are right for you, or decide you're unable to commit to the program at this time, don't worry! You can come back here when you're ready and request a mentor again.</p>
+		<button ng-click="reqMentor(); sendingRequest = true" class="standard-button" ng-disabled="userProfile.status === 'menteeSeeking' || sendingRequest">
+			<span ng-if="userProfile.status !== 'menteeSeeking' && !sendingRequest" class="amsi-text cap">Find my Mentor</span>
+			<span ng-if="userProfile.status !== 'menteeSeeking' && sendingRequest" class="amsi-text cap">Sending Request...</span>
+			<span ng-if="userProfile.status === 'menteeSeeking'" class="amsi-text cap">Request Sent</span>
+		</button>
+	</section>
+
+
+	<!-- REQUEST MENTOR STAGE (MENTEE) -->
+	<section class="block meta-content" ng-if="userProfile.status == 'menteeInTraining' && ! userProfile.mentee[0].completionMessage && userProfile.mentee[0].declarationsMade && userProfile.mentee[0].approvedByAdmin">
+		<h1 ng-if="! userProfile.mentee[0].completedProgram"><span class="amsi-text cap">Congratulations!</span></h1>
+
+		<p ng-if="! userProfile.mentee[0].completedProgram">You are now ready to find your mentor! To begin, press the 'Find my Mentor' button below at any time.</p>
+
+
+		<h1 ng-if="userProfile.mentee[0].completedProgram"><span class="amsi-text cap">You are not currently part of a mentorship relationship</span></h1>
+
+		<p ng-if="userProfile.mentee[0].completedProgram">Still need guidance or assitance? You can enter into a new 16-week mentorship cycle at any time. To begin, press the 'Find my Mentor' button below.</p>
+		<p ng-if="userProfile.mentee[0].completedProgram">You will not need to complete your training again, however you still have access to the relevant resources should you ever need them. Also, before continuing, we recommend you review the <a href="#/mentorship-program-agreement" target="_blank">program agreement</a> in case any changes have been made, and to remind yourself of the expectations of the program.</p>
+
+
+		<h2><span class="amsi-text cap">How it works:</span></h2>
+		<p>About two to three days after sending your request, you can expect to find as many as three possible mentors for you to choose from. You'll be notified here and by email when the matches arrive, and will have about a couple days to choose.</p>
+		<p>If you're not sure if the matches are right for you, or decide you're unable to commit to the program at this time, don't worry! You can come back here when you're ready and request a mentor again.</p>
+		<button ng-click="reqMentor(); sendingRequest = true" class="standard-button" ng-disabled="userProfile.status === 'menteeSeeking' || sendingRequest">
+			<span ng-if="userProfile.status !== 'menteeSeeking' && !sendingRequest" class="amsi-text cap">Find my Mentor</span>
+			<span ng-if="userProfile.status !== 'menteeSeeking' && sendingRequest" class="amsi-text cap">Sending Request...</span>
+			<span ng-if="userProfile.status === 'menteeSeeking'" class="amsi-text cap">Request Sent</span>
+		</button>
+	</section>
+
+
+	<!-- AFTER DECLARATIONS, BEFORE APPROVAL (MENTEE) -->
+	<section class="block meta-content" ng-if="userProfile.status == 'menteeInTraining' && userProfile.mentee[0].declarationsMade && ! userProfile.mentee[0].approvedByAdmin">
+		<h1><span class="amsi-text cap">Almost There!</span></h1>
+		<p>Before we can begin the matching process, our administrative staff must review your application to ensure you'll be able to find the best possible mentors for your needs. For now you can sit back and relax.</p>
+		<p>If your application isn't approved in a day's time, feel free to contact our admins at: </p>
+	</section>
+
+
+	<!-- DECLARATIONS STAGE (BOTH) -->
+	<section class="block" ng-if="userProfile.status == 'menteeInTraining' && userProfile.mentee[0].trainingCompleted && ! userProfile.mentee[0].declarationsMade || userProfile.status == 'mentorInTraining' && userProfile.mentor[0].trainingCompleted && ! userProfile.mentor[0].declarationsMade">
+		<form name="declarations" class="clearfix"
+			ng-init="inputMeta ? '' : inputMeta = {};
+					 inputMeta.allDec = {};">
+			<div class="meta-content">
+				<h1><span class="amsi-text cap">Online Training<br>Declaration</span></h1>
+				<p>Thank you for completing the online required learning program. It has provided you with important information pertaining to your experience in the CommunAbility Mentorship Program. Please ensure the you have reviewed the modules and accompanying documents carefully as it is expected that you will know this information while participating in the mentorship program. You can review the modules again by scrolling down to where they are located on your timeline or by clicking on the “Mentorship” tab in your dashboard after submitting the declarations below.</p>
+				<p class="label">To finish the training process and begin your mentorship experience, please confirm the following declarations by ticking the box beside each statement:</p>
+				<div class="form-container-field"
+					ng-if="checking && declarationValues.length < declarationChoices.length && ! inputMeta.allDec.beenChanged">
+					<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+					<p class="form-container-field-msg">You must confirm all declarations listed below</p>
+				</div>
+			</div>
+			<fieldset class="meta-content">
+				<label class="visible checkbox"
+					ng-class="{'form-container-field-invalid': checking && ! declarationChoices[0].checked && ! inputMeta.dec0.beenChanged }">
+		      		<input type="checkbox" name="declar"
+		      			ng-click="updateDeclarationValue(declarationChoices[0])"
+		      			ng-model="declarationChoices[0].checked"
+						ng-init="inputMeta ? '' : inputMeta = {};
+								 inputMeta.dec0 = {};"
+	 					ng-change="inputMeta.dec0.beenChanged = true;
+	 							   declarationValues.length >= declarationChoices.length ? inputMeta.allDec.beenChanged = true : '';"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>
+						I acknowledge the completion all the following required online learning modules including reviewing the documents (if any) accompanying each module.
+						<ol>
+							<li>Introduction to Mentorship</li>
+							<li>Overview of CommunAbility Mentorship Program curriculum</li>
+							<li>Building a successful mentorship relationship</li>
+						</ol>
+					</span></span>
+				</label>
+				<label class="visible checkbox"
+					ng-class="{'form-container-field-invalid': checking && ! declarationChoices[1].checked && ! inputMeta.dec1.beenChanged }">
+		      		<input type="checkbox" name="declar"
+		      			ng-click="updateDeclarationValue(declarationChoices[1])"
+		      			ng-model="declarationChoices[1].checked"
+						ng-init="inputMeta ? '' : inputMeta = {};
+								 inputMeta.dec1 = {};"
+	 					ng-change="inputMeta.dec1.beenChanged = true;
+	 							   declarationValues.length >= declarationChoices.length ? inputMeta.allDec.beenChanged = true : '';"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>I acknowledge that I have reviewed and accept the <a href="#/mentorship-program-agreement" target="_blank">Mentorship Program User Agreement</a>.</span></span>
+				</label>
+				<label class="visible checkbox"
+					ng-class="{'form-container-field-invalid': checking && ! declarationChoices[2].checked && ! inputMeta.dec2.beenChanged }">
+		      		<input type="checkbox" name="declar"
+		      			ng-click="updateDeclarationValue(declarationChoices[2])"
+		      			ng-model="declarationChoices[2].checked"
+						ng-init="inputMeta ? '' : inputMeta = {};
+								 inputMeta.dec2 = {};"
+	 					ng-change="inputMeta.dec2.beenChanged = true;
+	 							   declarationValues.length >= declarationChoices.length ? inputMeta.allDec.beenChanged = true : '';"/>
+					<span aria-hidden="true"><div></div></span>
+					<span><span>I acknowledge that I have reviewed and agree to the Program’s privacy and confidentiality responsibilities and have reviewed and accept Communability.ca’s <a href="#/privacy-policy" target="_blank">privacy policy</a>.</span></span>
+				</label>
+			</fieldset>
+			<div class="meta-content">
+				<p>By summiting this form, you attest that the information you have provided on this form is true and accurate.</p>
+				<button type="submit" class="standard-button"
+					ng-click="declarationValues.length < declarationChoices.length ? checking=true : makeDeclarations();
+							  declarationValues.length < declarationChoices.length ? resetAllInteractedStates(inputMeta): ''">
+					<span class="amsi-text cap">Submit</span>
+				</button>
+			</div>
+		</form>
+	</section>
+
+
+	<!-- INTRO BLOCK (BOTH) -->
+	<section class="block meta-content" ng-if="userProfile.status == 'menteeInTraining' && ! userProfile.mentee[0].trainingCompleted || userProfile.status == 'mentorInTraining' && ! userProfile.mentor[0].trainingCompleted">
+		<h1><span class="amsi-text cap">Intro Content</span></h1>
+		<p>Intro content copy</p>
+	</section>
+
+
+
+	<!-- RESOURCES (BOTH) -->
+	<section class="resources" ng-if="(userProfile.status == 'mentee' || userProfile.status == 'mentor' || userProfile.status == 'mentorPending' || userProfile.status == 'menteeSeeking' || (userProfile.status == 'menteeInTraining' && userProfile.mentee[0].schoolEmailVerified || userProfile.status == 'mentorInTraining' && userProfile.mentor[0].approvedByAdmin)) && (listOfModules.length > 0 || listOfResources.length > 0)">
+		<hr>
+		<h1 class="mentorship-heading"><span class="amsi-text">Resources</span></h1>
+		<div class="resource-list modules" ng-if="listOfModules.length > 0">
+			<h2 class="mentorship-subheading"><span class="amsi-text">Modules</span></h2>
+			<ul>
+				<li ng-repeat="res in listOfModules track by $index">
+					<hr>
+					<h3 class="resource-title"><a href="{{res.source}}" target="_blank">{{res.title}}</a></h3
+					><h3 class="resource-phase">{{res.phase}}</h3>
+					<p class="resource-content">{{res.content}}</p>
+				</li>
+			</ul>
+		</div
+		><div class="resource-list documents" ng-if="listOfResources.length > 0">
+			<h2 class="mentorship-subheading"><span class="amsi-text">Documents and Links</span></h2>
+			<ul>
+				<li ng-repeat="res in listOfResources track by $index">
+					<hr>
+					<h3 class="resource-title"><a ui-sref="{{res.source}}" target="_blank">{{res.title}}</a></h3
+					><h3 class="resource-phase">{{res.phase}}</h3>
+					<p class="resource-content">{{res.content}}</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+</div>
+
+
+
+

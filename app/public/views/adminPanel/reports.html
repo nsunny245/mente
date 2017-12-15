@@ -1,0 +1,62 @@
+<head>
+    <style type="text/css">
+        table, th, td {
+         border: 1px solid black;
+         border-spacing: 1px;
+         padding: 2%;
+         background-color: #b7b4a5;
+     }
+     p{
+        font-family: "Avenir-Black";
+        text-align: center;
+        margin: auto; 
+    }
+    select {
+        display: block;
+        margin: 0 auto;
+    }
+    input{
+        width: 100%;
+        display: block;
+    }
+    label.visible.checkbox>span:first-of-type {
+        float: none;
+        display: inline-block;
+    }
+    input[type=checkbox] + span {
+        background-color: #fff;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0.25em;
+    }
+    label {
+        display: inline-block;
+        text-align: center;
+    }
+    input[type=checkbox]:checked + span > div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+    input[type=checkbox] + span + span {
+        position: absolute;
+    }
+    .inline{
+        display: inline-block;
+    }
+</style>
+</head>
+<br><br><br><br><br><br><br><br><br>
+<button class="standard-button inline" ng-click="GetMainReport()">Get Main Report</button>
+
+<br><br>
+<h3>Main Report</h3>
+<br>
+<h4>Number of accounts: {{mainReport.mentee + mainReport.menteeInTraining + mainReport.menteeSeeking + mainReport.mentor + mainReport.mentorPending + mainReport.mentorInTraining + mainReport.verified}}</h4>
+<p>Mentees: {{mainReport.mentee}}</p>
+<p>Mentee In training: {{mainReport.menteeInTraining}}</p>
+<p>Mentee Seeking: {{mainReport.menteeSeeking}}</p>
+<br>
+<p>Mentor: {{mainReport.mentor}}</p>
+<p>MentorInTraining: {{mainReport.mentorInTraining}}</p>
+<p>MentorPending: {{mainReport.mentorPending}}</p>
+<p>MentorFull: {{mainReport.mentorFull}}</p>
+<p>Registered User (no mentorship): {{mainReport.verified}}</p>

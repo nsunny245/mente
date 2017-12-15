@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js">
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.min.js">
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.min.js">
+
+    </script>
+    <script src="/Javascript/angular-resource.min.js"></script>
+    <script src="Javascript/angular-ui-router-title.js"></script>
+    <!--UI ROUTER-->
+    <!--<script type="text/javascript" src="Assets/js/please-wait.min.js"></script>-->
+    <script src="/Javascript/angular-ui-router.js"></script>
+    <!-- <script type="Javascript/angular-ui-router.min.js"></script> -->
+
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+
+    <!-- podcast/webinar scripts -->
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+    <script type='text/javascript' src="/Javascript/angular-feeds.js"></script>
+
+    <link rel="shortcut icon" href="">
+    <!--<base href="/">-->
+    <title>Welcome to CommunAbility</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/CSS/Dashboard/angular-timeline-mod.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/angular-carousel.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/carousels.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/bootstrap.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/fullcalendar.css" />
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css'
+        media='all' />
+
+    <!-- ALL CUSTOM CSS -->
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/home.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/about.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/mentorship.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/education.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/communityHub.css">
+
+    <link rel="stylesheet" type="text/css" href="/CSS/contact.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/faqs.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/useterms.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/research.css">
+
+    <link rel="stylesheet" type="text/css" href="/CSS/library.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/podcast.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/learning.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/forum.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Community/digital-narratives.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Community/inspirational-profiles.css">
+
+    <link rel="stylesheet" type="text/css" href="/CSS/Signup/signup.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Signup/userForm.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Signup/selectForm.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Signup/infoForm.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Signup/mentorshipForms.css">
+
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/profile.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/settings.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/calendar.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/timeline.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/mentorshipTab.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/chat.css">
+
+</head>
+
+<body ng-cloak ng-app="psdnetApp" ng-controller="mainController">
+    <!--Navigation Bar -->
+    <div ng-if="currentPath !== '/standaloneModule'">
+        <div ng-include="'views/navbar.html'"></div>
+    </div>
+    <!--Main view location -->
+    <div ui-view ui-router-styles class="site-content"></div>
+
+    <!--Footer -->
+    <div ng-if="currentPath !== '/standaloneModule'">
+        <div ng-include="'views/footer.html'"></div>
+    </div>
+
+
+
+
+    <script src="/Javascript/bootstrap.js"></script>
+    <!--  ANGULAR-CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.min.js"></script>
+
+    <!--BOOTSTRAP UI SCRIPT-->
+    <!--maybe we should bring it back...-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+    <!-- <script src="/Javascript/ui-bootstrap-2.4.0.js"></script> -->
+    <script src="/Javascript/ui-bootstrap-tpls-1.3.3.js"></script>
+
+    <script src="Javascript/moment.js"></script>
+
+    <script type="text/javascript" src="/Javascript/angular-carousel.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-touch.min.js"></script>
+
+    <script src="/Javascript/ui-router-styles.js"></script>
+
+    <script src="/Javascript/angular-timeline.js"></script>
+    <!-- File upload -->
+    <script src="/Javascript/ng-file-upload-shim.min.js"></script>
+    <script src="/Javascript/ng-file-upload.min.js"></script>
+    <!-- calendar -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/fullcalendar.js"></script>
+
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/fullcalendar.print.css"/> -->
+    <!-- Custom built application -->
+    <script src="Javascript/app.js"></script>
+    <script src="Javascript/controllers/controllers.js"></script>
+    <script src="/Javascript/controllers/uiBootstrapControllers.js"></script>
+
+    <script src="Javascript/controllers/mainController.js"></script>
+    <script src="Javascript/controllers/calendarController.js"></script>
+    <script src="Javascript/controllers/adminController.js"></script>
+    <script src="Javascript/controllers/chatController.js"></script>
+    <script src="Javascript/controllers/mentorshipController.js"></script>
+    <script src="Javascript/controllers/forumController.js"></script>
+    <script src="Javascript/controllers/forumSubController.js"></script>
+    <script src="Javascript/controllers/forumPermalinkController.js"></script>
+    <script src="Javascript/controllers/comprofilesController.js"></script>
+    <script src="Javascript/controllers/comnarrativesController.js"></script>
+    <script src="Javascript/controllers/homeController.js"></script>
+    <script src="Javascript/controllers/moduleController.js"></script>
+    <script src="Javascript/controllers/signupController.js"></script>
+    <script src="Javascript/controllers/matchController.js"></script>
+
+    <script src="Javascript/controllers/timelineController.js"></script>
+    <script src="Javascript/controllers/checklistController.js"></script>
+    <script src="Javascript/controllers/learningController.js"></script>
+    <script src="Javascript/controllers/profileController.js"></script>
+    <script src="Javascript/controllers/loginController.js"></script>
+    <script src="Javascript/controllers/bookingController.js"></script>
+    <script src="Javascript/controllers/mentorshipTabController.js"></script>
+    <script src="Javascript/controllers/libraryController.js"></script>
+    <script src="Javascript/controllers/podcastController.js"></script>
+    <script src="Javascript/controllers/contactController.js"></script>
+    <script src="Javascript/controllers/faqsController.js"></script>
+    <script src="Javascript/controllers/detailedUserController.js"></script>
+
+
+    <script src="Javascript/controllers/testController.js"></script>
+
+    <script src="Javascript/directives/directives.js"></script>
+
+    <script src="/Javascript/addStyle.js"></script>
+    <!-- <script src="/Javascript/ease-scroll/ease-tween.js"></script> -->
+    <!-- <script src="/Javascript/ease-scroll/ease-scroll.js"></script> -->
+    <script src="/Javascript/documentsize/amd.js"></script>
+    <script src="/Javascript/documentsize/jquery.documentsize.js"></script>
+    <script src="/Javascript/classChangeEvent.js"></script>
+
+    <script src="https://use.fontawesome.com/fc93a8f5ec.js"></script>
+
+    <script src="/Javascript/controllers/mentorModuleController.js"></script>
+
+    
+    <!-- END ERIC MOD-->
+    <!--
+    <link rel="stylesheet" href="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.css">
+    <script type="text/javascript" src="https://cdn.rawgit.com/codekraft-studio/angular-page-loader/master/dist/angular-page-loader.min.js"></script>-->
+
+    <!-- GOOGLE ANALYTICS LEAVE LAST -->
+    <script>
+        /********************************************************************************************
+    /**/  (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {        //*
+    /**/  (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),      //* Comment out to disable
+    /**/  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)     //* Also 1 more section
+            /**/
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');  //* Inside app.js (.run)
+    /**/                                                                                      //* function.
+    /**/  ga('create', 'UA-104294917-1', 'auto');                                              //*
+    /**/  ga('send', 'pageview');                                                             //*
+    //*******************************************************************************************
+    </script>
+    <!-- GOOGLE ANALYTICS LEAVE LAST -->
+
+
+</body>
+
+</html>

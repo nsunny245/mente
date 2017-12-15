@@ -1,0 +1,301 @@
+@import "Partials/media";
+
+.caro-head {
+    position: relative;
+    .carousel-nav {
+        position: absolute;
+        z-index: 1;
+    }
+    // a.carousel-nav {
+    //     top: 0;
+    //     bottom: 0;
+    //     background-color: black;
+    // }
+    // &>a.carousel-nav:first-child {
+    //     left: 0;
+    //     right: 90%;
+    // }
+    // &>a.carousel-nav:last-child {
+    //     left: 90%;
+    //     right: 0;
+    // }
+    &>div.carousel-nav {
+        width: 100%;
+        text-align: center;
+        bottom: 0.5em;
+    }
+    &>div.carousel-nav span {
+        font-size: 1.5em;
+        color: #999;
+        padding: 0 0.05em;
+    }
+    &>div.carousel-nav span.active {
+        color: #00263A;
+    }
+}
+
+$initialBreakCarouselHeight: 23em;
+.custom-carousel {
+    background-color: #00263A;
+    width: 100%;
+    height: $initialBreakCarouselHeight;
+    margin: 0;
+    li > div,
+    li > div > .vid {
+        height: 100%;
+    }
+
+}
+
+.carousel5 li {
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+}
+
+.custom-carousel video {
+    @include max-screen(30em) {
+        width: 100%;
+        height: auto;
+        transform: translateY(-50%);
+        margin-top: $initialBreakCarouselHeight/2;
+    }
+    @include min-screen(30em) {
+        margin-top: 0;
+        height: 100%;
+        width: auto;
+        transform: translateX(-50%);
+        margin-left: 50%;
+    }
+}
+
+.custom-carousel .dark {
+    color: #00263A;
+}
+
+header .dark a {
+    background-color: #00263A;
+    color: #fff;
+}
+
+header .dark a:hover {
+    background-color: #2C435E;
+}
+
+.custom-carousel .light {
+    color: #fff;
+}
+
+header .light a {
+    background-color: #fff;
+    color: #00263A;
+}
+
+header .light a:hover {
+    background-color: #e2e2e2;
+}
+
+ul.custom-carousel > li {
+    //position: relative;
+    overflow: hidden;
+
+    /*.carousel-image-blurred {
+        $offset: 5%;
+        position: absolute;
+        top: -$offset;
+        left: -$offset;
+        height: 100% + $offset*2;
+        width: 100% + $offset*2;
+        background-color: black;
+        background-position: center center;
+        background-size: cover;
+
+        filter: blur(15px);
+    }
+    .carousel-image-fade {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.05);
+    }*/
+    .carousel-image {
+        height: 100%;
+        width: 100%;
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        /*img {
+            position: absolute;
+            height: 100%;
+            width: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }*/
+    }
+}
+
+.carousel-slide-content {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60em;
+    height: 100%;
+}
+.carousel-slide-content > div {
+    width: 60%;
+    position: absolute;
+    $vert-pos: 10%;
+    $hori-pos: 5%;
+    &.top {
+        top: $vert-pos;
+    }
+    &.bottom {
+        bottom: $vert-pos;
+    }
+    &.left {
+        left: $hori-pos;
+    }
+    &.right {
+        right: $hori-pos;
+    }
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        font-size: 1.75em;
+        line-height: 1em;
+    }
+}
+.content-para {
+    border-radius: 0.25em;
+    padding: 0.6em;
+
+    p {
+        margin-top: 0.6em;
+        margin-bottom: 0;
+        display: none;
+        @include min-screen(45em) {
+            display: block;
+        }
+    }
+    margin-bottom: 0.8em;
+}
+.carousel-action {
+    font-size: 1em;
+}
+
+
+.bgimage>div.right {
+    left: 45%;
+    right: 5%;
+}
+
+.bgimage>div.left {
+    right: 45%;
+    left: 5%;
+}
+
+.bgimage h1 {
+    line-height: 0.85em;
+    margin: 0 auto;
+    width: 6em;
+    margin-bottom: 0.4em;
+}
+
+// .bgimage p {
+//     position: absolute;
+//     opacity: 0;
+//     margin: 0 auto;
+// }
+
+// .bgimage a {
+//     padding: 0.4em 1.2em;
+//     margin-top: 1em;
+// }
+
+@media screen and (min-width: 30em) {
+    header div.carousel-nav {
+        bottom: 0.6em;
+    }
+    header div.carousel-nav span {
+        font-size: 1.2em;
+    }
+    ul[rn-carousel] {
+        height: 22em;
+    }
+
+    .bgimage {
+        margin: 0 auto;
+    }
+    
+    .bgimage>div.right {
+        left: 40%;
+        right: 0;
+    }
+    .bgimage>div.left {
+        right: 40%;
+        left: 0;
+    }
+    .bgimage p {
+        position: static;
+        opacity: 1;
+        font-size: 1.1em;
+    }
+    .bgimage a {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (min-width: 45em) {
+    header div.carousel-nav {
+        bottom: 1em;
+    }
+    header div.carousel-nav span {
+        font-size: 1.3em;
+    }
+    ul[rn-carousel] {
+        height: 26em;
+    }
+    .bgimage>div {
+        font-size: 1em;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    ul[rn-carousel] {
+        height: 28em;
+    }
+    .bgimage>div {
+        font-size: 1.25em;
+    }
+    .bgimage h1 {
+        margin-bottom: 0.5em;
+    }
+    .bgimage a {
+        font-size: 0.7em;
+        margin-top: 1.5em;
+    }
+}
+
+@media screen and (min-width: 75em) {
+    header div.carousel-nav {
+        bottom: 2em;
+    }
+    header div.carousel-nav span {
+        font-size: 1.75em;
+    }
+    ul[rn-carousel] {
+        height: 26em;
+    }
+    .bgimage>div {
+        font-size: 1.1em;
+    }
+    .bgimage a {
+        font-size: 0.7em;
+        margin-top: 1.5em;
+    }
+}

@@ -1,0 +1,328 @@
+<div class="profile-calendar-css">
+  <div class="envelope">
+    <div class="main cal-container" aria-hidden="true">
+      <div class="help-button">
+        <button uib-popover="{{HelpMap.profile.calendar.content}}" popover-placement="left-top" type="button" class="help-button">i</button>
+      </div>
+      <div class="calendar" id="calendar"></div>
+    </div
+    ><div class="supplement appointments">
+      <hr class="dashboard">
+      <div class="page list">
+        <h1></h1>
+        <section class="default">
+          <button><h2></h2></button>
+        </section>
+      </div>
+      <div class="page details">
+        <button class="page-nav"><span>Back to my events</span></button>
+        <button>
+          <h2></h2>
+        </button>
+        <div>
+          <p>Appointment details:</p>
+          <h1><span class="amsi-text"></span></h1>
+
+          <div class="hr-bound"><div><hr></div></div>
+          <h3></h3>
+          <p></p>
+
+          <div class="hr-bound"><div><hr></div></div>
+          <h3>Activity:</h3>
+          <p></p>
+
+          <div class="hr-bound"><div><hr></div></div>
+          <h3></h3>
+          <p></p>
+
+          <div class="hr-bound"><div><hr></div></div>
+          <label class="visible">Notes:</label>
+          <textarea></textarea>
+
+          <button class="standard-button hollow change cancel-button" ng-click="cancelAppointment()">Cancel Appointment</button>
+        </div>
+      </div>
+      <hr class="dashboard">
+    </div
+    ><div class="table-view" ng-if="userProfile.status === 'mentor' || userProfile.status === 'mentorFull'">
+      <div class="table-header">
+        <h2><span class="amsi-text">Your Availability:</span></h2>
+        <a href="" ng-click="gotoAnchor('console')" class="standard-button"><span class="amsi-text cap">Change</span></a>
+      </div>
+      <table>
+        <tr ng-repeat="day in myAvailability track by $index">
+          <th id="{{dayFullName[$index]}}" scope="row">
+            <p class="day-name-full">{{dayFullName[$index]}}</p>
+            <p class="day-name-short" aria-hidden="true">{{dayNamesShort[$index]}}</p>
+          </th>
+          <td headers="{{dayFullName[$index]}}" ng-repeat="slot in day track by $index">
+            <div ng-if="slot.start!==null || $index===0" aria-hidden="true" class="vert"></div>
+            <p ng-if="slot.start!==null">{{ TimeConverter(slot.start)}} - <br>{{TimeConverter(slot.start + timeSlotLength)}}</p>
+            <p ng-if="slot.start===null && $index===0">Not available</p>
+            <p ng-if="slot.start===null && $index>0" aria-hidden="true"></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="availabilities" ng-if="userProfile.status === 'mentor' || userProfile.status === 'mentorFull'">
+
+    <header>
+      <div class="title">
+        <img src="/Assets/Images/Profile/calendar/clock.svg">
+        <h1><span class="amsi-text cap">Set Your Availability</span></h1>
+      </div>
+      <div class="contents">
+        <div class="donotforget">
+          <div>
+            <h4>Don’t Forget!</h4>
+            <img src="/Assets/Images/">
+          </div>
+          <p>Your mentee can see your availability and book an appointment up to one month in advance!</p>
+        </div
+        ><form class="remind">
+          <p>How often would you like to be reminded to update your availability?</p>
+          <label class="visible checkbox">
+            <input type="radio" name="reminder" ng-model="availabilityReminder" ng-value="'weekly'" ng-change="UpdateReminder()">
+            <span aria-hidden="true"><div></div></span>
+            <span><span>Weekly</span></span>
+          </label
+          ><label class="visible checkbox">
+            <input type="radio" name="reminder" ng-model="availabilityReminder" ng-value="'monthly'" ng-change="UpdateReminder()">
+            <span aria-hidden="true"><div></div></span>
+            <span><span>Monthly</span></span>
+          </label
+          ><label class="visible checkbox">
+            <input type="radio" name="reminder" ng-model="availabilityReminder" ng-value="'never'" ng-change="UpdateReminder()">
+            <span aria-hidden="true"><div></div></span>
+            <span><span>Never</span></span>
+          </label>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <a id="console" class="anchor" aria-hidden="true"></a>
+      <h2><span class="amsi-text">Set Weekly Availability:</span></h2>
+      <section ng-repeat="day in availSettings track by $index">
+        <div class="day-title day-title-main">
+          <h3>{{dayFullName[$index]}}</h3>
+          <div></div>
+        </div>
+        <form class="setters">
+          <div class="time-block" ng-repeat="slot in day track by $index" ng-class="{'active-avail':slot.available, 'potential-avail':!slot.available, 'disabled':availBool}" ng-hide="availSettings[$parent.$index][$index - 1].start === null">
+            <fieldset class="avail-set" ng-show="slot.available && availSettings[$parent.$index][$index - 1].start !== null">
+              <div class="setter-col">
+                <label class="visible">Start Time:</label>
+                <select ng-disabled="availBool" ng-model="availSettings[$parent.$index][$index].start" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay"
+                  ng-change="debug($parent.$index, $index); AvailChanged($parent.$index)"></select>
+              </div
+              ><div class="setter-col">
+                <label class="visible">End Time:</label>
+                <input ng-value="TimeConverter(availSettings[$parent.$index][$index].start + timeSlotLength)"
+                  disabled/>
+              </div>
+              <!-- <button class="mod-avail" ng-click="SaveAvailability()">Save</button -->
+              <button class="mod-avail" ng-disabled="availBool" ng-click="RemoveAvailability($parent.$index, $index)">Remove</button>
+              <hr>
+            </fieldset>
+            <fieldset ng-hide="slot.available || availSettings[$parent.$index][$index - 1].start === null">
+              <button class="add-avail" ng-disabled="availBool"
+                ng-click="slot.available = true; UpdateTimesAvailable($parent.$index, $index)">
+                <span>+</span>
+                <span>add new time slot</span>
+              </button>
+              <hr>
+            </fieldset>
+            <div class="vert"></div>
+          </div>
+          <div>
+            <label class="visible checkbox">
+              <input type="checkbox" name="availBool" ng-model="availBool" ng-value="'none'">
+              <span aria-hidden="true"><div></div></span>
+              <span><span>not available on this day</span></span>
+            </label>
+            <p class="day-title-saved" ng-attr-id="{{ 'saveDisplay' + $index }}">Changes Saved!</p>
+          </div>
+          <!-- <button class="mod-avail" ng-click="SaveAvailability($index)">Update Availability</button> -->
+          <!-- <button ng-disabled="true">Revert Changes</button> -->
+        </form>
+      </section>
+
+      <!--<p><b>Add an extra Date: </b></p>
+      <div datepicker-popup my-date-picker="GetTimeAFrom"></div>
+      <select ng-model="newAddedFrom" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay">
+      </select>
+      <input ng-show="newAddedFrom != null" ng-value="TimeConverter(newAddedFrom + timeSlotLength)" disabled/>
+      <button ng-click="NewAdded(newAddedFrom)">ADD THIS</button>
+
+      <div ng-show="myAddedDates.length > 0">
+        <p>Added Time slots:</p>
+        <div ng-repeat="date in myAddedDates track by $index">
+          <p>from : {{date.start | date: 'shortTime'}} {{date.start | date: 'fullDate'}}</p>
+          <p>to : {{AddTimeH(date.start, timeSlotLength) | date: 'shortTime'}} {{AddTimeH(date.start, timeSlotLength) | date: 'fullDate'}}</p>
+          <button ng-click="RemoveAdded($index)">Remove</button>
+        </div>
+      </div>
+
+      <p><b>Block A Date:</b></p>
+      <div datepicker-popup my-date-picker="GetTimeBFrom"></div>
+      <div ng-show="overlappingB.length > 0">
+
+        <div ng-repeat="slot in overlappingB track by $index">
+          <div ng-show="!slot.blocked">
+            <p>from : {{TimeConverter(slot.start) | date: 'shortTime'}}</p>
+            <p>to : {{TimeConverter(slot.start + timeSlotLength)| date: 'shortTime'}}</p>
+            <button ng-click="NewBlocked(overlappingB[$index].start, $index)">BLOCK THIS</button>
+          </div>
+          <p ng-show="slot.blocked">Slot from {{TimeConverter(slot.start) | date: 'shortTime'}} to {{TimeConverter(slot.start + timeSlotLength)| date:
+            'shortTime'}} Blocked!</p>
+        </div>
+
+      </div>
+      <div ng-show="overlappingB.length == 0">
+        <p>No availabilities set for this day!</p>
+      </div>
+
+      <div ng-show="myBlockedDates.length > 0">
+        <p>Blocked Dates:</p>
+        <div ng-repeat="date in myBlockedDates track by $index">
+          <p>from : {{date.start | date: 'shortTime'}} {{date.start | date: 'fullDate'}}</p>
+          <p>to : {{AddTimeH(date.start, timeSlotLength) | date: 'shortTime'}} {{AddTimeH(date.start, timeSlotLength) | date: 'fullDate'}}</p>
+          <button ng-click="RemoveBlocked($index)">Remove</button>
+        </div>
+      </div>-->
+    </main>
+  </div>
+
+
+
+  <!--<div class="top-section-reminder">
+    <div class="container reminder">
+      <div class="row">
+        <h1 class="col-xs-2">Don’t Forget!
+          <h1>
+            <i class="fa fa-exclamation-circle fa-2x"></i>
+          </h1>
+          <h3 class="col-xs-6">Your mentee can see your availability and book an appointment up to one month in advance!</h3>
+      </div>
+    </div>
+    <div class="how-often">
+      <h3>How often would you like to be reminded to update your availability?</h3>
+      <div class="checkbox">
+        <label>
+      <input type="radio" ng-model="availabilityReminder" ng-value="'weekly'" ng-change="UpdateReminder()">
+      Weekly
+    </label>
+      </div>
+      <br/>
+      <label>
+      <input type="radio" ng-model="availabilityReminder" ng-value="'monthly'" ng-change="UpdateReminder()">
+      Monthly
+    </label><br/>
+      <label>
+      <input type="radio" ng-model="availabilityReminder" ng-value="'never'" ng-change="UpdateReminder()">
+      Never
+    </label><br/>
+    </div>
+  </div>
+
+  <div class="set-avail-slots container col-xs-12">
+  <div>
+    <i class="fa fa-clock-o fa-4x" aria-hidden="true"></i>
+    <h2>Set Your Availability:</h2>
+  </div>
+  <div ng-if="userProfile.status === 'mentor'">
+
+    <div ng-repeat="day in myAvailability track by $index">
+      <h2>
+        {{dayFullName[$index]}}
+      </h2>
+      <div>
+
+        <div ng-repeat="slot in day track by $index">
+          <div ng-show="slot.available">
+            <p>Start Time:</p>
+            <select ng-model="myAvailability[$parent.$index][$index].start" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay"
+              ng-change="debug($parent.$index, $index)">
+            </select>
+            <p>End Time:</p>
+            <input ng-show="myAvailability[$parent.$index][$index].start != null" ng-value="TimeConverter(myAvailability[$parent.$index][$index].start + timeSlotLength)"
+              disabled/>
+            <button ng-click="SaveAvailability()">Save</button><button ng-click="RemoveAvailability($parent.$index, $index)">Remove</button>
+          </div>
+          <div ng-hide="slot.available">
+            <p>Not available</p>
+            <button ng-click="slot.available = true">+</button>
+            <p>add available time slot</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p><b>Block A Date:</b></p>
+    <div datepicker-popup my-date-picker="GetTimeBFrom"></div>
+    <div ng-show="overlappingB.length > 0">
+
+      <div ng-repeat="slot in overlappingB track by $index">
+        <div ng-show="!slot.blocked">
+          <p>from : {{TimeConverter(slot.start) | date: 'shortTime'}}</p>
+          <p>to : {{TimeConverter(slot.start + timeSlotLength)| date: 'shortTime'}}</p>
+          <button ng-click="NewBlocked(overlappingB[$index].start, $index)">BLOCK THIS</button>
+        </div>
+        <p ng-show="slot.blocked">Slot from {{TimeConverter(slot.start) | date: 'shortTime'}} to {{TimeConverter(slot.start + timeSlotLength)| date:
+          'shortTime'}} Blocked!</p>
+      </div>
+
+    </div>
+    <div ng-show="overlappingB.length == 0">
+      <p>No availabilities set for this day!</p>
+    </div>
+
+    <div ng-show="myBlockedDates.length > 0">
+      <p>Blocked Dates:</p>
+      <div ng-repeat="date in myBlockedDates track by $index">
+        <p>from : {{date.start | date: 'shortTime'}} {{date.start | date: 'fullDate'}}</p>
+        <p>to : {{AddTimeH(date.start, timeSlotLength) | date: 'shortTime'}} {{AddTimeH(date.start, timeSlotLength) | date: 'fullDate'}}</p>
+        <button ng-click="RemoveBlocked($index)">Remove</button>
+      </div>
+    </div>
+
+
+    <p><b>Add an extra Date: </b></p>
+    <div datepicker-popup my-date-picker="GetTimeAFrom"></div>
+    <select ng-model="newAddedFrom" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay">
+    </select>
+    <input ng-show="newAddedFrom != null" ng-value="TimeConverter(newAddedFrom + timeSlotLength)" disabled/>
+    <button ng-click="NewAdded(newAddedFrom)">ADD THIS</button>
+
+    <div ng-show="myAddedDates.length > 0">
+      <p>Added Time slots:</p>
+      <div ng-repeat="date in myAddedDates track by $index">
+        <p>from : {{date.start | date: 'shortTime'}} {{date.start | date: 'fullDate'}}</p>
+        <p>to : {{AddTimeH(date.start, timeSlotLength) | date: 'shortTime'}} {{AddTimeH(date.start, timeSlotLength) | date: 'fullDate'}}</p>
+        <button ng-click="RemoveAdded($index)">Remove</button>
+      </div>
+    </div>
+
+
+
+  </div> -->
+  <!-- <div class="calendar" id='dayCal'></div> -->
+
+    <!--  <p>Add A blocked Date: </p>
+    <p>From:</p>
+    <div datepicker-popup my-date-picker="GetTimeBFrom"></div>
+    <select ng-model="newBlockedFrom" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay">
+    </select>
+
+    <div datepicker-popup my-date-picker="GetTimeBTo"></div>
+    <p>To:</p>
+    <select ng-model="newBlockedTo" ng-options="time.value as TimeConverter(time.value) for time in timeOfDay">
+    </select>
+    <button ng-click="NewBlocked(newBlockedFrom , newBlockedTo)">BLOCK THIS</button>
+   -->
+</div>

@@ -1,0 +1,106 @@
+{
+    "name": "mentee intro",
+    "steps": 5,
+    "slides": [
+        {
+            "_id": 0,
+            "title": "Introduction",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development. It is also a responsibility because it requires a commitment and investment of time. It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas. Mentoring relationships bring together people with different backgrounds, positions, and experiences who share a common interest and a desire to learn from and about each other.",
+                "Many who have been involved in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time. Therefore, mentoring requires training, thoughtful preparation, and planning.",
+                " This exciting module is a starting point to developing an effective mentoring relationship",
+                "The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 1,
+            "title": "Introducing Priya",
+            "subtitle": "intro",
+            "paragraphs": [
+                "'Hey! I'm Priya. I'm a first year College student. I'm studying business and want to open my own business when I finish school. I have a learning disability. In elementary and high school, I felt OK about it, but things are different in College. My program is really competitive and I'm afraid that if my professors and other students find out that I need a note taker, they will think I'm lazy and not smart enough to be in the program. My parents pushed me to register with the Student Disability Services but I haven't given the accommodation letter I received to any of my professors.'"
+            ],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 2,
+            "title": "Objectives",
+            "subtitle": "intro",
+            "paragraphs": [
+                "More specifically, after completing this module the learner will be able to: ",
+                "1. Explain the concept of mentoring including it's characteristics",
+                "2. Explain the value of mentoring",
+                "3. Identify the outcomes of an effective mentorship experience",
+                "4. Differentiate between mentoring and coaching",
+                "5. Define the concept of mentor and mentee",
+                "6. Discuss the roles and responsibilities of the mentor and the mentee",
+                "7. Describe the skill sets required of an effective mentor and mentee",
+                "8. Cite examples of issues that contribute to unsuccessful and challenging mentorship relationships",
+                "In this section of the module, we follow Priya, a College student, as she begins her journey to becoming a mentee and forming a relationship with her mentor, Jennifer."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 3,
+            "title": "Mentoring",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Priya's situation is not unusual - many student with disabilities face these same kinds of fears or concerns. One way of dealing with these issues - and helping to address them - is through mentoring.",
+                "Mentoring is a purposeful, caring, and voluntary relationship in which reflection and communication guide progress and action towards meeting goals."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 3,
+            "title": "What is the Purpose of Mentoring?",
+            "subtitle": "intro",
+            "paragraphs": [
+                "Mentoring promotoes personal growth in both the mentor and mentee. A mentoring relationship can be used to increase personal or professional confidence, as well as provide support during difficult or discoruaging situations.",
+                "Mentoring can also be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another, and to a new work environment."
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        },
+        {
+            "_id": 4,
+            "title": "The Mentoring Relationship",
+            "subtitle": "intro",
+            "paragraphs": [ 
+                "There are several benefits to being in a mentoring relationship. A mentoring relationship can be affirming, increase an individual's self-confidence, and encourage them to reach their goals. It can also lead to personal satisfaction.",
+                "Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations"
+            ],
+            "bulletpoints": [],
+            "subparagraphs": [],
+            "tooltips": [],
+            "links": [],
+            "stories": [],
+            "extra": []
+        }
+    ],
+    "type": "na",
+    "providedBy": "PSDnet"
+}

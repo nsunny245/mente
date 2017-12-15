@@ -1,0 +1,213 @@
+<!--Requires special access-->
+
+
+<div class="profile-css">
+	<header class="dash">
+		<div class="contain">
+			<div class="profile">
+				<i class="fa fa-user-secret fa-4x"></i>
+				<div>
+					<h1><span class="amsi-text">{{fullName != undefined ? fullName : userProfile.username}}<br></span></h1>
+				</div>
+			</div><button type="button" class="tognav">
+			<div></div>
+			<div></div>
+			<div></div>
+		</button
+		><div class="dashnav transition">
+			<ul>
+			<li class="nav-mentorship"><button ui-sref="adminPanel.users">
+				<h1><span class="amsi-text cap">Users</span></h1>
+				<div></div
+				><div>
+					<img src="/Assets/Images/Profile/header/Mentorship.svg">
+				</div>
+			</button></li>
+
+			<li class="nav-activity"><button ui-sref="adminPanel.forums">
+				<h1><span class="amsi-text cap">Activity</span></h1>
+				<div></div
+				><div>
+					<img src="/Assets/Images/Profile/header/Forums.svg">
+				</div>
+			</button></li>
+
+			<li class="nav-calendar"><button ui-sref="adminPanel.calendar">
+				<h1><span class="amsi-text cap">Calendar</span></h1>
+				<div></div
+				><div>
+					<img src="/Assets/Images/Profile/header/Calendar.svg">
+				</div>
+			</button></li>
+
+			<li class="nav-faqs"><button ui-sref="faqs">
+				<h1><span class="amsi-text cap">FAQs</span></h1>
+				<div></div
+				><div>
+					<img src="/Assets/Images/Profile/header/Faqs.svg">
+				</div>
+			</button></li>
+			<li class="nav-settings"><button ui-sref="profile.settings" ng-click="LoadSettings()">
+				<h1><span class="amsi-text cap">Settings</span></h1>
+				<div></div
+				><div>
+					<img src="/Assets/Images/Profile/header/Settings.svg">
+				</div>
+			</button></li>
+			</ul>
+		</div>
+</div>
+<hr class="dashboard">
+</header>
+
+<div class="dash-offset">
+	<div ui-view class="module"></div>
+</div>
+</div>
+
+
+
+<!-- <div class="profile-css">
+
+	<div class="jumbotron text-center">
+		<h1>Admin Panel</h1>
+		<button ui-sref="adminPanel.accounts">Account Manager</button>
+
+		<button ng-click="showMessages = ! showMessages">Change messages</button>
+		<div ng-show="showMessages">
+			<label>Select Page</label>
+			<div class="col-xs-6">
+				<select class="form-control" ng-change="SelectPage(pageSelected.name)" ng-options="option.name for option in pages" ng-model="pageSelected">
+
+		</select>
+			</div>
+			<div ng-show="hasSelectedAPage">
+
+				<form name="msgPage" class="form-horizontal" role="form">
+					<button ng-click="SaveChanges()">Save Changes</button>
+					<br>
+					<label>Main</label>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Title</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].main.title" value="{{ messagePile[CurrentlyEditing].main.title}}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2">Content</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].main.content" value="{{ messagePile[CurrentlyEditing].main.content}}">
+						</div>
+					</div>
+
+					<label>Alternate Main</label>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Title</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].altMain.title" value="{{ messagePile[CurrentlyEditing].altMain.title}}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2">Content</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="messagePile[CurrentlyEditing].altMain.content" value="{{ messagePile[CurrentlyEditing].altMain.content}}">
+						</div>
+					</div>
+
+					<label>Daily Messages</label>
+					<div class="form-group">
+						<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].daily" ng-list="&#10;"
+						 ng-trim="false"></textarea>
+						<pre>{{ messagePile[CurrentlyEditing].daily | json }}</pre>
+					</div>
+
+					<label>Info Messages</label>
+					<div class="form-group">
+						<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].info" ng-list="&#10;"
+						 ng-trim="false"></textarea>
+						<pre>{{ messagePile[CurrentlyEditing].info | json }}</pre>
+					</div>
+
+					<label>Learning Messages</label>
+					<div class="form-group">
+						<textarea rows="4" cols="50" ng-style="{'font-size': 14 + 'px'}" ng-model="messagePile[CurrentlyEditing].learning" ng-list="&#10;"
+						 ng-trim="false"></textarea>
+						<pre>{{ messagePile[CurrentlyEditing].learning | json }}</pre>
+					</div>
+
+					<label>Contacts</label>
+					<div class="form-group">
+						<table>
+							<tr>
+								<td></td>
+								<td>Name</td>
+								<td>Title</td>
+								<td>Email</td>
+								<td>Phone</td>
+								<td>Office</td>
+								<td>Alt</td>
+							</tr>
+
+							<tr ng-repeat="contact in messagePile[CurrentlyEditing].contact track by $index">
+								<td>{{ $index + 1 }}</td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].name" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].name }}"></td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].title" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].title }}"></td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].email" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].email }}"></td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].phone" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].phone }}"></td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].office" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].office }}"></td>
+								<td><input type="text" ng-model="messagePile[CurrentlyEditing].contact[$index].alt" class="form-control" value="{{ messagePile[CurrentlyEditing].contact[$index].alt }}"></td>
+							</tr>
+						</table>
+					</div>
+
+				</form>
+
+
+			</div>
+
+			<button ng-click="resetVerify = ! resetVerify">Reset ALL Messages</button>
+			<br>
+			<p ng-show="resetVerify">This will reset ALL messages from ALL pages to their default values stored in json files.</p>
+			<p ng-show="resetVerify">THIS CANNOT BE UNDONE.</p>
+			<button ng-show="resetVerify" ng-click="UpdateMessages()">RESET TO DEFAULT</button>
+
+			<h4>{{ updateMessageResult }}</h4>
+		</div>
+
+		<br>
+		<h4></h4>
+		<button ng-click="showTimelineManager = ! showTimelineManager">Timeline Manager</button>
+		<div ng-show="showTimelineManager">
+			<button ng-click="LoadTimelineFromJSON()">Reset Timeline to Default</button>
+		</div>
+
+		<!--ADD EVENTS TO CAL-->
+<!-- <div class="col-xs-12">
+	<br>
+	<button ng-click="showCal = ! showCal">Add a calendar event</button>
+	<div ng-show="showCal">
+		<form class="" name="calendarForm" ng-submit="saveCalChanges(tempCalEvent)">
+			<p>Enter title of new event</p>
+			<input type="text" class="form-control" ng-model="tempCalEvent.title" placeholder="Title" required>
+			<p>Enter date of new event</p>
+			<input type="text" class="form-control" ng-model="tempCalEvent.start" placeholder="2016-08-02" required>
+			<button class="btn">Save</button>
+		</form>
+		<div id="calendar"></div>
+	</div>
+</div>
+<div>
+</div>
+</div>
+
+<div>
+	<button ng-click="RemoveExpiredTokens()">Remove expired Tokens</button>
+</div>
+
+
+<div class="dash-offset">
+	<div ui-view class="module"></div>
+</div>
+</div>  -->

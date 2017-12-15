@@ -1,0 +1,867 @@
+{
+	"events": [
+		{
+			"id": 0,
+			"calendarEnabled": true,
+			"title": "Application",
+			"altTitle": "",
+			"finalTitle": "",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "completed",
+			"eventStatus": "initial",
+			"marker": "application",
+			"markerType": "primary",
+			"markerText": null,
+			"phase": "Step 1",
+			"duration": 45,
+			"content": "",
+			"altContent": "",
+			"finalContent": "",
+			"bookByWeek": null,
+			"activity": [],
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 1,
+			"calendarEnabled": false,
+			"title": "Congratulations on joinning!",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "completed",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": "primary",
+			"phase": "Application",
+			"duration": 0,
+			"content": "You’ve completed the first step to participate in the program.",
+			"altContent": null,
+			"finalContent": null,
+			"bookByWeek": null,
+			"activity": [],
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 3,
+			"calendarEnabled": false,
+			"title": "Training",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "training",
+			"markerType": "primary",
+			"phase": null,
+			"duration": 45,
+			"content": "",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 4,
+			"calendarEnabled": false,
+			"title": "Module 1: Mentorship module",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": "primary",
+			"phase": null,
+			"duration": 45,
+			"content": "This module introduces you to mentoring and the mentoring relationship. Click on the link to access the module or download a pdf copy of the text used in the module.",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "link",
+					"type": "link",
+					"link": "/modules/mentorship",
+					"name": "Mentorship (Module)"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mentorship.pdf",
+					"name": "Mentorship (PDF)"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 5,
+			"calendarEnabled": false,
+			"title": "Module 2: Overview of Program",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "training",
+			"duration": 45,
+			"content": "In this module you learn how our program works, what you can expect and what is expected of you. Click on the link to watch the module video then review the documents provided. A transcript of the video is also available.",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "link",
+					"type": "link",
+					"link": "/videos/curriculum",
+					"name": "Curriculum (Video)"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/curriculum.pdf",
+					"name": "Curriculum (PDF)"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/handbook.pdf",
+					"name": "Handbook"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 6,
+			"calendarEnabled": false,
+			"title": "Module 3: Keys to Success",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "training",
+			"duration": 45,
+			"content": "The final module in our series reviews the keys you will need for a successful mentoring experience. Watch the module video and download and review the tips sheets. A transcript of the video is also available.",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "link",
+					"type": "link",
+					"link": "/videos/keystosuccess",
+					"name": "Keys To Success (Video)"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/keystosuccess.pdf",
+					"name": "Keys To Success (PDF)"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 7,
+			"calendarEnabled": false,
+			"title": "Training Quiz",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": "primary",
+			"phase": "training",
+			"duration": 10,
+			"content": "You’re almost done! Take this quiz to complete your training.",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "link",
+					"type": "link",
+					"link": "/quiz/training",
+					"name": "Training"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 8,
+			"calendarEnabled": false,
+			"title": "Declarations",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": "primary",
+			"phase": "training",
+			"duration": 10,
+			"content": "Before you continuing, you must first agree to the declarations listed on the page linked below. Click the button to review them and accept.",
+			"altContent": null,
+			"finalContent": null,
+			"activity": [
+				{
+					"enabled": true,
+					"type": "declarations"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 9,
+			"calendarEnabled": false,
+			"title": "16 week curriculum",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "curriculum",
+			"markerType": "primary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 10,
+			"calendarEnabled": false,
+			"title": "Match with a mentor",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "phase1",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 11,
+			"calendarEnabled": false,
+			"title": "Find a mentor",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": "primary",
+			"phase": "training",
+			"duration": null,
+			"content": "Make your self active and be matched with a mentor.",
+			"altContent": "Are you ready to be matched?",
+			"finalContent": "Congratulations, you have accepted your new mentor!",
+			"activity": [
+				{
+					"enabled": true,
+					"type": "find-mentor"
+				}
+			],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 12,
+			"calendarEnabled": false,
+			"title": "phase 1",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "phase1",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 13,
+			"calendarEnabled": true,
+			"title": "STARTING OUT",
+			"altTitle": "Meeting booked",
+			"finalTitle": "Meeting completed",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 1",
+			"duration": 60,
+			"content": "The Starting Out phase involves getting to know each other and building your mentoring relationship. Before you book an appointment and start chatting, we recommend mentors and mentees review the resources provided. ",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mentoringbasics.pdf",
+					"name": "Mentoring Basics"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/brainstorming.pdf",
+					"name": "Brainstorming"
+				}
+			],
+			"bookByWeek": 3,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 14,
+			"calendarEnabled": false,
+			"title": "phase 2",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "phase2",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 15,
+			"calendarEnabled": true,
+			"title": "get going",
+			"altTitle": "Meeting booked",
+			"finalTitle": "Meeting completed",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 2",
+			"duration": 60,
+			"content": " Phase Two involves working together to identify the mentee’s needs and set smart goals! Use the resources provided and them get going by booking a time to chat!",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/sheets/smartapproach.xlsx",
+					"name": "Smart Approach"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/sheets/goalsetting.xlsx",
+					"name": "Goal-Setting"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/sheets/mentorshipgoaltemplate.xlsx",
+					"name": "Mentorship Goal Template"
+				}
+			],
+			"bookByWeek": 5,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 16,
+			"calendarEnabled": false,
+			"title": "phase 3",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "phase3",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 17,
+			"calendarEnabled": true,
+			"title": "making progress - 1",
+			"altTitle": "Meeting booked",
+			"finalTitle": "Meeting completed",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 3",
+			"duration": 60,
+			"content": "In Phase 3 you will focus on helping each other develop while working through the issues and challenges identified by the mentee! To make progress over this 6-week period, we encourage you to meet at least 3 times to chat.",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/improvadvocacy.pdf",
+					"name": "Improve Advocacy"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybody.pdf",
+					"name": "My body"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/myheart.pdf",
+					"name": "My Heart"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mymind.pdf",
+					"name": "My Mind"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybalance.pdf",
+					"name": "My Balance"
+				}
+			],
+			"bookByWeek": 7,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 18,
+			"calendarEnabled": true,
+			"title": "making progress - 2",
+			"altTitle": "Meeting booked",
+			"finalTitle": "Meeting completed",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 3",
+			"duration": 60,
+			"content": "In Phase 3 you will focus on helping each other develop while working through the issues and challenges identified by the mentee! To make progress over this 6-week period, we encourage you to meet at least 3 times to chat.",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/improvadvocacy.pdf",
+					"name": "Improve Advocacy"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybody.pdf",
+					"name": "My body"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/myheart.pdf",
+					"name": "My Heart"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mymind.pdf",
+					"name": "My Mind"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybalance.pdf",
+					"name": "My Balance"
+				}
+			],
+			"bookByWeek": 9,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 19,
+			"calendarEnabled": true,
+			"title": "making progress - 3",
+			"altTitle": "Meeting booked",
+			"finalTitle": "Meeting completed",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 3",
+			"duration": 60,
+			"content": "In Phase 3 you will focus on helping each other develop while working through the issues and challenges identified by the mentee! To make progress over this 6-week period, we encourage you to meet at least 3 times to chat.",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/improvadvocacy.pdf",
+					"name": "Improve Advocacy"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybody.pdf",
+					"name": "My body"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/myheart.pdf",
+					"name": "My Heart"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mymind.pdf",
+					"name": "My Mind"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/mybalance.pdf",
+					"name": "My Balance"
+				}
+			],
+			"bookByWeek": 11,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 20,
+			"calendarEnabled": false,
+			"title": "phase 4",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "phase4",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 21,
+			"calendarEnabled": true,
+			"title": "EVALUATING YOUR JOURNEY",
+			"altTitle": "You Mentor Meeting",
+			"finalTitle": "Review Meeting",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 4",
+			"duration": 60,
+			"content": "In Phase Four we encourage you to take some time to talk about your mentoring relationship and what you have learned and the skills you’ve developed. Most importantly, we want you celebrate your successes! To assist you, we’ve provided a few tools.",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/learn.pdf",
+					"name": "Learn"
+				}
+			],
+			"bookByWeek": 13,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 22,
+			"calendarEnabled": false,
+			"title": "closing",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "closing",
+			"markerType": "secondary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 23,
+			"calendarEnabled": true,
+			"title": "CLOSING",
+			"altTitle": "You Mentor Meeting",
+			"finalTitle": "Review Meeting",
+			"allDay": true,
+			"start": "2016-09-23T17:33:51+00:00",
+			"end": null,
+			"className": [
+				"meeting"
+			],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "standard",
+			"markerType": null,
+			"phase": "phase 5",
+			"duration": 60,
+			"content": "The closing phase of the mentoring cycle involves ending of the mentoring relationship and setting new directions! Before you chat to bring closure to your relationship, use the resource provided help you prepare to say goodbye.",
+			"altContent": "Make sure you are ready for your meeting!",
+			"finalContent": "This event is all done!",
+			"activity": [
+				{
+					"enabled": true,
+					"humanType": "appointment",
+					"type": "book"
+				},
+				{
+					"enabled": true,
+					"humanType": "document",
+					"type": "doclink",
+					"doclink": "/pdf/handlingterminations.pdf",
+					"name": "Handling Terminations"
+				}
+			],
+			"bookByWeek": 15,
+			"settings": {},
+			"ical": null
+		},
+		{
+			"id": 24,
+			"calendarEnabled": false,
+			"title": "End of curriculum",
+			"altTitle": null,
+			"finalTitle": null,
+			"allDay": null,
+			"start": null,
+			"end": null,
+			"className": [],
+			"status": "upcoming",
+			"eventStatus": "initial",
+			"marker": "curriculum",
+			"markerType": "primary",
+			"phase": null,
+			"duration": null,
+			"content": null,
+			"altContent": null,
+			"finalContent": null,
+			"activity": [],
+			"bookByWeek": null,
+			"settings": {},
+			"ical": null
+		}
+	],
+	"version": "1.4",
+	"createdBy": "Leo",
+	"lastModifiedBy": "David",
+	"lastModified": "2017-04-11"
+}

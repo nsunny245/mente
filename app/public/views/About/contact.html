@@ -1,0 +1,70 @@
+<!-- contact us -->
+
+<div class="contact-css">
+  <section>
+    <h1><span class="amsi-text cap">Contact Us</span></h1>
+    <img src="/Assets/Images/About/computer.svg">
+    <p>We’re here to answer any questions you may have about our website, the materials located here, or the project. Contact us and we’ll respond as soon as we can.</p>
+    <!-- <feedback-modal></feedback-modal> -->
+    <form name="feedbackForm">
+      <label for="subj">
+        <span class="hidden">Subject: {{subjectSel}}</span>
+        <span class="form-error" ng-show="subj.$invalid && checking"><br>Please select a subject</span>
+      </label>
+      <select id="subj" class="selector down-chevron selector-light" ng-model="subjectSel" name="subject" ng-options="i as i for i in subject" required>
+        <option style="display:none" value="" disabled>Message Subject</option>
+      </select>
+
+      <label for="feedback-body" class="hidden">Your feedback:</label>
+      <textarea id="feedback-body" name="feedback" ng-model="feedback" placeholder="Feedback..." maxlength="1000" required></textarea>
+
+      <label for="email" class="hidden">Your email (include to be able to receive a reply):</label>
+      <input id="email" type="text" name="email" ng-model="email" placeholder="Email (return address)" ng-disabled="anon" ng-required="!anon">
+      <label class="visible checkbox clearfix">
+        <input type="checkbox" name="anon" ng-model="anon">
+        <span aria-hidden="true"><div></div></span>
+        <span>I would prefer to remain <strong>anonymous</strong> (no return address)</span>
+      </label>
+
+      <button type="submit" class="standard-button" ng-click="sendFeedback()" ng-disabled="!feedbackForm.$valid"><span class="amsi-text cap">Submit</span></button>
+    </form>
+
+  </section>
+
+  <section>
+    <article>
+      <h1><span class="amsi-text cap">Mail</span></h1>
+      <img src="/Assets/Images/About/letter.svg">
+      <p>
+        <span>RM-701 
+        <br>George Brown College 
+        <br>51 Dockside Dr.
+        <br> M5T 2T9</span>
+      </p>
+    </article>
+    <article>
+      <h1><span class="amsi-text cap">Phone</span></h1>
+      <img src="/Assets/Images/About/headset.svg">
+      <p><a href="tel:+14164155000,6038">416-415-5000 ext. 6038</a></p>
+    </article>
+    <article>
+      <h1><span class="amsi-text cap">Email</span></h1>
+      <img src="/Assets/Images/About/imac.svg">
+      <p><a href="mail-to:psdnetdefault@mailinator.com">info@communability.ca</a></p>
+    </article>
+  </section>
+
+  <section>
+    <h1><span class="amsi-text cap">Interested in our<br>Mentorship Program?</span></h1>
+    <img src="/Assets/Images/About/rocket.svg">
+    <p>Interested in being connected with a mentor? Think you have what it takes to be a mentor for a post-secondary student with disabilities? Check out our learning module on mentorship to find out more.</p>
+    <a href="#/education/modules" class="standard-button"><span class="amsi-text cap">Learn More</span></a>
+  </section>
+
+  <section>
+    <h1><span class="amsi-text cap">Have Other Questions?</span></h1>
+    <img src="/Assets/Images/About/magnifying_glass.svg">
+    <p>Check out our FAQ list as a starting place to find more information.</p>
+    <a href="#/faqs" class="standard-button"><span class="amsi-text cap">Read FAQs</span></a>
+  </section>
+</div>

@@ -1,0 +1,51 @@
+@import '../Partials/helpers';
+@import "community-bios";
+
+.comnarratives-css {
+  @include communityCardPage();
+
+  header.block:nth-of-type(1) {
+    background-color: $brand-navyblue;
+  }
+  footer.block:nth-of-type(1) {
+    @include hubBlocks($brand-medgrey, #fff, $brand-blue, $brand-blue-hover, false, true);
+    padding-top: 3em;
+    h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+    }
+    p:first-of-type {
+      margin-top: 1em;
+    }
+  }
+
+  @include max-screen(30em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 0, 1);
+    }
+  }
+  @include min-screen(30em) {
+    .profile-card-main .profile-card-action {
+      display: none;
+    }
+    .profile-card-preview .profile-card-main-content {
+      display: none;
+    }
+    .profile-card-main-container {
+      display: block;
+    }
+    .profile-card-preview-container {
+      @include profileCardSetContainer();
+    }
+  }
+  @include screen(30em, 45em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 3%, 2);
+    }
+  }
+  @include min-screen(45em) {
+    .profile-card-preview {
+      @include setPreviewCardSize(100%, 4%, 3);
+    }
+  }
+}

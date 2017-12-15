@@ -1,0 +1,49 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.legal-css {
+  header.block {
+    @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, false, true);
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .terms-content {
+    @include hubBlocks(#fff, $brand-darkgrey, $brand-blue, $brand-blue-hover, false, true);
+    padding-top: 2em;
+
+    h1,h2,h3,h4,h5,h6 {
+      .amsi-text {
+        color: $brand-salmon;
+      }
+    }
+  }
+}
+
+/*ol {
+  list-style-type: none;
+  counter-reset: section;
+  counter-reset: subsection;
+}
+ol li {
+  display: table;
+  counter-increment: section;
+  margin-bottom: 0.6em;
+}
+ol li:before {
+  content: counters(section, ".", lower-roman) ". ";
+  display: table-cell;
+  padding-right: 0.6em;
+}
+ol li li {
+  counter-increment: subsection;
+  margin: 0;
+}
+ol li li:before {
+    content: counter(section, lower-roman) "." counter(subsection, lower-alpha) ".";
+}
+
+ol.weird-ol li:before {
+  content: "a." counters(section, ".", lower-roman) ". ";
+}*/

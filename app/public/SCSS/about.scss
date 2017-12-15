@@ -1,0 +1,101 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.about-css {
+  header.block {
+    @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, true, true);
+    .header-logo {
+      margin-top: 0;
+      margin-bottom: 2em;
+      height: 6em;
+      width: auto;
+      display: block !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  section {
+    & > h2 {
+      //color: $brand-salmon;
+    }
+  }
+  section:nth-of-type(3) {
+    @include floatingBlocks(#fff, $brand-blue, $brand-blue, $brand-blue-hover, 3);
+
+    $articleOneColor: $brand-navyblue;
+    $articleTwoColor: $brand-cyan;
+    $articleThreeColor: $brand-yellow;
+    article:nth-of-type(1) {
+      background-color: $articleOneColor;
+      a.standard-button.hollow:hover {
+        color: $articleOneColor;
+      }
+    }
+    article:nth-of-type(2) {
+      background-color: $articleTwoColor;
+      a.standard-button.hollow:hover {
+        color: $articleTwoColor;
+      }
+    }
+    article:nth-of-type(3) {
+      background-color: $articleThreeColor;
+      a.standard-button.hollow:hover {
+        color: $articleThreeColor;
+      }
+    }
+  }
+  section:nth-of-type(1) {
+    @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, false, true);
+  }
+  section:nth-of-type(2) {
+    @include hubBlocks($brand-salmon, #fff, $brand-blue, $brand-blue-hover, false, true);
+    h1 {
+      max-width: 12em;
+    }
+  }
+  section:nth-of-type(4) {
+    @include hubBlocks($brand-yellow, $brand-blue, $brand-blue, $brand-blue-hover, false, true);
+  }
+  section:nth-of-type(5) {
+    @include hubBlocks(#fff, $brand-blue, $brand-blue, $brand-blue-hover, false, true);
+  }
+  section:nth-of-type(6) {
+    @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, false, true);
+  }
+  section:nth-of-type(7) {
+    @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, false, true);
+  }
+
+  @include min-screen(60em) {
+  //@include min-screen(75em) {
+    section.about {
+      padding-left: 1em;
+      padding-right: 1em;
+      max-width: 75em;
+      margin-left: auto;
+      margin-right: auto;
+
+      .team-col {
+        display: inline-block;
+        width: 31%;
+        vertical-align: top;
+        &:nth-of-type(n+2) {
+          margin-left: 3.5%;
+        }
+
+        h2 {
+          color: $brand-salmon;
+        }
+
+        p,
+        ul {
+          width: auto;
+          text-align: left;
+          &.center {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

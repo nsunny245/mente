@@ -1,0 +1,334 @@
+<head>
+    <style type="text/css">
+        table, th, td {
+         border: 1px solid black;
+         border-spacing: 1px;
+         padding: 2%;
+         background-color: #b7b4a5;
+     }
+     p{
+        font-family: "Avenir-Black";
+        text-align: center;
+        margin: auto; 
+    }
+    select {
+        display: block;
+        margin: 0 auto;
+    }
+    input{
+        width: 100%;
+        display: block;
+    }
+    label.visible.checkbox>span:first-of-type {
+        float: none;
+        display: inline-block;
+    }
+    input[type=checkbox] + span {
+        background-color: #fff;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0.25em;
+    }
+    label {
+        display: inline-block;
+        text-align: center;
+    }
+    input[type=checkbox]:checked + span > div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+    input[type=checkbox] + span + span {
+        position: absolute;
+    }
+    .inline{
+        display: inline-block;
+    }
+</style>
+</head>
+
+<link rel="stylesheet" type="text/css" href="/CSS/Dashboard/timeline.css" />
+<br><br><br><br><br><br><!-- Hack for ez css fix -->
+<div>
+
+</table>
+<h2>Timeline Manager</h2>
+
+<button class="standard-button inline" ng-click="LoadDefaultTimeline('mentee')">Load Mentee's<br>Timeline</button>   
+<button class="standard-button inline" ng-click="LoadDefaultTimeline('mentor')">Load Mentor's<br>Timeline</button>  
+<button class="standard-button inline" >&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<br>&nbsp</button>
+<button class="standard-button inline" >&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<br>&nbsp</button>    
+<button class="standard-button inline" >&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<br>&nbsp</button>
+<button class="standard-button inline" >&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<br>&nbsp</button>    
+<button class="standard-button inline" ng-click="ResetTimeline('mentee')">Reset Mentee<br>to default</button>
+<button class="standard-button inline" ng-click="ResetTimeline('mentor')">Reset Mentor<br>to default</button>
+<div>
+    <div>
+        <h2>Loaded Timeline: {{loadedTimeline.timelineType || "none"}}</h2>
+        <button class="standard-button inline" ng-click="SaveTimeline()">Save Changes</button>
+    </div>
+
+    <div ng-repeat="event in loadedTimeline.events track by $index ">
+        <table align="center">
+            <tr>
+                <td>
+                    <p>Event number: {{event._id}}</p>
+                    <select ng-model="loadedTimeline.events[$index]._id" ng-options="n for n in [] | range:0:loadedTimeline.events.length-1"
+                     ng-change="ChangeEventOrder(event._id, {{event._id}})"></select>
+                    <button class="standard-button inline" ng-click="RemoveEventFromTimeline(event._id)">Delete</button>
+                </td>
+                <td>
+                    <p>Book by week</p>
+                    <select ng-model="loadedTimeline.events[$index].bookByWeek" ng-options="n for n in [] | range:1:16"></select>                
+                </td>
+            <td>
+                <p>Phase</p>
+                <select  ng-value="event.phase" ng-model="loadedTimeline.events[$index].phase">
+                    <option value="Application">Application</option>
+                    <option value="Training">Training</option>
+                    <option value="Find a Mentor">Find a Mentor</option>
+                    <option value="Step 1">Step 1</option>
+                    <option value="Step 2">Step 2</option>
+                    <option value="Step 3">Step 3</option>
+                    <option value="Step 4">Step 4</option>
+                    <option value="Closing">Closing</option>
+                </select>
+            </td>
+            <td>
+                <p>Duration (in minutes)</p>
+                <input type="Number" ng-value="event.duration" ng-model="loadedTimeline.events[$index].duration" max="480">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <p>Number of States</p>
+                <select ng-model="loadedTimeline.events[$index].title.length" ng-options="n for n in [] | range:1:5"></select> 
+            </td>
+            <td colspan="1">
+                <p>Title</p>
+                <div>
+                    <input ng-value="event.title[0]" ng-model="loadedTimeline.events[$index].title[0]" maxlength="25"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 1" ng-value="event.title[1]" ng-model="loadedTimeline.events[$index].title[1]" maxlength="25"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 2" ng-value="event.title[2]" ng-model="loadedTimeline.events[$index].title[2]" maxlength="25"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 3" ng-value="event.title[3]" ng-model="loadedTimeline.events[$index].title[3]" maxlength="25"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 4" ng-value="event.title[4]" ng-model="loadedTimeline.events[$index].title[4]" maxlength="25"></input>
+                </div>
+            </td>
+            <td colspan="2">
+                <p>Content</p>
+                <div>
+                    <input ng-value="event.content[0]" ng-model="loadedTimeline.events[$index].content[0]" maxlength="100"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 1" ng-value="event.content[1]" ng-model="loadedTimeline.events[$index].content[1]" maxlength="100"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 2" ng-value="event.content[2]" ng-model="loadedTimeline.events[$index].content[2]" maxlength="100"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 3" ng-value="event.content[3]" ng-model="loadedTimeline.events[$index].content[3]" maxlength="100"></input>
+                    <input ng-show="loadedTimeline.events[$index].title.length > 4" ng-value="event.content[4]" ng-model="loadedTimeline.events[$index].content[4]" maxlength="100"></input>
+                </div>                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"><p>Activities</p><button class="standard-button inline" ng-click="AddNewActivityToEvent(false, event._id)">Add New</button></td>
+        </tr>
+        <tr ng-repeat="activity in event.activity track by $index">
+            
+            <td>                
+                <label class="visible checkbox" >
+                <p>Enabled On State 1</p>
+                    <input type="checkbox" ng-value="activity.enabled" ng-model="loadedTimeline.events[$parent.$index].activity[$index].enabled">
+                    <span aria-hidden="true"><div></div></span>
+                    <span><span></span></span>
+                </label>  
+                <button class="standard-button inline" ng-click="RemoveActivityFromEvent($parent.$index, $index)">Delete</button>            
+            </td>    
+            <td>
+                <p>Type</p>
+                <select ng-value="activity.type" ng-model="loadedTimeline.events[$parent.$index].activity[$index].type">
+                    <option value="book">Book an Appointment</option>
+                    <option value="chat">Chat</option>
+                    <option value="document">Read a document</option>
+                    <option value="module">Complete a module</option>
+                    <option value="external">External Link</option>
+                </select>
+                <p>Link</p>
+                <input type="text" ng-value="activity.link" ng-model="loadedTimeline.events[$parent.$index].activity[$index].link">       
+            </td>
+             <td colspan="2">                    
+                <p>Text</p>
+                <input type="text" ng-value="activity.tooltip" ng-model="loadedTimeline.events[$parent.$index].activity[$index].tooltip">
+                <p>AltText (Hidden)</p>
+                <input type="text" ng-value="activity.altText" ng-model="loadedTimeline.events[$parent.$index].activity[$index].altText">
+            </td>            
+        </tr>
+    </table>
+    <br>
+</div>
+
+<h3 ng-click="addingNewEvent = !addingNewEvent">Add new Event</h3>
+<div ng-show="addingNewEvent">
+    <table align="center">
+        <tr>    
+            <td>
+               <p>Event number: {{event._id}}</p>
+               <p>(Will push the events down.)</p>  
+               <select ng-model="newEvent._id" ng-options="n for n in [] | range:0:loadedTimeline.events.length"></select>                 
+           </td>                
+           <td>
+                <p>Book by week</p>
+                <select ng-model="newEvent.bookByWeek" ng-options="n for n in [] | range:1:16"></select>                
+            </td>
+            <td>
+                <p>Phase</p>
+                <select  ng-model="newEvent.phase">
+                    <option value="Application">Application</option>
+                    <option value="Training">Training</option>
+                    <option value="Find a Mentor">Find a Mentor</option>
+                    <option value="Step 1">Step 1</option>
+                    <option value="Step 2">Step 2</option>
+                    <option value="Step 3">Step 3</option>
+                    <option value="Step 4">Step 4</option>
+                    <option value="Closing">Closing</option>
+                </select>
+            </td>
+            <td>
+                <p>Duration (in minutes)</p>
+                <input type="Number" ng-model="newEvent.duration" max="480">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <p>Number of States</p>
+                <select ng-model="newEvent.title.length" ng-options="n for n in [] | range:1:5"></select> 
+            </td>
+             <td colspan="1">
+                <p>Title</p>
+                <div>
+                    <input ng-value="newEvent.title[0]" ng-model="newEvent.title[0]" maxlength="25"></input>
+                    <input ng-show="newEvent.title.length > 1" ng-value="newEvent.title[1]" ng-model="newEvent.title[1]" maxlength="25"></input>
+                    <input ng-show="newEvent.title.length > 2" ng-value="newEvent.title[2]" ng-model="newEvent.title[2]" maxlength="25"></input>
+                    <input ng-show="newEvent.title.length > 3" ng-value="newEvent.title[3]" ng-model="newEvent.title[3]" maxlength="25"></input>
+                    <input ng-show="newEvent.title.length > 4" ng-value="newEvent.title[4]" ng-model="newEvent.title[4]" maxlength="25"></input>
+                </div>
+            </td>
+            <td colspan="2">
+                <p>Content</p>
+                <div>
+                    <input ng-value="newEvent.content[0]" ng-model="loadedTimeline.events[$index].content[0]" maxlength="100"></input>
+                    <input ng-show="newEvent.title.length > 1" ng-value="newEvent.content[1]" ng-model="newEvent.content[1]" maxlength="100"></input>
+                    <input ng-show="newEvent.title.length > 2" ng-value="newEvent.content[2]" ng-model="newEvent.content[2]" maxlength="100"></input>
+                    <input ng-show="newEvent.title.length > 3" ng-value="newEvent.content[3]" ng-model="newEvent.content[3]" maxlength="100"></input>
+                    <input ng-show="newEvent.title.length > 4" ng-value="newEvent.content[4]" ng-model="newEvent.content[4]" maxlength="100"></input>
+                </div>                
+            </td>
+        </tr>
+        <tr ng-repeat="activity in newEvent.activity track by $index">
+            
+            <td>                
+                <label class="visible checkbox" >
+                <p>Enabled On State 1</p>
+                    <input type="checkbox" ng-value="activity.enabled" ng-model="newEvent.activity[$index].enabled">
+                    <span aria-hidden="true"><div></div></span>
+                    <span><span></span></span>
+                </label>  
+                <button class="standard-button inline" ng-click="RemoveActivityFromEvent(-1, $index)">Delete</button>            
+            </td>    
+            <td>
+                <p>Type</p>
+                <select ng-value="activity.type" ng-model="newEvent.activity[$index].type">
+                    <option value="book">Book an Appointment</option>
+                    <option value="chat">Chat</option>
+                    <option value="document">Read a document</option>
+                    <option value="module">Complete a module</option>
+                    <option value="external">External Link</option>
+                </select>
+                <p>Link</p>
+                <input type="text" ng-value="activity.link" ng-model="newEvent.activity[$index].link">       
+            </td>
+             <td colspan="2">                    
+                <p>Text</p>
+                <input type="text" ng-value="activity.tooltip" ng-model="newEvent.activity[$index].tooltip">
+                <p>AltText (Hidden)</p>
+                <input type="text" ng-value="activity.altText" ng-model="newEvent.activity[$index].altText">
+            </td>            
+        </tr>  
+        <tr>
+            <td colspan="4">
+                <button class="standard-button inline" ng-click="ClearNewEvent()">Clear</button>
+                <button class="standard-button inline" ng-click="AddNewActivityToEvent(true, null)">Add Activity</button>                          
+                <button class="standard-button inline" ng-click="AddNewEvent(newEvent)">Add Event</button>    
+            </td>      
+            
+        </tr>  
+    </table>
+    
+    
+</div>
+<button class="standard-button inline" ng-click="SaveTimeline()">Save Changes</button>
+</div>
+
+
+
+</div>
+<h1>{{loadedTimeline._id}}</h1>
+
+<timeline side="right">
+    <timeline-event ng-repeat="event in loadedTimeline.events | orderBy: 'event._id' : true" side="{{event.sideDisplayed}}" ng-init="$last ? OnPageLoad() : angular.noop()">
+
+        <timeline-badge ng-class="'{{event.marker}} {{event.markerType}} {{event.status}}'">
+            <div ng-if="event.marker != 'standard'">
+                <div></div>
+                <div></div>
+                <img ng-if="event.status == 'completed'" class="check completed" src="/Assets/Images/Profile/timeline/markers/check.svg">
+                <img class="board">
+                <div class="board-content">
+                    <img ng-if="event.markerType == 'secondary' && event.status == 'completed'" class="ribbon" src="/Assets/Images/Profile/timeline/markers/ribbon-gold.svg">
+                    <img ng-if="event.markerType == 'secondary' && event.status != 'completed'" class="ribbon" src="/Assets/Images/Profile/timeline/markers/ribbon-grey.svg">
+                    <h1><span class="amsi-text cap">{{event.title}}</span></h1>
+                </div>
+            </div>
+            <div ng-if="event.marker == 'standard'">
+                <div ng-if="event.status != 'completed'" class="check" ng-class="'{{event.status}}'">
+                    <div></div>
+                </div>
+                <img ng-if="event.status == 'completed'" class="check completed" src="/Assets/Images/Profile/timeline/markers/check.svg">
+                <!-- <div ng-if="event.status == 'inprogress'" class="current">
+                    <img>
+                    <h1><span class="amsi-text cap">Current Activity</span></h1>
+                </div> -->
+            </div>
+
+        </timeline-badge>
+
+        <timeline-panel ng-if="event.marker == 'standard'" class="{{event.panelStyle}}">
+            <timeline-heading>
+                <button class="expand">
+                    <img src="/Assets/Images/Profile/timeline/plus.svg">
+                    <h4><span class="amsi-text cap">{{event.phase}}</span></h4>
+                    <h4><span class="amsi-text cap">{{event.eventStatus === 'initial' ? event.title : event.eventStatus === 'following' ? event.altTitle : event.finalTitle}}</span></h4>
+                    <img ng-if="false">
+                </button>
+            </timeline-heading>
+            <div class="event-body">
+                <p>{{event.eventStatus === 'initial' ? event.content : event.eventStatus === 'following' ? event.altContent : event.finalContent}}</p>
+                <!-- <p>{{event.date | date : 'fullDate'}}</p> -->
+                <div class="icons">
+                    <h2 class="duration"><span class="amsi-text cap">{{event.duration}}<br>mins</span></h2>
+                    <div class="activity" ng-repeat="activity in event.activity track by $index">
+                        <div class="vert"></div>
+                        <img ng-show="activity.type === 'chat'" src="..\Assets\Images\Profile\header\Activity.svg">
+                        <img ng-show="activity.type == 'chat'" src="..\Assets\Images\Profile\calendar\clock.svg">   
+                        <booking-modal ng-attr-data-event="{{event}}" ng-if="activity.type == 'book'" ng-show="event.eventStatus === 'initial'"></booking-modal>
+                    </div>
+                </div>
+            </div>
+            <hr class="dashboard">
+        </timeline-panel>
+
+    </timeline-event>
+</timeline>
+
+<div class="event-details">
+    <button class="expand"><img src="/Assets/Images/Profile/timeline/minus.svg"></button>
+    <div>
+        <h1><span class="amsi-text cap"></span></h1>
+        <h1><span class="amsi-text cap"></span></h1>
+        <p></p>
+    </div>
+    <hr class="dashboard">
+</div>

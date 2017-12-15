@@ -1,0 +1,170 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.contact-css {
+  section:nth-of-type(1) {
+    @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, false, true);
+  }
+  section:nth-of-type(2) {
+    // @include hubBlocks($brand-yellow, $brand-blue, $brand-blue-hover, true);
+    p span {
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+  }
+  section:nth-of-type(2) {
+    @include hubBlocks($brand-yellow, $brand-blue, $brand-blue, $brand-blue-hover, false, true);
+    @include min-screen(45em) {
+      & {
+        white-space: nowrap;
+      }
+      & > article {
+        display: inline-block;
+        vertical-align: top;
+        width: 33%;
+        p {
+          width: auto;
+        }
+      }
+    }
+    @include min-screen(60em) {
+      & > article {
+        width: 20em;
+      }
+    }
+  }
+  section:nth-of-type(3) {
+    @include hubBlocks($brand-salmon, #fff, $brand-blue, $brand-blue-hover, false, true);
+  }
+  section:nth-of-type(4) {
+    @include hubBlocks(#fff, $brand-blue, $brand-blue, $brand-blue-hover, false, true);
+  }
+  section:nth-of-type(5) {
+    @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, false, true);
+  }
+
+  section:nth-of-type(n) {
+    p a:link,
+    p a:hover,
+    p a:active,
+    p a:visited {
+      background: none;
+      color: inherit;
+      text-decoration: none;
+      font-size: 1em;
+    }
+  }
+
+  section {
+    padding-bottom: 4em;
+
+    p:nth-of-type(n+2) {
+      margin-top: 1em !important;
+    }
+
+    button.standard-button {
+      margin-bottom: 0 !important;
+    }
+
+    img {
+      width: 8em !important;
+      height: 8em;
+      margin-top: 1em !important;
+      margin-bottom: 1em !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 50%;
+    }
+
+    form {
+      width: 100%;
+      padding-left: 1em;
+      padding-right: 1em;
+
+      .checkbox {
+        display: inline-block;
+
+        & > span:first-of-type {
+          width: 1.25em;
+          height: 1.25em;
+          padding: 0.25em;
+          background-color: #fff;
+          border-color: transparent;
+        }
+
+        :checked + span > div {
+          background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+        }
+
+        & > span:last-of-type {
+          position: relative;
+          top: -0.4em;
+          left: 1em;
+        }
+      }
+
+      input,
+      textarea,
+      select {
+        display: block;
+        font-size: 1em !important;
+
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+        background-color: $brand-lightgrey;
+        color: $brand-grey;
+      }
+
+      input:disabled {
+        background-color: $brand-grey !important;
+      }
+
+      textarea {
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+      }
+
+      select {
+        // font-size: 1.2em !important;
+        background-color: $brand-lightgrey !important;
+        color: $brand-grey !important;
+        &:disabled {
+          color: $brand-lightgrey !important;
+        }
+        option:disabled {
+          color: $brand-lightgrey !important;
+        }
+      }
+
+      & > *:nth-last-child(n+2) {
+        margin-bottom: 1em;
+      }
+
+      button.standard-button {
+        &,
+        &:active {
+          background-color: $brand-cyan;
+        }
+        &:hover,
+        &:focus {
+          background-color: $brand-cyan-hover;
+        }
+      }
+
+      @include min-screen(30em) {
+        padding-left: 3em;
+        padding-right: 3em;
+      }
+      @include min-screen(45em) {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 32em;
+
+      }
+    }
+  }
+}

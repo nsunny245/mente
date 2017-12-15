@@ -1,0 +1,49 @@
+{
+  "year": "main",
+  "events":  [
+        {
+            "title" : "You have joined!",
+            "start": "2016-07-23T18:25:43.511Z",
+            "className": ["meeting"]
+          },
+
+          {
+            "title": "You should have joined then.",
+            "start": "2016-07-23T18:25:43.511Z"
+          },
+
+          {
+            "id": 999,
+            "title": "Talk to your mentor",
+            "start": "2016-07-23T18:25:43.511Z",
+            "end": "2016-08-23T18:25:43.511Z"
+
+          },
+
+          {
+            "title": "Do some module thing",
+            "start": "2016-07-23T18:25:43.511Z",
+            "className": "clearfix",
+            "allDay": false
+          },
+
+          {
+            "title": "You should be done now",
+            "start": "2016-07-23T18:25:43.511Z"
+          },
+
+          {
+            "title": "Your mentors Birthday",
+            "start": "2016-07-23T18:25:43.511Z",
+            "end": "2016-07-23T18:25:43.511Z",
+            "allDay": false
+          },
+
+          {
+            "title": "Webinar Today",
+            "start": "2016-07-23T18:25:43.511Z",
+            "end": "2016-07-23T18:25:43.511Z",
+            "url": "#/podcasts-webinars"
+          }
+      ]
+    }

@@ -1,0 +1,60 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.home-css {
+
+    .block:nth-of-type(1) {
+        @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, true, true);
+    }
+
+    .block:nth-of-type(2) {
+        @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, true, true);
+    }
+
+    .block:nth-of-type(3) {
+        @include hubBlocks($brand-navyblue, #fff, $brand-cyan, $brand-cyan-hover, true, true);
+    }
+
+    .block:nth-of-type(4) {
+        @include hubBlocks($brand-yellow, $brand-blue, $brand-blue, $brand-blue-hover, true, true);
+    }
+
+    /*.block:nth-of-type(2) img:last-of-type {
+        display: none;
+    }*/
+
+
+
+
+    @include min-screen(30em) {
+        body>div:nth-child(2) {
+            //font-size: 1em;
+        }
+        /*.block:nth-of-type(2) img:first-of-type {
+            display: none;
+        }
+        .block:nth-of-type(2) img:last-of-type {
+            display: block;
+        }*/
+    }
+
+    @include min-screen(45em) {
+        body>div:nth-child(2) {
+            //font-size: 1.125em;
+        }
+        section.block:nth-of-type(1)>a,
+        section.block:nth-of-type(2)>a {
+            margin-bottom: 0.8em;
+        }
+        section.block:nth-of-type(3)>a {
+            margin-bottom: 5em;
+        }
+        section.block:nth-of-type(4)>a {
+            margin-bottom: 3em;
+        }
+    }
+
+    @include min-screen(75em) {
+    }
+
+}

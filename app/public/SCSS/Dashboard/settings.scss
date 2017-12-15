@@ -1,0 +1,158 @@
+.profile-settings-css {
+  body {
+    background-color: #f2f2f2;
+  }
+  .module {
+    padding-top: 3em;
+    padding-bottom: 4em;
+  }
+  .holder {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2.5em;
+    padding-bottom: 3.5em;
+    //border-radius: 0.5em;
+    //border-color: #ccc;
+    //border-style: solid;
+    //border-width: 0.1em;
+  }
+  .holder label {
+    width: 100%;
+  }
+  .holder input {
+    display: block;
+  }
+  .holder section {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  .holder hr {
+    border-top-color: #ccc;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  .standalone-button {
+    text-align: center;
+    .img-change button {
+      margin-top: 0.5em;
+    }
+  }
+  .img-change button {
+    //display: inline-block;
+    //margin-left: 0;
+  }
+  .save-settings {
+    margin-top: 3em;
+    max-width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .save-settings button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1em;
+    margin-top: 1.25em;
+  }
+  input + label,
+  select + label,
+  textarea + label,
+  label + label {
+    margin-top: 1em;
+  }
+
+  label.visible.checkbox {
+    margin: 0.3em 0 0 1.5em;
+    font-size: 1em;
+  }
+    label.visible.checkbox>* {
+    }
+  label.visible.checkbox>span:first-of-type {
+    width: 1.4em;
+    height: 1.4em;
+    padding: 0.25em;
+  }
+      label.visible.checkbox input[type=radio] + span {
+        padding: 0.4em !important;
+      }
+    label.checkbox input[type="radio"]:checked:not(:disabled) + span>div {
+      background-color: #EF4F5B;
+    }
+    label.checkbox input[type="checkbox"]:checked:not(:disabled) + span>div {
+      background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+  label.visible.checkbox>span:last-of-type {
+    padding: 0.05em 0 0 1.25em;
+  }
+    label.visible.checkbox>span:last-of-type>span>span {
+      display: inline-block;
+    }
+  label.visible.checkbox + div>label.other {
+    margin-top: 0;
+  }
+
+  label.visible.checkbox.inline {
+    display: inline-block;
+  }
+
+  form.holder > div:first-child {
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+    fieldset {
+      text-align: center;
+    }
+  }
+
+  form.holder hr {
+    display: block;
+  }
+
+
+
+  @media screen and (min-width: 30em) {
+  }
+
+  @media screen and (min-width: 45em) {
+    .holder {
+      width: 45em;
+      margin: 0 auto;
+    }
+    .section label.checkbox {
+      margin: 0.3em 0 0 1.5em;
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+    }
+      label.visible.checkbox>span:first-of-type {
+        width: 1.2em;
+        height: 1.2em;
+        padding: 0.22em;
+      }
+      label.visible.checkbox>span:last-of-type {
+        padding: 0 0 0 0.8em;
+      }
+
+    form.holder > div:first-child {
+      overflow: hidden;
+      img {
+        width: 8em;
+        max-width: 50%;
+        margin-bottom: 1em;
+      }
+      fieldset {
+        vertical-align: bottom;
+      }
+    }
+
+  }
+
+  @media screen and (min-width: 60em) {
+  }
+
+  @media screen and (min-width: 75em) {
+  }
+}

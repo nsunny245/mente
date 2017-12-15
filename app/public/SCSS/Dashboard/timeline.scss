@@ -1,0 +1,657 @@
+@import "../Partials/helpers";
+@import "../Partials/media";
+@import url("checklist.css");
+
+.profile-timeline-css {
+  .timeline {
+    margin-bottom: 0;
+  }
+  .timeline timeline-event:first-child li {
+    padding-top: 2em;
+  }
+  .timeline timeline-event:first-child li timeline-badge {
+    top: 0.5em;
+  }
+  timeline-badge,
+  timeline-badge * {
+    z-index: 100;
+  }
+  timeline li timeline-badge.standard,
+  timeline-badge:not(.standard) .check,
+  div.check {
+    width: 1.6em;
+    height: 1.6em;
+  }
+  timeline li timeline-badge.standard {
+    margin-left: 0;
+    transform: translateX(-50%);
+  }
+  timeline li timeline-badge.standard {
+    border-width: 0.5em;
+    border-style: solid;
+    border-color: #fff;
+    border-radius: 50%;
+    box-sizing: content-box !important;
+  }
+  timeline-badge.standard .check {
+    width: 100%;
+  }
+  .standard .timeline-badge,
+  .standard .timeline-badge > div {
+    width: 100%;
+  }
+  timeline-event.marker li {
+    overflow: hidden;
+  }
+  timeline-event.marker li > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  timeline-event.marker li > div:first-of-type {
+    bottom: 52.5%;
+  }
+  timeline-event.marker li > div:last-of-type {
+    top: 47.5%;
+  }
+  timeline-badge .inprogress {
+    position: relative;
+    overflow: hidden;
+  }
+  .inprogress .check {
+    background-color: $brand-hotpink;
+  }
+
+  timeline-event.marker:nth-of-type(n) + timeline-event:nth-of-type(n) {
+    background-color: white;
+  }
+  timeline-event.marker:nth-of-type(2n+1) + timeline-event:nth-of-type(n) {
+    background-color: black;
+  }
+  timeline-badge:not(.standard),
+  timeline-badge:not(.standard)>div>div {
+    position: relative !important;
+  }
+  timeline-badge:not(.standard) > div {
+    height: auto;
+    margin-top: -2em;
+    box-sizing: padding-box;
+  }
+  timeline-badge:not(.standard).primary > div {
+    width: 9em;
+    margin-left: -4.5em;
+  }
+  timeline-badge:not(.standard).secondary > div {
+    width: 6.5em;
+    margin-left: -3.25em;
+  }
+  .timeline-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  timeline-badge .board {
+    border-width: 0.5em;
+    border-style: solid;
+    border-color: transparent;
+  }
+  timeline-badge .board-content {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+
+    transform: translateY(-50%);
+    top: 49%;
+  }
+  timeline-badge h1 {
+    color: #fff;
+    line-height: 1.1em;
+    margin: 0;
+  }
+  timeline-badge .board-content,
+  timeline-badge .board-content img {
+    height: auto;
+    line-height: 1em !important;
+  }
+  timeline-badge .board-content img {
+    height: 1.5em;
+  }
+  timeline-badge.secondary h1 {
+    margin-top: 0.35em;
+  }
+  timeline-badge.application h1 {
+    font-size: 1.1em;
+  }
+  timeline-badge.training h1 {
+    font-size: 1.25em;
+  }
+  timeline-badge.before h1 {
+    font-size: 1.1em;
+  }
+  timeline-badge.mentor h1 {
+    font-size: 1.1em;
+    margin-top: -0.15em
+  }
+  timeline-badge.curriculum h1 {
+    font-size: 1.1em;
+    margin-top: -0.1em
+  }
+  timeline-badge.secondary h1 {
+    font-size: 1em;
+  }
+  .check {
+    padding: 0.325em;
+    border-radius: 50%;
+    border-width: 0.25em;
+    border-style: solid;
+    border-color: #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+  }
+  .check.inprogress {
+  }
+  .check.completed {
+    background-color: #00263A;
+  }
+  timeline-badge:not(.standard) img.check {
+    position: absolute;
+    right: -0.325em;
+    top: 2em;
+  }
+  timeline-badge.standard img.check {
+    vertical-align: top;
+  }
+
+  .current {
+    width: 6em;
+    position: absolute;
+    top: -0.8em;
+    height: 1.75em;
+    @include min-screen(30em) {
+      height: 2em;
+    }
+  }
+  .current.left {
+    right: 4.25em;
+  }
+  .current.right {
+    left: 2.5em;
+  }
+
+  .current img {
+    height: 100%;
+    width: auto;
+  }
+  .current h1 {
+    position: absolute;
+    right: 100%;
+    bottom: 100%;
+    visibility: hidden;
+  }
+
+  timeline-panel {
+    line-height: normal;
+  }
+  .expand {
+    display: block;
+    padding: 0;
+    /*overflow: hidden;*/
+    text-align: left;
+    width: 100%;
+    hyphens: auto;
+  }
+  .expand img {
+    height: 1.2em;
+    width: auto;
+    vertical-align: top;
+
+    padding-left: 0.2em;
+    padding-bottom: 0.2em;
+    padding-top: 0;
+    padding-right: 0;
+
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 0.5em;
+  }
+  timeline-heading h4 {
+    font-size: 1em;
+    margin: 0;
+    line-height: 1em;
+  }
+  timeline-heading h4:first-of-type {
+    color: #7f7f7f;
+  }
+  timeline-heading h4:last-of-type {
+    color: #00263A;
+  }
+  .event-body {
+    /*display: none;*/
+  }
+  .event-body p {
+    margin: 0;
+    padding-top: 1.25em;
+  }
+  .event-body p:last-child {
+    padding-bottom: 1.25em;
+  }
+  .event-body p,
+  .event-details p {
+    color: #999;
+  }
+
+  .duration {
+    text-align: center;
+    line-height: 0.95em;
+  }
+  .event-details .expand {
+    float: right;
+    width: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1.25em;
+  }
+  .event-details .expand img {
+    height: 1.75em;
+  }
+  .event-details > div {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+    padding-bottom: 1.5em;
+    width: 100%;
+  }
+  .event-details > div > h1,
+  .event-details > div > p {
+    width: 80%;
+  }
+  .event-details h1 {
+    font-size: 2.1em;
+    margin: 0;
+    line-height: 1em;
+  }
+  .event-details h1:first-of-type {
+    color: #7F7F7F;
+  }
+  .event-details h1:last-of-type {
+    color: #00263A;
+  }
+  .event-details p {
+    font-size: 1.1em;
+  }
+  .event-details hr.dashboard {
+    background-color: #7F7F7F;
+    height: 0.35em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  timeline-panel hr.dashboard {
+    display: none;
+    position: absolute;
+    bottom: -0.35em;
+    left: 0;
+    right: 0;
+    margin: 0;
+    height: 0.35em;
+  }
+
+  .event-body .icons {
+    margin-top: 1em;
+  }
+  .event-details .icons {
+    margin-top: 1.5em;
+  }
+  .icons {
+    /*text-align: center;*/
+    width: 20em;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .activity,
+  .activity > :nth-child(2n+4) {
+    margin-left: -4px;
+  }
+  .event-body h2,
+  .event-details h2 {
+    display: inline-block;
+  }
+  .activity,
+  .activity > * {
+    display: inline-flex;
+  }
+  .event-details h2,
+  .event-body h2,
+  .activity {
+    width: 33%;
+  }
+  .activity {
+    overflow: hidden;
+    // width: 22%;
+  }
+  .activity.booking-modal {
+    width: 66%;
+  }
+  .activity[data-type="declarations"],
+  .activity[data-type="verify-email"],
+  .activity[data-type="find-mentor"] {
+    width: 100%;
+    text-align: center;
+  }
+  .activity[data-type="declarations"] a,
+  .activity[data-type="verify-email"] button,
+  .activity[data-type="find-mentor"] a {
+    margin: auto;
+    width: 85%;
+    display: block;
+    font-size: 1.2em;
+    height: 2.5em;
+    background-color: #004F71;
+  }
+  .activity[data-type="verify-email"] button:focus,
+  .activity[data-type="verify-email"] button:hover,
+  .activity[data-type="verify-email"] button:click,
+  .activity[data-type="declarations"] a:focus,
+  .activity[data-type="declarations"] a:hover,
+  .activity[data-type="declarations"] a:click,
+  .activity[data-type="find-mentor"] a:focus,
+  .activity[data-type="find-mentor"] a:hover,
+  .activity[data-type="find-mentor"] a:click {
+    background-color: $brand-blue-hover;
+  }
+  .activity[data-type="verify-email"] button:disabled,
+  .activity[data-type="declarations"] a:disabled,
+  .activity[data-type="find-mentor"] a:disabled {
+    background-color: #ccc;
+  }
+  .event-details h2,
+  .event-body h2,
+  .activity > * {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+  }
+  .activity-icon-frame {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 14%;
+    height: auto;
+    border-width: 0.2em;
+    border-style: solid;
+    border-color: #ccc;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  .activity-icon {
+    width: 100%;
+    height: auto;
+  }
+  .activity > div:not(.vert),
+  .activity > button, .activity > a {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .activity {
+    position: relative;
+  }
+  .activity > div.vert {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.15em;
+    background-color: #7f7f7f;
+  }
+  .activity > div.vert:first-child {
+    left: 0;
+  }
+  .activity > div.vert:last-child {
+    left: 50%;
+  }
+  .icons,
+  .icons > * {
+  }
+  .icons > * {
+    margin-top: 0.75em !important;
+    vertical-align: middle;
+  }
+
+
+  .activity-ex > div {
+    padding-top: 1em;
+  }
+  .activity-ex ul {
+    list-style: none;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .activity-ex li {
+    padding: 0;
+  }
+
+  .timeline-button {
+    background-color: #00263A;
+    width: 100%;
+    border-radius: 0.5em;
+    height: 3em;
+    padding-left: 0.65em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    text-align: left;
+    overflow: hidden;
+  }
+  .timeline-button * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .timeline-button img {
+    height: 100%;
+    width: auto;
+    margin-right: 0.5em;
+  }
+  .timeline-button h3 {
+    font-size: 0.8em;
+    color: #fff;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+
+
+  @media screen and (min-width: 30em) {
+    .event-details > div {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+    .event-details h1 {
+      font-size: 2.5em;
+    }
+    .event-details h1,
+    .event-details p {
+      width: 50%;
+    }
+    .event-details .icons {
+      margin-left: 0;
+      width: 22em;
+    }
+  }
+
+  @media screen and (min-width: 45em) {
+    .expand img {
+      height: 1.6em;
+    }
+    timeline li timeline-badge.standard,
+    timeline-badge:not(.standard) .check,
+    div.check {
+      width: 2.25em;
+      height: 2.25em;
+    }
+    .check {
+      border-width: 0.4em;
+      padding: 0.35em;
+    }
+    .timeline:before {
+      width: 0.5em;
+    }
+    .timeline li timeline-panel:before {
+      top: 31px;
+    }
+    .timeline li timeline-panel:after {
+      top: 32px;
+    }
+    timeline-badge:not(.standard) img.check {
+      top: 1.5em;
+      right: -0.65em;
+    }
+    timeline-panel hr.dashboard {
+      display: block;
+    }
+    .timeline li .timeline-panel {
+      padding: 1.5em;
+    }
+    .timeline li timeline-panel {
+      margin-right: calc(50% + 3em);
+      margin-right: -moz-calc(50% + 3em);
+      margin-right: -webkit-calc(50% + 3em);
+    }
+    .timeline li.timeline-inverted timeline-panel {
+      margin-left: calc(50% + 3em);
+      margin-left: -moz-calc(50% + 3em);
+      margin-left: -webkit-calc(50% + 3em);
+    }
+    ul.timeline li timeline-panel {
+      width: 21em;
+    }
+    timeline-heading .expand {
+      position: relative;
+    }
+    timeline-heading .expand img {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    timeline-heading .expand h4 {
+      width: 75%;
+    }
+    timeline-heading .expand h4 {
+      font-size: 1.5em;
+    }
+  }
+  @media screen and (min-width: 48em) {
+    .expand img {
+      height: 1.2em;
+    }
+    timeline li timeline-badge.standard,
+    timeline-badge:not(.standard) .check,
+    div.check {
+      width: 1.35em;
+      height: 1.35em;
+    }
+    .check {
+      border-width: 0.25em;
+      padding: 0.2em;
+    }
+    .timeline:before {
+      width: 0.3em;
+      margin-left: -0.15em;
+    }
+    .timeline li timeline-panel:before {
+      top: 5em !important;
+    }
+    .timeline li timeline-panel:after {
+      top: 24px;
+    }
+    timeline-badge:not(.standard).primary > div {
+      width: 7em;
+      margin-left: -3.5em;
+    }
+    timeline-badge:not(.standard).secondary > div {
+      width: 5em;
+      margin-left: -2.5em;
+    }
+
+    timeline-badge.secondary h1 {
+      margin-top: 0.35em;
+    }
+    timeline-badge.application h1 {
+      font-size: 0.85em;
+    }
+    timeline-badge.training h1 {
+      font-size: 0.9em;
+    }
+    timeline-badge.before h1 {
+      font-size: 0.85em;
+    }
+    timeline-badge.mentor h1 {
+      font-size: 0.85em;
+    }
+    timeline-badge.curriculum h1 {
+      font-size: 0.85em;
+    }
+    timeline-badge.secondary h1 {
+      font-size: 0.8em;
+    }
+
+
+    timeline-badge:not(.standard) img.check {
+      top: 1.75em;
+      right: -0.2em;
+    }
+    timeline-panel hr.dashboard {
+      display: block;
+    }
+    .timeline li .timeline-panel {
+      padding: 1.25em;
+    }
+    .timeline li timeline-panel {
+      margin-right: calc(50% + 2.5em);
+      margin-right: -moz-calc(50% + 2.5em);
+      margin-right: -webkit-calc(50% + 2.5em);
+    }
+    .timeline li.timeline-inverted timeline-panel {
+      margin-left: calc(50% + 2.5em);
+      margin-left: -moz-calc(50% + 2.5em);
+      margin-left: -webkit-calc(50% + 2.5em);
+    }
+    ul.timeline li timeline-panel {
+      width: 18em;
+    }
+    timeline-heading .expand {
+      position: relative;
+    }
+    timeline-heading .expand img {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    timeline-heading .expand h4 {
+      width: 75%;
+    }
+    timeline-heading .expand h4 {
+      font-size: 1.25em;
+    }
+
+    .duration {
+      font-size: 1.25em;
+    }
+    .timeline-button {
+      height: 2.5em;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .timeline-button img {
+      height: 68%;
+    }
+    .timeline-button h3 {
+      font-size: 0.7em;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div ng-controller="bookingModalCTR">
+<script type="text/ng-template" id="bookingModal.html">
+  <link rel="stylesheet" type="text/css" href="/CSS/Dashboard/calendar.css"/>
+  <div class="modal-body modal-cal">
+    <h1>
+      <button class="back-button"><span class="amsi-text"><</span><!--img src="prev-chevron.svg"--></button>
+      <span>Book Appointment</span>
+      <button class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+    </h1>
+    <div class="page book">
+      <div class="calendar" id="calendar"></div>
+    </div>
+    <h2 class="instruction"><span>select a date</span></h2>
+    <div class="page times">
+      <div class="calendar" id="day-cal"></div>
+    </div>
+    <div class="page details">
+      <div>
+        <p>Appointment details:</p>
+        <h1><span class="amsi-text"></span></h1>
+
+        <div class="hr-bound"><div><hr></div></div>
+        <h3></h3>
+        <p></p>
+
+        <div class="hr-bound"><div><hr></div></div>
+        <h3>Activity:</h3>
+        <p></p>
+
+        <div class="hr-bound"><div><hr></div></div>
+        <h3></h3>
+        <p></p>
+
+        <div class="hr-bound"><div><hr></div></div>
+        <label class="visible">Notes:</label>
+        <textarea></textarea>
+      </div>
+      <div class="button-hold">
+        <button ng-click="submitBooking()" class="standard-button hollow">Confirm</button>
+      </div>
+    </div>
+  </div>
+</script>
+<button title="Book Appointment" class="timeline-button" ng-click="open(selectedEvent)">
+  <img src="/Assets/Images/Profile/header/Calendar.svg">
+  <h3>Book Your<br>Appointment!</h3>
+</button>
+
+</div>

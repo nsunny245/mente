@@ -1,0 +1,30 @@
+<div class="modal-sim">
+	<h1>
+		<span class="amsi-text">Log In</span>
+		<button><button>
+	</h1>
+</div>
+
+<div class="modal-sim clearfix">
+	<form action="/login" method="post">
+		<label>Email</label>
+		<input type="text" class="form-control" name="email" ng-model="user.email" placeholder="Email" required>
+		<label >Password</label>
+		<input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Password" required>
+		<div>
+			<label class="visible checkbox clearfix">
+				<input type="checkbox" name="rememberme">
+				<span><div></div></span
+				><span>Remember Me</span>
+			</label>
+			<a >Forgot password?</a>
+		</div>
+		<!-- <p>{{loginMessage}}</p> -->
+		<button type="submit" class="standard-button hollow"><span class="amsi-text cap">Log In</span></button>
+	</form>
+
+	<hr>
+
+	<p>Don't have an account?</p>
+	<a href="#/signup/user" class="standard-button"><span class="amsi-text cap">Signup</span></a>
+</div>

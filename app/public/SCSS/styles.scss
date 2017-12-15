@@ -1,0 +1,996 @@
+@import 'Partials/helpers';
+//@import 'Partials/normalize';
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+//test comment
+html {
+  font-size: 16px;
+}
+
+/* Temporary Font Sources */
+@font-face {
+  font-family: AmsiPro;
+  src: url('../Assets/Fonts/EM-Amsi.Pro/OTF/AmsiProNarw-Ultra.otf');
+}
+@font-face {
+  font-family: Avenir-Black;
+  src: url('../Assets/Fonts/Avenir/Avenir-Black.ttf');
+}
+@font-face {
+  font-family: Avenir-Medium;
+  src: url('../Assets/Fonts/Avenir/Avenir-Medium.ttf');
+}
+
+/*body {
+  padding-top: 10em;
+  margin-top: 0;
+  font-size: 0.875em;
+}
+  body>div, .navbar {
+    width: 100%;
+    margin: auto;
+    overflow:hidden;
+  }*/
+body {
+  font-family: 'Avenir-Medium';
+}
+.site-content {
+  margin-top: 3em;
+}
+body>div {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#page-buffer {
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background-color: #fff;
+  z-index:1029;
+  display:none;
+}
+
+.noclick {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1020;
+  background-color: transparent;
+}
+.error-default{
+  margin-top: 0.2em !important;
+  padding-bottom: 0.1em !important;
+  text-align: center;
+  color: #ff0000;
+  width: inherit;
+
+}
+.nobreakout {
+  /*white-space: normal;*/
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+span.amsi-text {
+  font-family: 'AmsiPro';
+  letter-spacing: 0.005em;
+}
+  .cap {
+    text-transform: uppercase;
+  }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+  cursor: default;
+}
+body.modal-open {
+  overflow:auto;
+//   overflow:initial;
+}
+
+/* If you plan on using affixed states, you need to include these in your CSS */
+
+body.navbar-affixed-top {
+  padding-top: 70px;
+}
+
+body.navbar-affixed-bottom {
+  padding-bottom: 70px;
+}
+
+
+/* Bootstrap relies on HREF property of the A tag to be present to display the correct cursor but since we're using ng-click we need to have the following CSS */
+.navbar a {
+  cursor: pointer;
+}
+
+
+/* For looks, following is not necessary, although I recommend including the statements for the search form */
+form[role=search],
+form[role=search]:before,
+form[role=search]:after {
+  border: 0;
+  box-shadow: none;
+}
+
+form[role=search] button,
+form[role=search] input {
+  margin: 0;
+  border-radius: 0px;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    border-radius: 0;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .175), inset 0 -3px 6px rgba(0, 0, 0, .175);
+  }
+  .navbar-inverse .open .dropdown-menu {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+  }
+  .navbar-custom>div, .navbar-header {
+    width: 100%;
+  }
+}
+
+.navbar-custom {
+  background-color: #ccc;
+  z-index: 1030;
+  /*border-color: #bbb;*/
+}
+.navbar-custom a.navbar-brand,
+.navbar-custom a.navbar-brand:hover,
+.navbar-custom a.navbar-brand:focus {
+  margin-top: -0.325em;
+  height: 70%;
+  img {
+    height: 100%;
+    width: auto;
+  }
+  /*background-color: transparent;*/
+}
+.navbar-custom .navbar-text,
+.navbar-custom .navbar-nav > li a,
+.navbar-custom .navbar-nav > li > div > button {
+  color: $brand-blue;
+}
+.navbar-custom .navbar-nav > li > a,
+.navbar-custom .navbar-nav > li > div > button {
+  text-align: left;
+  width: 100%;
+}
+.navbar-custom .navbar-nav > li a:hover,
+.navbar-custom .navbar-nav > li a:focus,
+.navbar-custom .navbar-nav > li a:active,
+.navbar-custom .navbar-nav > li a:visited,
+.navbar-custom .navbar-nav > li a:link {
+  text-decoration: none;
+}
+.navbar-custom .navbar-nav > li > div {
+  height: 100%;
+}
+.navbar-custom .navbar-nav > li a:hover,
+.navbar-custom .navbar-nav > li a:focus,
+.nav > li a:hover,
+.nav > li a:focus,
+.nav > li button:hover,
+.nav > li button:focus {
+  color: #00c7b1;
+  background-color: transparent;
+}
+.navbar-custom .navbar-nav > .active a,
+.navbar-custom .navbar-nav > .active a:hover,
+.navbar-custom .navbar-nav > .active a:focus,
+.navbar-custom .navbar-nav > .active > div > button,
+.navbar-custom .navbar-nav > .active > div > button:hover,
+.navbar-custom .navbar-nav > .active > div > button:focus {
+  color: #00c7b1;
+  background-color: #bbb;
+}
+.navbar-custom .navbar-nav > .disabled a,
+.navbar-custom .navbar-nav > .disabled a:hover,
+.navbar-custom .navbar-nav > .disabled a:focus,
+.navbar-custom .navbar-nav > .disabled > div > button,
+.navbar-custom .navbar-nav > .disabled > div > button:hover,
+.navbar-custom .navbar-nav > .disabled > div > button:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-custom .navbar-toggle {
+  border: none;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  /*background-color: #ddd;*/
+}
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: $brand-blue;
+}
+.navbar-custom .navbar-collapse,
+.navbar-custom .navbar-form {
+  border-color: #bababa;
+}
+.navbar-custom .navbar-nav > .dropdown > a:hover .caret,
+.navbar-custom .navbar-nav > .dropdown > a:focus .caret {
+  border-top-color: #00c7b1;
+  border-bottom-color: #00c7b1;
+}
+.navbar-custom .navbar-nav > .open > a,
+.navbar-custom .navbar-nav > .open > a:hover,
+.navbar-custom .navbar-nav > .open > a:focus {
+  background-color: #bbb;
+  color: #00c7b1;
+}
+.navbar-custom .navbar-nav > .open > a .caret,
+.navbar-custom .navbar-nav > .open > a:hover .caret,
+.navbar-custom .navbar-nav > .open > a:focus .caret {
+  border-top-color: #00c7b1;
+  border-bottom-color: #00c7b1;
+}
+.navbar-custom .navbar-nav > .dropdown > a .caret {
+  border-top-color: $brand-blue;
+  border-bottom-color: $brand-blue;
+}
+.navbar-custom .navbar-link {
+  color: $brand-blue;
+}
+.navbar-custom .navbar-link,
+.navbar-nav li > div > button,
+.navbar-nav li > div > a {
+  //line-height: 1.8em;
+}
+.navbar-custom .navbar-link:hover {
+  color: #00c7b1;
+}
+.navbar-nav > li.search > div > button {
+  border-radius: 0.35em;
+  width: 85%;
+  color: $brand-blue;
+}
+.navbar-nav > li.search > div > button,
+.navbar-nav > li.search > div > button:focus {
+  background-color: #fff;
+}
+.navbar-nav > li.search > div > button:focus {
+  color: #00c7b1;
+}
+.navbar-nav > li.search > div > button > i {
+  margin-left: 0.5em;
+  font-size: 0.85em;
+}
+.navbar-nav > li.profile > div > button,
+.navbar-nav > li.profile > div > a {
+  overflow: hidden;
+  /*height: 3em;*/
+}
+.navbar-nav > li.profile > div > button > *,
+.navbar-nav > li.profile > div > a > * {
+}
+.navbar-nav > li.profile > div > button > span,
+.navbar-nav > li.profile > div > a > span {
+  overflow: hidden;
+}
+.navbar-nav > li.profile > div > a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.navbar-nav > li.profile > div > button,
+.navbar-nav > li.profile > div > a:last-child {
+  /*width: 2.25em !important;*/
+  height: 1.75em;
+  overflow: hidden;
+}
+.navbar-nav > li > div > a:first-child,
+.navbar-nav > li > div > button > span {
+  font-size: 0.85em;
+}
+.navbar-nav > li.profile > div > a:first-child:link,
+.navbar-nav > li.profile > div > a:first-child:active,
+.navbar-nav > li.profile > div > a:first-child:visited {
+  color: $brand-blue;
+}
+.navbar-nav > li.profile > div > button > img,
+.navbar-nav > li.profile > div > a:last-child {
+  margin-left: 0.6em;
+}
+.navbar-nav > li.profile > div > button > img,
+.navbar-nav > li.profile > div > a:last-child > img {
+  border-radius: 50%;
+  background-color: #fff;
+  height: 100%;
+  width: 1.75em;/* until imgs are squared on the backend */
+}
+/*.navbar-fixed-top .navbar-collapse {
+  max-height: 100%;
+}*/
+@media (max-width: 767) {
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
+    color: $brand-blue;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #00c7b1;
+    background-color: transparent;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #00c7b1;
+    background-color: #bbb;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+  .navbar-custom .navbar-nav > li > div > button {
+  }
+}
+@media (min-width: 768px) {
+  .navbar-header {
+    margin-left: 2.5em;
+  }
+  .navbar-nav {
+    height: 3em; /*same as navbar-header*/
+    margin-right: 1em;
+  }
+  .navbar-nav>li {
+    height: 100%;
+  }
+  .navbar-nav>li>a,
+  .navbar-nav>li>div {
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    /*width: 5em;*/
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+    -moz-box-align:center;
+    -moz-box-pack:center;
+    display:-webkit-box;
+  }
+  .navbar-nav>li>a>span {
+    position: relative;
+    top: 50%;
+  }
+  .nav > li > a,
+  .nav > li > div {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .navbar-nav > li.search > div > button {
+    width: 8em;
+  }
+}
+nav.navbar .fluid-container {
+  max-width: 70em;
+  margin: 0 auto;
+}
+
+.profile-icon{
+  position: relative;
+  overflow: visible !important;
+}
+.notification-dot{
+  border-radius: 50%;
+  height: 1.2em;
+  width: 1.2em;
+  border-style: solid;
+  border-width: 0.15em;
+  border-color: #ccc;
+  background-color: red;
+  position: absolute;
+  bottom: -0.3em;
+  right: -0.4em;
+}
+.notification-dot > p{
+  height: 1.4em;
+  width: 1.15em;
+  color: #000;
+  line-height: 1.4em;
+  margin: 0;
+  font-size: 0.75em;
+  text-align: center;
+  font-family: 'Avenir-Black';
+  color: #fff;
+  position: relative;
+}
+.notification-plus {
+  font-size: 0.6em;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*right: 0;*/
+  vertical-align: middle;
+}
+.navbar-custom ul.navbar-nav li.active > a,
+.navbar-custom ul.navbar-nav li.active > a:hover {
+  background-color: #e2e2e2 !important;
+}
+
+/* Generic Styles */
+button, button:focus,
+a, a:focus,
+input[type="text"], input[type="text"]:focus,
+input[type="email"], input[type="email"]:focus,
+input[type="password"], input[type="password"]:focus,
+input[type="number"], input[type="number"]:focus,
+input[type="tel"], input[type="tel"]:focus,
+textarea, textarea:focus,
+select, select:focus {
+  outline: 0;
+  box-shadow: none;
+}
+  button, button:focus,
+  a, a:focus {
+    border: none;
+  }
+  button {
+    background: none;
+    border: none;
+  }
+  .anchor-button {
+    display: inline;
+    background-color: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1em;
+    height: auto;
+    width: auto;
+    padding: 0;
+    text-decoration: underline;
+  }
+  a[disabled] {
+    pointer-events: none;
+  }
+  .standard-button {
+    display: block;
+    margin: 0 auto;
+
+    padding: 0.6em 1.5em;
+    border-radius: 0.5em;
+    color: #fff;
+    background-color: $brand-blue;
+  }
+      .standard-button:hover,
+      .standard-button:focus {
+        background-color: #2C435E;
+        border: none;
+        color: #fff
+      }
+      .standard-button[disabled] {
+        background-color: #ccc !important;
+        pointer-events: none;
+      }
+    a.standard-button {
+      display: table;
+      text-decoration: none;
+    }
+        a.standard-button:hover,
+        a.standard-button:focus {
+          color: #fff;
+        }
+    .standard-button .amsi-text {
+      letter-spacing: 0.08em;
+    }
+    .standard-button.hollow {
+      background-color: transparent;
+      border: 0.15em solid transparent;
+      border-radius: 0.75em;
+      padding: 0 1.3em;
+      height: 2.5em;
+    }
+
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  /*input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }*/
+
+  $input-height: 2.4em; //height of the input, defined in styles.scss
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="search"],
+  textarea,
+  select {
+    background-color: $brand-lightgrey;
+    color: $brand-grey;
+    width: 100%;
+
+    -webkit-transition: none;
+    transition: none;
+    border-radius: 0;
+
+    border: 0.1rem solid transparent;
+    -webkit-transition: border-color ease-in-out 0.1s;
+    transition: border-color ease-in-out 0.1s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  textarea {
+    height: 6em;
+    max-width: 100%;
+  }
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus,
+      input[type="number"]:focus,
+      input[type="tel"]:focus,
+      textarea:focus {
+        /*color: #00C7B1 !important;*/
+        background-color: #EBF6F3;
+      }
+      ::-webkit-input-placeholder,
+      textarea::-webkit-input-placeholder {
+        color: #CCC !important;
+        opacity: 1;
+      }
+      :-moz-placeholder,
+      textarea:-moz-placeholder { /* Firefox 18- */
+        color: #CCC !important;
+        opacity: 1;
+      }
+      ::-moz-placeholder,
+      textarea::-moz-placeholder {  /* Firefox 19+ */
+        color: #CCC !important;
+        opacity: 1;
+      }
+      :-ms-input-placeholder,
+      textarea:-ms-input-placeholder {
+        color: #CCC !important;
+        opacity: 1;
+      }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+      font-size: 1.2em;
+      padding: 0 1em;
+      margin: 0;
+      height: $input-height;
+    }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        input[type="tel"]:focus,
+        input[type="search"]:focus,
+        textarea:focus {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          outline: none;
+
+          border-color: #00C7B1;
+        }
+        /*input[type="text"].ng-invalid.ng-not-empty:not(:focus),
+        input[type="email"].ng-invalid.ng-not-empty:not(:focus),
+        input[type="password"].ng-invalid.ng-not-empty:not(:focus),
+        input[type="number"].ng-invalid.ng-not-empty:not(:focus) {
+          border-color: red;
+        }*/
+    input[type="search"],
+    textarea {
+      -webkit-appearance: textfield;
+      -moz-appearance:    textfield;
+      appearance:         textfield;
+    }
+      textarea {
+        width: 100%;
+      }
+
+    select {
+      -webkit-appearance: none;
+    }
+
+label {
+  /*position: absolute;
+  opacity: 0;*/
+}
+  .hidden {
+    display: block !important;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  label.visible {
+    margin: 0;
+    position: relative;
+    opacity: 1;
+    /*display: block;*/
+  }
+    label.checkbox {
+      cursor: pointer;
+      position: relative !important;
+    }
+    label.checkbox>*:nth-child(n+2){
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+      position: absolute;
+      right: 100%;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+        label.checkbox input[type="radio"] + span,
+        label.checkbox input[type="radio"] + span>div {
+          border-radius: 50%;
+        }
+      label.checkbox span {
+        display: block;
+      }
+      label.checkbox>span:first-of-type {
+        float: left;
+        clear: left;
+        box-sizing: border-box;
+        border: 0.1rem solid #7F7F7F;
+      }
+        label.checkbox input[type="checkbox"]:focus + span,
+        label.checkbox input[type="radio"]:focus + span {
+          border-color: #00C7B1;
+          background-color: #EBF6F3;
+        }
+        label.checkbox input[type="checkbox"]:disabled + span,
+        label.checkbox input[type="radio"]:disabled + span {
+          /*border-color: #ccc;*/
+          background-color: #E2E2E2;
+        }
+        label.checkbox>span:first-of-type>div {
+          width: 100%;
+          height: 100%;
+        }
+        input[type="checkbox"]:checked + span>div/*,
+        input[type="radio"]:checked + span>div*/ {
+          background-size: cover;
+          /*background-repeat: no-repeat;*/
+        }
+      label.checkbox>span:last-of-type {
+        /*vertical-align: top;*/
+        /*position: relative;*/
+        padding: 0.35em 0;
+        line-height: 1.4em;
+        overflow: hidden;
+      }
+
+  .form-container-field {
+    position: relative;
+    text-align: left;
+    //overflow: hidden;
+  }
+  .form-container-field-attn {
+    display: inline-block;
+    position: absolute;
+    right: 0.5rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    pointer-events: none;
+    height: 0;
+    color: $error-color-main;
+    $font-size: 2em;
+    &.fa {
+      font-size: $font-size;
+      font: normal normal normal $font-size FontAwesome;
+    }
+    font-size: $font-size;
+
+    &::before {
+      display: inline-block;
+      transform: translateY(-50%);
+    }
+  }
+  select + .form-container-field-attn {
+    right: 2.5rem;
+    color: #fff;
+  }
+  textarea + .form-container-field-attn {
+    top: 0.4rem;
+    bottom: auto;
+    height: auto;
+
+    &::before {
+      transform: none;
+    }
+  }
+  .form-container-field-msg {
+    color: $error-color-main !important;
+  }
+  .form-container-field-msg a {
+    text-decoration: underline;
+    &:link,
+    &:hover,
+    &:visited,
+    &:active,
+    &:focus {
+      color: inherit;
+    }
+  }
+  .label {
+    width: 100%;
+  }
+  .label .form-container-field-msg {
+    display: block;
+    //float: right;
+  }
+
+  .checkbox + .form-container-field,
+  p.label + .form-container-field,
+  .form-container-field.self-standing {
+    .form-container-field-attn {
+      right: auto;
+      left: 0;
+    }
+    .form-container-field-msg {
+      margin-top: 0.5em !important;
+      margin-left: $input-height !important;
+      margin-bottom: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  input.form-container-field-invalid:focus,
+  .checkbox.form-container-field-invalid input:focus + span:first-of-type,
+  textarea.form-container-field-invalid:focus {
+    border-color: $error-color-main;
+    background-color: $brand-lightgrey;
+  }
+  input.form-container-field-invalid,
+  textarea.form-container-field-invalid {
+    padding-right: $input-height;
+  }
+  select.form-container-field-invalid {
+    background-color: $error-color-main;
+    &:focus {
+      background-color: $error-color-main;
+      border-color: #f37976;
+    }
+  }
+      
+
+.auto-resize-iframe > div {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+
+  & > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@import 'Partials/selector';
+@import 'Partials/modals';
+
+/* Footer */
+.main-footer {
+  background-color: #CCCCCC;
+  color: $brand-blue;
+}
+  .main-footer ul {padding-left: 0;}
+    .main-footer li {list-style: none;}
+  .main-footer>.footer-nav {
+    padding: 2em 0 4em 0;
+    width: 15em;
+    margin: 0 auto;
+  }
+    .main-footer>.footer-nav>li {
+      display: inline-block;
+      /*padding: 0 0 0 2em;*/
+      width: 100%;
+      text-align: left;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+    .main-footer>.footer-nav h1 {
+      text-transform: uppercase;
+      font-family: 'Avenir-Black';
+      font-size: 1em;
+      margin: 2em 0 0.8em 0;
+    }
+    .main-footer a {
+      text-decoration: none;
+      font-size: 1em;
+      line-height: 2em;
+    }
+      .main-footer>.footer-nav a,
+      .main-footer>.footer-nav a:visited,
+      .main-footer>.footer-nav a:active {
+        font-family: 'Avenir-Medium';
+        color: $brand-blue;
+      }
+      .main-footer>.footer-nav a:hover,
+      .main-footer>.footer-nav a:focus {
+        text-decoration: none;
+        color: #00C7B1;
+      }
+  .main-footer>.footer-social {
+    background-color: $brand-blue;
+    text-align: center;
+    width: 100%;
+    padding: 0.5em 0;
+    margin: 0;
+  }
+    .main-footer>.footer-social>li {
+      display: inline-block;
+    }
+    .main-footer>.footer-social a {
+      font-size: 2em;
+      margin: 0 0.15em;
+    }
+      .main-footer>.footer-social a,
+      .main-footer>.footer-social a:visited,
+      .main-footer>.footer-social a:active {
+        color: #E5E5E5;
+      }
+      .main-footer>.footer-social a:hover,
+      .main-footer>.footer-social a:focus {
+        color: #7F7F7F;
+        text-decoration: none;
+      }
+
+.help-button {
+  float: right;
+  height: 0;
+  overflow: visible;
+}
+.help-button button {
+  background-color: #fff;
+  color: #454545;
+  border-radius: 50%;
+  font-size: 0.8em;
+
+  margin-top: 0.75em;
+  margin-right: 0.75em;
+}
+.help-button button,
+.help-button button:focus {
+  border-color: #ccc;
+  border-width: 1px;
+  border-style: solid;
+
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.2em;
+  text-align: center;
+}
+/*.help-button + * {
+  margin-top: -2.25em !important;
+}*/
+
+
+@media screen and (min-width: 30em) {
+  body {
+    /*font-size: 1em;*/
+  }
+  .main-footer {
+    /*font-size: 0.875em;*/
+  }
+    .main-footer>.footer-nav {
+      width: 27em;
+    }
+      .main-footer>.footer-nav>li {
+        width: 50%;
+      }
+    .main-footer>.footer-social {
+      padding: 1em;
+    }
+}
+@media screen and (min-width: 45em) {
+  body {
+    /*font-size: 1.125em;*/
+  }
+  .main-footer {
+    font-size: 0.75em;
+  }
+    .main-footer>.footer-nav {
+      /*background-color: blue;*/
+      width: 48em;
+    }
+      .main-footer>.footer-nav>li {
+        width: 25%;
+      }
+        /*.main-footer>.footer-nav>li:nth-child(2) {
+          width: 45%;
+        }
+        .main-footer>.footer-nav>li:nth-child(3) {
+          width: 18%;
+        }*/
+    .main-footer>.footer-social {
+      padding: 1em;
+    }
+}
+@media screen and (min-width: 60em) {
+  body {
+    /*font-size: 1.125em;*/
+  }
+  .main-footer {
+    font-size: 0.85em;
+  }
+    .main-footer>.footer-nav {
+      width: 52em;
+      padding-top: 4em;
+      padding-bottom: 6em;
+    }
+      .main-footer>.footer-nav>li:nth-child(1) {
+        width: 28%;
+      }
+      .main-footer>.footer-nav>li:nth-child(2) {
+        width: 26%;
+      }
+      .main-footer>.footer-nav>li:nth-child(3) {
+        width: 26%;
+      }
+      .main-footer>.footer-nav>li:nth-child(4) {
+        width: 20%;
+      }
+    .main-footer>.footer-social {
+      font-size: 1.5em;
+      padding: 0.75em;
+    }
+}
+@media screen and (min-width: 75em) {
+  body {
+    /*font-size: 1.25em;*/
+  }
+  .main-footer {
+    /*font-size: 0.625em;*/
+  }
+    .main-footer>.footer-nav {
+      width: 60em;
+    }
+}
+
+.delete{
+  background-color: $brand-red;
+  &:hover,
+  &:focus {
+    background-color: $brand-red-hover;
+  }
+}

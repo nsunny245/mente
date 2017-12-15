@@ -1,0 +1,83 @@
+<nav class="navbar navbar-custom navbar-fixed-top">
+	<div class="fluid-container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+			<a class="navbar-brand navbar-link" id="scrollLocation" href="#/home"><img src="/Assets/Images/logos/ca_logo-dark.svg"/></a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="main-nav">
+			<ul class="nav navbar-nav navbar-right">
+
+				<li class="nav-about"><a href="#/about" class="navbar-link"><span>About</span></a></li>
+				<li class="nav-mentorship"><a href="#/mentorship" class="navbar-link"><span>Mentorship</span></a></li>
+				<li class="nav-education"><a href="#/education" class="navbar-link"><span>Education</span></a></li>
+				<li class="nav-community"><a href="#/community" class="navbar-link"><span>Community</span></a></li>
+				<li class="nav-contentmanager" ng-if="userProfile.status === 'admin'">
+					<a href="#/adminPanel" class="navbar-link" style="background-color:#EF4F5B">Admin Panel</a>
+				</li>
+				<!--SEARCH MODAL, does nothing removing for now-->
+				<!--<li class="navbar-link search">
+					<search-modal></search-modal>
+				</li>-->
+
+				<!--testing FEEDBACK MODAL-->
+				<!-- <li class="navbar-link feedback">
+					<a class="navbar-link">
+					<feedback-modal></feedback-modal>
+					</a>
+				</li> -->
+				<!--testing FEEDBACK MODAL-->
+
+
+				<!--LOGIN MODAL-->
+				<li class="navbar-link profile" ng-if="!userProfile">
+					<login-modal ng-model="loginModalType" ng-init="loginModalType = 'default'"></login-modal>
+				</li>
+				<li class="navbar-link profile" ng-if="userProfile">
+					<!-- this has dropdown class with commented below -->
+					<div>
+						<a role="button" ng-click="logout()">Logout</a>
+						<a ng-if="userProfile.status !== 'admin'" href="#/profile/calendar" class="profile-icon">
+							<img ng-src="{{userProfile.picture}}" src="/Assets/Images/profile-icon.svg">
+							<!-- <div class="login-status"></div> -->
+							<div ng-show="newMessages > 0">
+								<span class="glyphicon glyphicon-envelope"></span>
+								<div class="notification-dot">
+									<p>{{newMessages > 9 ? "9" : newMessages}}<span ng-if="newMessages > 9" class="notification-plus">+</span></p>
+								</div>
+							</div>
+						</a>
+						<!-- 		<a ng-if="'mentee'==userProfile.status || 'menteeInTraining'===userProfile.status || 'menteeSeeking'===userProfile.status || 'mentorInTraining'===userProfile.status || 'mentorSeeking'===userProfile.status"
+						href="#/profile/timeline">
+						<img ng-src="{{userProfile.picture}}" src="/Assets/Images/profile-icon.svg">
+						<div ng-show="newMessages != 0">
+							<span class="glyphicon glyphicon-envelope"></span>
+							<h2>{{newMessages}}</h2>
+						</div>
+					</a>
+					<a ng-if="'verified'==userProfile.status" href="#/profile/activity">
+						<img ng-src="{{userProfile.picture}}" src="/Assets/Images/profile-icon.svg">
+						<div ng-show="newMessages != 0">
+							<span class="glyphicon glyphicon-envelope"></span>{{newMessages}}
+						</div>
+					</a>
+					<a ng-if="'unverified'==userProfile.status" href="#/profile/activity">
+						<img src="/Assets/Images/profile-icon.svg">
+						<div ng-show="newMessages != 0">
+							<span class="glyphicon glyphicon-envelope"></span>{{newMessages}}
+						</div>
+					</a> -->
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="noclick"></div>

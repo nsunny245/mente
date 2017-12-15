@@ -1,0 +1,181 @@
+<head>
+    <style type="text/css">
+        table, th, td {
+         border: 1px solid black;
+         border-spacing: 1px;
+         padding: 2%;
+         background-color: #b7b4a5;
+     }
+     p{
+        font-family: "Avenir-Black";
+        text-align: center;
+        margin: auto; 
+    }
+    select {
+        display: block;
+        margin: 0 auto;
+    }
+    input{
+        width: 100%;
+        display: block;
+    }
+    label.visible.checkbox>span:first-of-type {
+        float: none;
+        display: inline-block;
+    }
+    input[type=checkbox] + span {
+        background-color: #fff;
+        width: 1.4em;
+        height: 1.4em;
+        padding: 0.25em;
+    }
+    label {
+        display: inline-block;
+        text-align: center;
+    }
+    input[type=checkbox]:checked + span > div {
+        background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+    }
+    input[type=checkbox] + span + span {
+        position: absolute;
+    }
+    .inline{
+        display: inline-block;
+    }
+</style>
+</head>
+<br><br><br><br><br>
+<h1>Account Manager</h1>
+<button class="standard-button inline" ng-click="AutoComplete()">Test Complete</button>
+
+
+<button class="standard-button inline" ng-click="showFeaturedMentorSection = ! showFeaturedMentorSection; showMentorApprovalSection = false;showUserIssueSection = false">Featured <br> Mentors</button>
+<button class="standard-button inline" ng-click="showMentorApprovalSection = ! showMentorApprovalSection; showFeaturedMentorSection = false; showUserIssueSection = false">Mentor <br> Approval</button>
+<button class="standard-button inline" ng-click="showUserIssueSection = ! showUserIssueSection; showFeaturedMentorSection = false; showMentorApprovalSection = false">User <br> Issues</button>
+
+<!-- Mentor Approval section -->
+<div ng-show="showMentorApprovalSection">
+	<h2>New Mentor Approval</h2>
+	<div ng-if="pendingMentors.length == 0">No pending mentors at this time!</div>
+	<div ng-repeat="mentor in pendingMentors">
+		<p>{{mentor.mentor[0].firstName }} {{mentor.mentor[0].lastName}}</p>
+		<p>Registered on {{mentor.since | date:'medium'}}</p>
+		<p>Username: {{mentor.username}}</p>
+		<img ng-src="{{mentor.picture}}">
+		<p>Email: {{mentor.email}}</p>
+		<p>Work email: {{mentor.mentor[0].workEmail}}</p>
+		<p>Phone: {{mentor.mentor[0].phone}}</p>
+		<p>Age: {{mentor.mentor[0].age}}</p>
+		<p>Highest Education: {{mentor.mentor[0].highestEducation}}</p>
+		<p>Field of Study: {{mentor.mentor[0].study}}</p>
+		<p>Current field of Work: {{mentor.mentor[0].currentField}}</p>
+		<p>Years of experiance in this field: {{mentor.mentor[0].numberOfYearsInField}}</p>
+		<p>Reason for joining: {{mentor.mentor[0].why}}</p>
+		<p>Are you currently in a mentorship program: {{mentor.mentor[0].isCurrentlyInMentorship}}</p>
+		<p>If so provide details: {{mentor.mentor[0].currentlyInMentorshipDetails}}</p>
+		<p>What do you want to gain from this experiance? {{mentor.mentor[0].gain}}</p>
+		<p>What do you think your mentee would gain? {{mentor.mentor[0].gainMentee}}</p>
+		<p>Tell us more about yourself: {{mentor.mentor[0].share}}</p>
+		<button class="standard-button inline" ng-click="ApproveMentor(mentor.email)">Approve</button><div ng-show="approvalSuccess">Mentor Added to the availability pool!</div>
+
+	</div>
+
+</div>
+<!-- User Issues -->
+<div ng-show="showUserIssueSection">
+<h2>User Issues</h2>
+</div>
+<!-- Featured Mentor Section -->
+<div ng-show="showFeaturedMentorSection">
+<h2>Featured Mentors</h2>
+<br>
+<table>
+	<tr>
+		<td>
+			<button class="standard-button inline" ng-click="LoadFeaturedMentors()">Click to load the list<br> of featured mentors</button>
+			<br>
+			<label>Select Featured Mentor</label>
+			<select ng-model="featuredMentor">
+				<option ng-repeat="mentor in featuredMentors track by $index" value="{{$index}}">{{mentor.fullName}}</option>
+			</select>
+		</td>
+		<td>
+			<button class="standard-button inline" ng-click="LoadOptInMentors()">Click to load the list<br> of opt in mentors</button>
+			<br>
+			<label>Select Available Mentor</label>
+			<select ng-model="AvailableMentor">
+				<option ng-repeat="mentor in AvailableMentors track by $index" value="{{$index}}">{{mentor.username}}</option>
+			</select>			
+		</td>
+	</tr>
+</table>
+<br>
+<table>
+	<tr>
+		<td colspan="3"><p>Current list</p></td>	
+		<td colspan="1"></td>
+		<td colspan="3"><p>Available</p></td>	
+	</tr>
+	<tr>
+		<td colspan="3"><img ng-src="{{featuredMentors[featuredMentor].picture}}"></td>		
+		<td colspan="1"></td>		
+		<td colspan="3"><img ng-src="{{AvailableMentors[AvailableMentor].picture}}"></td>
+	</tr>
+	<tr>				
+	</tr>
+	<tr>
+		<td><p>Name</p></td>
+		<td><p>Highest Education</p></td>
+		<td><p>Current field</p></td>
+		<td colspan="1"></td>
+		<td><p>Name</p></td>
+		<td><p>Highest Education</p></td>
+		<td><p>Current field</p></td>
+	</tr>
+	<tr>
+		<td><p>{{featuredMentors[featuredMentor].fullName}}</p></td>
+		<td><p>{{featuredMentors[featuredMentor].highestEducation}}</p></td>
+		<td><p>{{featuredMentors[featuredMentor].currentField}}</p></td>
+		<td colspan="1"></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].firstName + AvailableMentors[AvailableMentor].mentor[0].lastName }}</p></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].highestEducation}}</p></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].currentField}}</p></td>
+	</tr>
+	<tr>
+		<td><p>Number of years In field</p></td>
+		<td><p>Shared</p></td>
+		<td><p>Reason for joinning</p></td>
+		<td colspan="1"></td>
+		<td><p>Number of years In field</p></td>
+		<td><p>Shared</p></td>
+		<td><p>Reason for joinning</p></td>
+	</tr>
+	<tr>
+		<td><p>{{featuredMentors[featuredMentor].numberOfYearsInField}}</p></td>
+		<td><p>{{featuredMentors[featuredMentor].share}}</p></td>
+		<td><p>{{featuredMentors[featuredMentor].why}}</p></td>
+		<td colspan="1"></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].numberOfYearsInField}}</p></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].share}}</p></td>
+		<td><p>{{AvailableMentors[AvailableMentor].mentor[0].why}}</p></td>
+	</tr>
+	<tr>
+		<td><p>Last Updated On</p></td>
+		<td><p>Notes</p></td>
+		<td></td>
+		<td></td>
+		<td><p>Joined</p></td>
+		<td><p></p></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><p>{{featuredMentors[featuredMentor].updatedOn}}</p></td>
+		<td><p>{{featuredMentors[featuredMentor].other}}</p></td>
+		<td><button class="standard-button inline" ng-click="RemoveFeaturedMentor(featuredMentors[featuredMentor].email)">Remove this account<br> from featured list</button></td>
+		<td></td>
+		<td><p>{{AvailableMentors[AvailableMentor].since  | date:'medium'}}</p></td>
+		<td><p></p></td>
+		<td><button class="standard-button inline" ng-click="AddFeaturedMentor(AvailableMentors[AvailableMentor], otherInfo)">Remove this account<br> from featured list</button></td>
+	</tr>
+</table>
+</div>

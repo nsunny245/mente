@@ -1,0 +1,730 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.mentorship-css {
+  /*.blueBg {
+    background-color: rgba(0, 199, 177, 0.7);
+  }
+
+  .darkblueBg {
+    background-color: rgba(0, 38, 58, 0.7);
+  }
+
+  .white-out {
+    color: white !important;
+  }*/
+
+  /*NOTE THAT STYLING FOR CAROUSEL LIVES IN CARAOSEL.HTML*/
+
+  $brand-blue: #00263a;
+
+  * {
+    //background-color: $brand-blue !important;
+  }
+
+
+  .mentorship,
+  .resources {
+    h1 br {
+      display: none;
+      @include min-screen(30em) {
+        display: block;
+      }
+    }
+  }
+
+  .mentorship {
+    @include floatingBlocks(#fff, $brand-darkgrey, $brand-blue, $brand-blue-hover, 3);
+
+    $articleOneColor: $brand-yellow;
+    $articleTwoColor: $brand-cyan;
+    $articleThreeColor: $brand-navyblue;
+
+
+    article:nth-of-type(1) {
+      .up-arrow-ind {
+        border-bottom-color: $articleOneColor;
+      }
+      .down-arrow-ind {
+        border-top-color: $articleOneColor;
+      }
+      button.standard-button.hollow:hover {
+        color: $articleOneColor;
+      }
+      .art-content,
+      .ex-content-bar,
+      .ex-content {
+        background-color: $articleOneColor;
+      }
+    }
+    article:nth-of-type(2) {
+      .up-arrow-ind {
+        border-bottom-color: $articleTwoColor;
+      }
+      .down-arrow-ind {
+        border-top-color: $articleTwoColor;
+      }
+      button.standard-button.hollow:hover {
+        color: $articleTwoColor;
+      }
+      .art-content,
+      .ex-content-bar,
+      .ex-content {
+        background-color: $articleTwoColor;
+      }
+    }
+    article:nth-of-type(3) {
+      .up-arrow-ind {
+        border-bottom-color: $articleThreeColor;
+      }
+      .down-arrow-ind {
+        border-top-color: $articleThreeColor;
+      }
+      button.standard-button.hollow:hover {
+        color: $articleThreeColor;
+      }
+      .art-content,
+      .ex-content-bar,
+      .ex-content {
+        background-color: $articleThreeColor;
+      }
+    }
+
+    .art-content {
+      padding-bottom: 0;
+    }
+    button {
+      margin-bottom: 1.75em;
+    }
+  }
+
+  article {
+    overflow: visible;
+    width: 100%;
+  }
+
+
+  .block .art-content,
+  .block .ex-content {
+    overflow: hidden;
+  }
+  .block .art-content > *:not(p,img) {
+    margin: 0;
+  }
+  .mentorship .ex-content-bar {
+    display: none;
+    height: 1.5em;
+    z-index: 2;
+    width: 100%;
+  }
+  .ex-content-content {
+    z-index: 1;
+  }
+  .ex-content > div {
+    position: relative;
+    bottom: 0;
+    //-webkit-transition-property: bottom;
+    //-o-transition-property: bottom;
+    //   transition-property: bottom;
+    //-webkit-transition-duration: 0.35s;
+    //-o-transition-duration: 0.35s;
+    //   transition-duration: 0.35s;
+    //-webkit-transition-timing-function: ease;
+    //-o-transition-timing-function: ease;
+    //   transition-timing-function: ease;
+  }
+  .block .ex-content > div > div {
+    background-color: #F2F2F2;
+    color: #7F7F7F;
+    padding-top: 3.5em;
+    text-align: center;
+  }
+  .block .ex-content .up-arrow-ind,
+  .block .down-arrow-ind {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    margin: 0 auto;
+  }
+  .block .ex-content .up-arrow-ind {
+    border-width: 1.5em;
+    margin-top: -1.5em;
+  }
+  .block .down-arrow-ind {
+    border-width: 2em;
+    display: none;
+    -webkit-transition-property: top;
+    -o-transition-property: top;
+       transition-property: top;
+    -webkit-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+       transition-duration: 0.1s;
+    -webkit-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+       transition-timing-function: ease;
+  }
+
+  .block .ex-content {
+  }
+  .block .ex-content img {
+    width: 10em;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 1.5em;
+  }
+  .block .ex-content h2,
+  .block .ex-content p {
+  }
+  .block .ex-content h2 {
+    font-size: 1.7em;
+    line-height: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .ex-point {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .ex-point {
+    margin-bottom: 2.5em;
+  }
+  .ex-point p {
+    margin-top: 1em;
+  }
+
+
+
+  .block.get-started {
+    padding-top: 2em;
+    padding-bottom: 2.5em;
+  }
+  .apply-button {
+    background-color: $brand-cyan;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-top: 1.5em;
+    font-size: 0.7em;
+  }
+  .apply-button:link,
+  .apply-button:focus,
+  .apply-button:hover,
+  .apply-button:active,
+  .apply-button:visited {
+    color: #fff;
+  }
+  .apply-button:hover,
+  .apply-button:focus {
+    background-color: $brand-cyan-hover !important;
+  }
+  .apply-button>img {
+  //.apply-button>span {
+    height: 2.25em;
+  }
+  .apply-button>span {
+    //line-height: 2em;
+    font-size: 1.25em;
+    margin-left: 0.5em;
+    position: relative;
+    display: inline-block;
+    transform: translateY(16%);
+  }
+  .block.match {
+    padding-bottom: 2.25em;
+  }
+  /*.block.mentorship,
+  .block.match-image {
+    padding-bottom: 0;
+  }*/
+
+
+  .resources {
+    @include floatingBlocks($brand-lightgrey, $brand-blue, $brand-blue, $brand-blue-hover, 2);
+    article:first-of-type {
+      background-color: $brand-grey;
+    }
+    article:last-of-type {
+      background-color: $brand-blue;
+    }
+
+    & > h1 {
+      color: #004F71;
+    }
+    p {
+      color: inherit;
+    }
+  }
+
+  .get-started {
+    text-align: center;
+  }
+  .get-started > img,
+  .get-started > h1 {
+    display: inline-block;
+  }
+  .get-started > img {
+    width: 2em;
+  }
+  .block.get-started > h1 {
+    color: #004F71;
+    font-size: 1em;
+    margin: 0;
+    margin-left: 0.5em;
+    position: relative;
+    transform: translateY(25%);
+  }
+  .block.get-started > h1 > span {
+    font-size: 1.5em;
+  }
+
+  $match-bg: $brand-cyan;
+  .match {
+    @include hubBlocks($match-bg, #fff, $brand-blue, $brand-blue-hover, true, true);
+  }
+  .match-image {
+    background-color: $match-bg;
+  }
+  // Adjust height on this element to change size of apparent image! 
+  .match-image {
+    background-image: url("/Assets/Images/Mentorship/perfect_match.svg");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: calc(50% + 1.6vw) center;
+    height: 70vw; //TODO
+    overflow: hidden;
+    position: relative;
+  }
+  .match-image > img {
+    height: 72.5%;
+    top: 27.5%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+    position: absolute;
+  }
+  .match-image > div {
+    background-color: $brand-blue; //#fff;
+    height: 27.5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+  }
+  .mentor {
+    @include hubBlocks(#fff, $brand-navyblue, $brand-blue, $brand-blue-hover, true, true);
+    h1 {
+      margin-top: 0;
+    }
+  }
+  .elipsis {
+    text-align: center;
+    margin-top: 0.8em;
+    margin-bottom: 0.4em;
+  }
+  .elipsis span {
+    color: #00263A;
+    display: block;
+    font-size: 0.5em;
+    line-height: 0.9em;
+  }
+
+  .join-program {
+    @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, false, true);
+    a.apply-button:not(.hollow) {
+      font-size: 0.8em;
+    }
+  }
+
+  // Copied from matches.css - should probably take styles directly 
+  /*.mentors {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    width: 92%;
+    margin: 0 auto;
+    color: #7F7F7F;
+  }
+  .mentors li {
+    display: inline-block;
+    width: 31%;
+    margin: 0 1.75%;
+  }
+    .mentors li:first-child {
+      margin-left: 0;
+    }
+    .mentors li:last-child {
+      margin-right: 0;
+    }
+  .mentors button {
+    height: auto;
+  }
+    .indicator:nth-child(-n+3) {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .mentors .indicator:nth-child(-n+3) {
+      background-color: #CCC;
+    }
+    .mentors .indicator:nth-child(3) {
+      height: 0.75em;
+    }
+    .section-nav {
+      color: #CCC;
+    }
+    .mentors img {
+      background-color: #fff;
+      width: 70%;
+      border-radius: 50%;
+      padding: 5%;
+      border: 0.2em solid #7F7F7F;
+    }
+    .mentors h1, .section-nav h1 {
+      margin: 0;
+    }
+    .mentors h1 {
+      font-size: 1em;
+      line-height: 0.95em;
+      padding-top: 0.7em;
+      padding-bottom: 0.5em;
+    }
+    .mentors p {
+      display: none;
+      font-size: 0.7em;
+      margin: 0;
+    }
+      .mentors p:last-of-type {
+        margin-top: 2em;
+        text-decoration: underline;
+      }
+    .mentors div:nth-child(2) :first-child {
+      margin-top: 0;
+    }
+    .mentors div:nth-child(2) :last-child {
+      margin-bottom: 0;
+    }
+    .mentors div:nth-child(2) {
+      padding-bottom: 1.5em;
+    }
+
+  .indicator:nth-child(-n+3) {
+
+  }
+    .mentors .indicator:nth-child(3) {
+      //TODO WHAT WAS THE HEIGHT??????????
+      //height: 1.1em;
+    }
+    .section-nav .indicator {
+      height: 0.3em;
+      background-color: #CCC;
+    }
+  .indicator:nth-child(4) {
+    height: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    border: 0.5em solid transparent;
+    transform: translateY(-0.1em);
+  }
+      .mentors li:nth-child(1).active .indicator:last-child {
+        border-top-color: #004F71;
+      }
+      .mentors li:nth-child(1).active .indicator:nth-child(-n+3) {
+        background-color: #004F71;
+      }
+      .mentors li:nth-child(1).active h1 {
+        color: #004F71;
+      }
+      .mentors li:nth-child(1).active img {
+        border-color: #004F71;
+      }
+
+      .mentors li:nth-child(2).active .indicator:last-child {
+        border-top-color: #00C7B1;
+      }
+      .mentors li:nth-child(2).active .indicator:nth-child(-n+3) {
+        background-color: #00C7B1;
+      }
+      .mentors li:nth-child(2).active h1 {
+        color: #00C7B1;
+      }
+      .mentors li:nth-child(2).active img {
+        border-color: #00C7B1;
+      }
+
+      .mentors li:nth-child(3).active .indicator:last-child {
+        border-top-color: #E40046;
+      }
+      .mentors li:nth-child(3).active .indicator:nth-child(-n+3) {
+        background-color: #E40046;
+      }
+      .mentors li:nth-child(3).active h1 {
+        color: #E40046;
+      }
+      .mentors li:nth-child(3).active img {
+        border-color: #E40046;
+      }*/
+
+  @media (min-width: 30em) {
+    .get-started a.apply-button,
+    .get-started div[ng-controller="loginModalCTR"] {
+      display: inline-block;
+    }
+    .ex-point {
+      overflow: hidden;
+    }
+    $img-width: 10em;
+    $img-margin: 1.5em;
+    .mentorship .ex-content img {
+      width: $img-width;
+      margin-right: $img-margin;
+      margin-bottom: 0;
+      vertical-align: top;
+      float: left;
+    }
+    .mentorship .ex-content img + div {
+      margin-left: $img-width + $img-margin;
+      display: block;
+      text-align: center;
+    }
+    .mentorship .ex-content img + div p {
+      width: auto;
+    }
+
+    .get-started .apply-button {
+      font-size: 0.85em;
+    }
+    .get-started a.apply-button,
+    .get-started div[ng-controller="loginModalCTR"] {
+      font-size: 0.6em;
+      margin-left: 2em;
+      margin-top: 0;
+      vertical-align: middle;
+    }
+    .get-started div[ng-controller="loginModalCTR"] > button {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0;
+      margin-top: 0;
+      display: inline-block;
+    }
+    .get-started .apply-button > span {
+      font-size: 1.5em;
+    }
+
+    .match-image {
+      height: 50vw;
+      background-position: calc(50% + 1.3vw) center;
+    }
+
+    .block > p.elipsis {
+      font-size: 1.35em;
+      margin-bottom: 1em;
+    }
+  }
+  @media (min-width: 45em) {
+    .mentorship .collapsing {
+      -webkit-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+         transition-duration: 0.3s;
+    }
+    article {
+      margin-right: 0;
+    }
+    article:first-of-type {
+      margin-left: 0;
+    }
+    .mentorship article {
+      display: inline-block;
+      text-align: center;
+      overflow: visible;
+      padding-bottom: 0;
+      margin-bottom: -4em;
+    }
+    .mentorship .art-content {
+      position: relative;
+      height: 34em;
+    }
+    .block article button.standard-button.hollow {
+      margin-bottom: 0;
+      position: absolute;
+      width: 11em;
+      bottom: 2em;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+
+    .mentorship article:nth-of-type(1) .ex-content,
+    .mentorship article:nth-of-type(2) .ex-content,
+    .mentorship article:nth-of-type(3) .ex-content {
+      background-color: transparent;
+    }
+    .mentorship .down-arrow-ind,
+    .mentorship .ex-content-bar {
+      display: block;
+    }
+    .mentorship .down-arrow-ind {
+      position: relative;
+      top: -2em;
+      //z-index: 5;
+    }
+    .mentorship .ex-content {
+      position: relative;
+      top: -1em;
+      width: 314.136128%; //from hubBlocks: 100%/artWidth=31.83/100
+    }
+    .mentorship .ex-content-content {
+      margin-bottom: 5em;
+    }
+    .mentorship article:nth-of-type(2) .ex-content {
+      margin-left: -107.680629%;
+    }
+    .mentorship article:last-of-type .ex-content {
+      margin-left: -214.1361258%;
+    }
+    .mentorship .ex-content .up-arrow-ind,
+    .mentorship article .ex-content button {
+      display: none;
+    }
+    .ex-content .ex-point {
+      display: inline-block;
+      width: 33.3%;
+      overflow: hidden;
+      text-align: center;
+      vertical-align: top;
+      margin-bottom: 0;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+    }
+    .mentorship .ex-content img,
+    .mentorship .ex-content img + div {
+      float: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .block .ex-content > div > div {
+      padding-top: 2.5em;
+      padding-bottom: 3em;
+    }
+    .mentorship .ex-content img {
+      width: 8em;
+      margin-bottom: 2em;
+    }
+    .mentorship .ex-content img + div > h2 {
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1em;
+      margin-bottom: 0.8em;
+      height: 3.25em;
+    }
+    .mentorship .ex-content img + div > p {
+      font-size: 1;
+    }
+
+    .get-started {
+      font-size: 1.5em;
+      padding-bottom: 1.5em;
+    }
+    .get-started > img {
+      width: 2.25em;
+    }
+    .get-started a.apply-button,
+    .get-started div[ng-controller="loginModalCTR"] {
+      margin-top: 1.25em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .get-started a.apply-button {
+      display: table;
+    }
+    .get-started div[ng-controller="loginModalCTR"] {
+      display: block;
+    }
+
+    .match-image {
+      height: 34em;
+      background-position: calc(50% + 0.75em) center;
+    }
+    .block > p.elipsis {
+    }
+    .elipsis span {
+      font-size: 0.75em;
+      line-height: 1em;
+    }
+
+    .join-program .apply-button {
+      margin-top: 2.5em;
+    }
+  }
+
+  @media (min-width: 60em) {
+    .mentorship .art-content {
+      height: 32em;
+    }
+    .block article button.standard-button.hollow {
+      bottom: 2.5em;
+    }
+
+    .mentorship .ex-content {
+      width: 60em;
+    }
+    .mentorship article:nth-of-type(2) .ex-content {
+      margin-left: -20.66667em;
+    }
+    .mentorship article:last-of-type .ex-content {
+      margin-left: -41.22222em;
+    }
+
+    .ex-content .ex-point {
+      padding-left: 1.25em;
+      padding-right: 1.25em;
+    }
+    .block .ex-content > div > div {
+      padding-top: 2em;
+      padding-bottom: 3em;
+    }
+    .mentorship .ex-content img {
+      width: 10em;
+      margin-bottom: 1.5em;
+    }
+    .mentorship .ex-content img + div > h2 {
+      font-size: 1.5em;
+      height: 2em;
+    }
+    .mentorship .ex-point h2 {
+      width: 10em;
+    }
+
+
+    .get-started {
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
+    .get-started > h1 {
+      margin-left: 0.75em;
+    }
+    .get-started .apply-button {
+      font-size: 1em;
+    }
+    .get-started a.apply-button,
+    .get-started div[ng-controller="loginModalCTR"] {
+      display: inline-block;
+      margin-top: 0;
+      margin-left: 2.25em;
+    }
+
+    .block.match {
+      padding-bottom: 3.5em;
+    }
+
+    .join-program .apply-button {
+      font-size: 1em;
+    }
+  }
+}

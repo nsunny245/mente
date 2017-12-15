@@ -1,0 +1,101 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.podcast-css {
+	background-color: $brand-lightgrey;
+
+	header.block:nth-child(n) {
+	    @include hubBlocks(snow, $brand-blue, $brand-blue, $brand-blue-hover, false, true);
+	    h2 {
+	        font-size: 1.25em;
+	    }
+	    h1, p {
+	      text-align: center;
+	    }
+	}
+
+
+	.menu-on {
+		background-color: $brand-blue !important;
+	}
+
+	.education-content {
+		text-align: center;
+		.education-content-view {
+			& h1,
+			& h2 {
+				color: $brand-blue;
+				text-align: center;
+				margin-top: 0;
+				line-height: 1em;
+			}
+			& h1 {
+				font-size: 2em;
+			}
+		}
+		@include min-screen(48em) {
+			.education-content-view-split {
+				width: 50%;
+				display: inline-block;
+				vertical-align: top;
+			}
+		    & > .education-content-view-split:first-child > ul,
+		    & > :not(.education-content-view-split) + .education-content-view-split > ul {
+		      padding-right: 1em;
+		    }
+		    & > .education-content-view-split + .education-content-view-split > ul {
+		      padding-left: 1em;
+		    }
+	    }
+	}
+
+	.red-text {
+		color: $brand-red;
+	}
+	.live-indicator-span {
+		margin-left: 0.1em;
+		margin-right: 0.1em;
+	}
+	.live-bullet {
+		font-size: 1.2em;
+	}
+
+	.sort-links {
+		margin-top: 3em;
+	}
+	.sort-links + ul {
+		padding: 0;
+	}
+
+	.education-content > .webinar-live {
+		width: 100%;
+		background-color: #fff;
+		border-radius: 0.25em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-top: 2em;
+		padding-bottom: 2.5em;
+		margin-top: 2em;
+		margin-bottom: 0;
+
+		& > div {
+			max-width: 40em;
+			margin-left: auto;
+			margin-right: auto;
+			width: 100%;
+
+			& > *:not(.auto-resize-iframe) {
+				max-width: 30em;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			& > p:last-child {
+				margin-bottom: 0;
+			}
+			& > h2 {
+				color: $brand-darkgrey;
+				margin-bottom: 0.5em;
+			}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+<div ng-controller="menteeMentorModalCTR">
+    <script type="text/ng-template" id="menteeMentorModal.html">
+    <div class="type-card">
+        <img src="/Assets/Images/Signup/Select/select_icon.svg" class="img-responsive">
+        <img src="/Assets/Images/Signup/Select/select_icon.svg" class="img-responsive" ng-if="tcType === 'mentor'">
+
+    <div ng-if="tcType === 'mentee'">
+        <h1><span class="amsi-text">Work with a<br>Mentor</span></h1>
+        <p>&middot; Pair up with a Mentor<br>&middot; Follow a 16-week curriculum<br>&middot; Get the guidance you need</p>
+    </div>
+    <div ng-if="tcType === 'mentor'">
+        <h1><span class="amsi-text">Be a<br>Mentor</span></h1>
+    <p>&middot; Mentor someone<br>&middot; Follow a 16-week curriculum<br>&middot; Gain leadership skills</p>
+    </div>
+        <a href="#/signup/mentorship">+ more info</a>
+        <p>{{jsonTC}}</p>
+    </div>
+        <a ng-click="CheckVerified(tcType)" class="standard-button"><span class="amsi-text cap">Sign Up</span></a>
+  </div>
+  </div>
+</script>
+</div>

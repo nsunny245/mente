@@ -1,0 +1,11 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.research-css {
+  header.block {
+    @include hubBlocks($brand-navyblue, #fff, $brand-blue, $brand-blue-hover, false, true);
+    h1 {
+    	margin: 0;
+    }
+  }
+}

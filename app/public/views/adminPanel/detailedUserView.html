@@ -1,0 +1,44 @@
+<div class="profile-settings-css">
+    <!--<div ng-if="!chatAuthorized">
+    <form>
+      <input type="password" placeholder="re enter your password for security" ng-model="pass" />
+      <button type="submit" ng-click="ChatAuth(pass)">Authorize</button>
+    </form>
+  </div>
+
+  <div ng-if="chatAuthorized">-->
+    <div class="holder">
+        <div class="holder">
+            <br></br>
+            <div class="standalone-button">
+                <h1>Contact</h1>
+                <h2>Name: {{userTypeDetails.firstName + " " + userTypeDetails.middleName + " " + userTypeDetails.lastName}} </h2>
+                <h2>Username: {{userBasicDetails.username}}</h2>
+                <h2>Email: {{userBasicDetails.email}} </h2>
+                <h2 ng-if="userType == 'mentor'">Phone Number: {{userTypeDetails.study}} </h2>
+
+                <h1>Background Info</h1>
+                <h2>Type: {{userBasicDetails.status}}</h2>
+                <h2>Currently in Mentorship: {{userTypeDetails.isCurrentlyInMentorship}}</h2>
+                <h2>Age: {{userTypeDetails.age}}</h2>
+                <h2>Current Field of Study: {{userTypeDetails.study}}</h2>
+                <h2>Current Field of Work: {{userTypeDetails.currentField}}</h2>
+
+
+                <h1>Application Responses</h1>
+                <h2>What the user has chosen to share with others:</h2>
+                <h3> {{userTypeDetails.share}}</h3>
+                <h2>Reason for joining:</h2>
+                <h3> {{userTypeDetails.why}}</h3>
+                <h2>Biggest challenge for user:</h2>
+                <h3> {{userTypeDetails.biggestChallenge}}</h3>
+
+                <button class="standard-button" ui-sref="adminPanel.users">Back</button>
+            </div>
+
+            <!--{{errorMsg}}-->
+            <!-- Generic settings here -->
+            <div>
+            </div>
+        </div>
+    </div>

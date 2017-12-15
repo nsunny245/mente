@@ -1,0 +1,2436 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/views/standalone-modules/e_style.css">
+</head>
+<div id="body">
+	<div id="center">
+		<div id="main">
+		</div>
+		<div id="footer">
+			<div>
+				<p id="slidenumber"> </p>
+			</div>
+			<div>
+				<img id="nextslide" src="/views/standalone-modules/images/right.png">
+			</div>
+			<div>
+				<img id="fontsize" src="/views/standalone-modules/images/font.png">
+			</div>
+			<div>
+				<img id="colorwheel" src="/views/standalone-modules/images/pantone.png" hidden="true">
+			</div>
+			<div>
+				<img id="previousslide" src="/views/standalone-modules/images/left.png" hidden="true">
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript-lazy">
+	var canDoMenteeSlide = true;
+	/*
+         .\:\:/:/.
+        /=\_.@._/=\
+       /==/ _ _ \==\
+      /==(   -   )==\
+      |===\  =  /===|
+      \====|-V-|====/
+       \===|   |===/
+        |==|   |==|
+        '=.|   |.='
+
+I met a traveller from an antique land
+Who said: Two vast and trunkless legs of stone
+Stand in the desert. Near them, on the sand,
+Half sunk, a shattered visage lies, whose frown,
+And wrinkled lip, and sneer of cold command,
+Tell that its sculptor well those passions read
+Which yet survive, stamped on these lifeless things,
+The hand that mocked them and the heart that fed:
+
+And on the pedestal these words appear:
+'My name is Ozymandias, king of kings:
+Look on my works, ye Mighty, and despair!'
+Nothing beside remains. Round the decay
+Of that colossal wreck, boundless and bare
+The lone and level sands stretch far away.
+*/
+
+/*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
+var saveAs=saveAs||function(e){"use strict";if(typeof e==="undefined"||typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var t=e.document,n=function(){return e.URL||e.webkitURL||e},r=t.createElementNS("http://www.w3.org/1999/xhtml","a"),o="download"in r,a=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},i=/constructor/i.test(e.HTMLElement)||e.safari,f=/CriOS\/[\d]+/.test(navigator.userAgent),u=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},s="application/octet-stream",d=1e3*40,c=function(e){var t=function(){if(typeof e==="string"){n().revokeObjectURL(e)}else{e.remove()}};setTimeout(t,d)},l=function(e,t,n){t=[].concat(t);var r=t.length;while(r--){var o=e["on"+t[r]];if(typeof o==="function"){try{o.call(e,n||e)}catch(a){u(a)}}}},p=function(e){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)){return new Blob([String.fromCharCode(65279),e],{type:e.type})}return e},v=function(t,u,d){if(!d){t=p(t)}var v=this,w=t.type,m=w===s,y,h=function(){l(v,"writestart progress write writeend".split(" "))},S=function(){if((f||m&&i)&&e.FileReader){var r=new FileReader;r.onloadend=function(){var t=f?r.result:r.result.replace(/^data:[^;]*;/,"data:attachment/file;");var n=e.open(t,"_blank");if(!n)e.location.href=t;t=undefined;v.readyState=v.DONE;h()};r.readAsDataURL(t);v.readyState=v.INIT;return}if(!y){y=n().createObjectURL(t)}if(m){e.location.href=y}else{var o=e.open(y,"_blank");if(!o){e.location.href=y}}v.readyState=v.DONE;h();c(y)};v.readyState=v.INIT;if(o){y=n().createObjectURL(t);setTimeout(function(){r.href=y;r.download=u;a(r);h();c(y);v.readyState=v.DONE});return}S()},w=v.prototype,m=function(e,t,n){return new v(e,t||e.name||"download",n)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(e,t,n){t=t||e.name||"download";if(!n){e=p(e)}return navigator.msSaveOrOpenBlob(e,t)}}w.abort=function(){};w.readyState=w.INIT=0;w.WRITING=1;w.DONE=2;w.error=w.onwritestart=w.onprogress=w.onwrite=w.onabort=w.onerror=w.onwriteend=null;return m}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!==null){define("FileSaver.js",function(){return saveAs})}
+//jspdf
+/** @preserve
+ * jsPDF - PDF Document creation from JavaScript
+ * Version ${versionID}
+ *                           CommitID ${commitID}
+ *
+ * Copyright (c) 2010-2014 James Hall <james@parall.ax>, https://github.com/MrRio/jsPDF
+ *               2010 Aaron Spike, https://github.com/acspike
+ *               2012 Willow Systems Corporation, willow-systems.com
+ *               2012 Pablo Hess, https://github.com/pablohess
+ *               2012 Florian Jenett, https://github.com/fjenett
+ *               2013 Warren Weckesser, https://github.com/warrenweckesser
+ *               2013 Youssef Beddad, https://github.com/lifof
+ *               2013 Lee Driscoll, https://github.com/lsdriscoll
+ *               2013 Stefan Slonevskiy, https://github.com/stefslon
+ *               2013 Jeremy Morel, https://github.com/jmorel
+ *               2013 Christoph Hartmann, https://github.com/chris-rock
+ *               2014 Juan Pablo Gaviria, https://github.com/juanpgaviria
+ *               2014 James Makes, https://github.com/dollaruw
+ *               2014 Diego Casorran, https://github.com/diegocr
+ *               2014 Steven Spungin, https://github.com/Flamenco
+ *               2014 Kenneth Glassey, https://github.com/Gavvers
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * Contributor(s):
+ *    siefkenj, ahwolf, rickygu, Midnith, saintclair, eaparango,
+ *    kim3er, mfo, alnorth, Flamenco
+ */
+
+/**
+ * Creates new jsPDF document object instance.
+ *
+ * @class
+ * @param orientation One of "portrait" or "landscape" (or shortcuts "p" (Default), "l")
+ * @param unit        Measurement unit to be used when coordinates are specified.
+ *                    One of "pt" (points), "mm" (Default), "cm", "in"
+ * @param format      One of 'pageFormats' as shown below, default: a4
+ * @returns {jsPDF}
+ * @name jsPDF
+ */
+var jsPDF=function(e){"use strict";function t(t){var n={};this.subscribe=function(e,t,r){if("function"!=typeof t)return!1;n.hasOwnProperty(e)||(n[e]={});var o=Math.random().toString(35);return n[e][o]=[t,!!r],o},this.unsubscribe=function(e){for(var t in n)if(n[t][e])return delete n[t][e],!0;return!1},this.publish=function(r){if(n.hasOwnProperty(r)){var o=Array.prototype.slice.call(arguments,1),i=[];for(var a in n[r]){var s=n[r][a];try{s[0].apply(t,o)}catch(u){e.console&&console.error("jsPDF PubSub Error",u.message,u)}s[1]&&i.push(a)}i.length&&i.forEach(this.unsubscribe)}}}function n(a,s,u,c){var f={};"object"==typeof a&&(f=a,a=f.orientation,s=f.unit||s,u=f.format||u,c=f.compress||f.compressPdf||c),s=s||"mm",u=u||"a4",a=(""+(a||"P")).toLowerCase();var l,d,p,g,h,b,y,v,m,j=((""+u).toLowerCase(),!!c&&"function"==typeof Uint8Array),w=f.textColor||"0 g",P=f.drawColor||"0 G",C=f.fontSize||16,S=f.lineHeight||1.15,O=f.lineWidth||.200025,T=2,F=!1,A=[],x={},R={},k=0,L=[],I=[],D=[],M=[],B=[],E=0,U=0,N=0,z={title:"",subject:"",author:"",keywords:"",creator:""},H={},J=new t(H),W=function(e){return e.toFixed(2)},q=function(e){return e.toFixed(3)},G=function(e){return("0"+parseInt(e)).slice(-2)},X=function(e){F?L[g].push(e):(N+=e.length+1,M.push(e))},K=function(){return T++,A[T]=N,X(T+" 0 obj"),T},Q=function(){var e=2*L.length+1;e+=B.length;var t={objId:e,content:""};return B.push(t),t},V=function(){return T++,A[T]=function(){return N},T},Y=function(e){A[e]=N},Z=function(e){X("stream"),X(e),X("endstream")},_=function(){var t,r,o,i,a,s,u,c,f;for(u=e.adler32cs||n.adler32cs,j&&"undefined"==typeof u&&(j=!1),t=1;k>=t;t++){if(K(),c=(h=D[t].width)*d,f=(b=D[t].height)*d,X("<</Type /Page"),X("/Parent 1 0 R"),X("/Resources 2 0 R"),X("/MediaBox [0 0 "+W(c)+" "+W(f)+"]"),J.publish("putPage",{pageNumber:t,page:L[t]}),X("/Contents "+(T+1)+" 0 R"),X(">>"),X("endobj"),r=L[t].join("\n"),K(),j){for(o=[],i=r.length;i--;)o[i]=r.charCodeAt(i);s=u.from(r),a=new Deflater(6),a.append(new Uint8Array(o)),r=a.flush(),o=new Uint8Array(r.length+6),o.set(new Uint8Array([120,156])),o.set(r,2),o.set(new Uint8Array([255&s,s>>8&255,s>>16&255,s>>24&255]),r.length+2),r=String.fromCharCode.apply(null,o),X("<</Length "+r.length+" /Filter [/FlateDecode]>>")}else X("<</Length "+r.length+">>");Z(r),X("endobj")}A[1]=N,X("1 0 obj"),X("<</Type /Pages");var l="/Kids [";for(i=0;k>i;i++)l+=3+2*i+" 0 R ";X(l+"]"),X("/Count "+k),X(">>"),X("endobj"),J.publish("postPutPages")},$=function(e){e.objectNumber=K(),X("<</BaseFont/"+e.PostScriptName+"/Type/Font"),"string"==typeof e.encoding&&X("/Encoding/"+e.encoding),X("/Subtype/Type1>>"),X("endobj")},ee=function(){for(var e in x)x.hasOwnProperty(e)&&$(x[e])},te=function(){J.publish("putXobjectDict")},ne=function(){X("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]"),X("/Font <<");for(var e in x)x.hasOwnProperty(e)&&X("/"+e+" "+x[e].objectNumber+" 0 R");X(">>"),X("/XObject <<"),te(),X(">>")},re=function(){ee(),J.publish("putResources"),A[2]=N,X("2 0 obj"),X("<<"),ne(),X(">>"),X("endobj"),J.publish("postPutResources")},oe=function(){J.publish("putAdditionalObjects");for(var e=0;e<B.length;e++){var t=B[e];A[t.objId]=N,X(t.objId+" 0 obj"),X(t.content),X("endobj")}T+=B.length,J.publish("postPutAdditionalObjects")},ie=function(e,t,n){R.hasOwnProperty(t)||(R[t]={}),R[t][n]=e},ae=function(e,t,n,r){var o="F"+(Object.keys(x).length+1).toString(10),i=x[o]={id:o,PostScriptName:e,fontName:t,fontStyle:n,encoding:r,metadata:{}};return ie(o,t,n),J.publish("addFont",i),o},se=function(){for(var e="helvetica",t="times",n="courier",r="normal",o="bold",i="italic",a="bolditalic",s="StandardEncoding",u="zapfdingbats",c=[["Helvetica",e,r],["Helvetica-Bold",e,o],["Helvetica-Oblique",e,i],["Helvetica-BoldOblique",e,a],["Courier",n,r],["Courier-Bold",n,o],["Courier-Oblique",n,i],["Courier-BoldOblique",n,a],["Times-Roman",t,r],["Times-Bold",t,o],["Times-Italic",t,i],["Times-BoldItalic",t,a],["ZapfDingbats",u]],f=0,l=c.length;l>f;f++){var d=ae(c[f][0],c[f][1],c[f][2],s),p=c[f][0].split("-");ie(d,p[0],p[1]||"")}J.publish("addFonts",{fonts:x,dictionary:R})},ue=function(t){return t.foo=function(){try{return t.apply(this,arguments)}catch(n){var r=n.stack||"";~r.indexOf(" at ")&&(r=r.split(" at ")[1]);var o="Error in function "+r.split("\n")[0].split("<")[0]+": "+n.message;if(!e.console)throw new Error(o);e.console.error(o,n),e.alert&&alert(o)}},t.foo.bar=t,t.foo},ce=function(e,t){var n,r,o,i,a,s,u,c,f;if(t=t||{},o=t.sourceEncoding||"Unicode",a=t.outputEncoding,(t.autoencode||a)&&x[l].metadata&&x[l].metadata[o]&&x[l].metadata[o].encoding&&(i=x[l].metadata[o].encoding,!a&&x[l].encoding&&(a=x[l].encoding),!a&&i.codePages&&(a=i.codePages[0]),"string"==typeof a&&(a=i[a]),a)){for(u=!1,s=[],n=0,r=e.length;r>n;n++)c=a[e.charCodeAt(n)],c?s.push(String.fromCharCode(c)):s.push(e[n]),s[n].charCodeAt(0)>>8&&(u=!0);e=s.join("")}for(n=e.length;void 0===u&&0!==n;)e.charCodeAt(n-1)>>8&&(u=!0),n--;if(!u)return e;for(s=t.noBOM?[]:[254,255],n=0,r=e.length;r>n;n++){if(c=e.charCodeAt(n),f=c>>8,f>>8)throw new Error("Character at position "+n+" of string '"+e+"' exceeds 16bits. Cannot be encoded into UCS-2 BE");s.push(f),s.push(c-(f<<8))}return String.fromCharCode.apply(void 0,s)},fe=function(e,t){return ce(e,t).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)")},le=function(){X("/Producer (jsPDF "+n.version+")");for(var e in z)z.hasOwnProperty(e)&&z[e]&&X("/"+e.substr(0,1).toUpperCase()+e.substr(1)+" ("+fe(z[e])+")");var t=new Date,r=t.getTimezoneOffset(),o=0>r?"+":"-",i=Math.floor(Math.abs(r/60)),a=Math.abs(r%60),s=[o,G(i),"'",G(a),"'"].join("");X(["/CreationDate (D:",t.getFullYear(),G(t.getMonth()+1),G(t.getDate()),G(t.getHours()),G(t.getMinutes()),G(t.getSeconds()),s,")"].join(""))},de=function(){switch(X("/Type /Catalog"),X("/Pages 1 0 R"),v||(v="fullwidth"),v){case"fullwidth":X("/OpenAction [3 0 R /FitH null]");break;case"fullheight":X("/OpenAction [3 0 R /FitV null]");break;case"fullpage":X("/OpenAction [3 0 R /Fit]");break;case"original":X("/OpenAction [3 0 R /XYZ null null 1]");break;default:var e=""+v;"%"===e.substr(e.length-1)&&(v=parseInt(v)/100),"number"==typeof v&&X("/OpenAction [3 0 R /XYZ null null "+W(v)+"]")}switch(m||(m="continuous"),m){case"continuous":X("/PageLayout /OneColumn");break;case"single":X("/PageLayout /SinglePage");break;case"two":case"twoleft":X("/PageLayout /TwoColumnLeft");break;case"tworight":X("/PageLayout /TwoColumnRight")}y&&X("/PageMode /"+y),J.publish("putCatalog")},pe=function(){X("/Size "+(T+1)),X("/Root "+T+" 0 R"),X("/Info "+(T-1)+" 0 R")},ge=function(e,t){var n="string"==typeof t&&t.toLowerCase();if("string"==typeof e){var r=e.toLowerCase();o.hasOwnProperty(r)&&(e=o[r][0]/d,t=o[r][1]/d)}if(Array.isArray(e)&&(t=e[1],e=e[0]),n){switch(n.substr(0,1)){case"l":t>e&&(n="s");break;case"p":e>t&&(n="s")}"s"===n&&(p=e,e=t,t=p)}F=!0,L[++k]=[],D[k]={width:Number(e)||h,height:Number(t)||b},I[k]={},ye(k)},he=function(){ge.apply(this,arguments),X(W(O*d)+" w"),X(P),0!==E&&X(E+" J"),0!==U&&X(U+" j"),J.publish("addPage",{pageNumber:k})},be=function(e){e>0&&k>=e&&(L.splice(e,1),D.splice(e,1),k--,g>k&&(g=k),this.setPage(g))},ye=function(e){e>0&&k>=e&&(g=e,h=D[e].width,b=D[e].height)},ve=function(e,t){var n;switch(e=void 0!==e?e:x[l].fontName,t=void 0!==t?t:x[l].fontStyle,void 0!==e&&(e=e.toLowerCase()),e){case"sans-serif":case"verdana":case"arial":case"helvetica":e="helvetica";break;case"fixed":case"monospace":case"terminal":case"courier":e="courier";break;case"serif":case"cursive":case"fantasy":default:e="times"}try{n=R[e][t]}catch(r){}return n||(n=R.times[t],null==n&&(n=R.times.normal)),n},me=function(){F=!1,T=2,M=[],A=[],B=[],J.publish("buildDocument"),X("%PDF-"+r),_(),oe(),re(),K(),X("<<"),le(),X(">>"),X("endobj"),K(),X("<<"),de(),X(">>"),X("endobj");var e,t=N,n="0000000000";for(X("xref"),X("0 "+(T+1)),X(n+" 65535 f "),e=1;T>=e;e++){var o=A[e];X("function"==typeof o?(n+A[e]()).slice(-10)+" 00000 n ":(n+A[e]).slice(-10)+" 00000 n ")}return X("trailer"),X("<<"),pe(),X(">>"),X("startxref"),X(t),X("%%EOF"),F=!0,M.join("\n")},je=function(e){var t="S";return"F"===e?t="f":"FD"===e||"DF"===e?t="B":("f"===e||"f*"===e||"B"===e||"B*"===e)&&(t=e),t},we=function(){for(var e=me(),t=e.length,n=new ArrayBuffer(t),r=new Uint8Array(n);t--;)r[t]=e.charCodeAt(t);return n},Pe=function(){return new Blob([we()],{type:"application/pdf"})},Ce=ue(function(t,n){var r="dataur"===(""+t).substr(0,6)?"data:application/pdf;base64,"+btoa(me()):0;switch(t){case void 0:return me();case"save":if(navigator.getUserMedia&&(void 0===e.URL||void 0===e.URL.createObjectURL))return H.output("dataurlnewwindow");saveAs(Pe(),n),"function"==typeof saveAs.unload&&e.setTimeout&&setTimeout(saveAs.unload,911);break;case"arraybuffer":return we();case"blob":return Pe();case"bloburi":case"bloburl":return e.URL&&e.URL.createObjectURL(Pe())||void 0;case"datauristring":case"dataurlstring":return r;case"dataurlnewwindow":var o=e.open(r);if(o||"undefined"==typeof safari)return o;case"datauri":case"dataurl":return e.document.location.href=r;default:throw new Error('Output type "'+t+'" is not supported.')}});switch(s){case"pt":d=1;break;case"mm":d=72/25.4000508;break;case"cm":d=72/2.54000508;break;case"in":d=72;break;case"px":d=96/72;break;case"pc":d=12;break;case"em":d=12;break;case"ex":d=6;break;default:throw"Invalid unit: "+s}H.internal={pdfEscape:fe,getStyle:je,getFont:function(){return x[ve.apply(H,arguments)]},getFontSize:function(){return C},getLineHeight:function(){return C*S},write:function(e){X(1===arguments.length?e:Array.prototype.join.call(arguments," "))},getCoordinateString:function(e){return W(e*d)},getVerticalCoordinateString:function(e){return W((b-e)*d)},collections:{},newObject:K,newAdditionalObject:Q,newObjectDeferred:V,newObjectDeferredBegin:Y,putStream:Z,events:J,scaleFactor:d,pageSize:{get width(){return h},get height(){return b}},output:function(e,t){return Ce(e,t)},getNumberOfPages:function(){return L.length-1},pages:L,out:X,f2:W,getPageInfo:function(e){var t=2*(e-1)+3;return{objId:t,pageNumber:e,pageContext:I[e]}},getCurrentPageInfo:function(){var e=2*(g-1)+3;return{objId:e,pageNumber:g,pageContext:I[g]}},getPDFVersion:function(){return r}},H.addPage=function(){return he.apply(this,arguments),this},H.setPage=function(){return ye.apply(this,arguments),this},H.insertPage=function(e){return this.addPage(),this.movePage(g,e),this},H.movePage=function(e,t){if(e>t){for(var n=L[e],r=D[e],o=I[e],i=e;i>t;i--)L[i]=L[i-1],D[i]=D[i-1],I[i]=I[i-1];L[t]=n,D[t]=r,I[t]=o,this.setPage(t)}else if(t>e){for(var n=L[e],r=D[e],o=I[e],i=e;t>i;i++)L[i]=L[i+1],D[i]=D[i+1],I[i]=I[i+1];L[t]=n,D[t]=r,I[t]=o,this.setPage(t)}return this},H.deletePage=function(){return be.apply(this,arguments),this},H.setDisplayMode=function(e,t,n){return v=e,m=t,y=n,this},H.text=function(e,t,n,r,o,a){function s(e){return e=e.split("	").join(Array(f.TabLen||9).join(" ")),fe(e,r)}"number"==typeof e&&(p=n,n=t,t=e,e=p),"string"==typeof e&&(e=e.match(/[\n\r]/)?e.split(/\r\n|\r|\n/g):[e]),"string"==typeof o&&(a=o,o=null),"string"==typeof r&&(a=r,r=null),"number"==typeof r&&(o=r,r=null);var u,c="",g="Td";if(o){o*=Math.PI/180;var h=Math.cos(o),y=Math.sin(o);c=[W(h),W(y),W(-1*y),W(h),""].join(" "),g="Tm"}r=r||{},"noBOM"in r||(r.noBOM=!0),"autoencode"in r||(r.autoencode=!0);var v="",m=this.internal.getCurrentPageInfo().pageContext;if(!0===r.stroke?m.lastTextWasStroke!==!0&&(v="1 Tr\n",m.lastTextWasStroke=!0):(m.lastTextWasStroke&&(v="0 Tr\n"),m.lastTextWasStroke=!1),"undefined"==typeof this._runningPageHeight&&(this._runningPageHeight=0),"string"==typeof e)e=s(e);else{if("[object Array]"!==Object.prototype.toString.call(e))throw new Error('Type of text must be string or Array. "'+e+'" is not recognized.');for(var j=e.concat(),P=[],O=j.length;O--;)P.push(s(j.shift()));var T=Math.ceil((b-n-this._runningPageHeight)*d/(C*S));if(T>=0&&T<P.length+1,a){var F,A,x,R=C*S,k=e.map(function(e){return this.getStringUnitWidth(e)*C/d},this);if(x=Math.max.apply(Math,k),"center"===a)F=t-x/2,t-=k[0]/2;else{if("right"!==a)throw new Error('Unrecognized alignment option, use "center" or "right".');F=t-x,t-=k[0]}for(A=t,e=P[0]+") Tj\n",i=1,O=P.length;i<O;i++){var L=x-k[i];"center"===a&&(L/=2),e+=F-A+L+" -"+R+" Td ("+P[i],A=F+L,i<O-1&&(e+=") Tj\n")}}else e=P.join(") Tj\nT* (")}var I;return u||(I=W((b-n)*d)),X("BT\n/"+l+" "+C+" Tf\n"+C*S+" TL\n"+v+w+"\n"+c+W(t*d)+" "+I+" "+g+"\n("+e+") Tj\nET"),u&&this.text(u,t,n),this},H.lstext=function(e,t,n,r){for(var o=0,i=e.length;i>o;o++,t+=r)this.text(e[o],t,n)},H.line=function(e,t,n,r){return this.lines([[n-e,r-t]],e,t)},H.clip=function(){X("W"),X("S")},H.lines=function(e,t,n,r,o,i){var a,s,u,c,f,l,g,h,y,v,m;for("number"==typeof e&&(p=n,n=t,t=e,e=p),r=r||[1,1],X(q(t*d)+" "+q((b-n)*d)+" m "),a=r[0],s=r[1],c=e.length,v=t,m=n,u=0;c>u;u++)f=e[u],2===f.length?(v=f[0]*a+v,m=f[1]*s+m,X(q(v*d)+" "+q((b-m)*d)+" l")):(l=f[0]*a+v,g=f[1]*s+m,h=f[2]*a+v,y=f[3]*s+m,v=f[4]*a+v,m=f[5]*s+m,X(q(l*d)+" "+q((b-g)*d)+" "+q(h*d)+" "+q((b-y)*d)+" "+q(v*d)+" "+q((b-m)*d)+" c"));return i&&X(" h"),null!==o&&X(je(o)),this},H.rect=function(e,t,n,r,o){je(o);return X([W(e*d),W((b-t)*d),W(n*d),W(-r*d),"re"].join(" ")),null!==o&&X(je(o)),this},H.triangle=function(e,t,n,r,o,i,a){return this.lines([[n-e,r-t],[o-n,i-r],[e-o,t-i]],e,t,[1,1],a,!0),this},H.roundedRect=function(e,t,n,r,o,i,a){var s=4/3*(Math.SQRT2-1);return this.lines([[n-2*o,0],[o*s,0,o,i-i*s,o,i],[0,r-2*i],[0,i*s,-(o*s),i,-o,i],[-n+2*o,0],[-(o*s),0,-o,-(i*s),-o,-i],[0,-r+2*i],[0,-(i*s),o*s,-i,o,-i]],e+o,t,[1,1],a),this},H.ellipse=function(e,t,n,r,o){var i=4/3*(Math.SQRT2-1)*n,a=4/3*(Math.SQRT2-1)*r;return X([W((e+n)*d),W((b-t)*d),"m",W((e+n)*d),W((b-(t-a))*d),W((e+i)*d),W((b-(t-r))*d),W(e*d),W((b-(t-r))*d),"c"].join(" ")),X([W((e-i)*d),W((b-(t-r))*d),W((e-n)*d),W((b-(t-a))*d),W((e-n)*d),W((b-t)*d),"c"].join(" ")),X([W((e-n)*d),W((b-(t+a))*d),W((e-i)*d),W((b-(t+r))*d),W(e*d),W((b-(t+r))*d),"c"].join(" ")),X([W((e+i)*d),W((b-(t+r))*d),W((e+n)*d),W((b-(t+a))*d),W((e+n)*d),W((b-t)*d),"c"].join(" ")),null!==o&&X(je(o)),this},H.circle=function(e,t,n,r){return this.ellipse(e,t,n,n,r)},H.setProperties=function(e){for(var t in z)z.hasOwnProperty(t)&&e[t]&&(z[t]=e[t]);return this},H.setFontSize=function(e){return C=e,this},H.setFont=function(e,t){return l=ve(e,t),this},H.setFontStyle=H.setFontType=function(e){return l=ve(void 0,e),this},H.getFontList=function(){var e,t,n,r={};for(e in R)if(R.hasOwnProperty(e)){r[e]=n=[];for(t in R[e])R[e].hasOwnProperty(t)&&n.push(t)}return r},H.addFont=function(e,t,n){ae(e,t,n,"StandardEncoding")},H.setLineWidth=function(e){return X((e*d).toFixed(2)+" w"),this},H.setDrawColor=function(e,t,n,r){var o;return o=void 0===t||void 0===r&&e===t===n?"string"==typeof e?e+" G":W(e/255)+" G":void 0===r?"string"==typeof e?[e,t,n,"RG"].join(" "):[W(e/255),W(t/255),W(n/255),"RG"].join(" "):"string"==typeof e?[e,t,n,r,"K"].join(" "):[W(e),W(t),W(n),W(r),"K"].join(" "),X(o),this},H.setFillColor=function(e,t,n,r){var o;return void 0===t||void 0===r&&e===t===n?o="string"==typeof e?e+" g":W(e/255)+" g":void 0===r||"object"==typeof r?(o="string"==typeof e?[e,t,n,"rg"].join(" "):[W(e/255),W(t/255),W(n/255),"rg"].join(" "),r&&0===r.a&&(o=["255","255","255","rg"].join(" "))):o="string"==typeof e?[e,t,n,r,"k"].join(" "):[W(e),W(t),W(n),W(r),"k"].join(" "),X(o),this},H.setTextColor=function(e,t,n){if("string"==typeof e&&/^#[0-9A-Fa-f]{6}$/.test(e)){var r=parseInt(e.substr(1),16);e=r>>16&255,t=r>>8&255,n=255&r}return w=0===e&&0===t&&0===n||"undefined"==typeof t?q(e/255)+" g":[q(e/255),q(t/255),q(n/255),"rg"].join(" "),this},H.CapJoinStyles={0:0,butt:0,but:0,miter:0,1:1,round:1,rounded:1,circle:1,2:2,projecting:2,project:2,square:2,bevel:2},H.setLineCap=function(e){var t=this.CapJoinStyles[e];if(void 0===t)throw new Error("Line cap style of '"+e+"' is not recognized. See or extend .CapJoinStyles property for valid styles");return E=t,X(t+" J"),this},H.setLineJoin=function(e){var t=this.CapJoinStyles[e];if(void 0===t)throw new Error("Line join style of '"+e+"' is not recognized. See or extend .CapJoinStyles property for valid styles");return U=t,X(t+" j"),this},H.output=Ce,H.save=function(e){H.output("save",e)};for(var Se in n.API)n.API.hasOwnProperty(Se)&&("events"===Se&&n.API.events.length?!function(e,t){var n,r,o;for(o=t.length-1;-1!==o;o--)n=t[o][0],r=t[o][1],e.subscribe.apply(e,[n].concat("function"==typeof r?[r]:r))}(J,n.API.events):H[Se]=n.API[Se]);return se(),l="F1",he(u,a),J.publish("initialized"),H}var r="1.3",o={a0:[2383.94,3370.39],a1:[1683.78,2383.94],a2:[1190.55,1683.78],a3:[841.89,1190.55],a4:[595.28,841.89],a5:[419.53,595.28],a6:[297.64,419.53],a7:[209.76,297.64],a8:[147.4,209.76],a9:[104.88,147.4],a10:[73.7,104.88],b0:[2834.65,4008.19],b1:[2004.09,2834.65],b2:[1417.32,2004.09],b3:[1000.63,1417.32],b4:[708.66,1000.63],b5:[498.9,708.66],b6:[354.33,498.9],b7:[249.45,354.33],b8:[175.75,249.45],b9:[124.72,175.75],b10:[87.87,124.72],c0:[2599.37,3676.54],c1:[1836.85,2599.37],c2:[1298.27,1836.85],c3:[918.43,1298.27],c4:[649.13,918.43],c5:[459.21,649.13],c6:[323.15,459.21],c7:[229.61,323.15],c8:[161.57,229.61],c9:[113.39,161.57],c10:[79.37,113.39],dl:[311.81,623.62],letter:[612,792],"government-letter":[576,756],legal:[612,1008],"junior-legal":[576,360],ledger:[1224,792],tabloid:[792,1224],"credit-card":[153,243]};return n.API={events:[]},n.version="1.0.0-trunk","function"==typeof define&&define.amd?define("jsPDF",function(){return n}):"undefined"!=typeof module&&module.exports?module.exports=n:e.jsPDF=n,n}("undefined"!=typeof self&&self||"undefined"!=typeof window&&window||this);
+
+// END jspsf
+	var doc = new jsPDF('landscape');
+	var footer = document.getElementById("footer");
+		var main = document.getElementById("main");
+		var body = document.getElementById("body");
+		var backgroundimage = document.getElementById("backgroundimage");
+		var slide_number = document.getElementById("slidenumber");
+		var button_next = document.getElementById("nextslide");
+		button_next.onclick = Next_Slide;
+		var button_prev = document.getElementById("previousslide");
+		button_prev.onclick = Previous_Slide;
+		var button_colorwheel = document.getElementById("colorwheel");
+		button_colorwheel.onclick = Color_Wheel;
+		var button_font = document.getElementById("fontsize");
+		button_font.onclick = Font_Size;
+
+		var current_index = 0;
+		var current_slideshow;
+		var show_next = true;
+		var hide_page = false;
+
+		var showing_color_wheel = false;
+		var showing_font = false;
+
+		var font_size = 18;
+		var font_p = "12px avenirmedium";
+
+		function Create_PDF() {
+			var d = new Date();
+			client_name = document.getElementById("namebox").value;
+			doc.setFontSize(32);
+			doc.text(90, 20, 'Certificate of Completion'); //Large, bold
+			doc.setFontSize(24);
+			doc.text(110, 40, 'This is to certify that'); //Medium, italic
+			doc.setFontSize(42);
+			doc.text(98, 72, client_name); //Medium-Large, bold
+			doc.setFontSize(24);
+			doc.text(106, 100, 'has completed the course'); //Medium italic
+			doc.setFontSize(28);
+			doc.text(95, 120, 'Mentor and Mentee Module'); // Medium-Large
+			doc.setFontSize(24);
+			doc.text(132, 140, 'Dated:'); // medium italic
+			doc.setFontSize(28);
+			doc.text(125, 160, d.toLocaleDateString());
+			doc.save(client_name + ".pdf");
+		}
+
+		function Apply_Styles() {
+			var tags = document.getElementById("main").getElementsByTagName("p");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = font_size + "px";
+			}
+
+			tags = document.getElementById("main").getElementsByTagName("li");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = font_size + "px";
+			}
+
+			tags = document.getElementById("main").getElementsByTagName("h1");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = 12 + font_size + "px";
+			}
+
+			tags = document.getElementById("main").getElementsByTagName("h2");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = 10 + font_size + "px";
+			}
+
+			tags = document.getElementById("main").getElementsByTagName("h3");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = 8 + font_size + "px";
+			}
+
+			tags = document.getElementById("main").getElementsByTagName("h4");
+			for (var i = 0; i < tags.length; i++) {
+				var tags_style = window.getComputedStyle(tags[i], null).getPropertyValue('font-size');
+				var tags_font_size = parseFloat(tags_style);
+				tags[i].style.fontSize = 6 + font_size + "px";
+			}
+		}
+
+		function Previous_Button_Head() {
+			button_prev.onclick = Head_Slide;
+		}
+
+		function Previous_Button_Previous() {
+			button_prev.onclick = Previous_Slide;
+		}
+
+		function Head_Slide() {
+			current_index = 1;
+			Display_Slide(current_slideshow.Get(1).content, current_slideshow);
+		}
+
+		function Increase_Font_Size() {
+			font_size += 2;
+			Apply_Styles();
+		}
+
+		function Decrease_Font_Size() {
+			font_size -= 2;
+			Apply_Styles();
+		}
+
+		function Link(slideshow) {
+			console.log("going to link, or something.." + slideshow);
+			current_index = 0;
+			current_slideshow = slideshow;
+			Display_Slide(current_slideshow.Get(0).content, current_slideshow);
+		}
+
+		function Color_Wheel() {
+			showing_color_wheel = !showing_color_wheel;
+			if (showing_color_wheel) {
+				button_font.hidden = true;
+				button_prev.hidden = true;
+				button_next.hidden = true;
+				button_colorwheel.style.background = "gray";
+				main.innerHTML = null;
+				body.style.background = "gray";
+				main.innerHTML += "<img src='/views/standalone-modules/images/pantone.png'>";
+				main.innerHTML += "<h3>Change Module Colours</h3>";
+				main.innerHTML += "<p id='modalp'>Headline Colour:</p>";
+				main.innerHTML += "<p></p>";
+				main.innerHTML += "<p id='modalp'>Text Colour:</p>";
+				main.innerHTML += "<p></p>";
+				main.innerHTML += "<p id='modalp'>Link Colour:</p>";
+				main.innerHTML += "<p></p>";
+				main.innerHTML += "<p id='modalp'>Background Colour:</p>";
+				main.innerHTML += "<p></p>";
+				main.innerHTML += "<p id='modalp'>Secondary Background Colour:</p>";
+				main.innerHTML += "<p></p>";
+			}
+			else {
+				button_font.hidden = false;
+				button_prev.hidden = false;
+				button_next.hidden = false;
+				button_colorwheel.style.background = "black";
+				body.style.background = "black"
+				Display_Slide(current_slideshow.Get(current_index).content, current_slideshow);
+			}
+		};
+
+		function Font_Size() {
+			showing_font = !showing_font;
+			if (showing_font) {
+				button_colorwheel.hidden = true;
+				button_prev.hidden = true;
+				button_next.hidden = true;
+				button_font.style.background = "gray";
+				main.innerHTML = null;
+				body.style.background = "black";
+				main.innerHTML += "<img src='/views/standalone-modules/images/minus.png' id='fontsmallerbutton' onclick='Decrease_Font_Size()'>";
+				main.innerHTML += "<img src='/views/standalone-modules/images/plus.png' id='fontbiggerbutton' onclick='Increase_Font_Size()'>";
+				main.innerHTML += "<p>Text example size</P>";
+				main.innerHTML += "<h1>Example title size</h1>";
+				main.innerHTML += "<h2>Example sub-title size</h2>";
+				main.innerHTML += "<h3>Example header size</h3>";
+				main.innerHTML += "<div id='spacer'></div>"
+				Apply_Styles();
+			}
+			else {
+				button_colorwheel.hidden = false;
+				button_prev.hidden = false;
+				button_next.hidden = false;
+				button_font.style.background = "black";
+				body.style.background = "black"
+				Display_Slide(current_slideshow.Get(current_index).content, current_slideshow);
+			}
+		};
+
+		function Question_Slide(answer) {
+			current_index = answer;
+			Display_Slide(current_slideshow.Get(answer).content, current_slideshow);
+		}
+
+		function Next_Slide() {
+			current_index++;
+			Display_Slide(current_slideshow.Get(current_index).content, current_slideshow);
+		};
+
+		function Previous_Slide() {
+			current_index--;
+			Display_Slide(current_slideshow.Get(current_index).content, current_slideshow);
+		}
+
+		function Display_Slide(slide, slideshow) {
+			main.innerHTML = null;
+			show_next = true;
+			hide_page = false;
+			var htmlstring = "<img id='backgroundimage'></img>";
+			var backgroundInformation;
+			var hasBackground = false;
+			for (var i = 0; i < slide.key.length; i++) {
+				switch (slide.key[i]) {
+					case "title":
+						htmlstring += "<h1>" + slide.content[i] + "</h1>";
+						break;
+					case "subtitle":
+						htmlstring += "<h2>" + slide.content[i] + "</h2>";
+						break;
+					case "capitalbold":
+						htmlstring += "<h3>" + slide.content[i] + "</h3>";
+						break;
+					case "minorheading":
+						htmlstring += "<h4>" + slide.content[i] + "</h4>";
+						//TODO: Define h4 in css
+						break;
+					case "point":
+						htmlstring += "<p>" + slide.content[i] + "</p>";
+						break;
+					case "list":
+						htmlstring += "<ol type='" + slide.content[i] + "'>";
+						break;
+					case "bulletliststart":
+						htmlstring += "<ul>";
+						break;
+					case "bulletlistend":
+						htmlstring += "</ul>"
+						break;
+					case "listend":
+						htmlstring += "</ol>";
+						break;
+					case "listpoint":
+						htmlstring += "<li>" + slide.content[i] + "</li>";
+						break;
+					case "image":
+						htmlstring += "<img src=" + slide.content[i] + ">";
+						break;
+					case "linktext":
+						console.log("slide index is " + i);
+						console.log("slide content is " + slide.content[i]);
+						function stringer() {
+							htmlstring += "<h3 style='cursor: pointer;' onclick='Link(" + slide.content[i + 1] + ")'>" + slide.content[i] + "<h3>";
+						}
+						if (canDoSlides) {
+							if (i == 16 && profileType == "mentor") {
+								stringer();
+							} else if (i == 12 && profileType == "mentee") {	
+								stringer();
+							} else if (i == 2 || i == 4) {
+								stringer();
+							} else {
+								stringer();
+							}
+						} else {
+							htmlstring += "You have already done all of the " + profileType + " modules";
+						}
+						break;
+					case "chat":
+						htmlstring += "<p>'" + slide.content[i] + "'</p>";
+						break;
+					case "tablestart":
+						htmlstring += "<table>"
+						break;
+					case "tablerowstart":
+						htmlstring += "<tr>"
+						break;
+					case "tablerowend":
+						htmlstring += "</tr>"
+						break;
+					case "tabledatastart":
+						htmlstring += "<td>"
+						break;
+					case "tabledataend":
+						htmlstring += "</td>"
+						break;
+					case "tableend":
+						htmlstring += "</table>"
+						break;
+					case "questiona":
+						htmlstring += "<table id='questiontable'><tr><td id='questiontableletter'>A</td><td>" + slide.content[i] + "</td><td id='questiontableletter' onclick='Question_Slide(2)'>></td></tr></table>";
+						break;
+					case "questionb":
+						htmlstring += "<table id='questiontable'><tr><td id='questiontableletter'>B</td><td>" + slide.content[i] + "</td><td id='questiontableletter' onclick='Question_Slide(3)'>></td></tr></table>";
+						break;
+					case "questionc":
+						htmlstring += "<table id='questiontable'><tr><td id='questiontableletter'>C</td><td>" + slide.content[i] + "</td><td id='questiontableletter' onclick='Question_Slide(4)'>></td></tr></table>";
+						break;
+					case "questiond":
+						htmlstring += "<table id='questiontable'><tr><td id='questiontableletter'>D</td><td>" + slide.content[i] + "</td><td id='questiontableletter' onclick='Question_Slide(5)'>></td></tr></table>";
+						break;
+					case "answer":
+						htmlstring += "<div id='answerbox'>" + slide.content[i] + "</div>";
+						break;
+					case "background":
+						backgroundInformation = slide.content[i];
+						hasBackground = true;
+						break;
+					case "hidepage":
+						hide_page = true;
+						break;
+					case "hidenext":
+						show_next = false;
+						break;
+					case "prevhead":
+						Previous_Button_Head();
+						break;
+					case "inputbox":
+						htmlstring += "<input type='text' id='namebox'></input>";
+						break;
+					case "pdfbutton":
+						htmlstring += "<button id='pdfbutton' onclick='Create_PDF()'>Generate PDF</button>";
+						break;
+					case "revealComplete":
+						htmlstring += "<button class = 'standard-button' onclick = 'revealClicked()' >Ready to finish?</button>";  
+					default:
+						break;
+				}
+			}
+			htmlstring += "<div id='spacer'></div>"
+			main.innerHTML += htmlstring;
+			if (hasBackground) {
+				document.getElementById("backgroundimage").src = backgroundInformation;
+			}
+			slidenumber.innerHTML = (current_index + 1) + "/" + slideshow.length;
+			if (hide_page == true) {
+				slidenumber.hidden = true;
+			}
+			else {
+				slidenumber.hidden = false;
+			}
+			if (current_index > 0) {
+				button_prev.hidden = false;
+			}
+			else {
+				button_prev.hidden = true;
+			}
+			if (current_index + 1 == slideshow.length || show_next == false) {
+				button_next.hidden = true;
+			}
+			else {
+				button_next.hidden = false;
+			}
+			Apply_Styles();
+		};
+
+		var Linked_List = function () {
+			this.length = 0;
+			this.head = null;
+			this.Add = function (node) {
+				if (this.head == null) {
+					this.head = node;
+				}
+				else {
+					var current_node = this.head;
+					while (current_node.next != null) {
+						current_node = current_node.next;
+					}
+					node.previous = current_node;
+					current_node.next = node;
+				}
+				this.length++;
+			}
+			this.Insert = function (index, node) {
+				if (index < this.length) {
+					var current_node = this.head;
+					if (index == 0) {
+						this.head.previous = current_node;
+						this.head = current_node.next = this.head;
+						this.head = current_node;
+					}
+					else {
+						for (var i = 0; i <= index; i++) {
+							if (i + 1 == index) {
+								node.next = current_node.next;
+								node.previous = current_node;
+								current_node.next = node;
+							}
+						}
+					}
+					this.length++;
+				}
+			}
+			this.Remove = function (index) {
+				if (index < this.length) {
+					var current_node = this.head;
+					if (index == 0) {
+						if (this.head.next != null) {
+							this.head = this.head.next;
+							this.head.previous = null;
+						}
+						else {
+							this.head = null;
+						}
+					}
+					else {
+						var i = 1;
+						while (i < index) {
+							current_node = current_node.next;
+							i++;
+						}
+						if (current_node.next.next == null) {
+							current_node.next = null;
+						}
+						else {
+							current_node.next = current_node.next.next;
+							current_node.next.previous = current_node;
+						}
+					}
+					this.length--;
+				}
+			}
+			this.Get = function (index) {
+				if (index < this.length) {
+					var current_node = this.head;
+					for (var i = 0; i <= index; i++) {
+						if (i == index) {
+							return current_node;
+						}
+						else {
+							current_node = current_node.next;
+						}
+					}
+				}
+			}
+			this.Display = function () {
+				console.log("Length: " + this.length);
+				var current_node = this.head;
+				console.log("Head Data: " + current_node.content);
+				for (var i = 0; i < this.length - 1; i++) {
+					current_node = current_node.next;
+					console.log("Item " + (i + 1) + ": " + current_node.content);
+				}
+			}
+		}
+
+		var Node = function (content) {
+			this.previous = null;
+			this.next = null;
+			this.content = content;
+		};
+
+		var Slide = function (key, content) {
+			this.key = key;
+			this.content = content;
+		};
+
+		//CONTENT
+
+		//Creating the Slide Decks
+		var slides;
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		slides = new Linked_List();
+
+		slidekey = ["title", "capitalbold"];
+		slidecontent = [
+			"Mentorship",
+			"LET'S GET STARTED >"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point"];
+		slidecontent = [
+			"Introduction",
+			"Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development.  It is also a responsibility because it requires a commitment and investment of time.  It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas.  Mentoring relationships bring together people with different backgrounds, positions and experiences who share a common interest and a desire to learn from and about each other.",
+			"Many who have been involves in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time.  Therefore, mentoring requires training, thoughtful preparation, and planning.",
+			"This exciting module is a starting point to developing an effective mentoring relationship.",
+			"The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		slidekey = ["subtitle", "tablestart", "tablerowstart", "tabledatastart", "image", "tabledataend", "tabledatastart", "image", "tabledataend", "tablerowend", "tablerowstart", "tabledatastart", "linktext", "linkslidenum", "tabledataend", "tabledatastart", "linktext", "linkslidenum", "tabledataend", "tablerowend", "tableend"];
+		slidecontent = [
+			"Introduction",
+			"",
+			"",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentee1.png",
+			"",
+			"",
+			"images/backgrounds/mentee2.jpg",
+			"",
+			"",
+			"",
+			"",
+			"CONTINUE TO MENTEE SLIDES >",
+			"mentee",
+			"",
+			"",
+			"CONTINUE TO MENTOR SLIDES >",
+			"mentor",
+			"",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		current_slideshow = slides;
+		Display_Slide(current_slideshow.Get(0).content, current_slideshow);
+
+		mentee = new Linked_List();
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Introducing Priya",
+			"Hey! I'm Priya. I'm a first year College student. I'm studying business and want to open my own business when I finish school. I have a learning disability. In elementary and high school, I felt OK about it, but things are different in College. My program is really competitive and I'm afraid that if my professors and other students find out that I need a note taker, they will think I'm lazy and not smart enough to be in the program. My parents pushed me to register with the Student Disability Services but I haven't given the accommodation letter I received to any of my professors.",
+			"/views/standalone-modules/images/backgrounds/mentee1.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point"];
+		slidecontent = [
+			"Objectives",
+			"More specifically, after completing this module the learner will be able to:",
+			"1",
+			"Explain the concept of mentoring including it's characteristics",
+			"Explain the value of mentoring",
+			"Identify the outcomes of an effective mentorship experience",
+			"Differentiate between mentoring and coaching",
+			"Define the concept of mentor and mentee",
+			"Discuss the roles and responsibilities of the mentor and the mentee",
+			"Describe the skill sets required of an effective mentor and mentee",
+			"Cite examples of issues that contribute to unsuccessful and challenging mentorship relationships",
+			"",
+			"In this section of the module, we follow Priya, a College student, as she begins her journey to becoming a mentee and forming a relationship with her mentor, Jennifer."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Mentoring",
+			"Priya's situation is not unusual - many student with disabilities face these same kinds of fears or concerns. One way of dealing with these issues - and helping to address them - is through mentoring.",
+			"Mentoring is a purposeful, caring, and voluntary relationship in which reflection and communication guide progress and action towards meeting goals."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"What is the Purpose of Mentoring?",
+			"Mentoring promotoes personal growth in both the mentor and mentee. A mentoring relationship can be used to increase personal or professional confidence, as well as provide support during difficult or discoruaging situations.",
+			"Mentoring can also be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another, and to a new work environment."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"What is the Purpose of Mentoring?",
+			"There are several benefits to being in a mentoring relaitonship.  A mentoring relationship can be affirming, increase an individual's self-confidence, and encourage them to reach their goals. It can also lead to personal satisfaction.",
+			"Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "minorheading", "bulletliststart", "listpoint", "listpoint", "bulletlistend", "minorheading", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"There are two main types of mentoring relationships: informal and formal.",
+			"Informal mentoring relationships are:",
+			"",
+			"More spontaneous",
+			"Less structured",
+			"",
+			"Formal mentoring relationships",
+			"",
+			"Involve a formal linking of two or more individuals (e.g., one to one, one to a group).",
+			"Typically include a written agreement outlining the roles of each person involved and goals of the relationship.",
+			"Follow a process during predetermined period of time.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point", "point"];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"A mentoring relationship typically involves two individuals, a mentor and a mentee.",
+			"A mentor is a person who helps to guide an individual's growth and development. A mentor is not a professional counsellor, parent, or social worker, but someone who is confident and to provide support and guidance.",
+			"A mentor has more career experience and provides a listening ear, academic or career advice, guidance, and feedback. Mentors share knowledge and the pespective of their years of experience, nurturing the growth of th ementee as a future leader.",
+			"A mentee is a more junior individual who has a strong desire to learn, develop and frow academically and professionally.",
+			"For example, Priya meets the criteria to be a mentee. She is a student and has a strong need to do well academically and grow to become a business professional."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of the Mentor",
+			"In general, a mentor guides an individual to develop and grow; however, there are various types of mentors.",
+			"",
+			"Traditional mentors are usually older and experienced; they protect, advocate for, and nurture their mentees.",
+			"Another type of mentor is a supportive boss who is a person in direct supervisory relationship with their mentee but functions more as a coach.",
+			"Organizational sponsors are top-level managers who facilitate their mentees promotion within the organization.",
+			"Professional mentors are paid career counsellors and advisors",
+			"Patrons are persons who use financial resources and status to launch their mentee's careers",
+			"Invisible godparents help mentees reach career goals without their knowing it.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"An effective mentoring relationship is not one-sided. It requires a mentee who is an active participant. To take part in the mentoring relationship, a mentee needs to eb ready to be an equal contributor to the relationship. The important roles a mentee must take on at some point during the mentoring relationship can include:",
+			"",
+			"Driver of the relationship: identify and communicate goals to the mentor; indetify topics and issues.",
+			"Plan Developer: develop a plan of action with mentor to address goals.",
+			"Resources partner: work with your mentor to seek resources for learning; identify people and information that might be helpful.",
+			"Teacher: look for opportunities to give back to your mentor.",
+			"Continuous learner: take full advantage of this opportunity to learn.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"The role of a mentee requires the ability to:",
+			"",
+			"be self-motivated, and take responsibility for your own develpoment.",
+			"communicate clearly, listen, and articulate clear expectations.",
+			"set goals/objectives of the mentorship such as self-assessment, development and planning.",
+			"share responsibility for making meeting with the mentor happen.",
+			"respect the mentor's time and feedback.",
+			"accept feedback and share in finding answers and solutions for improvement.",
+			"accept responsibility for the outcome of your actions.",
+			"track or measure the progress of learning within the mentoring relationship.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Priya Joins an e-Mentoring Program",
+			"I decided to join an e-mentoring program for women seeking careers in business. I figured I could benefit from knowing a woman who has made it in the business world. It was pretty easy to join; all I had to do was create a profile and complete a few online training modules. I was given three choices of possible mentors and I chose Jennifer! I really like Jennifer and it's been awesome someone to connect with abut stuff I'm interested in.",
+			"/views/standalone-modules/images/backgrounds/mentee2.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Introducing Jennifer Priya's Mentor",
+			"I volunteered to be a mentor in the e-mentoring program for women seeking careers in business because I believe it's important for students to have someone outside their academic programs with whom they can speak about the profession. I try to identify situations and events which can help my mentees develop knowledge and have valuable experiences.",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point"];
+		slidecontent = [
+			"Stages of the mentoring relationship",
+			"Successful mentoring relationships don't happen by accident. Formalized mentoring relations, like Priya and Jennifer's, tend to move through a series of stages.",
+			"1",
+			"Preparing for the relationship - Includes self-reflection, identifying goals and preparing yourself to take on the commitment involved in being in a mentoring relationship.",
+			"Searching/ Seeking out - Involves finding someone to support the journey to achieve goals.",
+			"Initiating - Coming together to discuss goals, identify expectations and establish ground rules.",
+			"Laying the foundation - Involves getting to know each other, building trust, continuing to clarify expectations and fine tuning goals.",
+			"Building and Progressing - Involves working to attain goals, empowering each other and building confidence and esteem; longest and most satisfying part of this process.",
+			"Relationship ends at the point when goals have been reached; involves affirming, evaluationg and celebrating process and outcomes, as well as discussing what comes next.",
+			"",
+			"Priya and Jennifer have completed stage one and two. They have moved into the initiating stage, which in their program includes developing a mentoring agreement."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Keys to a Successful Mentoring Relationship",
+			"Moving through the stages of a mentoring relationship successfully requires the active participation of both the mentee and mentor. There are many things each individual can do to ensure the relationship is successful.",
+			"Here are the strategies that Priya has developed:",
+			"",
+			"I will identify the skills, knowledge, and goals that I want to achieve and communicate them to my mentor",
+			"I will bring up new topics that are important to me at any point and give feedback to my mentor",
+			"I will maintain a mentoring plan and work with my mentor to set up goals, developmental activities, and time frames",
+			"I will work with my mentor to seek resources for learning; identify people and information that might be helpful",
+			"I will look for opportunities to give back to my mentor; share any information that I think might be valuable",
+			"I will take full advantage of the opportunity to learn from my mentor",
+			"",];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Jennifer's Success Strategies",
+			"Because Jennifer believes mentoring is a two-way process in which both individuals have roles to play, she's written her own list of actions she plans to implement to help make her relationship with priya a success.",
+			"I will:",
+			"",
+			"Provide feedback and share ideas with Priya.",
+			"Try my best to listen to Priya's concerns and draw on my own experiences to give her encouragement and advice.",
+			"Do my best to find and provide resources that will support Priya to meet the goals we set together.",
+			"Act as a support for Priya.",
+			"Challenge Priya to help her consider multiple points of view around issues.",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor2.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "background"];
+		slidecontent = [
+			"Communicating with Your Mentor",
+			"Communication is another key to a successful mentoring relationship. Although the mentor takes the lead to move through the stages of the relationship, the mentee is also responsible for maintaining good communication.",
+			"In Priya and Jennifer's case, if they do not communicate effectively, it can lead to a failed mentoring relationship. Priya should e-mail or send text messages regularly to Jennifer.",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Organization is also Key!",
+			"Setting up a schedule for meetings and staying organized are other ways a mentee and mentor can maintain good communication.",
+			"In Priya's case, she can consider using several strategies to enhance the organization of the meetings she and Jennifer set up:",
+			"",
+			"Scheduling new appointments in collaboration with Jennifer after every meeting",
+			"Keeping a personal record of the action items of the meeting and her concerns",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Problems in the Mentoring Relationship",
+			"While mentoring is generally a fruitful and rewarding experience for both the mentee and mentor, problems can occasionally arise. Unsuccessful mentoring pairs have reported the following:",
+			"",
+			"Communication infrequencies",
+			"Lack of preparation for mentoring sessions - lack of clear goals leads to wasted time",
+			"Lack of follow-through on desired outcomes - this can occur from the mentee, mentor, or both sides",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Strategies for Solving Problems",
+			"Successful mentoring pairs use simple strategies to get the most out of their relationship:",
+			"",
+			"Set clear goals for the relationship",
+			"Negotiate and maintain boundaries",
+			"Discuss expectations of and maintain confidentiality",
+			"Communicate on a regular ad frequent basis",
+			"Communicate in a conversational style -  being less formal makes communicating and sharing easier",
+			"Be direct and ask questions",
+			"Incorporate creativity and fun into relationship",
+			"Set specific topics / goals for meetings",
+			"Ask program staff for help with challenges",
+			"Reflect and maintain awareness of own feelings and attitudes",
+			"Be open and willing to work together to resolve problems and issues that may arise in the relationship",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point"];
+		slidecontent = [
+			"Scenarios",
+			"Here are two scenario problems to test your problem-solving skills as a potential mentee. Read through each scenario and the options to resolve the problem. Keeping in mind the simple strategies identified in the previous slide, select the option you believe is the best approach to address the situations facing Priya and Jennifer."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "background"];
+		slidecontent = [
+			"Scenario 1",
+			"Since they were matched, Jennifer and Priya have communicated primarily through the chat feature on the website of the e-mentoring program in which they are enrolled. They have also exchanged a few email messages. So far, things have been going well and Priya feels supports by Jennifer.",
+			"If you recall, Priya has been avoiding using the accommodations she has been approved to use in her courses. She is concerned that her professors and fellow classmates will think she's being given an upper hand isn't as capable as others in the program. Instead, Priya has been getting permission from he rprofessors to audio record their lectures.",
+			"This semester, one of Proya's professors has refused to allow her to record letures. Priya is upset and conflicted about what she should do. Priya is wondering if she should file a complaint against her professor with the Ombudsperson's Office at her school.",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background", "hidenext"];
+		slidecontent = [
+			"Scenario 1",
+			"Which of the following actions do you think Priya should take?",
+			"Priya should file a complaint against her professor with the Ombudsperson's Office",
+			"Priya should ask one of her professors from the previous term for help",
+			"Priya should book an appointment to meet with a disability counsellor at her school's Student Disability Services",
+			"Priya should request a meeting with her professor during office hours to inquire about why she cannot record her lectures",
+			"/views/standalone-modules/images/backgrounds/mentee4.png",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "answer"];
+		slidecontent = [
+			"Scenario 1",
+			"It's premature for Priya to contact the Ombudsperson's Office because she doesn't have all the details and facts about the situation. For example, Priya does not know why her professor denied her request. There may be a policy that bans recordings in a classroom. Instead, Priya can meet with a disability counsellor at her school's Student Disability Services to get support and gain an understanding of the situation. A counsellor can help Priya develop self-advocacy skills and coordinate communication with her professor, if she is interested."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "background"];
+		slidecontent = [
+			"Scenario 2",
+			"Priya and Jennifer are now in the Building and Progressing stage of their relationship. Things have been going well, but for the past four week Priya has not heard from her mentor, Jennifer. Priya is upset with Jennifer and doesn't know what she should do. The e-mentoring program requires that they meet every two weeks over a 16-week period. Priya is unsure if she should contact Jennifer. She understand that Jennifer may have other demands on her time; however, she also wonders if Jennifer's distancing behaviours are a sign that Jennifer in not interested in continuing to mentor her.",
+			"/views/standalone-modules/images/backgrounds/mentor2.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background"];
+		slidecontent = [
+			"Scenario 2",
+			"Which of the following actions do you think Priya should take?",
+			"Priya should continue to wait for Jennifer to contact her.",
+			"Priya should contact Jennifer immediately to set a meeting date and time.",
+			"Priya should report Jennifer's ineffective communication to the appropriate contact person in the e-mentoring program.",
+			"Priya should contact Jennifer and inform her that it would be best if she requested another mentor for the remainder of the e-mentoring program, as it appears that Jennifer is busy.",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "answer"];
+		slidecontent = [
+			"Scenario 2",
+			"While giving Jennifer more time is a considerate gesture, waiting creates further distancing between Priya and Jennifer. Ineffective communication between a mentor and mentee can lead to a failed mentoring relationship. Ideally in a mentoring relationship, the mentor takes the lead to make sure the relationship continues to develop. However, for a mentoring relationship to be successful there must be two-way communication. It is in Priya's best interest to contact Jennifer and work with her to get their relationship and the mentoring process back on track."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Conclusion",
+			"Mentoring can be a wonderful and life changing experiencing. The mutual relationship that develops between a mentor and mentee is associated with a number of positive outcomes for both individuals. But mentoring takes work and dedication!",
+			"We hope that after completing this module you have increased your knowledge and understanding of mentoring, it's characteristics, the roles involved - particularly the role of the mentor - the skill sets required, and keys to developing a successful mentoring relationship."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		mentor = new Linked_List();
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point", "background"];
+		slidecontent = [
+			"Objectives",
+			"More specifically, after completing this module the learner will be able to:",
+			"1",
+			"Explain the concept of mentoring including its characteristics",
+			"Explain the value of mentoring",
+			"Identify the outcomes of an effective mentorship experience",
+			"Differentiate between mentoring and coaching",
+			"Define the concept of mentor and mentee",
+			"Discuss the roles and responsibilities of the mentor and mentee",
+			"Describe the skill sets required of an effective mentor and mentee",
+			"Cite examples of issues that contribute to unsuccesful and challenging mentorship relationships",
+			"",
+			"In this section of the module, we follow the journey of Jennifer, a new mentor, as she forms a relationship with her mentee, Priya.",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "chat"];
+		slidecontent = [
+			"Introducing Jennifer",
+			"My name is Jennifer, and I'm a small business owner. I also teach part-time in a continuing education business program. What most people don't know about me is that I have a learning disability. When I attended University, I hid this from everyone and never sought any accommodations. Back then, having a disability wasn't as accepted as it is today. I felt ashamed and wished I had someone who I could lean on for support. My experience in university is one of the main reasons I now volunteer as a mentor in the e-mentoring program for women seeking careers in business. I believe it's important for students to have someone outside their academic programs with whom they can speak about the profession. I see myself as a support for an individual but not in the same way as a counsellor or a parent. I try to identify situations and events which can help my mentee develop knowledge and have valuable experiences. I'm particularly interested in mentoring students with a disability because I know what it's like to be a student with a disability."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point"];
+		slidecontent = [
+			"Mentoring",
+			"Jennifer's situation as a student is still a reality for many students with disability attending college or university. As Jennifer has highlighted, one way of dealing with these struggles and finding help to address them is through mentoring.",
+			"Mentoring is a purposeful, caring, and voluntary relastionship in which reflection and dialogue guide progress and action toward a conscious goal.",
+			"Mentoring promotes personal growth. A mentoring relationship can be used to increase personal or professional confidence, as well as, provide support during difficult or discouraging situations.",
+			"Mentoring can alsu be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another and to a new work environment."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listend"];
+		slidecontent = [
+			"Key Attributes of Mentoring",
+			"Three main characteristics of mentoring are consistently highlighted in the organizational behavior literature:",
+			"1",
+			"Reciprocity: mentoring requires a mutual relationship, involving a social exchange versus, a one way relationship.",
+			"Developmental benefits: both the mentee and mentor benefit from the learning partnership.",
+			"Regular and consistent interaction: the mentor and the mentee relationship is longer term, regular and consistent compared to other relationships, such as coaching or advising.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Benefits of Mentoring",
+			"There are several benefits to being in a mentoring relationship. A mentoring relationship can be affirming, increase an individual's confidence and self-esteem, lower their stress levels and encourage them to reach their goals. It can also lead to personal and professional satisfaction.",
+			"Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point", "point",];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"A mentoring relationship typically involves two individuals, a mentor and a mentee.",
+			"A mentor is a person who helps to guide an individual's growth and development. A mentor is not a professional counsellor, parent, or social worker, but someone who is confident and to provide support and guidance.",
+			"A mentor has more career experience and provides a listening ear, academic or career advice, guidance, and feedback. Mentors share knowledge and the pespective of their years of experience, nurturing the growth of th ementee as a future leader.",
+			"A mentee is a more junior individual who has a strong desire to learn, develop and frow academically and professionally.",
+			"For example, Priya meets the criteria to be a mentee. She is a student and has a strong need to do well academically and grow to become a business professional."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "point"];
+		slidecontent = [
+			"Role of the Mentor",
+			"In general, a mentor guides an individual to develop and grow; however, there are various types of mentors.",
+			"",
+			"Traditional mentors are usually older and experienced; they protect, advocate for, and nurture their mentees.",
+			"Another type of mentor is a supportive boss who is a person in direct supervisory relationship with their mentee but functions more as a coach.",
+			"Organizational sponsors are top-level managers who facilitate their mentees promotion within the organization.",
+			"Professional mentors are paid career counsellors and advisors",
+			"Patrons are persons who use financial resources and status to launch their mentee's careers",
+			"Invisible godparents help mentees reach career goals without their knowing it.",
+			"",
+			"In Jennifer's case, she is best described as a traditional mentor."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend", "point"];
+		slidecontent = [
+			"Mentoring Versus Coaching",
+			"Mentoring has been referred to as the 'transfer of wisdom' - with the mentee learning from an individual who has traveled the road before them. People tend to use the term mentoring and coaching to mean the same thing. While the terms have things in common, mentoring and coaching are not the same. Here are some key differences a mentor like Jennifer should be aware of:",
+			"",
+			"Coaching is concerned with helping an individual to improve, develop, and learn new knowledge and skills, usually in an environment that challenges the individual.",
+			"The coaching relationship focuses on facilitating and developing specific personal qualities of an individual (the coachee), such as speaking more effectively, while in the mentoring relationship, the mentor uses their knowledge, wisdom, and experience to create an environment that supports a mentee to grow and develop in more than one aspect.",
+			"Coaching is more instructional; the coach capitalizes on different skills and experiences to offer a new or diverse perspective. On the other hand, mentoring focuses on relationship building and involves providing a safe environment for the mentee to explore issues that affect their professional or personal success.",
+			"",
+			"The mentor provides advice on career-related or personal topics, activities that help the mentee develop and opportunities for success."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Differences Between a Mentor and a Coach",
+			"Because mentoring and coaching are not the same, a mentor and a coach differ in a number of ways. These differences can be described in terms of the different aspects of a relationship",
+			"",
+			"Scope. A mentor is focused on all aspects of a mentee's personal development, while a coach is usually focused on task-related aspects that are clearly defined and have a specific scope.",
+			"Role. A mentor takes the role of the facilitator with no agenda or semi-structured one. The mentor is a committed to the development of th ementee through building emotional connections that respect boundaries. The coach takes the role of facilitator with a specific agenda, committed to the task or goal.",
+			"Focus. Mentors are primarily focused on the transfer of key skills, whereas coaches are more concerned with empowering and motivating the individual to become proficient in specific skills.",
+			"Basis of Support. A mentor usually helps th ementee to develop self-responsibility and is concerned with helping the mentee take charge of his/her own growth. On the other hand, coaches tend to foster self-insight and focus on helping individuals grow through introspection and feedback from others.",
+			"Advice. Mentors provide advice to broaden perspective and understanding, and often share information to which the mentee is seldom privy. Coaches ofer advice to facilitate further development, and share confidential and personal feedback.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"Being an effective mentor requires certain qualities and skills. Here are seven key qualities that you to be an effective mentor.",
+			"1. Ability and willingness to communicate what you know",
+			"Being clear when communicating with your mentee is essential. This means that you share the lessons you've learned, or the strategies you're offering with an understanding that your mentee's decisions and their outcomes may be different from our own. It also means that you communicate the intricate details of what you have learned a way that makes sense and that your mentee can relate to and apply to their own experience."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"2. Preparedness",
+			"Being a mentor means making an important, serious commitment to someone, so give your mentee the respect he or she deserves. Show your faith in your mentee's abilities and in the mentoring process by preparing for each session. Yes it's important for your mentee to actively participate and even take the lead in these sessions. And you should ask your mentee what topics he or she wants to talk about beforehand, and be prepared to address them."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"3. Approachability, availability and the ability to listen",
+			"Your mentee must feel comfortable approaching you for advice or consultation; however, he or she must keep your availability and your schedule in mind. So it's good policy or practice to establish a set day and time for regular sessions or meetings. Once these time parameters are established, you must keep your commitments wholeheartedly and be ready to listen with an open mind, and provide counsel and advice."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"4. Honesty with Diplomacy",
+			"Dispense with formalities and really help facilitate an open, even lively dialogue with your mentee. Be willing to debate and discuss issues in a tactful way. Say what you think your mentee needs to hear from you, now what you think he or she might want to hear. Provide useful, honest guidance while ensuring that your mentee is the one making decisions for themselves."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"5. Inquisitiveness",
+			"Continual learning is essential to being an effective mentor. Try to keep up with trends, topics and developments that may impact you or your role, both now and in the future. And if your mentee asks you something you don't know the answer to, you and your mentee can work together to find the answer."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"6. Objectivity and Fairness",
+			"Establishing clear boundaries and expectations is necessary for a successful mentoring relationship. A mentoring relationship differs from a friendship. Yes, you care about and would like your mentee to succeed, but that doesn't mean you are obliged to socialize with him or her, or engage in other ways such as through social websites like Facebook. Also, ensure that there is no hidden agenda or ulterior motive involved in this relationship. Remember, you can be an advocate for your mentee while still retaining your objectivity and fairness."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"7. Compassion and Genuineness",
+			"However, maintaining your objectivity and being fair doesn't mean you can't show compassion. In fact, your mentoring relationship probably won't work if you don't show your interest and desire to provide one-on-one help and guidance. You must also be selfless about sharing what you know. Keeping your goal in mind - to remain worthy of someone's trust, model positiive behavior and successful performance, and offer guidance and advice toward reaching a specific goal - should be the compass that guides all your actions as a mentor."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"An effective mentoring relationship is not one-sided. It requires a mentee who is an active participant. To take part in the mentoring relationship, a mentee needs to be ready to be an equal contributor to the relationship. The important roles a mentee must take on at some point during the mentoring relationship include:",
+			"",
+			"Driver of the Relationship: Identify and communicate goals to mentor; identify topics and issues and seeking feedback and guidance from the mentor.",
+			"Plan Developer: Develop a plan of action with mentor to address goals.",
+			"Resource Partner: Work with your mentor to seek resources from learning; identify people and information that might be helpful.",
+			"Teacher: Look for opportunities to give back to your mentor; share any information that you think might be valuable.",
+			"Continuous Learner: Take full advantage of this opportunity to learn.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Attributes of an Effective Mentee",
+			"A mentee that is effective is able to:",
+			"",
+			"be self-motivated, and take repsonsibility for his or her own development",
+			"communicate clearly, listen, and articulate clear expectations",
+			"set goals/objectives such as self-assessment, development and planning",
+			"work with the mentor to develop an action plan to achieve goals",
+			"complete the work necessary to achieve goals and celebrate",
+			"share responsibility for making meetings with the mentor happen",
+			"start and maintain contact with the mentor",
+			"respect the mentor's time and feedback",
+			"accept feedback and share in finding answers and solutions for improvement",
+			"accept responsibility for the outcome of their actions",
+			"track or measure the progress of learning within the mentoring relationship",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "chat"];
+		slidecontent = [
+			"Meet Priya, Jennifer's First Mentee!",
+			"I decided to join an e-mentoring program for women seeking careers in business. I figured I could benefit from knowing a woman who made it in the business world. It was pretty easy to join; all I had to do was create a profile and complete a few online training modules. I was given three choices of possible mentors and I chose Jennifer! I really like Jennifer and it's been awesome having someone to connect with about stuff I'm interested in."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point"];
+		slidecontent = [
+			"Stages of the mentoring relationship",
+			"Successful mentoring relationships don't happen by accident. Formalized mentoring relations, like Priya and Jennifer's, tend to move through a series of stages.",
+			"1",
+			"Preparing for the relationship - Includes self-reflection, identifying goals and preparing yourself to take on the commitment involved in being in a mentoring relationship.",
+			"Searching/ Seeking out - Involves finding someone to support the journey to achieve goals.",
+			"Initiating - Coming together to discuss goals, identify expectations and establish ground rules.",
+			"Laying the foundation - Involves getting to know each other, building trust, continuing to clarify expectations and fine tuning goals.",
+			"Building and Progressing - Involves working to attain goals, empowering each other and building confidence and esteem; longest and most satisfying part of this process.",
+			"Relationship ends at the point when goals have been reached; involves affirming, evaluationg and celebrating process and outcomes, as well as discussing what comes next.",
+			"",
+			"Priya and Jennifer have completed stage one and two. They have moved into the initiating stage, which in their program includes developing a mentoring agreement."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Jennifer's Success Strategies",
+			"Jennifer has also encouraged Priya to make a list of the actions Priya plans to implement to support their mentoring relationship. Here are the strategies that Priya has come up with:",
+			"",
+			"I will identify the skills, knowledge, and goals that I want to achieve and communicate them to my mentor.",
+			"I will bring up new topics that are important to me at any point and give feedback to my mentor",
+			"I will maintain a mentoring plan and work with my mentor to set up goals, developmental activities and time frames",
+			"I will work with my mentor to seek resources for learning; identify people and information that might be helpful",
+			"I will look for opportunities to give back to my mentor; share any information that I think might be valuable",
+			"I will take full advantage of the opportunity to learn from my mentor",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"Communication is another key to a successful mentoring relationship. Although the mentor is ultimately responsible for taking the lead to move the relationship through the stages of mentoring, the mentee also has a role to play in maintaining effective communication.",
+			"In Jennifer and Priya's case, if they do not communicate effectively, it can lead to a failed mentoring relationship. Jennifer must ensure that she is following the timelines and activities outlined by the mentoring program; as well as, set up and make regular and meaningful contact with Priya."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Organization is also Key!",
+			"Setting up a schedule for meetings and staying organized are other ways a mentee and mentor can maintain good communication.",
+			"Jennifer can consider using several strategies to enhance the organization of the meetings she and Priya set up:",
+			"",
+			"Scheduling new appointments in collaboration with Jennifer after every meeting",
+			"Being prepared adequately for each meeting (e.g., being able to identify with Priya a specific focus or objectives prior to each meeting; prepae a meeting agenda; write down key points she wants to make during the discussion)",
+			"Keeping a personal record of the action items of the meeting and her concerns",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Problems in the Mentoring Relationship",
+			"While mentoring is generally a fruitful and rewarding experience for both the mentee and mentor, problems can occasionally arise. Unsuccessful mentoring pairs have reported the following:",
+			"",
+			"Communication infrequencies",
+			"Lack of preparation for mentoring sessions - lack of clear goals leads to wasted time",
+			"Lack of follow-through on desired outcomes - this can occur from the mentee, mentor, or both sides",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Strategies for Solving Problems",
+			"Successful mentoring pairs use simple strategies to get the most out of their relationship:",
+			"",
+			"Set clear goals for the relationship",
+			"Negotiate and maintain boundaries",
+			"Discuss expectations of and maintain confidentiality",
+			"Communicate on a regular ad frequent basis",
+			"Communicate in a conversational style -  being less formal makes communicating and sharing easier",
+			"Be direct and ask questions",
+			"Incorporate creativity and fun into relationship",
+			"Set specific topics / goals for meetings",
+			"Ask program staff for help with challenges",
+			"Reflect and maintain awareness of own feelings and attitudes",
+			"Be open and willing to work together to resolve problems and issues that may arise in the relationship",
+			"",
+			"/views/standalone-modules/images/backgrounds/mentor5.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point"];
+		slidecontent = [
+			"Scenarios",
+			"Here are two scenario problems to test your problem-solving skills as a potential mentor. Read through each scenario and the options to resolve the problem. Keeping in mind the simple strategies identified in the previous slide, select the option you believe is the best approach to address the situations facing Priya and Jennifer."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "background"];
+		slidecontent = [
+			"Scenario 1",
+			"Since they were matched, Jennifer and Priya have communicated primarily through the chat feature on the website of the e-mentoring program in which they are enrolled. They have also exchanged a few email messages. So far, things have been going well and Priya feels supports by Jennifer.",
+			"If you recall, Priya has been avoiding using the accommodations she has been approved to use in her courses. She is concerned that her professors and fellow classmates will think she's being given an upper hand isn't as capable as others in the program. Instead, Priya has been getting permission from he rprofessors to audio record their lectures.",
+			"This semester, one of Proya's professors has refused to allow her to record letures. Priya is upset and conflicted about what she should do. Priya is wondering if she should file a complaint against her professor with the Ombudsperson's Office at her school.",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background"];
+		slidecontent = [
+			"Scenario 1",
+			"If you were Jennifer how would you respond?",
+			"Suggest that Priya should file a complaint against her professor with the Ombudsperson's Office",
+			"Suggest that Priya should ask one of her professors from the previous term for help",
+			"Suggest that Priya should book an appointment to meet with a disability counsellor at her school's Student Disability Services",
+			"Suggest that Priya should request a meeting with her professor during office hours to inquire about why she cannot record her lectures",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "answer"];
+		slidecontent = [
+			"Scenario 1",
+			"It's premature for Priya to contact the Ombudsperson's Office because she doesn't have all the details and facts about the situation. For example, Priya does not know why her professor denied her request. There may be a policy that bans recordings in a classroom. Instead, Priya can meet with a disability counsellor at her school's Student Disability Services to get support and gain an understanding of the situation. A counsellor can help Priya develop self-advocacy skills and coordinate communication with her professor, if she is interested."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "background"];
+		slidecontent = [
+			"Scenario 2",
+			"Priya and Jennifer are now in the Building and Progressing stage of their relationship. Things have been going well, but for the past four week Priya has not heard from her mentor, Jennifer. Priya is upset with Jennifer and doesn't know what she should do. The e-mentoring program requires that they meet every two weeks over a 16-week period. Priya is unsure if she should contact Jennifer. She understand that Jennifer may have other demands on her time; however, she also wonders if Jennifer's distancing behaviours are a sign that Jennifer in not interested in continuing to mentor her.",
+			"/views/standalone-modules/images/backgrounds/mentor2.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background"];
+		slidecontent = [
+			"Scenario 2",
+			"If you were Jennifer, what would you suggest",
+			"Priya should continue to wait for Jennifer to contact her.",
+			"Priya should contact Jennifer immediately to set a meeting date and time.",
+			"Priya should report Jennifer's ineffective communication to the appropriate contact person in the e-mentoring program.",
+			"Priya should contact Jennifer and inform her that it would be best if she requested another mentor for the remainder of the e-mentoring program, as it appears that Jennifer is busy.",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "answer", "background"];
+		slidecontent = [
+			"Scenario 2",
+			"While giving Jennifer more time is a considerate gesture, waiting creates further distancing between Priya and Jennifer. Ineffective communication between a mentor and mentee can lead to a failed mentoring relationship. Ideally in a mentoring relationship, the mentor takes the lead to make sure the relationship continues to develop. However, for a mentoring relationship to be successful there must be two-way communication. It is in Priya's best interest to contact Jennifer and work with her to get their relationship and the mentoring process back on track."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Conclusion",
+			"Mentoring can be a wonderful and life changing experiencing. The mutual relationship that develops between a mentor and mentee is associated with a number of positive outcomes for both individuals. But mentoring takes work and dedication!",
+			"We hope that after completing this module you have increased your knowledge and understanding of mentoring, it's characteristics, the roles involved - particularly the role of the mentor - the skill sets required, and keys to developing a successful mentoring relationship."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		//MAIN SLIDE SHOW
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var slides = new Linked_List();
+
+		slidekey = ["title", "capitalbold"];
+		slidecontent = [
+			"Mentorship",
+			"LET'S GET STARTED >"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point"];
+		slidecontent = [
+			"Introduction",
+			"Welcome to the PSDNET Mentoring Education Module. Mentoring is a privelege because it provides an opportunity for learning and development.  It is also a responsibility because it requires a commitment and investment of time.  It involves a mutual relationship that can be transformative for the individuals involved, furthering their own growth and development in a number of areas.  Mentoring relationships bring together people with different backgrounds, positions, and experiences who share a common interest and a desire to learn from and about each other.",
+			"Many who have been involved in mentoring will likely tell you that the process of developing an effective method of mentoring often takes time.  Therefore, mentoring requires training, thoughtful preparation, and planning.",
+			"This exciting module is a starting point to developing an effective mentoring relationship.",
+			"The overall goal of the module is to increase the learner's own knowledge about mentoring and, for those interested in becoming a mentor or mentee, accelerate the process of moving towards achieving that goal."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		slidekey = ["subtitle", "tablestart", "tablerowstart", "tabledatastart", "image", "tabledataend", "tabledatastart", "image", "tabledataend", "tablerowend", "tablerowstart", "tabledatastart", "linktext", "linkslidenum", "tabledataend", "tabledatastart", "linktext", "linkslidenum", "tabledataend", "tablerowend", "tableend"];
+		slidecontent = [
+			"Introduction",
+			"",
+			"",
+			"",
+			"/views/standalone-modules/images/backgrounds/Mentee1.jpg",
+			"",
+			"",
+			"/views/standalone-modules/images/backgrounds/Mentor1.jpg",
+			"",
+			"",
+			"",
+			"",
+			"CONTINUE TO MENTEE SLIDES >",
+			"mentee",
+			"",
+			"",
+			"CONTINUE TO MENTOR SLIDES >",
+			"mentor",
+			"",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		slides.Add(node);
+
+		current_slideshow = slides;
+		Display_Slide(current_slideshow.Get(0).content, current_slideshow);
+		//END MAIN SLIDE SHOW
+
+
+		//MENTEE ANSWER 1 SLIDE SHOW
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentee_answer1 = new Linked_List();
+
+		slidekey = ["subtitle", "point", "point", "point", "background", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"Since they were matched, Jennifer and Priya have communicated primarily through the chat feature on the website of the e-mentoring program in which they are enrolled. They have also exchanged a few email messages. So far, things have been going well and Priya feels supports by Jennifer.",
+			"If you recall, Priya has been avoiding using the accommodations she has been approved to use in her courses. She is concerned that her professors and fellow classmates will think she's being given an upper hand isn't as capable as others in the program. Instead, Priya has been getting permission from he rprofessors to audio record their lectures.",
+			"This semester, one of Proya's professors has refused to allow her to record letures. Priya is upset and conflicted about what she should do. Priya is wondering if she should file a complaint against her professor with the Ombudsperson's Office at her school.",
+			"images/backgrounds/Mentee4.jpg",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "hidenext", "hidepage", "prevhead"];
+		slidecontent = [
+			"Scenario 1",
+			"Which of the following actions do you think Priya should take?",
+			"Priya should file a complaint against her professor with the Ombudsperson's Office",
+			"Priya should ask one of her professors from the previous term for help",
+			"Priya should book an appointment to meet with a disability counsellor at her school's Student Disability Services",
+			"Priya should request a meeting with her professor during office hours to inquire about why she cannot record her lectures",
+			"",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"It's premature for Priya to contact the Ombudsperson's Office because she doesn't have all the details and facts about the situation. For example, Priya does not know why her professor denied her request. There may be a policy about students recording in the classroom that her professor is following. Instead, Priya can meet with an Accessibility Consultant at her school's Accessible Learning Services to get support and gain an understanding of the situation. A Consultant can help Priya learning about the accommodations process at the college and coordinate communications with her professor, if she is interested.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"While this action could possibly resolve Priya's problem, it is not the best approach as it could make the situation worse. The best person to help Priya navigate the situation is an Accessibility Consultant. A Consultant will be able to inform Priya of the accommodation policies and procedures at her school, and her rights and obligations as a student. Additionally, a Consultant can support Priya to make decisions to resolve her situation that are in her best interest and meet her needs.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidepage", "hidenext", "linktext", "linkslidenum"];
+		slidecontent = [
+			"Scenario 1",
+			"This advice is likely to achieve the best result for Priya. The primary role of an Accessibility Consultant is to support students to meet their accommodation needs. Speaking with a Consultant will enable Priya to: 1) gain a better understanding of her rights as a student, 2) understand the policy and procedures related to accommodations at her school, 3) gain perspective about why her professor denied her request; and most importantly, 4) develop a strategy that addresses her privacy and accommodation needs.",
+			"",
+			"",
+			"Go to next scenario",
+			"mentee_answer2"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"This action may be a good way for Priya to better understand why her professor denied her request; however, it would be in Priya's best interest to find out more about the accommodation process at her school and rights as a student. Before making the decision to confront her professor, Priya should speak with an Accessibility Consultant and discuss options regarding disclosing and accommodations. A Consultant can also help Priya to develop self-advocacy skills and provide assistance communicating with her professor.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer1.Add(node);
+
+		//END MENTEE ANSWER 1 SLIDSHOW
+
+		//MENTEE ANSWER 2 SLIDESHOW
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentee_answer2 = new Linked_List();
+
+		slidekey = ["subtitle", "point", "background", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"Priya and Jennifer are now in the Building and Progressing stage of their relationship. Things have been going well, but for the past four week Priya has not heard from her mentor, Jennifer. Priya is upset with Jennifer and doesn't know what she should do. The e-mentoring program requires that they meet every two weeks over a 16-week period. Priya is unsure if she should contact Jennifer. She understand that Jennifer may have other demands on her time; however, she also wonders if Jennifer's distancing behaviours are a sign that Jennifer in not interested in continuing to mentor her.",
+			"images/backgrounds/Mentor6.jpg",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background", "hidenext", "hidepage", "prevhead"];
+		slidecontent = [
+			"Scenario 2",
+			"Which of the following actions do you think Priya should take?",
+			"Priya should continue to wait for Jennifer to contact her.",
+			"Priya should contact Jennifer immediately to set a meeting date and time.",
+			"Priya should report Jennifer's ineffective communication to the appropriate contact person in the e-mentoring program.",
+			"Priya should contact Jennifer and inform her that it would be best if she requested another mentor for the remainder of the e-mentoring program, as it appears that Jennifer is busy.",
+			"images/backgrounds/Mentor6"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"Priya should continue to wait for Jennifer to contact her.  While giving Jennifer more time is a considerate gesture, waiting creates further distancing between Priya and Jennifer. Ineffective communication between a mentor and mentee can lead to a failed mentoring relationship. Ideally in a mentoring relationship, the mentor takes the lead to make sure the relationship continues to develop. However, for a mentoring relationship to be successful there must be two-way communication. It is in Priya's best interest to contact Jennifer and work with her to get their relationship and the mentoring process back on track.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage", "linktext", "linkslidenum"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is correct. Priya should send a text message to Jennifer. In her message, Priya should be honest and share her concerns about falling behind in the program. Priya can also suggest to Jennifer that they to set a date and time to meet-up online to chat about what happened and identify strategies to support their relationship going forward. As well, Priya can consider using a number of strategies, such as keeping a record of the action items that she is responsible for to help her stay on top of things.",
+			"",
+			"",
+			"Go to conclusion",
+			"conclusion"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidepage", "hidenext"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is not the best way to resolve the problem. Reporting Jennifer to the program administration may embarrass her, causing tension and bring about an end to the relationship. Priya should contact Jennifer directly and be honest with her about her concerns. If Priya would like help reconnecting with Jennifer, there are often online resources that are provided by the mentoring program to support mentors and mentees to build successful relationships. Priya can also contact a program staff person for assistance.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is premature because Priya does not have all the information about what has happened. There could be a number of reasons why Jennifer has not been communicating with Priya, including demands on her time.  Rather than making assumptions about Jennifer's commitment to being a mentor, Priya should contact Jennifer and have a discussion. She should be honest and share her concern about the distance between them and falling behind in the e-mentoring program activities. Together, they can decide what is best for their relationship going forward.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee_answer2.Add(node);
+
+		//END MENTEE ANSWER 2 SLIDSHOW
+
+
+		// MENTEE SLIDESHOW
+
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentee = new Linked_List();
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Introducing Priya",
+			"Hey! I'm Priya. I'm a first year College student. I'm studying business and want to open my own business when I finish school. I have a learning disability. In elementary and high school, I felt OK about it, but things are different in College. My program is really competitive and I'm afraid that if my professors and other students find out that I need a note taker, they will think I'm lazy and not smart enough to be in the program. My parents pushed me to register with the Student Disability Services but I haven't given the accommodation letter I received to any of my professors.",
+			"images/backgrounds/Mentee2.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point", "background"];
+		slidecontent = [
+			"Objectives",
+			"More specifically, after completing this module the learner will be able to:",
+			"1",
+			"Explain the concept of mentoring including it's characteristics",
+			"Explain the value of mentoring",
+			"Identify the outcomes of an effective mentorship experience",
+			"Differentiate between mentoring and coaching",
+			"Define the concept of mentor and mentee",
+			"Discuss the roles and responsibilities of the mentor and the mentee",
+			"Describe the skill sets required of an effective mentor and mentee",
+			"Cite examples of issues that contribute to unsuccessful and challenging mentorship relationships",
+			"",
+			"In this section of the module, we follow Priya, a College student, as she begins her journey to becoming a mentee and forming a relationship with her mentor, Jennifer.",
+			"images/backgrounds/Group1.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Mentoring",
+			"Priya's situation is not unusual - many student with disabilities face these same kinds of fears or concerns. One way of dealing with these issues - and helping to address them - is through mentoring.",
+			"Mentoring is a purposeful, caring, and voluntary relationship in which reflection and communication guide progress and action towards meeting goals."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"What is the Purpose of Mentoring?",
+			"Mentoring promotoes personal growth in both the mentor and mentee. A mentoring relationship can be used to increase personal or professional confidence, as well as provide support during difficult or discoruaging situations.",
+			"Mentoring can also be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another, and to a new work environment."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"What is the Purpose of Mentoring?",
+			"There are several benefits to being in a mentoring relationship.  A mentoring relationship can be affirming, increase an individual's self-confidence, and encourage them to reach their goals. It can also lead to personal satisfaction.",
+			"Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "minorheading", "bulletliststart", "listpoint", "listpoint", "bulletlistend", "minorheading", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"There are two main types of mentoring relationships: informal and formal.",
+			"Informal mentoring relationships are:",
+			"",
+			"More spontaneous",
+			"Less structured",
+			"",
+			"Formal mentoring relationships:",
+			"",
+			"Involve a formal linking of two or more individuals (e.g., one to one, one to a group).",
+			"Typically include a written agreement outlining the roles of each person involved and goals of the relationship.",
+			"Follow a process during predetermined period of time.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point", "point"];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"A mentoring relationship typically involves two individuals, a mentor and a mentee.",
+			"A mentor is a person who helps to guide an individual's growth and development. A mentor is not a professional counsellor, parent, or social worker, but someone who is confident and provides support and guidance.",
+			"A mentor has more career experience and provides a listening ear, academic or career advice, guidance, and feedback. Mentors share knowledge and the perspective of their years of experience, nurturing the growth of the mentee as a future leader.",
+			"A mentee is a more junior individual who has a strong desire to learn, and develop, and grow academically and professionally.",
+			"For example, Priya meets the criteria to be a mentee. She is a student and has a strong need to do well academically and to grow to become a business professional."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of the Mentor",
+			"In general, a mentor guides an individual to develop and grow; however, there are various types of mentors.",
+			"",
+			"Traditional mentors are usually older and experienced; they protect, advocate for, and nurture their mentees.",
+			"Another type of mentor is a supportive boss who is a person in direct supervisory relationship with their mentee but functions more as a coach.",
+			"Organizational sponsors are top-level managers who facilitate their mentees' promotion within the organization.",
+			"Professional mentors are paid career counsellors and advisors",
+			"Patrons are persons who use financial resources and status to launch their mentee's careers",
+			"Invisible godparents help mentees reach career goals without their knowing it.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"An effective mentoring relationship is not one-sided. It requires a mentee who is an active participant. To take part in the mentoring relationship, a mentee needs to be ready to be an equal contributor to the relationship. The important roles a mentee must take on at some point during the mentoring relationship can include:",
+			"",
+			"Driver of the relationship: identify and communicate goals to the mentor; identify topics and issues.",
+			"Plan Developer: develop a plan of action with mentor to address goals.",
+			"Resources partner: work with your mentor to seek resources for learning; identify people and information that might be helpful.",
+			"Teacher: look for opportunities to give back to your mentor.",
+			"Continuous learner: take full advantage of this opportunity to learn.",
+			"",
+			"images/backgrounds/Mentee5.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"The role of a mentee requires the ability to:",
+			"",
+			"be self-motivated, and take responsibility for your own development.",
+			"communicate clearly, listen, and articulate clear expectations.",
+			"set goals/objectives of the mentorship such as self-assessment, development, and planning.",
+			"share responsibility for making meetings with the mentor happen.",
+			"respect the mentor's time and feedback.",
+			"accept feedback and share in finding answers and solutions for improvement.",
+			"accept responsibility for the outcome of your actions.",
+			"track or measure the progress of learning within the mentoring relationship.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Priya Joins an e-Mentoring Program",
+			"I decided to join an e-mentoring program for women seeking careers in business. I figured I could benefit from knowing a woman who has made it in the business world. It was pretty easy to join; all I had to do was create a profile and complete a few online training modules. I was given three choices of possible mentors and I chose Jennifer! I really like Jennifer and it's been awesome having someone to connect with about stuff I'm interested in.",
+			"images/backgrounds/Mentee6.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Introducing Jennifer Priya's Mentor",
+			"I volunteered to be a mentor in the e-mentoring program for women seeking careers in business because I believe it's important for students to have someone outside their academic programs with whom they can speak about the profession. I try to identify situations and events which can help my mentees develop knowledge and have valuable experiences.",
+			"images/backgrounds/Mentor2.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point"];
+		slidecontent = [
+			"Stages of the Mentoring Relationship",
+			"Successful mentoring relationships don't happen by accident. Formalized mentoring relationships, like Priya's and Jennifer's, tend to move through a series of stages.",
+			"1",
+			"Preparing for the relationship - Includes self-reflection, identifying goals, and preparing yourself to take on the commitment involved in being in a mentoring relationship.",
+			"Searching/Seeking out - Involves finding someone to support the journey to achieve goals.",
+			"Initiating - Coming together to discuss goals, identify expectations, and establish ground rules.",
+			"Laying the foundation - Involves getting to know each other, building trust, and continuing to clarify expectations, and fine tuning goals.",
+			"Building and Progressing - Involves working to attain goals, empowering each other, and building confidence and esteem; longest and most satisfying part of the mentoring process.",
+			"Relationship ends at the point when goals have been reached; involves affirming, evaluating, and celebrating process and outcomes, as well as discussing what comes next.",
+			"",
+			"Priya and Jennifer have completed stage one and two. They have moved into the initiating stage, which in their program includes developing a mentoring agreement."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Keys to a Successful Mentoring Relationship",
+			"Moving through the stages of a mentoring relationship successfully requires the active participation of both the mentee and mentor. There are many things each individual can do to ensure the relationship is successful.",
+			"Here are the strategies that Priya has developed:",
+			"",
+			"I will identify the skills, knowledge, and goals that I want to achieve and communicate them to my mentor",
+			"I will bring up new topics that are important to me at any point and give feedback to my mentor",
+			"I will maintain a mentoring plan and work with my mentor to set up goals, developmental activities, and time frames",
+			"I will work with my mentor to seek resources for learning; identify people and information that might be helpful",
+			"I will look for opportunities to give back to my mentor; share any information that I think might be valuable",
+			"I will take full advantage of the opportunity to learn from my mentor",
+			"",
+			"images/backgrounds/Mentee7.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Jennifer's Success Strategies",
+			"Because Jennifer believes mentoring is a two-way process in which both individuals have roles to play, she's written her own list of actions she plans to implement to help make her relationship with Priya a success.",
+			"I will:",
+			"",
+			"Provide feedback and share ideas with Priya.",
+			"Try my best to listen to Priya's concerns and draw on my own experiences to give her encouragement and advice.",
+			"Do my best to find and provide resources that will support Priya to meet the goals we set together.",
+			"Act as a support for Priya.",
+			"Challenge Priya to help her consider multiple points of view around issues.",
+			"",
+			"images/backgrounds/Mentor4.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "background"];
+		slidecontent = [
+			"Communicating with Your Mentor",
+			"Communication is another key to a successful mentoring relationship. Although the mentor takes the lead to move through the stages of the relationship, the mentee is also responsible for maintaining good communication.",
+			"In Priya and Jennifer's case, if they do not communicate effectively, it can lead to a failed mentoring relationship. Priya should e-mail or send text messages regularly to Jennifer.",
+			"images/backgrounds/Mentee6.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Organization is also Key!",
+			"Setting up a schedule for meetings and staying organized are other ways a mentee and mentor can maintain good communication.",
+			"In Priya's case, she can consider using several strategies to enhance the organization of the meetings she and Jennifer set up:",
+			"",
+			"Scheduling new appointments in collaboration with Jennifer after every meeting",
+			"Keeping a personal record of the action items of the meeting and her concerns",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Problems in the Mentoring Relationship",
+			"While mentoring is generally a fruitful and rewarding experience for both the mentee and mentor, problems can occasionally arise. Unsuccessful mentoring pairs have reported the following:",
+			"",
+			"Communication infrequencies",
+			"Lack of preparation for mentoring sessions - lack of clear goals leads to wasted time",
+			"Lack of follow-through on desired outcomes - this can occur from the mentee, mentor, or both sides",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Strategies for Solving Problems",
+			"Successful mentoring pairs use simple strategies to get the most out of their relationship:",
+			"",
+			"Set clear goals for the relationship",
+			"Negotiate and maintain boundaries",
+			"Discuss expectations of and maintain confidentiality",
+			"Communicate on a regular ad frequent basis",
+			"Communicate in a conversational style -  being less formal makes communicating and sharing easier",
+			"Be direct and ask questions",
+			"Incorporate creativity and fun into relationship",
+			"Set specific topics / goals for meetings",
+			"Ask program staff for help with challenges",
+			"Reflect and maintain awareness of own feelings and attitudes",
+			"Be open and willing to work together to resolve problems and issues that may arise in the relationship",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+		slidekey = ["subtitle", "point", "linktext", "linkslidenum", "background"];
+		slidecontent = [
+			"Scenarios",
+			"Here are two scenario problems to test your problem-solving skills as a potential mentee. Read through each scenario and the options to resolve the problem. Keeping in mind the simple strategies identified in the previous slide, select the option you believe is the best approach to address the situations facing Priya and Jennifer.",
+			"Scenario 1",
+			"mentee_answer1",
+			"images/backgrounds/Mentee8.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentee.Add(node);
+
+
+		//END MENTEE SLIDESHOW
+
+
+		//MENTOR ANSWER 1
+
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentor_answer1 = new Linked_List();
+
+		slidekey = ["subtitle", "point", "point", "point", "background", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"Since they were matched, Jennifer and Priya have communicated mostly through the chat feature on the website of the e-mentoring program they are enrolled in. They have also exchanged a few email messages. So far, things have been going well and Priya feels supported by Jennifer.",
+			"If you recall, Priya has been avoiding using the accommodations she has been approved to use in her courses. She is concerned that her professors and fellow classmates will think she's been given an upper hand and isn't as capable as others in the program. Instead, Priya has been getting permission from her professors to audio record their lectures.",
+			"This semester, one of Priya's professors has refused to allow her to record lectures. Priya is upset and conflicted about what she should do. She decides to get the advice of her mentor, Jennifer and sets a date and time to chat online with her.  During their chat, Priya explains her situation to Jennifer and tells her she is considering filing a complaint against her professor with the Ombudsperson's Office at her school.",
+			"images/backgrounds/Mentee4.jpg",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "hidenext", "hidepage", "prevhead"];
+		slidecontent = [
+			"Scenario 1",
+			"Which of the following actions do you think Jennifer should take?",
+			"Suggest that Priya speak with an Accessibility Counsellor at her college's Accessible Learning Services",
+			"Support Priya's idea to file a complaint against her professor with the Ombudsperson's Office at her college.",
+			"Suggest that Priya meet with her professor to talk about her disability and discuss why she needs the accommodation. ",
+			"Suggest that Priya get help from a previous professor who allowed her to record lectures.",
+			"",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage", "linktext", "linkslidenum"];
+		slidecontent = [
+			"Scenario 1",
+			"This advice is most likely to get the best result for Priya. The primary role of an Accessibility Counsellor is to support students to meet their accommodation needs. Speaking with a counsellor will allow Priya to: 1) gain a better understanding of her rights as a student; 2) understand the policies and procedures related to accommodations at her college; 3) gain perspective about why her professor may have denied her request; and most importantly, 4) develop a strategy that will address her privacy concerns and accommodation needs.",
+			"",
+			"",
+			"Go to scenario 2",
+			"mentor_answer2"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"This advice is the least likely to resolve Priya's situation. It's premature for Priya to contact the Ombudsperson's Office because she doesn't have all the details and facts about the situation. For example, Priya does not know why her professor denied her request. There may be a policy about students recording in the classroom that her professor is following. Instead, Priya can meet with an Accessibility Counsellor at her college's Accessible Learning Services to get support and gain an understanding of her situation. A counsellor can help Priya develop self-advocacy skills and coordinate communication with her professor, if she is interested.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidepage", "hidenext"];
+		slidecontent = [
+			"Scenario 1",
+			"Indeed, Priya may need to talk with her professor about accommodations; however, sharing details about her disability is likely to make Priya feel even more vulnerable. Additionally, Priya is not required to disclose her disability to her professor in order to be accommodated. Instead, it may be better for Priya to meet with an Accessibility Counsellor at her college's Accessible Learning Services to get support and assistance coordinating communication with her professor. This will help Priya develop self-advocacy and other skills that she can apply when interacting with others about her disability and accommodations in the future.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 1",
+			"While this action could possibly resolve Priya's problem, it is not the best approach as it could make the situation worse. The best person to help Priya navigate the situation is an Accessibility Consultant. A Consultant will be able to inform Priya of the accommodation policies and procedures at her school, and her rights and obligations as a student. Additionally, a Consultant can support Priya to make decisions to resolve her situation that are in her best interest and meet her needs.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer1.Add(node);
+
+
+		//END MENTOR ANSWER 1
+
+		//MENTOR ANSWER 2
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentor_answer2 = new Linked_List();
+
+		slidekey = ["subtitle", "point", "point", "background", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"Jennifer and Priya are now in the Building and Progressing stage of their relationship. Things have been going well but for the past four weeks, there has not been any contact between them. The e-mentoring program requires that they meet every two weeks over a 16- week period. Jennifer is hesitant to contact Priya. Jennifer wonders if Priya has hit a busy time in her school schedule or is dealing with personal issues. Jennifer, herself, has had a number of demands on her time in the last few weeks.",
+			"The thought has also crossed her mind that Priya's distancing behaviour is a sign that she  may not be interested in being mentored.",
+			"/views/standalone-modules/images/backgrounds/mentor2.png",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		slidekey = ["subtitle", "point", "questiona", "questionb", "questionc", "questiond", "background", "hidenext", "hidepage", "prevhead"];
+		slidecontent = [
+			"Scenario 2",
+			"Which of the following actions do you think Jennifer should take?",
+			"Jennifer should send a message to Priya, as soon as possible, to set a meeting date and time.",
+			"Jennifer should wait for Priya to contact her because Priya is responsible for her own learning and development. It is up to Priya to contact Jennifer if she wants to make use of the mentoring opportunity.",
+			"Jennifer should seek help from the e-mentoring program staff.",
+			"Jennifer should ask a colleague to mentor Priya because the relationship between her and Priya doesn't seem to be going well.",
+			"/views/standalone-modules/images/backgrounds/mentee4.png"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage", "linktext", "linkslidenum"];
+		slidecontent = [
+			"Scenario 2",
+			"Jennifer should send message to Priya, as soon as possible, to set a meeting date and time. This is the best action for Jennifer to take. For both Jennifer and Priya to get the most out of their mentoring relationship, Jennifer should follow the mentoring program's guided activities and timelines. This action would: 1) show respect for the mentoring relationship and demonstrate her accountability as a mentor; 2) support Priya to meet the goals and objectives she has set, and; 3) provide Jennifer with opportunities to further develop skills, such as communication, and experience the satisfaction that comes with being a mentor. A strategy that Jennifer can use to get the most out of their meeting is to practice “reiterating and reviewing.” This approach makes sure that Jennifer and Priya are on the same page about what they discussed and what each of them has to do before they meet again. Jennifer can also use a checklist to keep track of their meetings and a focus on Priya's needs and concerns.",
+			"",
+			"",
+			"Go to conclusion",
+			"conclusion"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is incorrect. Indeed the mentoring relationship relies on two-way communication between Jennifer and Priya. It is important that both individuals communicate effectively throughout the e-mentoring program. However, as a mentor, Jennifer has the responsibility to support Priya's development and takes a prominent role in facilitating the mentoring process. Therefore, Jennifer should contact Priya as soon as possible to re-establish their relationship and get back on track with the mentoring program's timeline.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidepage", "hidenext"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is a good start to addressing the distancing problem between Jennifer and Priya. The e-mentoring program staff can help Jennifer to problem solve and come-up with strategies. If immediate assistance is not available through the program, Jennifer shouldn't wait for a response before contacting Priya. She can make contact with Priya to get the ball rolling again and set up a meeting for a future date and time.  ",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		slidekey = ["subtitle", "answer", "hidenext", "hidepage"];
+		slidecontent = [
+			"Scenario 2",
+			"This action is premature and not appropriate. While it would be ideal for Jennifer to remain as Priya's mentor throughout the duration of the program, there are times when extenuating circumstances impact a mentor's ability to effectively meet their obligations. Jennifer should find out what is happening with Priya and also reflect upon her own behaviour.  Does she have the desire and time to meet her commitments as a mentor? If Jennifer decides she can no longer mentor Priya, she must be honest and directly communicate this to Priya. Priya will be able to select a new mentor through the program, if she remains interested in having a mentor.",
+			"",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor_answer2.Add(node);
+
+		//END MENTOR ANSWER 2
+
+		//MENTOR SLIDESHOW
+		var slidekey;
+		var slidecontent;
+		var node;
+
+		var mentor = new Linked_List();
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point", "background"];
+		slidecontent = [
+			"Objectives",
+			"After completing this module the learner will be able to:",
+			"1",
+			"Explain the concept of mentoring including its characteristics",
+			"Explain the value of mentoring",
+			"Identify the outcomes of an effective mentorship experience",
+			"Differentiate between mentoring and coaching",
+			"Define the concept of mentor and mentee",
+			"Discuss the roles and responsibilities of the mentor and mentee",
+			"Describe the skill sets required of an effective mentor and mentee",
+			"Cite examples of issues that contribute to unsuccesful and challenging mentorship relationships",
+			"",
+			"In this section of the module, we follow the journey of Jennifer, a new mentor, as she forms a relationship with her mentee, Priya.",
+			"images/backgrounds/Mentor2.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Introducing Jennifer",
+			"My name is Jennifer, and I'm a small business owner. I also teach part-time in a continuing education business program. What most people don't know about me is that I have a learning disability. When I attended University, I hid this from everyone and never sought any accommodations. Back then, having a disability wasn't as accepted as it is today. I felt ashamed and wished I had someone who I could lean on for support. My experience in university is one of the main reasons I now volunteer as a mentor in the e-mentoring program for women seeking careers in business. I believe it's important for students to have someone outside their academic programs with whom they can speak about the profession. I see myself as a support for an individual but not in the same way as a counsellor or a parent. I try to identify situations and events which can help my mentee develop knowledge and have valuable experiences. I'm particularly interested in mentoring students with a disability because I know what it's like to be a student with a disability.",
+			"images/backgrounds/Group1.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point"];
+		slidecontent = [
+			"Mentoring",
+			"Jennifer's situation as a student is still a reality for many students with a disability attending college or university. As Jennifer has highlighted, one way of dealing with these struggles and finding help to address them is through mentoring.",
+			"Mentoring is a purposeful, caring, and voluntary relationship in which reflection and dialogue guide progress and action toward a conscious goal.",
+			"Mentoring promotes personal growth. A mentoring relationship can be used to increase personal or professional confidence, as well as, provide support during difficult or discouraging situations.",
+			"Mentoring can also be used for professional socialization. A mentoring relationship can help ease the transition from student to professional, one role to another and to a new work environment."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listend"];
+		slidecontent = [
+			"Key Attributes of Mentoring",
+			"Three main characteristics of mentoring are consistently highlighted in the organizational behavior literature:",
+			"1",
+			"Reciprocity: mentoring requires a mutual relationship, involving a social exchange versus, a one way relationship.",
+			"Developmental benefits: both the mentee and mentor benefit from the learning partnership.",
+			"Regular and consistent interaction: the mentor and the mentee relationship is longer term, regular and consistent compared to other relationships, such as coaching or advising.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point"];
+		slidecontent = [
+			"Benefits of Mentoring",
+			"There are several benefits to being in a mentoring relationship. A mentoring relationship can be affirming, increase an individual's confidence and self-esteem, lower their stress levels, and encourage them to reach their goals. It can also lead to personal and professional satisfaction.",
+			"Specific to students, research has shown that those who are involved in mentoring relationships are better able to meet their personal goals and deal with career situations."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "point", "point", "point",];
+		slidecontent = [
+			"The Mentoring Relationship",
+			"A mentoring relationship typically involves two individuals, a mentor and a mentee.",
+			"A mentor is a person who helps to guide an individual's growth and development. A mentor is not a professional counsellor, parent, or social worker, but someone who is confident and provides support and guidance.",
+			"A mentor has more career experience and provides a listening ear, academic or career advice, guidance, and feedback. Mentors share knowledge and the perspective of their years of experience, nurturing the growth of the mentee as a future leader.",
+			"A mentee is a more junior individual who has a strong desire to learn, and develop, and grow academically and professionally.",
+			"For example, Priya meets the criteria to be a mentee. She is a student and has a strong need to do well academically and grow to become a business professional."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "point"];
+		slidecontent = [
+			"Role of the Mentor",
+			"In general, a mentor guides an individual to develop and grow; however, there are various types of mentors.",
+			"",
+			"Traditional mentors are usually older and experienced; they protect, advocate for, and nurture their mentees.",
+			"Another type of mentor is a supportive boss who is a person in direct supervisory relationship with their mentee but functions more as a coach.",
+			"Organizational sponsors are top-level managers who facilitate their mentees' promotion within the organization.",
+			"Professional mentors are paid career counsellors and advisors",
+			"Patrons are persons who use financial resources and status to launch their mentee's careers",
+			"Invisible godparents help mentees reach career goals without their knowing it.",
+			"",
+			"In Jennifer's case, she is best described as a traditional mentor."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend", "point"];
+		slidecontent = [
+			"Mentoring Versus Coaching",
+			"Mentoring has been referred to as the 'transfer of wisdom' - with the mentee learning from an individual who has traveled the road before them. People tend to use the term mentoring and coaching to mean the same thing. While the terms have things in common, mentoring and coaching are not the same. Here are some key differences a mentor like Jennifer should be aware of:",
+			"",
+			"Coaching is concerned with helping an individual to improve, develop, and learn new knowledge and skills, usually in an environment that challenges the individual.",
+			"The coaching relationship focuses on facilitating and developing specific personal qualities of an individual (the coachee), such as speaking more effectively.  In the mentoring relationship, the mentor uses their knowledge, wisdom, and experience to create an environment that supports a mentee to grow and develop in more than one aspect.",
+			"Coaching is more instructional; the coach capitalizes on different skills and experiences to offer a new or diverse perspective. On the other hand, mentoring focuses on relationship building and involves providing a safe environment for the mentee to explore issues that affect their professional or personal success.",
+			"",
+			"The mentor provides advice on career-related or personal topics, activities that help the mentee develop, and opportunities for success."];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Differences Between a Mentor and a Coach",
+			"Because mentoring and coaching are not the same, a mentor and a coach differ in a number of ways. These differences can be described in terms of the different aspects of a relationship",
+			"",
+			"Scope. A mentor is focused on all aspects of a mentee's personal development, while a coach is usually focused on task-related aspects that are clearly defined and have a specific scope.",
+			"Role. A mentor takes the role of the facilitator with no agenda or a semi-structured one. The mentor is a committed to the development of the mentee through building emotional connections that respect boundaries. The coach takes the role of facilitator with a specific agenda, committed to the task or goal.",
+			"Focus. Mentors are primarily focused on the transfer of key skills, whereas coaches are more concerned with empowering and motivating the individual to become proficient in specific skills.",
+			"Basis of Support. A mentor usually helps the mentee to develop self-responsibility and is concerned with helping the mentee take charge of their own growth. On the other hand, coaches tend to foster self-insight and focus on helping individuals grow through introspection and feedback from others.",
+			"Advice. Mentors provide advice to broaden perspective and understanding, and often share information to which the mentee is seldom privy. Coaches offer advice to facilitate further development, and share confidential and personal feedback.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"Being an effective mentor requires certain qualities and skills. Here are seven key qualities that you require to be an effective mentor.",
+			"1. Ability and willingness to communicate what you know",
+			"Being clear when communicating with your mentee is essential. This means that you share the lessons you've learned, or the strategies you're offering with an understanding that your mentee's decisions and their outcomes may be different from our own. It also means that you communicate the intricate details of what you have learned a way that makes sense and that your mentee can relate to and apply to their own experience.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"2. Preparedness",
+			"Being a mentor means making an important, serious commitment to someone, so give your mentee the respect they deserve. Show your faith in your mentee's abilities and in the mentoring process by preparing for each session. Yes it's important for your mentee to actively participate and even take the lead in these sessions. And you should ask your mentee what topics they want to talk about beforehand, and be prepared to address them.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"3. Approachability, availability, and the ability to listen",
+			"Your mentee must feel comfortable approaching you for advice or consultation; however, they must keep your availability and your schedule in mind. So it's good policy or practice to establish a set day and time for regular sessions or meetings. Once these time parameters are established, you must keep your commitments wholeheartedly and be ready to listen with an open mind, and provide counsel and advice.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"4. Honesty with Diplomacy",
+			"Dispense with formalities and really help facilitate an open, even lively dialogue with your mentee. Be willing to debate and discuss issues in a tactful way. Say what you think your mentee needs to hear from you, now what you think he or she might want to hear. Provide useful, honest guidance while ensuring that your mentee is the one making decisions for themselves.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"5. Inquisitiveness",
+			"Continual learning is essential to being an effective mentor. Try to keep up with trends, topics, and developments that may impact you or your role, both now and in the future. And if your mentee asks you something you don't know the answer to, you and your mentee can work together to find the answer.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"6. Objectivity and Fairness",
+			"Establishing clear boundaries and expectations is necessary for a successful mentoring relationship. A mentoring relationship differs from a friendship. Yes, you care about and would like your mentee to succeed, but that doesn't mean you are obliged to socialize with them, or engage in other ways, such as through social websites like Facebook. Also, ensure that there is no hidden agenda or ulterior motive involved in this relationship. Remember, you can be an advocate for your mentee while still retaining your objectivity and fairness.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "capitalbold", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"7. Compassion and Genuineness",
+			"However, maintaining your objectivity and being fair doesn't mean you can't show compassion. In fact, your mentoring relationship probably won't work if you don't show your interest and desire to provide one-on-one help and guidance. You must also be selfless about sharing what you know. Keeping your goal in mind - to remain worthy of someone's trust, model positive behavior and successful performance, and offer guidance and advice toward reaching a specific goal - should be the compass that guides all your actions as a mentor.",
+			"images/backgrounds/Mentor3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Role of an Effective Mentee",
+			"An effective mentoring relationship is not one-sided. It requires a mentee who is an active participant. To take part in the mentoring relationship, a mentee needs to be ready to be an equal contributor to the relationship. The important roles a mentee must take on at some point during the mentoring relationship include:",
+			"",
+			"Driver of the Relationship: Identify and communicate goals to mentor, identify topics and issues and seeking feedback and guidance from the mentor.",
+			"Plan Developer: Develop a plan of action with mentor to address goals.",
+			"Resource Partner: Work with your mentor to seek resources for learning; identify people and information that might be helpful.",
+			"Teacher: Look for opportunities to give back to your mentor; share any information that you think might be valuable.",
+			"Continuous Learner: Take full advantage of this opportunity to learn.",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend"];
+		slidecontent = [
+			"Attributes of an Effective Mentee",
+			"A mentee that is effective is able to:",
+			"",
+			"be self-motivated, and take repsonsibility for his or her own development",
+			"communicate clearly, listen, and articulate clear expectations",
+			"set goals/objectives such as self-assessment, development, and planning",
+			"work with the mentor to develop an action plan to achieve goals",
+			"complete the work necessary to achieve goals and celebrate",
+			"share responsibility for making meetings with the mentor happen",
+			"start and maintain contact with the mentor",
+			"respect the mentor's time and feedback",
+			"accept feedback and share in finding answers and solutions for improvement",
+			"accept responsibility for the outcome of their actions",
+			"track or measure the progress of learning within the mentoring relationship",
+			""];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "chat", "background"];
+		slidecontent = [
+			"Meet Priya, Jennifer's First Mentee!",
+			"I decided to join an e-mentoring program for women seeking careers in business. I figured I could benefit from knowing a woman who made it in the business world. It was pretty easy to join; all I had to do was create a profile and complete a few online training modules. I was given three choices of possible mentors and I chose Jennifer! I really like Jennifer and it's been awesome having someone to connect with about stuff I'm interested in.",
+			"images/backgrounds/Mentee2.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "list", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listend", "point", "background"];
+		slidecontent = [
+			"Stages of the Mentoring Relationship",
+			"Successful mentoring relationships don't happen by accident. Formalized mentoring relations, like Priya and Jennifer's, tend to move through a series of stages.",
+			"1",
+			"Preparing for the relationship - Includes self-reflection, identifying goals, and preparing yourself to take on the commitment involved in being in a mentoring relationship.",
+			"Searching/Seeking out - Involves finding someone to support the journey to achieve goals.",
+			"Initiating - Coming together to discuss goals, identify expectations, and establish ground rules.",
+			"Laying the foundation - Involves getting to know each other, building trust, continuing to clarify expectations, and fine tuning goals.",
+			"Building and Progressing - Involves working to attain goals, empowering each other, and building confidence and esteem; longest and most satisfying part of the mentoring process.",
+			"Relationship ends at the point when goals have been reached; involves affirming, evaluating, and celebrating process and outcomes, as well as discussing what comes next.",
+			"",
+			"Priya and Jennifer have completed stage one and two. They have moved into the initiating stage, which in their program includes developing a mentoring agreement.",
+			"images/backgrounds/Mentor1.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Jennifer's Success Strategies",
+			"Jennifer has also encouraged Priya to make a list of the actions Priya plans to implement to support their mentoring relationship. Here are the strategies that Priya has come up with:",
+			"",
+			"I will identify the skills, knowledge, and goals that I want to achieve and communicate them to my mentor.",
+			"I will bring up new topics that are important to me at any point and give feedback to my mentor",
+			"I will maintain a mentoring plan and work with my mentor to set up goals, developmental activities, and time frames",
+			"I will work with my mentor to seek resources for learning; identify people and information that might be helpful",
+			"I will look for opportunities to give back to my mentor; share any information that I think might be valuable",
+			"I will take full advantage of the opportunity to learn from my mentor",
+			"",
+			"images/backgrounds/Mentee3.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "background"];
+		slidecontent = [
+			"Qualities of an Effective Mentor",
+			"Communication is another key to a successful mentoring relationship. Although the mentor is ultimately responsible for taking the lead to move the relationship through the stages of mentoring, the mentee also has a role to play in maintaining effective communication.",
+			"In Jennifer and Priya's case, if they do not communicate effectively, it can lead to a failed mentoring relationship. Jennifer must ensure that she is following the timelines and activities outlined by the mentoring program; as well as, setting up and making regular and meaningful contact with Priya.",
+			"images/backgrounds/Mentor4.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "point", "bulletliststart", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Organization is also Key!",
+			"Setting up a schedule for meetings and staying organized are other ways a mentee and mentor can maintain good communication.",
+			"Jennifer can consider using several strategies to enhance the organization of the meetings she and Priya set up:",
+			"",
+			"Scheduling new appointments in collaboration with Jennifer after every meeting",
+			"Being prepared adequately for each meeting (e.g., being able to identify with Priya a specific focus or objectives prior to each meeting; prepare a meeting agenda; write down key points she wants to make during the discussion)",
+			"Keeping a personal record of the action items of the meeting and her concerns",
+			"",
+			"images/backgrounds/Mentor5.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Problems in the Mentoring Relationship",
+			"While mentoring is generally a fruitful and rewarding experience for both the mentee and mentor, problems can occasionally arise. Unsuccessful mentoring pairs have reported the following:",
+			"",
+			"Communication infrequencies",
+			"Lack of preparation for mentoring sessions - lack of clear goals leads to wasted time",
+			"Lack of follow-through on desired outcomes - this can occur from the mentee, mentor, or both sides",
+			"",
+			"images/backgrounds/Mentor5.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "bulletliststart", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "listpoint", "bulletlistend", "background"];
+		slidecontent = [
+			"Strategies for Solving Problems",
+			"Successful mentoring pairs use simple strategies to get the most out of their relationship:",
+			"",
+			"Set clear goals for the relationship",
+			"Negotiate and maintain boundaries",
+			"Discuss expectations of and maintain confidentiality",
+			"Communicate on a regular and frequent basis",
+			"Communicate in a conversational style -  being less formal makes communicating and sharing easier",
+			"Be direct and ask questions",
+			"Incorporate creativity and fun into the relationship",
+			"Set specific topics / goals for meetings",
+			"Ask program staff for help with challenges",
+			"Reflect and maintain awareness of own feelings and attitudes",
+			"Be open and willing to work together to resolve problems and issues that may arise in the relationship",
+			"",
+			"images/backgrounds/Mentor5.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+		slidekey = ["subtitle", "point", "linktext", "linkslidenum", "background"];
+		slidecontent = [
+			"Scenarios",
+			"Here are two scenario problems to test your problem-solving skills as a potential mentor. Read through each scenario and the options to resolve the problem. Keeping in mind the simple strategies identified in the previous slide, select the option you believe is the best approach to address the situations facing Priya and Jennifer.",
+			"Scenario 1",
+			"mentor_answer1",
+			"images/backgrounds/Mentee4.jpg"];
+		slide = new Slide(slidekey, slidecontent);
+		node = new Node(slide);
+		mentor.Add(node);
+
+	//END //MENTOR SLIDESHOW
+
+			
+
+	//not sure where this goes...
+
+	var slidekey;
+	var slidecontent;
+	var node;
+
+	var mentee_answer_scenario1 = new Linked_List();
+
+
+	//
+
+	//CONCLUAION
+	var slidekey;
+var slidecontent;
+var node;
+
+var conclusion = new Linked_List();
+
+slidekey = ["subtitle", "point", "point", "inputbox", "pdfbutton", "hidepage", "revealComplete"];//... -_-
+slidecontent = [
+		"Conclusion",
+		"Mentoring can be a wonderful and life changing experiencing. The mutual relationship that develops between a mentor and mentee is associated with a number of positive outcomes for both individuals. But mentoring takes work and dedication!",
+		"We hope that after completing this module you have increased your knowledge and understanding of mentoring, it's characteristics, the roles involved - particularly the role of the mentor - the skill sets required, and keys to developing a successful mentoring relationship.",
+		"",
+		"",
+		""];
+slide = new Slide(slidekey, slidecontent);
+node = new Node(slide);
+conclusion.Add(node);
+
+	//END CONC
+	//console.log(profileType);
+	//HELPER FUNCTIONS
+
+	 var elCheck = document.getElementById("end-button");
+	 if (elCheck == null) {
+	 	canDoMenteeSlide = false;
+	 }
+
+	//how this works
+	/*
+	so the controller compiles and loads a brand spanking new hidden button on the footer of the page,
+	since this bit is ALL independent, we need it to simply make the previous element
+	VISIBLE. This button is always there because I did not figure a way to make 
+	this directive lazy loaded script interact directly with the controller
+	TODO
+	*/
+	function revealClicked() {
+		var e = document.getElementById("end-button");
+		if (e == null) {
+			window.location.href = '/#/education/modules';
+			return;
+		}
+		e.classList.remove("invisible");
+	}
+
+</script>

@@ -1,0 +1,41 @@
+<!-- forum.html -->
+<div class="forum-css">
+	<community class="forum-view forum-view-permalink" data-forum-index="{{parentForum + 1}}">
+		<header class="block">
+			<div>
+				<h1><span class="amsi-text cap">Post Permalink</span></h1>
+				<p>This page is the unique address to the forum post below.</p>
+				<a ui-sref="community.forums" class="standard-button"><span class="amsi-text cap">Back to Forums</span></a>
+			</div>
+		</header>
+		
+		<ul class="forum-section-array">
+			<li>
+				<section class="forum-section forum-section-permalink">
+					<div>
+						<ol class="section-post-array">
+							<li>
+								<post></post>
+							</li>
+						</ol>
+					</div>
+				</section>
+			</li>
+		</ul>
+
+
+		<footer class="forum-section forum-rules">
+			<button type="button" class="subforum-entry-btn"
+				data-toggle="collapse"
+				data-target="#forum-rules"
+				aria-expanded="false"
+				aria-controls="forum-rules">
+				<h1><span class="amsi-text">CommunAbility Forums:<br>Rules and Guidelines</span></h1>
+			</button>
+			<div id="forum-rules" class="collapse sub-collapse forum-rules-content variegated">
+				<forum-rules></forum-rules>
+			</div>
+		</footer>
+
+	</community>
+</div>

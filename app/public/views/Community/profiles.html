@@ -1,0 +1,90 @@
+<!-- profiles -->
+<div class="comprofiles-css">
+  <header class="block">
+    <h1><span class="amsi-text cap">Inspirational Profiles</span></h1>
+    <p>The Communability Profile initiative is intended to serve as an invaluable platform from which insights and wisdom are shared.  This series showcases amazing post-secondary education (PSE) graduates and currently students with disabilities who have kindly shared insights into their experiences as post-secondary education student as well as imparting their tips for success.</p>
+  </header>
+
+
+  <main class="profile-card-main-container" id="profile-card-main">
+    <!-- <p class="profile-card-main-default" ng-show="selected < 0">Select a profile to see more</p> -->
+    <div class="profile-card-main" ng-show="selected >= 0">
+      <div class="profile-card-color-bar" style="background-color: {{colorHighlights[selected%colorHighlights.length]}}"></div>
+
+      <div class="profile-card-main-content">
+        <div class="profile-card-img">
+          <img ng-src="{{data[selected].imgPath}}">
+        </div>
+
+        <h1 class="profile-card-name"><span class="amsi-text cap">{{data[selected].name}}</span></h1>
+
+        <section>
+          <h3 class="profile-card-quote" ng-if="typeof(data[selected].quote) != 'undefined' && data[selected].quote != ''">"<span>{{data[selected].quote}}</span>"</h3>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].currentOccupations) != 'undefined' && data[selected].currentOccupations.length > 0"><span class="amsi-text cap">Current work and/or activities:</span></h2>
+          <ul class="profile-card-content-set" ng-if="typeof(data[selected].currentOccupations) != 'undefined' && data[selected].currentOccupations.length > 1">
+            <li ng-repeat="item in data[selected].currentOccupations track by $index"><p class="profile-card-content">{{item}}</p></li>
+          </ul>
+          <p class="profile-card-content" ng-if="typeof(data[selected].currentOccupations) != 'undefined' && data[selected].currentOccupations.length == 1">{{data[selected].currentOccupations[0]}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].education) != 'undefined' && data[selected].education.length >= 0"><span class="amsi-text cap">Education and institutions attended:</span></h2>
+          <ul class="profile-card-content-set" ng-if="typeof(data[selected].education) != 'undefined' && data[selected].education.length > 1">
+            <li ng-repeat="item in data[selected].education track by $index"><p class="profile-card-content">{{item}}</p></li>
+          </ul>
+          <p class="profile-card-content" ng-if="typeof(data[selected].education) != 'undefined' && data[selected].education.length == 1">{{data[selected].education[0]}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].weblinks) != 'undefined' && data[selected].weblinks.length > 0"><span class="amsi-text cap">Web-links</span></h2>
+          <ul class="profile-card-content-set" ng-if="typeof(data[selected].weblinks) != 'undefined' && data[selected].weblinks.length > 0">
+            <li ng-repeat="item in data[selected].weblinks track by $index"><a ng-href="item" class="profile-card-content-link">{{item}}</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].memorableExperiences) != 'undefined' && data[selected].memorableExperiences.length >= 0"><span class="amsi-text cap">If you think back to when you were a student in post-secondary education, what stands out for you about your experience?</span></h2>
+          <p class="profile-card-content-heading" ng-if="typeof(data[selected].memorableExperiences) != 'undefined'" ng-repeat="item in data[selected].memorableExperiences">{{item}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].roleOfDisability) != 'undefined' && data[selected].roleOfDisability.length >= 0"><span class="amsi-text cap">What role did your disability(s) play in your post-secondary educational experience?</span></h2>
+          <p class="profile-card-content-heading" ng-if="typeof(data[selected].roleOfDisability) != 'undefined'" ng-repeat="item in data[selected].roleOfDisability">{{item}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].insights) != 'undefined' && data[selected].insights.length > 0"><span class="amsi-text cap">What key learning or insights have you taken from your post-secondary educational experience?</span></h2>
+          <p class="profile-card-content-heading" ng-if="typeof(data[selected].insights) != 'undefined'" ng-repeat="item in data[selected].insights">{{item}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].impactOfEducation) != 'undefined' && data[selected].impactOfEducation.length >= 0"><span class="amsi-text cap">How has attending post-secondary education impacted your life?</span></h2>
+          <p class="profile-card-content-heading" ng-if="typeof(data[selected].impactOfEducation) != 'undefined'" ng-repeat="item in data[selected].impactOfEducation">{{item}}</p>
+
+          <h2 class="profile-card-content-heading" ng-if="typeof(data[selected].future) != 'undefined' && data[selected].future.length > 0"><span class="amsi-text cap">Where do you see yourself in five years?</span></h2>
+          <p class="profile-card-content-heading" ng-if="typeof(data[selected].future) != 'undefined'" ng-repeat="item in data[selected].future">{{item}}</p>
+        </section>
+
+        <!-- <button class="profile-card-action" ng-click="closeProfile()">Close Profile</button> -->
+      </div>
+
+      <div class="profile-card-color-bar" style="background-color: {{colorHighlights[selected%colorHighlights.length]}}"></div>
+    </div>
+  </main>
+
+
+  <nav class="profile-card-nav">
+    <ul class="profile-card-preview-container">
+      <li class="profile-card-preview" ng-repeat="profile in data track by $index" id="{{data[$index].id}}">
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[$index%colorHighlights.length]}}"></div>
+
+        <div class="profile-card-preview-content">
+          <div class="profile-card-img">
+            <img ng-src="{{profile.imgPath}}">
+          </div>
+          <div class="profile-card-preview-inner">
+            <h1 class="profile-card-name"><span class="amsi-text cap">{{profile.name}}</span></h1>
+            <p class="profile-card-title">{{profile.title}}</p>
+          </div>
+          <button class="profile-card-action" ng-click="loadProfile($index)">
+            <span ng-show="selected != $index">Click Here for More</span>
+            <span ng-show="selected == $index">Click Here for Less</span>
+          </button>
+        </div>
+
+        <div class="profile-card-color-bar" style="background-color: {{colorHighlights[$index%colorHighlights.length]}}"></div>
+      </li>
+    </ul>
+  </nav>
+</div>

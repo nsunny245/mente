@@ -1,0 +1,29 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.education-css {
+  .block:nth-child(1) {
+    @include hubBlocks($brand-navyblue, #fff, $brand-blue, $brand-blue-hover, true, true);
+  }
+  .block:nth-child(2) {
+    @include hubBlocks(snow, $brand-blue, $brand-blue, $brand-blue-hover, true, false);
+  }
+  .block:nth-child(3) {
+    @include hubBlocks($brand-yellow, $brand-blue, $brand-blue, $brand-blue-hover, true, false);
+  }
+  .block:nth-child(4) {
+    @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, true, false);
+  }
+
+  /*.block:nth-of-type(2)>img:last-of-type {
+      display: none;
+  }
+  @include min-screen(30em) {
+      .block:nth-of-type(2)>img:first-of-type {
+          display: none;
+      }
+      .block:nth-of-type(2)>img:last-of-type {
+          display: block;
+      }
+  }*/
+}

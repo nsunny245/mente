@@ -1,0 +1,17 @@
+@import 'Partials/helpers';
+@import 'Partials/hubBlocks';
+
+.community-css {
+	.block:nth-child(1) {
+	  @include hubBlocks($brand-yellow, #fff, $brand-blue, $brand-blue-hover, true, true);
+	}
+	.block:nth-child(2) {
+	  @include hubBlocks($brand-navyblue, #fff, $brand-cyan, $brand-cyan-hover, true, false);
+	}
+	.block:nth-child(3) {
+	  @include hubBlocks($brand-cyan, #fff, $brand-blue, $brand-blue-hover, true, false);
+	}
+	.block:nth-child(4) {
+	  @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, true, false);
+	}
+}

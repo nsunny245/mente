@@ -1,0 +1,249 @@
+<link rel="stylesheet" type="text/css" href="/CSS/Signup/userForm-status.css">
+
+
+<div class="signup-user-css">
+	<header class="intro">
+		<div aria-hidden="true"></div>
+		<img src="/Assets/Images/Signup/profile_circle.svg">
+		<h1><span class="amsi-text">Create Your Profile</span></h1>
+		<h2><span class="amsi-text">Take the first step towards gaining access.</span></h2>
+		<p>Already have an account? Click <a href="" role="button" ng-click="loggedIn()">here</a> to log in.</p>
+		<p>As a community member you’ll have access to podcasts, webinars and the resource library. You’ll also be able to access the community forum.</p>
+		<p>Interested in getting involved in our e-mentorship program? Creating a profile is the first step to gaining access.</p>
+		<h3><span class="amsi-text">Fill out the form to create a basic profile:</span></h3>
+	</header>
+
+	<form class="clearfix"
+		name="profileForm"
+		novalidate>
+		<fieldset>
+
+			<label for="username" class="label">
+				Display Name
+				<span ng-class="{'': checking && profileForm.password.$invalid }"> ({{userCharLim.min}}-{{userCharLim.max}} characters long)</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.username.beenBlurred || ! inputMeta.username.beenChanged)
+						   && inputMeta.username.errorStates.invalid
+						   && ! (inputMeta.username.errorStates.short || inputMeta.username.errorStates.long)">Invalid display name</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.username.beenBlurred || ! inputMeta.username.beenChanged)
+						   && inputMeta.username.errorStates.invalid
+						   && inputMeta.username.errorStates.short">Display name is too short</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.username.beenBlurred || ! inputMeta.username.beenChanged)
+						   && inputMeta.username.errorStates.invalid
+						   && inputMeta.username.errorStates.long">Display name is too long</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.username.beenBlurred || ! inputMeta.username.beenChanged)
+						   && inputMeta.username.errorStates.invalid">
+				</i>
+				<input id="username"
+					name="username" type="text" placeholder="Display Name"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.username.beenBlurred || ! inputMeta.username.beenChanged)
+								&& inputMeta.username.errorStates.invalid  }"
+					ng-model="profile.username"
+					ng-minlength="userCharLim.min"
+ 					ng-maxlength="userCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.username ? '' : inputMeta.username = {};
+  		 					 inputMeta.username.errorStates ? '' : inputMeta.username.errorStates = {};
+
+							 inputMeta.username.errorStates.invalid = true;
+							 inputMeta.username.errorStates.short = false;
+							 inputMeta.username.errorStates.long = false"
+
+ 					ng-focus="inputMeta.username.lastVal = profileForm.username.$viewValue;
+
+							  inputMeta.username.errorStates.invalid = (profileForm.username.$invalid);
+							  inputMeta.username.errorStates.short = (inputMeta.username.len > 0 && inputMeta.username.len < userCharLim.min);
+							  inputMeta.username.errorStates.long = (inputMeta.username.len > userCharLim.max)"
+
+ 					ng-blur="inputMeta.username.beenBlurred = true;
+ 							 (inputMeta.username.lastVal != profileForm.username.$viewValue) ? inputMeta.username.beenChanged = true : '';
+ 							 inputMeta.username.len = profileForm.username.$viewValue.length;
+
+							 inputMeta.username.errorStates.invalid = (profileForm.username.$invalid);
+							 inputMeta.username.errorStates.short = (inputMeta.username.len > 0 && inputMeta.username.len < userCharLim.min);
+							 inputMeta.username.errorStates.long = (inputMeta.username.len > userCharLim.max)"
+ 					required/>
+			</div>
+
+			<label for="email" class="label">
+				Email
+				<span class="form-container-field-msg" 
+					ng-if="checking && inputMeta.email.errorStates.invalid && ! signupError.length > 0
+						   && (! inputMeta.email.beenBlurred || ! inputMeta.email.beenChanged)">Invalid email</span>
+				<span class="form-container-field-msg" 
+					ng-if="signupError.length > 0">This email has already been used to create an account</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="(checking && inputMeta.email.errorStates.invalid || signupError.length > 0)
+						   && (! inputMeta.email.beenBlurred || ! inputMeta.email.beenChanged)">
+				</i>
+				<input id="email"
+				 	name="email" type="email" placeholder="email"
+					ng-class="{'form-container-field-invalid':
+								(checking && inputMeta.email.errorStates.invalid || signupError.length > 0)
+								&& (! inputMeta.email.beenBlurred || ! inputMeta.email.beenChanged) }"
+					ng-model="profile.email"
+					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.email ? '' : inputMeta.email = {};
+		 					 inputMeta.email.errorStates ? '' : inputMeta.email.errorStates = {};
+
+							 inputMeta.email.errorStates.invalid = true"
+
+					ng-focus="inputMeta.email.lastVal = profileForm.email.$viewValue;
+							  inputMeta.email.errorStates.invalid = (profileForm.email.$invalid)"
+
+ 					ng-blur="toLowerEmail(profile.email);
+ 							 inputMeta.email.beenBlurred = true;
+ 							 (inputMeta.email.lastVal != profileForm.email.$viewValue) ? inputMeta.email.beenChanged = true : '';
+							 inputMeta.email.errorStates.invalid = (profileForm.email.$invalid)"
+					required/>
+			</div>
+
+			<label for="password" class="label">
+				Password
+				<span ng-class="{'': checking && profileForm.password.$invalid }"> ({{passCharLim.min}}-{{passCharLim.max}} characters long)</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.password.beenBlurred || ! inputMeta.password.beenChanged)
+						   && inputMeta.password.errorStates.invalid
+						   && ! (inputMeta.password.errorStates.short || inputMeta.password.errorStates.long)">Invalid password</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.password.beenBlurred || ! inputMeta.password.beenChanged)
+						   && inputMeta.password.errorStates.invalid
+						   && inputMeta.password.errorStates.short">Password is too short</span>
+				<span class="form-container-field-msg"
+					ng-if="checking && (! inputMeta.password.beenBlurred || ! inputMeta.password.beenChanged)
+						   && inputMeta.password.errorStates.invalid
+						   && inputMeta.password.errorStates.long">Password is too long</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="checking && (! inputMeta.password.beenBlurred || ! inputMeta.password.beenChanged)
+						   && inputMeta.password.errorStates.invalid">
+				</i>
+				<input id="password"
+					name="password" type="password" placeholder="password"
+					ng-class="{'form-container-field-invalid':
+								checking && (! inputMeta.password.beenBlurred || ! inputMeta.password.beenChanged)
+								&& inputMeta.password.errorStates.invalid }"
+					ng-model="profile.password"
+ 					ng-minlength="passCharLim.min"
+ 					ng-maxlength="passCharLim.max"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.password ? '' : inputMeta.password = {};
+  		 					 inputMeta.password.errorStates ? '' : inputMeta.password.errorStates = {};
+
+							 inputMeta.password.errorStates.invalid = true;
+							 inputMeta.password.errorStates.short = false;
+							 inputMeta.password.errorStates.long = false;"
+
+ 					ng-focus="inputMeta.password.active = true;
+ 							  inputMeta.password.lastVal = profileForm.password.$viewValue;
+
+							  inputMeta.password.errorStates.invalid = (profileForm.password.$invalid);
+							  inputMeta.password.errorStates.short = (inputMeta.password.len > 0 && inputMeta.password.len < passCharLim.min);
+							  inputMeta.password.errorStates.long = (inputMeta.password.len > passCharLim.max);
+
+ 							  inputMeta.confirm ? '' : inputMeta.confirm = {};
+ 							  inputMeta.confirm.errorStates ? '' : inputMeta.confirm.errorStates = {};
+ 							  inputMeta.confirm.errorStates.notMatching = (profileForm.password.$viewValue !== profileForm.confirm.$viewValue);"
+
+ 					ng-blur="inputMeta.password.active = false;
+ 							 inputMeta.password.beenBlurred = true;
+ 							 (inputMeta.password.lastVal != profileForm.password.$viewValue) ? inputMeta.password.beenChanged = true : '';
+ 							 inputMeta.password.lastVal = profileForm.password.$viewValue;
+ 							 inputMeta.password.len = profileForm.password.$viewValue.length;
+
+							 inputMeta.password.errorStates.invalid = (profileForm.password.$invalid);
+							 inputMeta.password.errorStates.short = (inputMeta.password.len > 0 && inputMeta.password.len < passCharLim.min);
+							 inputMeta.password.errorStates.long = (inputMeta.password.len > passCharLim.max);
+
+ 							 inputMeta.confirm.errorStates.notMatching = (profileForm.password.$viewValue !== profileForm.confirm.$viewValue);"
+					required/>
+			</div>
+
+			<label for="confirm" class="label">
+				Confirm Password
+ 				<!--<span class="form-container-field-msg"
+					ng-if="(profileForm.password.$valid || inputMeta.password.beenBlurred)
+							&& (checking && ! profileForm.password.$empty && (inputMeta.password.beenBlurred || ! inputMeta.confirm.active || inputMeta.confirm.beenBlurred) || ! profileForm.password.$empty && inputMeta.confirm.beenBlurred)
+							&& (inputMeta.password.active && (inputMeta.confirm.errorStates.notMatching || profileForm.confirm.$empty) || ! inputMeta.password.active && (profileForm.confirm.$invalid || profileForm.confirm.$empty))">Passwords do not match</span>-->
+				<span class="form-container-field-msg"
+					ng-if="inputMeta.confirm.errorStates.notMatching
+						   && (checking && inputMeta.password.beenChanged
+						   	   || ! checking && inputMeta.confirm.beenBlurred)">
+					Passwords do not match
+				</span>
+			</label>
+			<div class="form-container-field">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+					ng-if="inputMeta.confirm.errorStates.notMatching
+						   && (checking || inputMeta.confirm.beenBlurred)
+						   || checking && ! inputMeta.password.beenChanged && ! inputMeta.confirm.len > 0">
+				</i>
+				<input id="confirm"
+					name="confirm" type="password" placeholder="confirm password"
+					ng-class="{'form-container-field-invalid':
+								inputMeta.confirm.errorStates.notMatching
+					   			&& (checking || inputMeta.confirm.beenBlurred)
+					   			|| checking && ! inputMeta.password.beenChanged && ! inputMeta.confirm.len }"
+					ng-model="confirm"
+					pw-check="password"
+ 					ng-init="inputMeta ? '' : inputMeta = {};
+ 							 inputMeta.confirm ? '' : inputMeta.confirm = {};
+  		 					 inputMeta.confirm.errorStates ? '' : inputMeta.confirm.errorStates = {};
+
+							 inputMeta.confirm.errorStates.invalid = false;
+							 inputMeta.confirm.errorStates.notMatching = true;"
+
+ 					ng-focus="inputMeta.confirm.active = true;
+ 							  inputMeta.confirm.lastVal = profileForm.confirm.$viewValue;
+							  ! inputMeta.password.len > 0 ? inputMeta.confirm.beenBlurred = false : '';
+
+							  inputMeta.confirm.errorStates.invalid = (profileForm.confirm.$invalid);
+ 							  inputMeta.confirm.errorStates.notMatching = ((profileForm.password.$viewValue && profileForm.password.$viewValue !== '') && profileForm.password.$viewValue !== profileForm.confirm.$viewValue);"
+
+ 					ng-blur="inputMeta.confirm.active = false;
+ 							 inputMeta.confirm.lastVal = profileForm.confirm.$viewValue;
+							 inputMeta.password.len > 0 ? inputMeta.confirm.beenBlurred = true : '';
+ 							 inputMeta.confirm.len = profileForm.confirm.$viewValue.length;
+
+							 inputMeta.confirm.errorStates.invalid = (profileForm.confirm.$invalid);
+ 							 inputMeta.confirm.errorStates.notMatching = ((profileForm.password.$viewValue && profileForm.password.$viewValue !== '') && profileForm.password.$viewValue !== profileForm.confirm.$viewValue);"
+					required/>
+					<!-- data-toggle="tooltip" -->
+			</div>
+
+
+			<label for="terms" class="visible checkbox"
+				ng-class="{'form-container-field-invalid': checking && ! userTerms && ! inputMeta.userTerms.beenChanged }">
+				<input id="terms"
+					type="checkbox"
+					ng-model="userTerms"
+					ng-init="inputMeta ? '' : inputMeta = {}; inputMeta.userTerms = {};"
+ 					ng-change="inputMeta.userTerms.beenChanged = true">
+				<span aria-hidden="true"><div></div></span>
+				<span><span>I have read, understand and accept the <a href="#/terms-and-conditions" target="_blank">Terms and Conditions</a></span></span>
+			</label>
+			<div class="form-container-field"
+				ng-if="checking && ! userTerms && ! inputMeta.userTerms.beenChanged">
+				<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"></i>
+				<p class="form-container-field-msg">You must accept the terms and conditions to continue</p>
+			</div>
+
+		</fieldset>
+
+
+		<button type="submit" class="standard-button"
+			ng-click="resetAllInteractedStates(inputMeta);
+					  profileForm.$invalid || profileForm.$pristine || ! userTerms ? checking = true : SignUpUser();">
+			<span class="amsi-text cap">Next</span>
+		</button>
+	</form>
+</div>

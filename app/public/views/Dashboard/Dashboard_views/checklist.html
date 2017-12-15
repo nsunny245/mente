@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="/CSS/Dashboard/checklist.css" />
+<h1><i class="fa fa-check"></i>Mentorship Checklist!</h1>
+<form id="todo-list">
+  <span class="todo-wrap">
+    <input type="checkbox" ng-checked="true"/>
+    <label class="todo">
+      <i class="fa fa-check"></i>
+      Complete Sign-Up
+    </label>
+  </span>
+  <span class="todo-wrap">
+          <div ng-repeat="module in userProfile.modules track by $index">
+            <input type="checkbox" ng-checked="module.completed"/>
+            <label class="todo">
+      <i class="fa fa-check"></i>
+      {{module.name}}
+    </label>
+    <span class="delete-item" title="remove">
+      <i class="fa fa-times-circle">{{module.completedSlide}}/5</i>
+    </div>
+    
+    <div ng-if="modulesAllComplete">
+    <input type="checkbox" id="2"/>
+    <label class="todo">
+      <i class="fa fa-check"></i>
+        Manually get verified
+    </label>`
+        <span class="delete-item" title="remove">
+      <i class="fa fa-times-circle"></i>
+    </div>
+  </span>
+</form>
+<div class="event-details" ng-init="OnPageLoad()">
+	<button class="expand"><img src="/Assets/Images/Profile/timeline/minus.svg"></button>
+	<div>
+		<h1><span class="amsi-text cap"></span></h1>
+		<h1><span class="amsi-text cap"></span></h1>
+		<p></p>
+	</div>
+	<hr class="dashboard">
+

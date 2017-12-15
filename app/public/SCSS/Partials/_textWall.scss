@@ -1,0 +1,36 @@
+@mixin textWall() {
+  & {
+    overflow: hidden;
+    text-align: left;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  @include min-screen(30em) {
+    & {
+      margin-left: 1.5em;
+      margin-right: 1.5em;
+    }
+  }
+  @include min-screen(45em) {
+    & {
+      font-size: 1.25em;
+      margin-left: auto;
+      margin-right: auto;
+      width: 35em;
+      max-width: 80%;
+    }
+  }
+  @include min-screen(48em) {
+    font-size: 1em;
+  }
+  @include min-screen(60em) {
+    & {
+      width: 40em;
+      max-width: 60%;
+    }
+  }
+  @include min-screen(75em) {
+  }
+
+}

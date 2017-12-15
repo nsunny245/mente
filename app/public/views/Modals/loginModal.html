@@ -1,0 +1,103 @@
+<div ng-controller="loginModalCTR">
+  <script type="text/ng-template" id="loginModal.html">
+    <div class="modal-body login" ng-show="!isPasswordRetrival">
+      <h1>
+        <span class="amsi-text">Log In</span>
+        <button title="close" class="close-button"
+          ng-click="CloseModal(); modalOpen = false; modalForced = false;">
+          <img src="/Assets/Images/Login/x_grey.svg">
+        </button>
+      </h1>
+
+      <div class="clearfix modal-padding">
+        <form name="loginForm">
+          <label class="hidden">Email</label>
+          <div class="form-container-field">
+            <i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+              ng-if="loginRetry && loginErrorMessage != ''">
+            </i>
+            <input
+              name="email" type="email" placeholder="Email"
+              ng-class="{'form-container-field-invalid': loginRetry && loginErrorMessage != '' }"
+              ng-model="email"
+              ng-change="loginRetry = false"
+              required
+              autofocus/>
+          </div>
+          <label class="hidden">Password</label>
+          <div class="form-container-field">
+            <i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+              ng-if="loginRetry && loginErrorMessage != ''">
+            </i>
+            <input
+              name="password" type="password" placeholder="Password"
+              ng-class="{'form-container-field-invalid': loginRetry && loginErrorMessage != '' }"
+              ng-model="password"
+              ng-change="loginRetry = false"
+              required/>
+          </div>
+          <div>
+            <!--<label class="visible checkbox clearfix">
+      				<input type="checkbox" name="rememberme">
+      				<span><div></div></span
+      				><span>Remember Me</span>
+      			</label>-->
+            <button type="button" class="tiny-link" ng-click="isPasswordRetrival = true">Forgot password?</button>
+          </div>
+          <p class="modal-error-prompt"
+            ng-if="loginErrorMessage != ''">{{loginErrorMessage}}</p>
+          <p class="modal-error-prompt"
+            ng-if="! loginErrorMessage" aria-hidden="true">&nbsp;</p>
+          <button type="submit" class="standard-button modal-submit" ng-click="loginErrorMessage = ''; login(); loginRetry = true"><span class="amsi-text cap">Log In</span></button>
+
+        </form>
+
+        <hr>
+        <p>Don't have an account?</p>
+        <a href="#/signup/user" class="standard-button hollow" ng-click="CloseModal()"><span class="amsi-text cap">Signup</span></a>
+      </div>
+    </div>
+
+    <!-- Section for password retrieval -->
+    <div class="modal-body ng-hide animate-show-hide" ng-show="isPasswordRetrival">
+      <h1>
+        <span class="amsi-text">Retrieve Password</span>
+        <button title="back" class="back-button" ng-click="isPasswordRetrival = false"><img src="/Assets/Images/chevron-back-gray.svg"></button>
+        <button title="close" class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+      </h1>
+      <div class="clearfix modal-padding">
+        <form>
+          <h3>Please enter the email you use to login to your CommunAbility account:</h3>
+          <input type="text" name="email" ng-model="email" placeholder="Email" required>
+          <p class="modal-error-prompt">{{passwordMessage}}</p>
+          <!-- <a class="tiny-link2" ng-click="isPasswordRetrival = !isPasswordRetrival">Return to Login</a> -->
+          <button type="submit" class="standard-button modal-submit" ng-click="RetrievePassword()"><span class="amsi-text cap">Send Recovery Email</span></button>
+        </form>
+      </div>
+    </div>
+
+  </script>
+
+
+  <button ng-click="open()" id="nav-login" ng-if="loginModalType == 'default'">
+    <span>Log In</span>
+    <img src="/Assets/Images/profile-icon.svg">
+  </button>
+
+  <button class="apply-button standard-button" ng-click="open()" ng-if="loginModalType == 'applyNow'">
+    <img src="/Assets/Images/Mentorship/clipboard.svg">
+    <span class="amsi-text cap">Sign Up to Apply!</span>
+  </button>
+
+  <button class="anchor-button" ng-click="open()" ng-if="loginModalType == 'clickHere'" style="display:inline;">
+    <span>here</span>
+  </button>
+
+    <button class="post standard-button" ng-click="open()" ng-if="loginModalType == 'post'" style="display:inline;">
+    <span class="amsi-text cap">POST</span>
+  </button>
+
+      <button class="standard-button" id="logFirst" ng-click="open()" ng-if="loginModalType == 'loginFirst'" style="display:inline; color:red">
+    <span class="amsi-text cap">Login First to Post and Reply</span>
+  </button>
+</div>

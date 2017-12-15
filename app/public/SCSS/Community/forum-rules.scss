@@ -1,0 +1,23 @@
+@import "../Partials/helpers";
+@import "../Partials/hubBlocks";
+
+header.block:nth-of-type(n) {
+  @include hubBlocks($brand-blue, #fff, $brand-cyan, $brand-cyan-hover, false, true);
+  h1 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+main.block:nth-of-type(n) {
+  @include hubBlocks($brand-lightgrey, $brand-darkgrey, $brand-blue, $brand-blue-hover, false, true);
+  ul,
+  ol,
+  li,
+  p {
+    text-align: left;
+  }
+  & * {
+    direction: ltr;
+  }
+}

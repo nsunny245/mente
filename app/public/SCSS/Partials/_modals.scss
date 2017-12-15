@@ -1,0 +1,311 @@
+@import "helpers";
+
+
+div[ng-init="loginModalType = 'clickHere'"] {
+    display: inline;
+}
+
+// .modal-open[style] {
+// padding-right: 0px !important;
+// }
+body.modal-open {
+    overflow-y: scroll !important;
+    padding-right: 0 !important;
+}
+
+
+/* MODALS */
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-body > h1 {
+    font-size: 1em;
+    margin: 0;
+    color: #323232;
+    background-color: #E5E5E5;
+    width: 100%;
+    height: 4em;
+    line-height: 4em;
+    text-align: center;
+    position: relative;
+}
+
+.modal-body > h1 > span {
+    font-size: 1.35em;
+}
+
+.modal-body .back-button,
+.modal-body .close-button {
+  background: none;
+  padding: 0;
+  border: none;
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.modal-body .back-button {
+  width: -100%;
+  margin-left: 1.25em;
+  left: 0;
+}
+.modal-body .close-button {
+  // border-radius: 50%;
+  margin-right: 1.25em;
+  right: 0;
+}
+
+.modal-body .back-button img,
+.modal-body .close-button img {
+    height: 100%;
+    width: auto;
+    vertical-align: top;
+}
+
+.modal-body {
+    width: 100%;
+    padding: 0;
+}
+
+.modal-padding {
+    padding: 2em 1.6em 4em 1.6em;
+}
+
+.modal-body input {
+    //-moz-box-sizing: border-box;
+    height: 3em;
+    overflow: hidden;
+    color: #7F7F7F;
+    background-color: #fff;
+    border: 0.05rem solid #7F7F7F;
+}
+.modal-body {
+  .form-container-field {
+    margin-bottom: 1em;
+  }
+  .form-container-field-attn {
+    right: 0.75rem;
+    $font-size: 2em;
+    &.fa {
+      font-size: $font-size;
+      font: normal normal normal $font-size FontAwesome;
+    }
+    font-size: $font-size;
+  }
+}
+
+.modal-body textarea {
+    //margin-top: 1em;
+    //margin-bottom: 1em;
+}
+
+.modal-body > div > form > div,
+.modal-body label.visible {
+    //height: 1.75em;
+}
+
+.modal-body label.visible {
+    display: inline-block;
+    width: 10em;
+}
+
+.modal-body label.visible > span:first-of-type {
+    height: 1.75em;
+    width: 1.75em;
+    padding: 0.3em;
+}
+
+.modal-body input[type="checkbox"]:checked + span > div {
+    background: url(/Assets/Images/Login/check_red.svg) no-repeat center center;
+}
+
+.modal-body label.visible>span:last-of-type {
+    padding-left: 0.75em;
+}
+
+.modal-body label.visible>span:last-of-type,
+
+.modal-body > div > form > div > a:hover,
+.modal-body > div > form > div > a:focus,
+.modal-body > div > a:hover,
+.modal-body > div > a:focus {
+    color: #F16568;
+}
+
+.modal-body > div > form > div > a {}
+
+.modal-body a.standard-button.hollow {
+    background-color: #fff;
+    border-color: #EF4F5B;
+    font-size: 0.9em;
+}
+
+.modal-body p,
+.modal-body > div > a {
+    box-sizing: border-box;
+    line-height: 2.4em;
+}
+
+.modal-body p {
+    float: left;
+    margin: 0;
+    font-size: 1em;
+}
+
+.modal-body button.modal-submit {
+    width: 100%;
+    background-color: #EF4F5B;
+    font-size: 1.5em;
+    height: 2.8em;
+}
+.modal-body > div button.modal-submit:hover,
+.modal-body > div button.modal-submit:focus {
+    background-color: #F16568;
+}
+.modal-body button.modal-cancel {
+  background-color: #ccc;
+}
+.modal-body > div button.modal-cancel:hover,
+.modal-body > div button.modal-cancel:focus {
+    background-color: #e2e2e2;
+}
+
+
+
+.modal-body hr {
+    border-color: #7F7F7F;
+    border-width: 0.05rem;
+    margin: 1.5em 0;
+}
+
+//-> :)=
+
+.modal-body h3:first-child {
+  margin-top: 0;
+}
+
+
+.tiny-link,
+.modal-body a {
+  color: $brand-salmon;
+}
+.modal-body a {
+  float: right;
+}
+.tiny-link {
+  @include buttonMadeAnchor();
+  font-size: 1.1em;
+  cursor: pointer;
+  display: block;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 1.25em;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.tiny-link2 {
+    @extend .tiny-link;
+    @include explicit-margin(10px, 15px, 10px, 0px);
+    @include magic-padding(10px);
+    //right: 50%;
+}
+
+.modal-body p.modal-error-prompt {
+  text-align: center;
+  float: none;
+  margin-bottom: 0.5em;
+  line-height: normal;
+  font-size: 1.1em;
+}
+
+
+.angrytext {
+ animation: jump 1.5s ease 0s 1 normal ;
+}
+.angrytext.ng-hide {
+  opacity: 0;
+}
+@keyframes jump {
+  0%{
+	transform: translateY(0);
+  }
+  20%{
+	transform: translateY(0);
+  }
+  40%{
+	transform: translateY(-30px);
+  }
+  50%{
+	transform: translateY(0);
+  }
+  60%{
+	transform: translateY(-15px);
+  }
+  80%{
+	transform: translateY(0);
+  }
+  100%{
+	transform: translateY(0);
+  }
+}
+
+.modal-body {
+  input.form-container-field-invalid {
+    border-color: $error-color-main;
+    background-color: $brand-lightgrey;
+  }
+}
+
+.end-state-modal {
+  text-align: center;
+  form > * {
+    text-align: left;
+  }
+}
+.end-state-modal button.modal-submit {
+  width: auto;
+  display: inline-block;
+  font-size: 1.25em;
+  margin-top: 1.5em;
+
+  &:nth-of-type(n+2) {
+    margin-left: 1em;
+  }
+}
+.end-state-modal button.modal-submit:not(.modal-cancel) {
+  background-color: $brand-blue;
+  &:hover,
+  &:focus {
+    background-color: $brand-blue-hover;
+  }
+}
+
+.modal-body {
+  .modal-info,
+  .modal-prompt {
+    line-height: 1.15em;
+    font-size: 1.1em;
+    display: block;
+    float: none;
+    &:nth-of-type(n+2) {
+      margin-top: 1em;
+    }
+  }
+  .modal-info {
+  }
+  .modal-prompt {
+    text-align: center;
+    &:last-of-type {
+      margin-top: 2em;
+    }
+  }
+  p > a {
+    float: none;
+    text-decoration: underline;
+  }
+}

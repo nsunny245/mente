@@ -1,0 +1,52 @@
+<label for="{{id}}" class="label">
+	{{label}}
+	<span ng-class="{'': checking && [parentForm][id].$invalid }"> {{subLabel}}</span>
+	<span class="form-container-field-msg"
+		ng-if="checking && (! inputMeta[id].beenBlurred || ! inputMeta[id].beenChanged)
+			   && inputMeta[id].errorStates.invalid
+			   && ! (inputMeta[id].errorStates.short || inputMeta[id].errorStates.long)">{{defaultMsg}}</span>
+	<span class="form-container-field-msg"
+		ng-if="checking && (! inputMeta[id].beenBlurred || ! inputMeta[id].beenChanged)
+			   && inputMeta[id].errorStates.invalid
+			   && inputMeta[id].errorStates.short">{{minMsg}}</span>
+	<span class="form-container-field-msg"
+		ng-if="checking && (! inputMeta[id].beenBlurred || ! inputMeta[id].beenChanged)
+			   && inputMeta[id].errorStates.invalid
+			   && inputMeta[id].errorStates.long">{{maxMsg}}</span>
+</label>
+<div class="form-container-field">
+	<i class="fa fa-exclamation-circle form-container-field-attn" aria-hidden="true"
+		ng-if="checking && (! inputMeta[id].beenBlurred || ! inputMeta[id].beenChanged)
+			   && inputMeta[id].errorStates.invalid">
+	</i>
+	<input id="{{id}}"
+		name="{{id}}" type="text" placeholder="{{placeholder}}"
+		ng-class="{'form-container-field-invalid':
+					checking && (! inputMeta[id].beenBlurred || ! inputMeta[id].beenChanged)
+					&& inputMeta[id].errorStates.invalid  }"
+		ng-model="profile[id]"
+		ng-minlength="min"
+		ng-maxlength="max"
+		ng-init="inputMeta ? '' : inputMeta = {};
+				 inputMeta[id] ? '' : inputMeta[id] = {};
+					 inputMeta[id].errorStates ? '' : inputMeta[id].errorStates = {};
+
+			 inputMeta[id].errorStates.invalid = true;
+			 inputMeta[id].errorStates.short = false;
+			 inputMeta[id].errorStates.long = false"
+
+		ng-focus="inputMeta[id].lastVal = [parentForm][id].$viewValue;
+
+			  inputMeta[id].errorStates.invalid = ([parentForm][id].$invalid);
+			  inputMeta[id].errorStates.short = (inputMeta[id].len > 0 && inputMeta[id].len < min);
+			  inputMeta[id].errorStates.long = (inputMeta[id].len > max)"
+
+		ng-blur="inputMeta[id].beenBlurred = true;
+				 (inputMeta[id].lastVal != [parentForm][id].$viewValue) ? inputMeta[id].beenChanged = true : '';
+				 inputMeta[id].len = [parentForm][id].$viewValue.length;
+
+			 inputMeta[id].errorStates.invalid = ([parentForm][id].$invalid);
+			 inputMeta[id].errorStates.short = (inputMeta[id].len > 0 && inputMeta[id].len < min);
+			 inputMeta[id].errorStates.long = (inputMeta[id].len > max)"
+		required/>
+</div>

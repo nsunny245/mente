@@ -1,0 +1,55 @@
+<div class="profile-settings-css" ng-init="getAllUsers()">
+    <!--<div ng-if="!chatAuthorized">
+    <form>
+      <input type="password" placeholder="re enter your password for security" ng-model="pass" />
+      <button type="submit" ng-click="ChatAuth(pass)">Authorize</button>
+    </form>
+  </div>
+
+  <div ng-if="chatAuthorized">-->
+    <div class="holder">
+        <div class="holder">
+            <h1 class="standalone-button">Usernames to approve</h1>
+
+            <div ng-repeat="user in listOfAllUsers">
+                <div>
+                    <div ng-if="!user.isUsernameApproved">
+                        <h3>Username: {{user.username}} &nbsp | &nbsp Email: {{user.email}}</h3>
+                        <button class="standalone-button" ng-click="approveUsername(user)">Approve Username</button>
+                        <button class="standalone-button" ng-click="deleteUser(user)" style="color:red">Revoke User</button>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="standalone-button">Mentees awaiting approval</h1>
+            <div ng-repeat="mentee in listOfAllMenteesToApprove track by $index">
+                <div ng-if="!user.approvedByAdmin">
+                    <h3>Email: {{mentee.email}}</h3>
+                    <button class="standalone-button" ng-click="approveMentee(mentee)">Approve Mentee</button>
+                    <button class="standalone-button" ng-click="deleteUser(mentee)" style="color:red">Revoke Mentee</button>
+                </div>
+            </div>
+
+            <h1 class="standalone-button">Mentors awaiting approval</h1>
+            <div ng-repeat="mentor in listOfAllMentorsToApprove track by $index">
+                <!-- <div ng-if="!user.isUsernameApproved"> -->
+                <h3>Email: {{mentor.email}}</h3>
+                <button class="standalone-button" ng-click="approveMentor(mentor)">Approve Mentor</button>
+                <button class="standalone-button" ng-click="deleteUser(mentor)" style="color:red">Revoke Mentee</button>
+                <!-- </div> -->
+            </div>
+
+
+            <h1 class="standalone-button">All Users</h1>
+
+            <div ng-repeat="user in listOfAllUsers">
+                <h3>Email: {{user.email}} &nbsp | &nbsp Type: {{user.status}}</h3>
+                <button ui-sref="adminPanel.detailedUserView({user: user})" class="standalone-button">More Info</button>
+            </div>
+        </div>
+        <!--{{errorMsg}}-->
+        <!-- Generic settings here -->
+        <div>
+        </div>
+    </div>
+</div>

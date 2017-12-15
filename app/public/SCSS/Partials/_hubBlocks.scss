@@ -1,0 +1,477 @@
+@import 'helpers';
+@import 'media';
+
+@mixin hubBlocks($bgCol, $textColor, $linkOff, $linkOn, $img, $imgCentred) {
+  color: $textColor;
+  margin: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 4em;
+  @if (not $img) {
+    padding-bottom: 4em;
+  }
+  @include min-screen(45em) {
+    padding-top: 5em;
+    @if (not $img) {
+      padding-bottom: 5em;
+    }
+  }
+
+  text-align: center;
+  overflow: hidden;
+  background-color: $bgCol;
+
+  .small-left {
+    text-align: left;
+    @include min-screen(30em) {
+      //text-align: center;
+    }
+  }
+  .small-justify {
+    text-align: justify;
+    @include min-screen(30em) {
+      //text-align: center;
+    }
+  }
+
+  & > ul a.standard-button:not(.hollow),
+  a.standard-button:not(.hollow) {
+    font-size: 1.2em;
+    margin-top: 2em;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include min-screen(30em) {
+      display: inline-block;
+      &:nth-of-type(n+2) {
+        margin-left: 1.5em;
+      }
+    }
+  }
+  a.standard-button:not(.hollow) {
+    background-color: $linkOff;
+  }
+  a.standard-button:not(.hollow):hover {
+    background-color: $linkOn;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Avenir-Black";
+  }
+  h1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0.25em;
+    font-size: 3.5em;
+    line-height: 1em;
+  }
+  &:not(header) h1 {
+    max-width: 16em;
+    @if (not $img or $imgCentred) {
+      font-size: 3em;
+    } @else {
+      font-size: 2.75em;
+    }
+  }
+  & > h2:first-child {
+    margin: 0;
+    font-size: 2.25em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  &.variegated > h2 {
+    margin-bottom: 0.5em;
+  }
+  &.variegated > h2 {
+    margin-top: 1.25em;
+  }
+  @include min-screen(45em) {
+  }
+
+  p,
+  ul,
+  ol {
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    width: 100%;
+    p,
+    ul,
+    ol {
+      font-size: 1em;
+      width: 100%;
+    }
+  }
+  p + p,
+  p + ul,
+  p + ol,
+  ul + p,
+  ul + ul,
+  ul + ol,
+  ol + p,
+  ol + ul,
+  ol + ol {
+    margin-top: 1em;
+  }
+  p a:link,
+  p a:hover,
+  p a:active,
+  p a:visited {
+    background: none;
+    color: inherit;
+    text-decoration: underline;
+    font-size: 1em;
+  }
+  ul,
+  ol {
+    padding-left: 1em;
+    padding-right: 1em;
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 1em;
+      font-family: "Avenir-Black";
+      margin: 0;
+    }
+  }
+
+
+  li {
+    text-align: left;
+  }
+
+  @include min-screen(30em) {
+    //padding-left: 2em;
+    //padding-right: 2em;
+    padding-left: 0;
+    padding-right: 0;
+    p,
+    ul,
+    ol {
+      width: 28em;
+    }
+    a {
+      font-size: 1em;
+    }
+  }
+  @include min-screen(45em) {
+    //padding-left: 3em;
+    //padding-right: 3em;
+    h1 {
+      //font-size: 3.25em;
+      margin-bottom: 0.5em;
+    }
+    &:not(header) h1 {
+    }
+    p,
+    ul,
+    ol {
+      font-size: 1.125em;
+      width: 32em;
+    }
+    a {
+      font-size: 0.9em;
+    }
+  }
+
+  @include min-screen(60em)  {
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 0.4em;
+    }
+    &:not(header) h1 {
+      @if (not $img or $imgCentred) {
+        font-size: 3.25em;
+      } @else {
+        font-size: 3em;
+      }
+    }
+    p,
+    ul,
+    ol {
+      width: 35em;
+    }
+  }
+
+  @include min-screen(75em){
+    h1 {
+      font-size: 3.75em;
+    }
+    &:not(header) h1 {
+      @if (not $img or $imgCentred) {
+        font-size: 3.5em;
+      } @else {
+        font-size: 3.25em;
+      }
+    }
+
+  }
+
+  @if ($img) {
+    img {
+      display: block;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+    @if ($imgCentred) {
+      img {
+        display: none;
+        margin-top: 2.5em;
+      }
+      padding-bottom: 2.5em;
+      @include min-screen(30em) {
+        img {
+          display: block;
+          margin-left: 2em;
+          margin-right: 2em;
+        }
+        padding-bottom: 0;
+      }
+      @include min-screen(45em) {
+        img {
+          margin-left: auto;
+          margin-right: auto;
+          width: 30em;
+        }
+      }
+      @include min-screen(60em) {
+        //img {
+        //  margin: 0 auto;
+        //  width: 30em;
+        //}
+      }
+      @include min-screen(75em) {
+        //img {
+        //  margin: 0 auto;
+        //  width: 30em;
+        //}
+      }
+    } @else {
+      text-align: center;
+      padding-top: 3em;
+      padding-bottom: 3.5em;
+
+      div,
+      img {
+        display: block;
+        margin: auto;
+      }
+      div {
+      }
+      img {
+      }
+      & > div > * {
+        direction: ltr;
+      }
+      h1 {
+        margin-bottom: 0.6em;
+      }
+      a {
+        font-size: 1em;
+        margin-bottom: 0;
+      }
+
+      @include min-screen(30em) {
+      }
+      h1 {
+        margin-top: 0.75em;
+      }
+      @include min-screen(45em) {
+        direction: rtl;
+        div,
+        img {
+          display: inline-block;
+        }
+        img {
+          width: 12em;
+          margin-left: 4em;
+          margin-top: 1.5em;
+          vertical-align: top;
+        }
+        div {
+          width: 25em;
+        }
+        h1,
+        p {
+          text-align: left;
+          width: 100%;
+        }
+        h1 {
+          margin-top: 0;
+        }
+        a {
+          margin-left: 0;
+        }
+      }
+      @include min-screen(60em) {
+        padding-bottom: 4.5em;
+      }
+      @include min-screen(75em) {
+      }
+    }
+  }
+
+}
+
+@mixin giveFloatingBlockWidthAndMarg($totalWidth, $totalMarg, $blockCount) {
+  width: ($totalWidth - $totalMarg)/$blockCount;
+  &:nth-of-type(n+2) {
+    margin-left: $totalMarg/($blockCount - 1);
+  }
+}
+
+@mixin floatingBlocks($bgCol, $textColor, $linkOff, $linkOn, $block-count) {
+  $bgCol: $bgCol;
+  $linkOff: $linkOff;
+  $linkOn: $linkOn;
+  @include hubBlocks($bgCol, $textColor, $linkOff, $linkOn, false, true);
+
+  padding-left: 1em;
+  padding-right: 1em;
+  @include min-screen(30em) {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  @include min-screen(45em) {
+    padding-left: 3em;
+    padding-right: 3em;
+    & > div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+
+  article {
+    color: #fff;
+    width: 100%;
+    text-align: center;
+
+    margin-top: 2em;
+    @include min-screen(30em) {
+      a,
+      button {
+        margin-top: 1.5em;
+      }
+    }
+
+    @include min-screen(45em) {
+      margin-top: 2.5em;
+      $width: 0;
+      $margin: 0;
+      @if ($block-count > 2) {
+        $width: 100%;
+        $margin: 4.5%;
+      } @else {
+        $width: 70%;
+        $margin: 4.5%;
+      }
+      @include giveFloatingBlockWidthAndMarg($width, $margin, $block-count);
+      margin-top: 2em;
+    }
+
+    @include min-screen(60em) {
+      margin-top: 3em;
+      $width: 0;
+      $margin: 0;
+      @if ($block-count > 2) {
+        $width: 60em;
+        $margin: 4em;
+      } @else {
+        $width: 40em;
+        $margin: 2em;
+      }
+      @include giveFloatingBlockWidthAndMarg($width, $margin, $block-count);
+    }
+  }
+
+  .art-content {
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    @include min-screen(30em) {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+      padding-top: 2.5em;
+      padding-bottom: 2em;
+    }
+
+    img {
+      width: 12em;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include min-screen(30em) {
+        //width: 12em;
+      }
+      @include min-screen(45em) {
+        width: 10em;
+      }
+    }
+    h2 {
+      margin-top: 1.25em;
+      margin-bottom: 0.25em;
+      line-height: 1em;
+
+      @include min-screen(30em) {
+        font-size: 1.75em;
+        margin-top: 1em;
+        margin-bottom: 0.25em;
+      }
+    }
+    p {
+      margin-bottom: 0;
+      width: auto;
+    }
+  }
+
+  article.art-content {
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+    & > div,
+    & > div > div {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      p:last-of-type {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  a,
+  button {
+    margin-top: 1.25em;
+    font-size: 1.125em;
+    &.standard-button.hollow {
+      font-size: 1em;
+      height: auto;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      border-color: #fff;
+    }
+    @include min-screen(30em) {
+      margin-top: 1.5em;
+    }
+  }
+  a.standard-button.hollow:link,
+  a.standard-button.hollow:active,
+  a.standard-button.hollow:visited,
+  button.standard-button.hollow:link,
+  button.standard-button.hollow:active,
+  button.standard-button.hollow:visited {
+    color: #fff;
+  }
+  a.standard-button.hollow:hover,
+  button.standard-button.hollow:hover {
+    background-color: #fff;
+  }
+
+}

@@ -1,0 +1,40 @@
+<div ng-controller="closeRelationshipModalCTR">
+	<script type="text/ng-template" id="closeRelationshipModal.html">
+		<div class="modal-body end-state-modal">
+			<h1>
+				<span class="amsi-text">Close Relationship</span>
+				<button title="close" class="close-button" ng-click="CloseModal()"><img src="/Assets/Images/Login/x_grey.svg"></button>
+			</h1>
+
+			<div class="clearfix modal-padding">
+				<form>
+					<p class="modal-info">You can close your mentorship relationship at any time if you are done with the program or wish to begin again with a new mentor.</p>
+					<p class="modal-info">Closing your relationship removes the chat and timeline tabs from your profile, however you will still be able to access all documents and modules relevant to the program here.</p>
+					<p class="modal-info">If you wish to begin a new curriculum with your last mentor, please “Cancel” this prompt and click “Renew your Mentorship” below your mentor's profile.</p>
+					<p class="modal-prompt">Do you wish to Continue?</p>
+
+					<button type="button" class="standard-button modal-submit modal-cancel" ng-click="CloseModal()">
+						<span class="amsi-text cap">Cancel</span>
+					</button>
+
+					<button type="button" class="standard-button modal-submit" ng-click="confirmOpen = !confirmOpen" ng-show="!confirmOpen">
+						<span class="amsi-text cap">Close Relationship</span>
+					</button>
+
+					<div class="save-settings" ng-show="confirmOpen">
+						<label for="close-pass">Are you sure? Enter your password to confirm:</label>
+						<input id="close-pass" type="password" ng-model="pass">
+						<pre ng-show="pswError" class="angrytext" >Incorrect password, please try again</pre>
+					</div>
+
+					<button type="submit" class="standard-button modal-submit" ng-show="confirmOpen" ng-click="CloseRelationship(pass)">
+						<span class="amsi-text cap">Confirm</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</script>
+	<button type="button" class="standard-button" ng-click="open()">
+		<span class="amsi-text cap">Close Relationship</span>
+	</button>
+</div>

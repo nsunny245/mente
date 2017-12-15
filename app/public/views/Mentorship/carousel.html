@@ -1,0 +1,117 @@
+<style>
+    .content-para {}
+
+    .blueBg {
+        background-color: rgba(0, 199, 177, 0.7);
+    }
+
+    .darkblueBg {
+        background-color: rgba(0, 38, 58, 0.7);
+    }
+
+    .yellowBg {
+        background-color: rgba(255, 184, 28, 0.7);
+    }
+
+    .white {
+        color: white !important;
+    }
+
+    .darkBlue {
+        color: rgba(0, 38, 58, 1) !important;
+    }
+
+
+    .b320-0 { background-position: 0% center;}
+    .b320-10 { background-position: 10% center;}
+    .b320-20 { background-position: 20% center;}
+    .b320-30 { background-position: 30% center;}
+    .b320-40 { background-position: 40% center;}
+    .b320-50 { background-position: 50% center;}
+    .b320-60 { background-position: 60% center;}
+    .b320-70 { background-position: 70% center;}
+    .b320-80 { background-position: 80% center;}
+    .b320-90 { background-position: 90% center;}
+    .b320-100 { background-position: 100% center;}
+
+    @media only screen and (min-width: 30em) {
+        .b480-0 { background-position: 0% center;}
+        .b480-10 { background-position: 10% center;}
+        .b480-20 { background-position: 20% center;}
+        .b480-30 { background-position: 30% center;}
+        .b480-40 { background-position: 40% center;}
+        .b480-50 { background-position: 50% center;}
+        .b480-60 { background-position: 60% center;}
+        .b480-70 { background-position: 70% center;}
+        .b480-80 { background-position: 80% center;}
+        .b480-90 { background-position: 90% center;}
+        .b480-100 { background-position: 100% center;}
+    }
+
+    @media only screen and (min-width: 45em) {
+        .b720-0 { background-position: 0% center;}
+        .b720-10 { background-position: 10% center;}
+        .b720-20 { background-position: 20% center;}
+        .b720-30 { background-position: 30% center;}
+        .b720-40 { background-position: 40% center;}
+        .b720-50 { background-position: 50% center;}
+        .b720-60 { background-position: 60% center;}
+        .b720-70 { background-position: 70% center;}
+        .b720-80 { background-position: 80% center;}
+        .b720-90 { background-position: 90% center;}
+        .b720-100 { background-position: 100% center;}
+    }
+
+    @media only screen and (min-width: 60em) {
+        .b960-0 { background-position: 0% center;}
+        .b960-10 { background-position: 10% center;}
+        .b960-20 { background-position: 20% center;}
+        .b960-30 { background-position: 30% center;}
+        .b960-40 { background-position: 40% center;}
+        .b960-50 { background-position: 50% center;}
+        .b960-60 { background-position: 60% center;}
+        .b960-70 { background-position: 70% center;}
+        .b960-80 { background-position: 80% center;}
+        .b960-90 { background-position: 90% center;}
+        .b960-100 { background-position: 100% center;}
+    }
+
+</style>
+<!--Carousel-->
+<header class="clearfix caro-head" ng-cloak>
+    <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered 
+        class="custom-carousel carousel2">
+        <li ng-repeat="slide in Images track by $index">
+            <!-- <div ng-if="Content[$index] == null" class="carousel-video">
+                <div class="vid">
+                    <video id="mainvid" controls 
+                    poster="/Assets/Videos/place-holder-vid.png" onclick="this.paused?this.play():this.pause();">
+                        <source src="/Assets/Videos/ca_promo-1.mp4" type="video/mp4"> Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div> -->
+            <!-- <div ng-if="Content[$index] != null" ng-style="{'background-image': 'url(' + slide.src + ')'}" class="carousel-image-blurred">
+            </div>
+            <div ng-if="Content[$index] != null" class="carousel-image-fade">
+            </div> -->
+            <div class="carousel-image {{slide.xPos[0]}} {{slide.xPos[1]}} {{slide.xPos[2]}} {{slide.xPos[3]}}" ng-style="{'background-image':'url('+ slide.src +')'}">
+                <!-- <img ng-src="{{slide.src}}"> -->
+                <div class="carousel-slide-content">
+                    <div class="{{Content[$index].vertPos}} {{Content[$index].horiPos}}">
+                        <div class="{{Content[$index].backgroundcolor}} content-para">
+                            <h1 class=""><span class="amsi-text cap {{Content[$index].titletextcolor}}">{{Content[$index].title}}</span></h1>
+                            <p class="{{Content[$index].textcolor}}">{{Content[$index].content}}</p>
+                        </div>
+
+                        <a ng-if="Content[$index].action.anchor" ng-href="{{Content[$index].action.reference}}" class="carousel-action standard-button"><span class="amsi-text cap">{{Content[$index].action.text}}</span></a>
+                        <button ng-if="!Content[$index].action.anchor" ng-click="Content[$index].action.reference()" class="carousel-action standard-button"><span class="amsi-text cap">{{Content[$index].action.text}}</span></button>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <!-- <a class="carousel-nav"></a> -->
+    <!-- <a class="carousel-nav"></a> -->
+    <div class="carousel-nav" rn-carousel-indicators ng-if="Images.length > 0" slides="Images" rn-carousel-index="carouselIndex2"></div>
+</header>
+<!--END Carousel-->

@@ -1,0 +1,172 @@
+<!-- forum.html -->
+<div class="forum-css">
+	<community class="forum-view" data-forum-index="{{loadedForumParam + 1}}">
+		<header class="block">
+			<div>
+				<h1><span class="amsi-text cap">CommunAbility Forums:<br>{{superCategories[loadedForumParam]}}</span></h1>
+				<p>{{forumDescriptions[loadedForumParam]}}</p>
+				<p>Click on any of the sub-forums to begin browsing relevant posts. If you can't find what you're looking for, feel free
+					to create a new post.</p>
+				<a ui-sref="community.forums" class="standard-button"><span class="amsi-text cap">Back to Categories</span></a>
+				<!-- <search-modal></search-modal>-->
+				<div class="forum-search">
+					<!--<form ng-disabled> -->
+					<!--TODO, ADD LATER-->
+					<!-- <label class="hidden" for="search-entry">Search the Forums:</label
+						><input id="search-entry" placeholder="Search..."></input
+						><button type="submit" title="search forums" class="standard-button forum-search-btn">
+							<img src="/Assets/Images/Community/magnifying_glass_icon.svg">
+							<span class="amsi-text cap">Search</span>
+						</button>
+					</form
+
+					> -->
+					<button type="button" title="begin new post" class="create-new-post-btn standard-button"
+						data-toggle="collapse"
+						data-target=".create-post-target"
+						aria-expanded="false"
+						aria-controls="create-post-form"
+						ng-click="! loggedIn() ? '' : userProfile.status == 'unverified' ? profileRedirect('unverified') : toggleCreatePost(); resetNewPostData(); selectedForum = ''">
+						<span ng-class="{'hidden' : showNewPost}" class="amsi-text cap small-view-text">Begin New Post</span>
+						<span ng-class="{'hidden' : !showNewPost}" class="amsi-text cap small-view-text">Cancel New Post</span>
+						<span ng-class="{'hidden' : showNewPost}" class="amsi-text cap big-view-text">Create Post</span>
+						<span ng-class="{'hidden' : !showNewPost}" class="amsi-text cap big-view-text">Cancel Post</span>
+					</button>
+					<!-- <br>
+					<p>Can't find what you're looking for? Click the button below to begin a new post</p> -->
+				</div>
+			</div>
+
+
+			<form id="create-post-form" class="forum-new-post collapse" name="forumPost" novalidate="" ng-class="{ 'create-post-target' : userProfile }">
+				<div>
+					<!--{{userForms.newPost.message}}-->
+					<h2><span class="amsi-text">New Post:</span></h2>
+					<label class="hidden" for="topic-entry">Enter a title for your post:</label
+					><input id="topic-entry" maxlength="1000" rows="1" placeholder="Topic"
+						ng-model="userForms.newPost.subject"
+						required /
+					>
+					
+					<label class="hidden" for="body-entry">Enter your post:</label
+					><textarea id="body-entry" maxlength="1000" rows="6" placeholder="Question"
+						ng-model="userForms.newPost.message"
+						required></textarea>
+
+					<label class="hidden" for="forum-select">Select a Forum:</label>
+
+					<select id="forum-select" class="down-chevron" ng-model="selectedForum" ng-options="subforum.name for subforum in forumSubNamesFiltered track by subforum.index"
+					 required>
+						<option style="display:none" value="" disabled>-- Select a subforum --</option>
+					</select
+
+					><!-- <div class="tags">
+						<label class="hidden" for="tag-select">Tags:</label>
+						<select class="down-chevron" id="tag-select" ng-model="selectedTag" ng-options="tag for tag in postTags">
+							<option style="display:none" value="" disabled>New Tag</option>
+						</select
+						><button title="add tag" type="button" class="standard-button" ng-click="AddTag(selectedTag); selectedTag = 0;" ng-disabled="!selectedTag">
+							<span class="amsi-text">+</span>
+						</button>
+						<ul>
+							<li ng-repeat="addedtag in userForms.newPost.tags">
+								<span>{{addedtag}}</span>
+								<button title="remove tag" type="button" class="standard-button" ng-click="RemoveTag(addedtag)">X</button>
+							</li>
+						</ul>
+					</div> -->
+
+					<button
+						type="submit"
+						class="post standard-button"
+						ng-disabled="forumPost.$invalid || posting || submittedPost"
+						ng-click="! loggedIn() ? '' : checkGentile(userForms.newPost.subject, userForms.newPost.message) ? '' : Post(selectedForum.index)">
+						<span ng-show="!posting && !submittedPost" class="amsi-text cap">Post</span>
+						<span ng-show="posting && !submittedPost" class="amsi-text cap">Posting...</span>
+						<span ng-show="submittedPost" class="amsi-text cap">Posted</span>
+					</button>
+					<p ng-show="badwordList.length > 0">Your post/subject line contains restricted language:<br><span ng-repeat="word in badwordList">{{word}}<span ng-if="!$last">, </span></span></p>
+
+				</div>
+			</form>
+		</header>
+		
+		<ul class="forum-section-array">
+			<li ng-repeat="category in forums track by $index" data-sub-index="{{$index}}">
+				<section class="forum-section">
+					<button type="button" class="subforum-entry-btn"
+						data-toggle="collapse"
+						data-target="#subforum-posts-{{$index}}"
+						aria-expanded="false"
+						aria-controls="subforum-posts-{{$index}}"
+						ng-click="toggleSubForum($index)">
+						<h1><span class="amsi-text">{{forumSubNamesFiltered[$index].name}}</span></h1>
+					</button>
+					<div class="collapse sub-collapse" id="subforum-posts-{{$index}}">
+						<form class="forum-sort-console">
+							<fieldset>
+								<div class="forum-sort-text">
+									<h2><span class="amsi-text">Sort by:</span></h2>
+								</div>
+								<input type="radio" id="highest-{{$index}}" class="hidden"
+									name="pageSort"
+									ng-model="subPagesMeta[$index].sortByPopularity"
+									ng-value="true"
+									ng-change="togglePopularitySort($index, true)">
+								<label for="highest-{{$index}}" class="forum-sort-btn">
+									<span class="hidden">Highest</span>
+									<div class="standard-button hollow amsi-text" aria-hidden="true">
+										<span class="amsi-text cap">Highest</span>
+									</div>
+								</label>
+
+								<input type="radio" id="latest-{{$index}}" class="hidden"
+									name="pageSort"
+									ng-model="subPagesMeta[$index].sortByPopularity"
+									ng-value="false"
+									ng-change="togglePopularitySort($index, false)">
+								<label for="latest-{{$index}}" class="forum-sort-btn">
+									<span class="hidden">Latest</span>
+									<div class="standard-button hollow" aria-hidden="true">
+										<span class="amsi-text cap">Latest</span>
+									</div>
+								</label>
+							</fieldset>
+						</form>
+						<ol class="section-post-array">
+							<li ng-repeat="post in category track by $index">
+								<post></post>
+							</li>
+						</ol>
+						<button class="sub-pages-btn" aria-label="Previous Page"
+							ng-click="gotoPrevSubPage($index)"
+							ng-disabled="subPagesMeta[$index].currentPage == 0">
+							<img ng-src="{{subPagesMeta[$index].currentPage == 0 ? '/Assets/Images/Community/forum-arrow-left-disabled.svg' : '/Assets/Images/Community/forum-arrow-left.svg'}}" alt="Previous Page">
+						</button>
+						<h1 class="sub-pages-number"><span class="amsi-text">{{subPagesMeta[$index].currentPage + 1}}</span></h1>
+						<button class="sub-pages-btn" aria-label="Next Page"
+							ng-click="gotoNextSubPage($index)"
+							ng-disabled="subPagesMeta[$index].nextDisabled">
+							<img ng-src="{{subPagesMeta[$index].nextDisabled ? '/Assets/Images/Community/forum-arrow-right-disabled.svg' : '/Assets/Images/Community/forum-arrow-right.svg'}}" alt="Next Page">
+						</button>
+					</div>
+				</section>
+			</li>
+		</ul>
+
+
+		<footer class="forum-section forum-rules">
+			<button type="button" class="subforum-entry-btn"
+				data-toggle="collapse"
+				data-target="#forum-rules"
+				aria-expanded="false"
+				aria-controls="forum-rules">
+				<h1><span class="amsi-text">CommunAbility Forums:<br>Rules and Guidelines</span></h1>
+			</button>
+			<div id="forum-rules" class="collapse sub-collapse forum-rules-content variegated">
+				<forum-rules></forum-rules>
+			</div>
+		</footer>
+
+	</community>
+</div>

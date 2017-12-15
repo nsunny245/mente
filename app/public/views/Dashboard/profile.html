@@ -1,0 +1,88 @@
+<div class="profile-css">
+	<header class="dash">
+		<div class="contain">
+			<div class="profile">
+				<img ng-src="{{userProfile.picture}}" src="/Assets/Images/profile-icon.svg">
+				<div>
+					<h1><span class="amsi-text">{{fullName != undefined ? fullName : userProfile.username}}<br>My Profile</span></h1>
+					<!-- <a ui-sref="profile.settings" ng-click="LoadSettings()">Settings</a> -->
+				</div>
+			</div><button type="button" class="tognav">
+			<div></div>
+			<div></div>
+			<div></div>
+		</button
+		><div class="dashnav transition">
+			<ul>
+				<li class="nav-timeline" ng-if="'menteeInTraining'===userProfile.status && (userProfile.mentee[0].completionMessage || ! userProfile.mentee[0].completedProgram) || 'mentorInTraining'===userProfile.status || 'mentorPending'===userProfile.status || 'menteeSeeking'===userProfile.status || 'mentee'===userProfile.status || 'mentorFull'===userProfile.status">
+					<button ui-sref="profile.timeline" aria-label="Timeline">
+						<h1><span class="amsi-text cap">Timeline</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Timeline.svg" alt="Timeline">
+						</div>
+					</button>
+				</li
+
+				><li class="nav-chat" ng-if="('menteeInTraining'===userProfile.status || 'menteeSeeking'===userProfile.status) && userProfile.mentee[0].completedProgram || 'mentee' === userProfile.status || 'mentor' === userProfile.status && (userProfile.mentor[0].mentees.length > 0 || userProfile.mentor[0].completedProgram)">
+					<button ng-click="RetrieveAssigneeInfo()" ui-sref="profile.chat" aria-label="Chat">
+						<h1><span class="amsi-text cap">Chat</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Chat.svg" alt="Chat">
+						</div>
+					</button>
+				</li
+				><li class="nav-mentorship" ng-if="'unverified' !== userProfile.status && 'verified' !== userProfile.status">
+					<button ui-sref="profile.mentorship" aria-label="Mentorship">
+						<h1><span class="amsi-text cap">Mentorship</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Mentorship.svg" alt="Mentorship">
+						</div>
+					</button>
+				</li
+				><li class="nav-calendar">
+					<button ui-sref="profile.calendar" aria-label="Calendar">
+						<h1><span class="amsi-text cap">Calendar</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Calendar.svg" alt="Calendar">
+						</div>
+					</button>
+				</li
+				><!-- <li class="nav-activity"><button ui-sref="profile.activity">
+					<h1><span class="amsi-text cap">Activity</span></h1>
+					<div></div
+					><div>
+						<img src="/Assets/Images/Profile/header/Activity.svg">
+					</div>
+				</button></li
+				> --><li class="nav-faqs">
+					<button ui-sref="faqs" aria-label="FAQs">
+						<h1><span class="amsi-text cap">FAQs</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Faqs.svg" alt="FAQs">
+						</div>
+					</button>
+				</li
+				><li class="nav-settings">
+					<button ui-sref="profile.settings" ng-click="LoadSettings()" aria-label="Settings">
+						<h1><span class="amsi-text cap">Settings</span></h1>
+						<div></div
+						><div>
+							<img src="/Assets/Images/Profile/header/Settings.svg" alt="Settings">
+						</div>
+					</button>
+				</li>
+			</ul>
+		</div>
+		</div>
+		<hr class="dashboard">
+	</header>
+
+	<div class="dash-offset">
+		<div ui-view class="module"></div>
+	</div>
+</div>

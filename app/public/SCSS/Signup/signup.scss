@@ -1,0 +1,335 @@
+@import "../Partials/helpers";
+
+.signup-css {
+  .signup-nav {
+    font-size: 0.9em;
+    width: 14em;
+    padding-top: 3em;
+    padding-bottom: 2.5em;
+    margin: 0 auto;
+  }
+    .signup-nav > ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      height: 0;
+    }
+      .signup-nav li {
+        display: inline-block;
+
+        background-color: #CCC;
+        height: 0;
+        padding: 0.4em 0;
+        float:left;
+
+        position: relative;
+      }
+        .signup-nav li:first-child {
+          z-index: 3;
+          width: 16%;
+          border-top-left-radius: 0.2em;
+          border-bottom-left-radius: 0.2em;
+        }
+        .signup-nav li:nth-child(2) {
+          width: 34%;
+          z-index: 2;
+        }
+        .signup-nav li:nth-child(3) {
+          width: 34%;
+          z-index: 1;
+        }
+        .signup-nav li:last-child {
+          width: 16%;
+          border-top-right-radius: 0.2em;
+          border-bottom-right-radius: 0.2em;
+        }
+
+        .signup-nav h2 {
+          display: block;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          left: 100%;
+
+          margin: 0;
+          color: #fff;
+
+          font-size: 1em;
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          background-color: #B2B2B2;
+
+          padding: 1em 0;
+          text-align: center;
+        }
+          .signup-nav h2 > span {
+            height: 1.4em;
+            transform: translateY(-50%);
+            display: block;
+          }
+              .signup-nav > ul > li:first-child > h2 > span {
+                margin-left: -0.04em;
+              }
+
+  text-align: center;
+
+  header.intro {
+    color: #fff;
+    position: relative;
+    a:link,
+    a:focus,
+    a:hover,
+    a:active,
+    a:visited {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+  header.intro > * {
+    position: relative;
+  }
+  header.intro > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 2em;
+  }
+  header.intro > img {
+    width: 6.5em;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1.75em;
+  }
+  header.intro > h1 {
+    line-height: 1em;
+    font-size: 2.25em;
+    margin: 0;
+  }
+  header.intro > h1 > span {
+    letter-spacing: 0.005em
+  }
+  header.intro > h2 {
+    line-height: 1em;
+    font-size: 1.5em;
+    /*margin: 0;*/
+    width: 13em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h3 {
+    color: #004F71;
+    margin: 0 0.5em;
+    font-size: 2em;
+    line-height: 1.1em;
+  }
+  header.intro > h3 {
+    margin: 0;
+    padding: 0.8em;
+    font-size: 1.5em;
+    background-color: #F2F2F2;
+  }
+  h3:first-of-type {
+    margin-bottom: 0.8em;
+  }
+  header.intro > p {
+    margin: 0 1em;
+    line-height: 1.8em;
+    font-size: 1.25em;
+  }
+  header.intro > p + p {
+    margin-top: 1em;
+  }
+  header.intro > p:last-of-type {
+    padding-bottom: 1.2em;
+  }
+  form {
+    margin: 3em 2em 4em 2em;
+  }
+  button.standard-button[type="submit"] {
+    margin-top: 2em;
+    clear: both;
+    font-size: 1.2em;
+  }
+
+  .send-conf-btn {
+    display: inline;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+
+  @media screen and (min-width: 30em) {
+    .signup-nav {
+      font-size: 1.2em;
+      width: 12em;
+      padding-top: 1.75em;
+      padding-bottom: 1.75em;
+    }
+    .signup-nav li {
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+    }
+    .signup-nav h2 {
+      font-size: 0.8em;
+    }
+    header.intro > div {
+      top: 2.75em;
+    }
+    header.intro > h1 {
+      font-size: 2.5em;
+    }
+    header.intro > h2 {
+      margin-bottom: 1.25em;
+    }
+    header.intro > p {
+      margin: 0 auto;
+      width: 85%;
+    }
+    header.intro > img {
+      width: 8em;
+      margin-bottom: 1.5em;
+    }
+    header.intro > h3 {
+      font-size: 1.35em;
+      padding-top: 1.25em;
+      padding-bottom: 1.25em;
+    }
+    header.intro > p:last-of-type {
+      padding-bottom: 2.25em;
+    }
+    form {
+      margin: 4em;
+    }
+      button.standard-button {
+        font-size: 1.25em;
+      }
+  }
+  @media screen and (min-width: 45em) {
+    .signup-nav {
+      font-size: 0.9em;
+      width: 22.5em;
+      padding-top: 4em;
+      padding-bottom: 4.5em;
+    }
+    .signup-nav li {
+      padding-top: 0.6em;
+      padding-bottom: 0.6em;
+    }
+    .signup-nav li:first-child {
+      border-top-left-radius: 0.35em;
+      border-bottom-left-radius: 0.35em;
+    }
+    .signup-nav li:last-child {
+      border-top-right-radius: 0.35em;
+      border-bottom-right-radius: 0.35em;
+    }
+    .signup-nav h2 {
+      font-size: 1.5em;
+    }
+    header.intro > div {
+      top: 3.5em;
+    }
+    header.intro > img {
+      width: 10em;
+      margin-bottom: 2.5em;
+    }
+    header.intro > h1 {
+      font-size: 3.25em;
+    }
+    header.intro > h2 {
+      font-size: 2em;
+    }
+    header.intro > p {
+      width: 24em;
+    }
+    header.intro > h3 {
+      font-size: 2em;
+    }
+    form {
+      width: 28em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /*form*/
+  }
+  @media screen and (min-width: 768px) {
+    .signup-nav {
+      width: 22em;
+      padding-top: 5em;
+      padding-bottom: 4em;
+    }
+    .signup-nav li {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    .signup-nav li:first-child {
+      border-top-left-radius: 0.35em;
+      border-bottom-left-radius: 0.35em;
+    }
+    .signup-nav li:last-child {
+      border-top-right-radius: 0.35em;
+      border-bottom-right-radius: 0.35em;
+    }
+    .signup-nav h2 {
+      font-size: 1.35em;
+    }
+    header.intro > h1 {
+      font-size: 3em;
+    }
+    header.intro > h2 {
+      font-size: 1.75em;
+    }
+    header.intro > p {
+    }
+    header.intro > div {
+      top: 3em;
+    }
+    header.intro > img {
+      width: 11em;
+      margin-bottom: 2em;
+    }
+    header.intro > h3 {
+      font-size: 1.8em;
+    }
+    form {
+      width: 30em;
+    }
+  }
+  @media screen and (min-width: 60em) {
+    //font-size: 1.25em;
+  }
+  @media screen and (min-width: 75em) {
+    //font-size: 1.25em;
+
+    .signup-nav {
+      font-size: 1em;
+      width: 22.5em;
+      padding-top: 5em;
+    }
+      .signup-nav li {
+        padding: 0.5em 0;
+      }
+      .signup-nav h2 {
+        font-size: 1.35em;
+      }
+    header.intro > h1 {
+      font-size: 3.5em;
+    }
+    header.intro > p {
+      margin-left: auto;
+      margin-right: auto;
+      width: 30em;
+    }
+    header.intro > img {
+      width: 9em;
+    }
+    form:not(.mentorship) {
+      font-size: 0.875;
+      margin-left: auto;
+      margin-right: auto;
+      width: 32em;
+    }
+  }
+}
